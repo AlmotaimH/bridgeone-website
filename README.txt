@@ -12,7 +12,7 @@ What's in this folder
 - assets/        Logo, favicon, social share image
 
 1) BEFORE LAUNCH — fill in your details
-- index.html: phone number [+1 (XXX) XXX-XXXX]
+- Phone number added: +1 (647) 335-5647
 - i18n.js: "[City]" / "[City, Province]", client stories, testimonials
   (only publish REAL client quotes, with their permission)
 - index.html: replace https://calendly.com/ with your own booking link

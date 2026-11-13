@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '9'
+V = '10'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -45,8 +45,8 @@ def langs_html(L, file):
 def head(L, title, desc, file, alt=True, extra='', ogtype='website'):
     lang, d, pre = LANGS[L]
     url = SITE + pre + file
-    fonts = 'family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700'
-    if L == 'AR': fonts += '&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700'
+    fonts = 'family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500'
+    if L == 'AR': fonts += '&family=IBM+Plex+Sans+Arabic:wght@400;500;600'
     alts = ''
     if alt:
         for c in LANGS:
@@ -108,6 +108,7 @@ def inner_footer(L):
 <nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
 <nav class="col" aria-label="Legal"><b>{esc(g(L, "footer.legal"))}</b><a href="{pre}privacy.html">{esc(g(L, "footer.privacy"))}</a><a href="{CO}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">{LI_ICON}LinkedIn</a></nav>
 </div>
+<div class="wordmark" aria-hidden="true">BRIDGEONE</div>
 <div class="bot"><span>{esc(g(L, "footer.copy"))}</span><span class="motto">{esc(g(L, "motto"))}</span></div>
 </div></footer>
 {TOTOP}
@@ -179,8 +180,8 @@ def article_page(a, prev, nxt):
     else:
         who = '<div class="avatar" aria-hidden="true">B1</div><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
     return h + hdr + f'''<main id="main"><article class="art">
-<a href="/insights.html" style="font-size:15px;font-weight:600;text-decoration:none">← All insights</a>
-<p class="eyebrow in" style="color:#8A6623;margin-top:28px">{esc(eyebrow)}</p>
+<a href="/insights.html" style="text-decoration:none">← All insights</a>
+<p class="eyebrow in" style="margin-top:32px">{esc(eyebrow)}</p>
 <h1 class="in d1">{esc(a["title"])}</h1>
 <p class="dek in d1">{esc(a["dek"])}</p>
 <div class="byline in d2" style="animation-delay:.3s">{who}<span style="color:#5A6870"><time datetime="{a["date"]}">{fdate(L, a["date"])}</time> · {a["read"]} min read</span></div></div>
@@ -209,8 +210,9 @@ INS = {
 }
 
 def feature_card(L, a, label, go, cls='feature rv'):
+    num = f'{a["ed"]:02d}' if a['ed'] else '+'
     return f'''<a class="{cls}" href="/insights/{a["slug"]}.html" hreflang="en">
-<div class="art"><img src="/assets/logo-mark.png" alt="" loading="lazy"></div>
+<div class="fx" dir="ltr" aria-hidden="true"><small>Bridging the Gap</small><svg viewBox="0 0 400 160" preserveAspectRatio="none"><path d="M0 120H400M0 126H400M0 120Q200 -90 400 120M100 120V28M200 120V16M300 120V28M50 120V68M150 120V19M250 120V19M350 120V68"/></svg><b>{num}</b></div>
 <div class="tx"><span class="eyebrow">{esc(label)} · <time datetime="{a["date"]}">{fdate(L, a["date"])}</time></span>
 <h3 lang="en" dir="ltr">{esc(a["title"])}</h3>
 <p lang="en" dir="ltr">{esc(a["dek"])}</p>
@@ -235,7 +237,7 @@ def insights_page(L):
 </div></section>
 <section class="sec" style="padding-top:64px"><div class="wrap">
 {note}{feature_card(L, LATEST, g(L, "insights.featured"), P["go"])}
-<h2 class="h2 rv" style="margin:72px 0 8px;font-size:clamp(26px,3vw,34px)">{esc(P["all"])}</h2>
+<h2 class="h2 rv" style="margin:88px 0 8px;font-size:clamp(30px,3.6vw,46px)">{esc(P["all"])}</h2>
 <div class="eds">
 {rows}</div>
 </div></section>

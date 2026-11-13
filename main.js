@@ -22,6 +22,7 @@
   var hdr = document.querySelector(".hdr");
   var toTop = document.querySelector(".to-top");
   var bar = document.querySelector(".progress");
+  if (!bar) { bar = document.createElement("div"); bar.className = "progress"; bar.setAttribute("aria-hidden", "true"); document.body.appendChild(bar); }
   function onScroll() {
     var y = window.scrollY;
     if (hdr) hdr.classList.toggle("scrolled", y > 20);
@@ -53,14 +54,20 @@
     var text = el.textContent.trim();
     el.setAttribute("aria-label", text);
     el.innerHTML = "";
+    var second = false;
     text.split(/\s+/).forEach(function (w, i) {
       var s = document.createElement("span");
-      s.className = "w";
+      s.className = second ? "w em" : "w";
       s.setAttribute("aria-hidden", "true");
       s.textContent = w;
       s.style.animationDelay = (0.25 + i * 0.07) + "s";
       el.appendChild(s);
       el.appendChild(document.createTextNode(" "));
+      /* the second sentence is the promise: set it apart */
+      if (!second && /[.،]$/.test(w)) {
+        second = true;
+        var b = document.createElement("span"); b.className = "brk"; el.appendChild(b);
+      }
     });
   }
   var heroH1 = document.querySelector("[data-split]");
@@ -71,32 +78,11 @@
       if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
     });
   }, { threshold: 0.14, rootMargin: "0px 0px -40px 0px" }) : null;
-  document.querySelectorAll(".rv, .steps li, .rule").forEach(function (el) {
+  document.querySelectorAll(".rv, .steps li, .lbl").forEach(function (el) {
     var d = el.getAttribute("data-d");
     if (d) el.style.transitionDelay = d + "s";
     if (io && !reduce) io.observe(el); else el.classList.add("on");
   });
-
-  /* Card spotlight follows the cursor */
-  document.querySelectorAll(".card").forEach(function (c) {
-    c.addEventListener("pointermove", function (e) {
-      var r = c.getBoundingClientRect();
-      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      c.style.setProperty("--my", (e.clientY - r.top) + "px");
-    });
-  });
-
-  /* Hero logo tilt */
-  var art = document.querySelector(".hero-art img");
-  var hero = document.querySelector(".hero");
-  if (art && hero && !reduce && window.matchMedia("(pointer: fine)").matches) {
-    hero.addEventListener("pointermove", function (e) {
-      var r = hero.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      art.style.transform = "rotateY(" + (x * 10) + "deg) rotateX(" + (-y * 10) + "deg)";
-    });
-    hero.addEventListener("pointerleave", function () { art.style.transform = ""; });
-  }
 
   /* Languages are separate pages (/, /fr/, /ar/); nothing to switch here */
   splitWords(heroH1);

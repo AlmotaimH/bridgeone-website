@@ -145,4 +145,6 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.FR.insights.sub="Bridging the Gap : des idées sur le leadership, fondées sur la recherche et applicables dès lundi.";
   T.AR.insights.sub="Bridging the Gap: رؤى في القيادة مبنية على الأبحاث، قابلة للتطبيق فورًا.";
   T.EN.skip="Skip to content";T.FR.skip="Passer au contenu";T.AR.skip="تخطَّ إلى المحتوى";
+  T.EN.span={from:"Vision",to:"Execution"};T.FR.span={from:"Vision",to:"Exécution"};T.AR.span={from:"الرؤية",to:"التنفيذ"};
+  T.EN.news.label2=T.FR.news.label2=T.AR.news.label2="Bridging the Gap";
 })(window.BO_I18N);

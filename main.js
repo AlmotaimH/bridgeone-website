@@ -205,7 +205,7 @@
       var qn = Math.round(Math.max(0, Math.min(1, (vh * 0.92 - qr.top) / (vh * 0.5))) * bqWords.length);
       for (var qi = 0; qi < bqWords.length; qi++) bqWords[qi].classList.toggle("lit", qi < qn);
     }
-    if (wm) { var wr = wm.getBoundingClientRect(); if (wr.top < window.innerHeight + 50) wm.style.transform = "translateX(" + ((wr.top / window.innerHeight) * 7 - 2).toFixed(2) + "vw)"; }
+    if (wm) { var wr = wm.getBoundingClientRect(); if (wr.top < window.innerHeight + 50) wm.style.transform = "translateX(" + Math.max(-1.5, Math.min(1.5, (wr.top / window.innerHeight) * 3 - 1.5)).toFixed(2) + "vw)"; }
   }
   window.addEventListener("scroll", live, { passive: true }); live();
 

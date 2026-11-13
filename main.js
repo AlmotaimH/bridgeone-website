@@ -124,12 +124,14 @@
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
         cio.unobserve(e.target);
-        var el = e.target, m = el.textContent.trim().match(/^(\D*)(\d+)(\D*)$/);
+        var el = e.target, m = el.textContent.trim().match(/^(\D*?)(\d[\d,\s\u202f\u00a0]*\d|\d)(\D*)$/);
         if (!m) return;
-        var pre = m[1], to = +m[2], suf = m[3], t0 = performance.now();
+        var pre = m[1], raw = m[2], suf = m[3], to = +raw.replace(/\D/g, ""), t0 = performance.now();
+        var sep = /,/.test(raw) ? "," : (/[\s\u202f\u00a0]/.test(raw) ? "\u202f" : "");
+        var fmt = function (n) { var s = String(n); return sep ? s.replace(/\B(?=(\d{3})+(?!\d))/g, sep) : s; };
         (function step(now) {
           var p = Math.min(1, (now - t0) / 1700);
-          el.textContent = pre + Math.round(to * (1 - Math.pow(1 - p, 3))) + suf;
+          el.textContent = pre + fmt(Math.round(to * (1 - Math.pow(1 - p, 3)))) + suf;
           if (p < 1) requestAnimationFrame(step);
         })(t0);
       });

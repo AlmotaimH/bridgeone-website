@@ -103,7 +103,7 @@ html[lang=ar] .tagline{font-style:normal;font-family:var(--font)}
 .stats{padding:34px 36px;overflow:hidden}
 .stats::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 200px at 85% 0%,rgba(242,180,90,.14),transparent 70%);pointer-events:none;border-radius:inherit}
 .stats h2{font-size:15px;font-weight:600;letter-spacing:0;color:var(--soft);margin-bottom:22px}
-.stat-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stat-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
 .stat{display:flex;flex-direction:column;gap:6px;padding-inline-start:18px;border-inline-start:1px solid var(--border-2)}
 .stat b{font-size:clamp(36px,4vw,52px);font-weight:700;line-height:1.05;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat span{color:var(--soft);font-size:15px;line-height:1.45}
@@ -295,7 +295,7 @@ html[lang=ar] .article .dek{font-style:normal}
   .svc-bento .t3,.svc-bento .t6{grid-column:span 2}
   .ins-bento{grid-template-columns:1fr 1fr}
   .deck-steps{grid-template-columns:1fr 1fr}.deck-steps::before{display:none}
-  .stat-row{grid-template-columns:1fr 1fr;row-gap:28px}
+  .stat-row{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}
   .feature{grid-template-columns:1fr}.feature .art{min-height:200px}.feature .tx{padding:30px}
   .annos{grid-template-columns:1fr;gap:12px;padding:8px 28px 40px}
   .anno,.anno.b{justify-self:start;text-align:start;max-width:none}
@@ -312,6 +312,7 @@ html[lang=ar] .article .dek{font-style:normal}
   .svc-bento .t0,.svc-bento .t3,.svc-bento .t6,.statement-tile,.ins-bento .feature{grid-column:auto}
   .svc-bento .cta-tile{grid-template-columns:1fr}.cta-tile .ico,.cta-tile p,.cta-tile .go{grid-column:auto;grid-row:auto}.cta-tile .go{justify-self:start}
   .stats{padding:26px}.statement-tile{padding:28px}
+  .stat-row{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}
   .founder{padding:18px}.founder-tx{padding:0}
   .form-box{padding:22px}
   .ed{grid-template-columns:1fr}.ed .n{grid-row:auto;width:44px;height:44px;font-size:18px}

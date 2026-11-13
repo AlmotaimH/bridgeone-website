@@ -379,3 +379,11 @@ html[lang=ar] .article .dek{font-style:normal}
 }
 @media (max-width:640px){.bank{display:none}}
 @media (prefers-reduced-motion:reduce){.car,.beacon,.cur{display:none}.hero h1 .w{opacity:1;transform:none;filter:none}.qw{opacity:1}}
+
+/* founder: on-stage inset */
+.portrait .stack{position:relative}
+.portrait .inset{position:absolute;inset-inline-end:-22px;bottom:-34px;width:44%;border-radius:var(--r-md);overflow:hidden;border:4px solid #0A1431;box-shadow:0 24px 50px -18px rgba(0,0,0,.75),0 0 0 1px rgba(242,180,90,.25);transform:rotate(2.5deg)}
+[dir=rtl] .portrait .inset{transform:rotate(-2.5deg)}
+.portrait .inset img{display:block;width:100%;aspect-ratio:601/642;object-fit:cover}
+.portrait figcaption{margin-top:22px;max-width:52%}
+@media (max-width:700px){.portrait .inset{inset-inline-end:-8px;bottom:-26px;width:40%}}

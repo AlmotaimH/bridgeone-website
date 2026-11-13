@@ -165,4 +165,14 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.EN.about.cta="Talk to Hossam";T.FR.about.cta="Parler à Hossam";T.AR.about.cta="تحدّث مع Hossam";
   T.EN.about.li="Hossam on LinkedIn";T.FR.about.li="Hossam sur LinkedIn";T.AR.about.li="Hossam على لينكدإن";
   T.EN.who.label="We work with";T.FR.who.label="Nous travaillons avec";T.AR.who.label="نعمل مع";
+  /* --- Gradient / bento redesign (Nov 13, 2026) --- */
+  T.EN.hero.title="Turn your strategy into results you can measure.";
+  T.FR.hero.title="Transformez votre stratégie en résultats mesurables.";
+  T.AR.hero.title="حوّل استراتيجيتك إلى نتائج قابلة للقياس.";
+  T.EN.hero.tagline="We don’t just build solutions. We bridge possibilities.";
+  T.FR.hero.tagline="Nous ne faisons pas que bâtir des solutions. Nous créons des ponts vers le possible.";
+  T.AR.hero.tagline="نحن لا نبني الحلول فحسب، بل نمدّ الجسور نحو الممكن.";
+  T.EN.stats={title:"The experience behind the advice",items:[["~20","years leading business development and operations"],["70+","stores in regional portfolios led"],["550+","team members led"],["4","regions: Canada, MENA, the GCC and Türkiye"]]};
+  T.FR.stats={title:"L’expérience derrière nos conseils",items:[["~20","ans à diriger le développement des affaires et les opérations"],["70+","magasins dans des portefeuilles régionaux"],["550+","employés dirigés"],["4","régions : Canada, MENA, pays du Golfe et Türkiye"]]};
+  T.AR.stats={title:"الخبرة التي تقف وراء مشورتنا",items:[["~20","عامًا في قيادة تطوير الأعمال والعمليات"],["+70","متجرًا ضمن محافظ إقليمية"],["+550","موظفًا تحت القيادة"],["4","مناطق: كندا، الشرق الأوسط وشمال أفريقيا، الخليج، تركيا"]]};
 })(window.BO_I18N);

@@ -204,4 +204,23 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
     for (var l in s){ T[l].about.bio=T[l].about.bio.replace(s[l][0], s[l][1]+s[l][0]); }
   })();
   T.EN.stats.items[4]=["10+","clients advised"];T.FR.stats.items[4]=["10+","clients conseillés"];T.AR.stats.items[4]=["+10","عملاء قدّمنا لهم الاستشارات"];
+  /* --- Business health check + animated icons (Nov 13, 2026) --- */
+  T.EN.check={title:"Where does your business stand?",sub:"Rate six areas from 1 to 5. The chart shows your shape, and we suggest where to start.",
+    areas:["Strategy and priorities","Structure and processes","Sales and growth","Reach into new markets","Compliance and risk","Team and leadership"],
+    short:["Strategy","Structure","Sales","Markets","Compliance","Leadership"],low:"1: needs work",high:"5: strong",
+    note:"Your answers stay on this page. Nothing is sent or saved.",start:"Where we’d start",
+    why:"{a} scored lowest, so a focused plan there will make the biggest difference.",
+    strongT:"Strong across the board",strongB:"No weak spots stand out. The next step is usually growth: let’s talk about where to take it.",cta:"Talk about this"};
+  T.FR.check={title:"Où en est votre entreprise?",sub:"Évaluez six domaines de 1 à 5. Le graphique montre votre profil et nous suggérons par où commencer.",
+    areas:["Stratégie et priorités","Structure et processus","Ventes et croissance","Accès à de nouveaux marchés","Conformité et risques","Équipe et leadership"],
+    short:["Stratégie","Structure","Ventes","Marchés","Conformité","Leadership"],low:"1 : à améliorer",high:"5 : solide",
+    note:"Vos réponses restent sur cette page. Rien n’est envoyé ni enregistré.",start:"Par où nous commencerions",
+    why:"{a} obtient le score le plus bas : c’est là qu’un plan ciblé fera la plus grande différence.",
+    strongT:"Solide sur tous les plans",strongB:"Aucun point faible ne ressort. L’étape suivante est souvent la croissance : parlons de la direction à prendre.",cta:"En parler"};
+  T.AR.check={title:"أين تقف أعمالك اليوم؟",sub:"قيّم ستة مجالات من 1 إلى 5. يُظهر الرسم صورة أعمالك، ونقترح عليك من أين تبدأ.",
+    areas:["الاستراتيجية والأولويات","الهيكل والإجراءات","المبيعات والنمو","الوصول إلى أسواق جديدة","الامتثال والمخاطر","الفريق والقيادة"],
+    short:["الاستراتيجية","الهيكل","المبيعات","الأسواق","الامتثال","القيادة"],low:"1: يحتاج إلى عمل",high:"5: قوي",
+    note:"تبقى إجاباتك في هذه الصفحة. لا يُرسل أو يُحفظ أي شيء.",start:"من أين نبدأ",
+    why:"حصل مجال «{a}» على أدنى تقييم، لذا فإن خطة مركّزة فيه ستُحدث الفرق الأكبر.",
+    strongT:"قوي في كل المجالات",strongB:"لا تظهر نقاط ضعف واضحة. الخطوة التالية عادةً هي النمو: لنتحدث عن وجهتك القادمة.",cta:"لنتحدث عن ذلك"};
 })(window.BO_I18N);

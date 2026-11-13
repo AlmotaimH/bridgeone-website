@@ -242,4 +242,88 @@
       fig.addEventListener("pointerleave", function () { fig.style.transition = "transform .7s cubic-bezier(.16,1,.3,1)"; fig.style.transform = ""; });
     }
   }
+
+  /* ===== Icons draw themselves in, and redraw on hover ===== */
+  var icoTiles = document.querySelectorAll(".tile .ico");
+  icoTiles.forEach(function (ic) {
+    ic.querySelectorAll("path,rect,circle,line,polyline").forEach(function (s) { s.setAttribute("pathLength", "1"); });
+  });
+  if ("IntersectionObserver" in window && !reduce) {
+    var iio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.querySelector(".ico").classList.add("drawn"); iio.unobserve(e.target); } });
+    }, { threshold: 0.35 });
+    icoTiles.forEach(function (ic) { ic.classList.add("draw"); iio.observe(ic.closest(".tile")); });
+  }
+
+  /* ===== Business health check: sliders drive a live radar chart ===== */
+  var chk = document.querySelector(".check");
+  if (chk) {
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = chk.querySelector(".radar");
+    var ranges = [].slice.call(chk.querySelectorAll("input[type=range]"));
+    var src = chk.querySelector(".radar-src");
+    var shortL = [].slice.call(src.querySelectorAll("span")).slice(0, 6).map(function (s) { return s.textContent; });
+    var svcNames = [].slice.call(document.querySelectorAll(".svc-bento .tile h3")).map(function (h) { return h.textContent; });
+    var areaNames = ranges.map(function (r) { return r.closest(".rng").querySelector(".rl span").textContent; });
+    var N = 6, R = 112, rv = [0, 0, 0, 0, 0, 0], tgt = ranges.map(function (r) { return +r.value; });
+    function pt(i, v) { var a = -Math.PI / 2 + i * 2 * Math.PI / N; return [Math.cos(a) * R * v / 5, Math.sin(a) * R * v / 5]; }
+    function el(n, at, p) { var e = document.createElementNS(NS, n); for (var k in at) e.setAttribute(k, at[k]); (p || svg).appendChild(e); return e; }
+    var defs = el("defs", {});
+    var lg = el("linearGradient", { id: "rg", x1: "0", y1: "0", x2: "1", y2: "1" }, defs);
+    el("stop", { offset: "0", "stop-color": "#F2B45A", "stop-opacity": ".55" }, lg); el("stop", { offset: "1", "stop-color": "#5B6CFF", "stop-opacity": ".45" }, lg);
+    var grid = el("g", { "class": "rgrid" });
+    for (var lv = 1; lv <= 5; lv++) {
+      var ps = []; for (var i = 0; i < N; i++) ps.push(pt(i, lv).join(","));
+      el("polygon", { points: ps.join(" "), "class": lv === 5 ? "outer" : "" }, grid);
+    }
+    for (var j = 0; j < N; j++) {
+      var e5 = pt(j, 5); el("line", { x1: 0, y1: 0, x2: e5[0], y2: e5[1] }, grid);
+      var lp = pt(j, 6.15), tx = el("text", { x: lp[0].toFixed(1), y: (lp[1] + 4).toFixed(1), "text-anchor": Math.abs(lp[0]) < 8 ? "middle" : (lp[0] > 0 ? "start" : "end"), "class": "rlab" });
+      tx.textContent = shortL[j];
+    }
+    var shape = el("polygon", { "class": "rshape", fill: "url(#rg)" });
+    var dots = []; for (var d = 0; d < N; d++) dots.push(el("circle", { r: 5, "class": "rdot" }));
+    var vs = chk.querySelector(".vs"), va = chk.querySelector(".va"), cta = chk.querySelector(".verdict .btn");
+    var whyT = src.querySelector(".why").textContent, pick = -1;
+    function draw() {
+      shape.setAttribute("points", rv.map(function (v, i) { return pt(i, v).map(function (n) { return n.toFixed(1); }).join(","); }).join(" "));
+      dots.forEach(function (c, i) { var p = pt(i, rv[i]); c.setAttribute("cx", p[0].toFixed(1)); c.setAttribute("cy", p[1].toFixed(1)); });
+    }
+    var raf = 0;
+    function animate() {
+      var done = true;
+      rv = rv.map(function (v, i) { var nv = v + (tgt[i] - v) * 0.18; if (Math.abs(tgt[i] - nv) > 0.01) done = false; else nv = tgt[i]; return nv; });
+      draw(); raf = done ? 0 : requestAnimationFrame(animate);
+    }
+    function verdict() {
+      var min = Math.min.apply(null, tgt);
+      pick = min >= 4 ? -1 : tgt.indexOf(min);
+      dots.forEach(function (c, i) { c.classList.toggle("low", i === pick); });
+      grid.querySelectorAll(".rlab").forEach(function (t, i) { t.classList.toggle("low", i === pick); });
+      if (pick < 0) { vs.textContent = src.querySelector(".st").textContent; va.textContent = src.querySelector(".sb").textContent; }
+      else { vs.textContent = svcNames[pick] || ""; va.textContent = whyT.replace("{a}", areaNames[pick]); }
+      chk.classList.remove("pop"); void chk.offsetWidth; chk.classList.add("pop");
+    }
+    function update() {
+      ranges.forEach(function (r, i) {
+        tgt[i] = +r.value; r.closest(".rng").querySelector("output").textContent = r.value;
+        r.style.setProperty("--p", ((r.value - 1) / 4 * 100) + "%");
+      });
+      verdict();
+      if (reduce) { rv = tgt.slice(); draw(); } else if (!raf) raf = requestAnimationFrame(animate);
+    }
+    ranges.forEach(function (r) { r.addEventListener("input", update); });
+    if (cta) cta.addEventListener("click", function () {
+      var sel = document.querySelector("form.cf select[name=service]");
+      if (sel && pick >= 0) [].forEach.call(sel.options, function (o, i) { if (o.textContent === svcNames[pick]) sel.selectedIndex = i; });
+    });
+    ranges.forEach(function (r) { r.style.setProperty("--p", ((r.value - 1) / 4 * 100) + "%"); });
+    verdict();
+    if (reduce || !("IntersectionObserver" in window)) { rv = tgt.slice(); draw(); }
+    else {
+      draw();
+      var rio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { rio.disconnect(); raf = requestAnimationFrame(animate); } }, { threshold: 0.4 });
+      rio.observe(svg);
+    }
+  }
 })();

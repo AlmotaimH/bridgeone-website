@@ -223,4 +223,33 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
     note:"تبقى إجاباتك في هذه الصفحة. لا يُرسل أو يُحفظ أي شيء.",start:"من أين نبدأ",
     why:"حصل مجال «{a}» على أدنى تقييم، لذا فإن خطة مركّزة فيه ستُحدث الفرق الأكبر.",
     strongT:"قوي في كل المجالات",strongB:"لا تظهر نقاط ضعف واضحة. الخطوة التالية عادةً هي النمو: لنتحدث عن وجهتك القادمة.",cta:"لنتحدث عن ذلك"};
+  /* --- Founder section and leadership positioning, from external review (Nov 13, 2026) --- */
+  (function(){
+    var X={
+EN:{eyebrow:"Management Consulting, Leadership Development & Business Growth",title:"Meet the Founder",role:"Founder, Leadership & Management Consultant",
+body:"BridgeOne Inc. is a business and management consulting firm based in the Greater Toronto Area. We help organizations bridge the gap between vision and execution, translating strategic priorities into measurable business results.",
+bio:"Hossam Almotaim, Founder of BridgeOne, brings nearly two decades of international leadership experience across business development, operations and organizational management, spanning North America, Europe, the GCC and the MENA region.",
+bio2:"He has led operations across more than 120 locations, with full P&L accountability and end-to-end responsibility for business performance. His experience spans organizational development, talent acquisition, leadership development, performance management, budgeting, forecasting and operational execution. He has built, developed and led teams of more than 1,000 people.",
+bio3:"Combining extensive operational leadership with a background in legal and regulatory compliance, Hossam brings a practical understanding of how strategy, governance and risk management intersect. His approach focuses on strengthening organizations, developing effective leaders and building the operational foundations for sustainable growth.",
+bio4:"He is also the author of Bridging the Gap, a LinkedIn newsletter that turns leadership research and management insights into practical tools for today’s leaders.",
+xp:["Leadership","Strategy","Operations","Governance","Business Development"],
+svc:"Develop stronger leaders, build management capability and create high-performing teams through practical leadership development, management training and organizational learning."},
+FR:{eyebrow:"Conseil en management, développement du leadership et croissance des affaires",title:"Rencontrez le fondateur",role:"Fondateur, consultant en leadership et en gestion",
+body:"BridgeOne Inc. est une firme de conseil en affaires et en gestion établie dans la région du Grand Toronto. Nous aidons les organisations à combler l’écart entre la vision et l’exécution, en traduisant les priorités stratégiques en résultats d’affaires mesurables.",
+bio:"Hossam Almotaim, fondateur de BridgeOne, cumule près de vingt ans d’expérience internationale en leadership dans le développement des affaires, les opérations et la gestion organisationnelle, en Amérique du Nord, en Europe, dans les pays du Golfe et dans la région MENA.",
+bio2:"Il a dirigé les opérations de plus de 120 sites, avec l’entière responsabilité des résultats financiers et de la performance de bout en bout. Son expérience couvre le développement organisationnel, l’acquisition de talents, le développement du leadership, la gestion de la performance, la budgétisation, les prévisions et l’exécution opérationnelle. Il a bâti, développé et dirigé des équipes de plus de 1 000 personnes.",
+bio3:"Alliant une solide expérience du leadership opérationnel à une formation en droit et en conformité réglementaire, Hossam comprend concrètement comment la stratégie, la gouvernance et la gestion des risques s’articulent. Son approche vise à renforcer les organisations, à former des leaders efficaces et à bâtir les fondations opérationnelles d’une croissance durable.",
+bio4:"Il est aussi l’auteur de Bridging the Gap, une infolettre LinkedIn qui transforme la recherche sur le leadership et les connaissances en gestion en outils pratiques pour les leaders d’aujourd’hui.",
+xp:["Leadership","Stratégie","Opérations","Gouvernance","Développement des affaires"],
+svc:"Développez des leaders plus solides, renforcez les compétences en gestion et bâtissez des équipes performantes grâce au développement du leadership, à la formation en gestion et à l’apprentissage organisationnel."},
+AR:{eyebrow:"استشارات إدارية، تطوير القيادات ونمو الأعمال",title:"تعرّف على المؤسس",role:"المؤسس، مستشار في القيادة والإدارة",
+body:"‏BridgeOne Inc.‎ شركة استشارات أعمال وإدارة مقرها منطقة تورنتو الكبرى. نساعد المؤسسات على سدّ الفجوة بين الرؤية والتنفيذ، وتحويل الأولويات الاستراتيجية إلى نتائج أعمال قابلة للقياس.",
+bio:"يمتلك Hossam Almotaim، مؤسس BridgeOne، خبرة قيادية دولية تقارب عشرين عامًا في تطوير الأعمال والعمليات والإدارة المؤسسية، في أمريكا الشمالية وأوروبا ودول الخليج ومنطقة الشرق الأوسط وشمال أفريقيا.",
+bio2:"قاد العمليات في أكثر من 120 موقعًا، مع مسؤولية كاملة عن الأرباح والخسائر وعن أداء الأعمال من البداية إلى النهاية. وتشمل خبرته التطوير المؤسسي، واستقطاب المواهب، وتطوير القيادات، وإدارة الأداء، وإعداد الميزانيات والتوقعات، والتنفيذ التشغيلي. وقد بنى فرقًا تضم أكثر من 1,000 شخص وطوّرها وقادها.",
+bio3:"ومن خلال الجمع بين خبرة واسعة في القيادة التشغيلية وخلفية في الشؤون القانونية والامتثال التنظيمي، يقدّم Hossam فهمًا عمليًا لكيفية تكامل الاستراتيجية والحوكمة وإدارة المخاطر. ويركّز نهجه على تقوية المؤسسات، وتطوير قادة فاعلين، وبناء الأسس التشغيلية للنمو المستدام.",
+bio4:"وهو أيضًا كاتب Bridging the Gap، وهي نشرة على لينكدإن تحوّل أبحاث القيادة ورؤى الإدارة إلى أدوات عملية لقادة اليوم.",
+xp:["القيادة","الاستراتيجية","العمليات","الحوكمة","تطوير الأعمال"],
+svc:"طوّر قادة أقوى، وابنِ قدرات إدارية، وكوّن فرقًا عالية الأداء من خلال برامج عملية لتطوير القيادات والتدريب الإداري والتعلّم المؤسسي."}};
+    for (var l in X){ var x=X[l]; T[l].hero.eyebrow=x.eyebrow; ["title","role","body","bio","bio2","bio3","bio4","xp"].forEach(function(k){T[l].about[k]=x[k];}); T[l].services.items[5][1]=x.svc; }
+  })();
 })(window.BO_I18N);

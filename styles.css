@@ -435,3 +435,8 @@ html[lang=ar] .article .dek{font-style:normal}
 @keyframes vpop{from{opacity:0;transform:translateY(8px)}}
 @media (max-width:1040px){.check{grid-template-columns:minmax(0,1fr);padding:32px}}
 @media (max-width:640px){.check{padding:24px}.sliders{grid-template-columns:1fr}.rlab{font-size:14px}}
+
+/* founder: expertise chips */
+.founder-tx p[data-i18n^="about.bio"]+p{margin-top:-6px}
+.xp{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px;padding:0}
+.xp li{font-size:13.5px;font-weight:600;color:#fff;padding:7px 14px;border-radius:99px;border:1px solid rgba(242,180,90,.35);background:linear-gradient(90deg,rgba(242,180,90,.12),rgba(91,108,255,.12))}

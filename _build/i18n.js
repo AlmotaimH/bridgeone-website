@@ -147,4 +147,7 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.EN.skip="Skip to content";T.FR.skip="Passer au contenu";T.AR.skip="تخطَّ إلى المحتوى";
   T.EN.span={from:"Vision",to:"Execution"};T.FR.span={from:"Vision",to:"Exécution"};T.AR.span={from:"الرؤية",to:"التنفيذ"};
   T.EN.news.label2=T.FR.news.label2=T.AR.news.label2="Bridging the Gap";
+  T.EN.stats=["Years in business development and operations","Stores in regional portfolios","Team members led","Regions: Canada, MENA, GCC, Türkiye"];
+  T.FR.stats=["Ans en développement des affaires et en exploitation","Magasins dans les portefeuilles régionaux","Membres d’équipe dirigés","Régions : Canada, MENA, CCG, Türkiye"];
+  T.AR.stats=["عامًا في تطوير الأعمال والعمليات","متجرًا ضمن المحافظ الإقليمية","عضو فريق تحت قيادته","مناطق: كندا، الشرق الأوسط وشمال أفريقيا، الخليج، تركيا"];
 })(window.BO_I18N);

@@ -378,7 +378,7 @@ html[lang=ar] .prose h2{font-weight:600}
   .feature{grid-template-columns:1fr}.feature .fx{min-height:200px}.feature .fx b{font-size:120px}
   .ed{grid-template-columns:60px minmax(0,1fr);padding:26px 8px}.ed .n{font-size:40px}.ed .arr{display:none}
   .pn{grid-template-columns:1fr}
-  .coord{display:none}
+
   .values{grid-template-columns:1fr}.values div+div{border-inline-start:0;border-top:1px solid var(--line);padding-inline:0}
   .bank{bottom:9%;font-size:10.5px}.bank.a{inset-inline-start:14px}.bank.b{inset-inline-end:14px}
 }
@@ -401,3 +401,67 @@ html[lang=ar] .prose h2{font-weight:600}
   .lbl::before,.loader::after{transform:scaleX(1)!important}.steps li::before{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
+
+/* ================= Live layer (v13) ================= */
+@view-transition{navigation:auto}
+.progress::after{content:"";position:absolute;inset-inline-end:-3px;top:-2px;width:6px;height:6px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 10px 2px rgba(230,201,136,.9)}
+.btn{transition:background .3s,color .3s,box-shadow .3s var(--ease),transform .3s var(--ease),translate .35s var(--ease)}
+/* live clock */
+.coord.live{display:inline-flex;align-items:center;gap:12px;text-transform:uppercase}
+.coord.live i{width:7px;height:7px;border-radius:50%;background:#7C869B;flex:none}
+.coord.live.open i{background:#5BD68A;animation:ping 2s ease-out infinite}
+.coord.live.open>span:last-child{color:#9BE7B8}
+.coord.live>span:last-child{padding-inline-start:12px;border-inline-start:1px solid var(--line-d)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(91,214,138,.65)}100%{box-shadow:0 0 0 9px rgba(91,214,138,0)}}
+/* bridge life: traffic, beacons, water */
+.bridge .water{animation:flow 5s linear infinite}
+.bridge .water.w2{opacity:.22;stroke-dasharray:2 14;animation-duration:8s;animation-direction:reverse}
+.bridge .water.w3{opacity:.16;stroke-dasharray:5 19;animation-duration:11s}
+@keyframes flow{to{stroke-dashoffset:-96}}
+.car{position:absolute;left:0;bottom:calc(26.25% + 1px);width:5px;height:5px;border-radius:50%;background:#FFF3D1;box-shadow:0 0 9px 2px rgba(230,201,136,.85);animation:drive 15s linear infinite;opacity:0}
+.car.c2{animation-duration:21s;animation-delay:-8s}
+.car.c3,.car.c4{bottom:calc(23.75% + 1px);animation-direction:reverse;background:#FFB199;box-shadow:0 0 9px 2px rgba(255,140,110,.7)}
+.car.c3{animation-duration:18s;animation-delay:-4s}.car.c4{animation-duration:26s;animation-delay:-15s}
+@keyframes drive{0%{transform:translateX(-2vw);opacity:1}100%{transform:translateX(102vw);opacity:1}}
+.beacon{position:absolute;top:calc(13.75% - 6px);width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#FF6B57;animation:blink 2.6s ease-in-out infinite}
+.beacon.l{left:27.78%}.beacon.r{left:72.22%;animation-delay:1.3s}
+@keyframes blink{0%,100%{opacity:.15;box-shadow:0 0 0 0 rgba(255,107,87,0)}50%{opacity:1;box-shadow:0 0 14px 4px rgba(255,107,87,.75)}}
+.bank b{display:inline-block;transition:opacity .34s,transform .34s var(--ease)}
+.bank b.swap{opacity:0;transform:translateY(9px)}
+/* running ribbon */
+.strip{overflow:hidden}
+.strip .wrap.has-mq{flex-wrap:nowrap;align-items:center;max-width:none;padding-inline-end:0;gap:0}
+.strip .wrap.has-mq>span:first-child{flex:none;white-space:nowrap}
+.mq{flex:1 1 0;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.mq-t{display:flex;width:max-content;animation:mq 38s linear infinite}
+[dir=rtl] .mq-t{animation-name:mqr}
+.mq:hover .mq-t{animation-play-state:paused}
+.mq .chip{flex:none;white-space:nowrap;font-size:clamp(21px,2.5vw,32px)}
+.mq .chip::before{content:"/";display:inline!important;color:var(--gold);margin:0 clamp(16px,2vw,30px)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes mqr{to{transform:translateX(50%)}}
+/* numbers */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--ink)}
+.stats>div{padding:26px 22px 0;display:flex;flex-direction:column;gap:10px}
+.stats>div+div{border-inline-start:1px solid var(--line)}
+.stats>div:first-child{padding-inline-start:0}
+.stats b{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(56px,7.4vw,112px);line-height:.9;letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums;text-align:start}
+[dir=rtl] .stats b{text-align:right}
+.stats span{font:500 11.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold-t);max-width:230px}
+html[lang=ar] .stats span{font-size:14px}
+/* approach: someone is always crossing */
+@media (min-width:1001px){
+  .steps{position:relative}
+  .steps::after{content:"";position:absolute;top:-6px;inset-inline-start:0;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,164,92,.22);animation:travel 8s cubic-bezier(.45,0,.55,1) infinite}
+  @keyframes travel{0%{inset-inline-start:0;opacity:0}6%{opacity:1}94%{opacity:1}100%{inset-inline-start:calc(100% - 10px);opacity:0}}
+}
+/* quote lights up on scroll */
+.qw{opacity:.26;transition:opacity .45s}.qw.lit{opacity:1}
+/* pointer ring */
+.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:150;opacity:0;transition:opacity .3s,width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s}
+.cur.on{opacity:.9}
+.cur.big{width:60px;height:60px;margin:-30px 0 0 -30px;background:rgba(201,164,92,.14)}
+.wordmark{will-change:transform}
+@media (max-width:900px){.hero-meta{flex-wrap:wrap}.coord.live{display:inline-flex}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats>div:nth-child(3){border-inline-start:0;padding-inline-start:0}.stats>div:nth-child(n+3){border-top:1px solid var(--line);margin-top:26px}}
+@media (max-width:600px){.strip .wrap.has-mq{flex-wrap:wrap;padding-inline-end:0}.strip .wrap.has-mq>span:first-child{flex:1 1 100%}.mq{flex:1 1 100%;margin-inline-start:-20px}}
+@media (prefers-reduced-motion:reduce){.car,.beacon,.cur{display:none}}

@@ -3,7 +3,7 @@
   "use strict";
 
   /* ===== SETTINGS ===== */
-  var FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // paste your form URL here once the inbox is set up
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/info@bridge-one.ca"; // FormSubmit: delivers enquiries to this inbox
   var CONTACT_EMAIL = "info@bridge-one.ca";                  // used until the form endpoint is set
   /* ==================== */
 
@@ -54,6 +54,7 @@
       });
       if (!ok) return;
       if (form.querySelector(".hp").value) return;
+      if (!form.querySelector("[name=_subject]")) { var s = document.createElement("input"); s.type = "hidden"; s.name = "_subject"; s.value = "New enquiry from bridge-one.ca"; form.appendChild(s); var tpl = document.createElement("input"); tpl.type = "hidden"; tpl.name = "_template"; tpl.value = "table"; form.appendChild(tpl); }
       var data = new FormData(form);
       var btn = form.querySelector("button[type=submit]");
       if (FORM_ENDPOINT.indexOf("YOUR_FORM_ID") !== -1) {

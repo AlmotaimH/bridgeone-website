@@ -175,7 +175,7 @@ def article_page(a, prev, nxt):
     nav += '</nav>'
     share = SITE + file
     if a['source']:
-        who = f'<img class="avatar" src="/assets/founder-sm.jpg" alt="" width="48" height="48"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
+        who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=2" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
     else:
         who = '<div class="avatar" aria-hidden="true">B1</div><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
     return h + hdr + f'''<main id="main"><article class="art">

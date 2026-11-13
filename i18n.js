@@ -87,6 +87,13 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.EN.values=[["Integrity","Honest advice, always"],["Excellence","High standards, every time"],["Purpose","Work that moves you forward"]];
   T.FR.values=[["Intégrité","Des conseils honnêtes, toujours"],["Excellence","Des standards élevés, chaque fois"],["Raison d’être","Un travail qui vous fait avancer"]];
   T.AR.values=[["النزاهة","مشورة صادقة دائمًا"],["التميّز","معايير عالية في كل مرة"],["الهدف","عمل يدفعك إلى الأمام"]];
+  T.EN.services.items.push(["Mentoring & Coaching","One-on-one guidance for founders, executives and emerging leaders to sharpen decisions, build confidence and grow with the business."],["Other Services","Need something that isn’t listed? Tell us what you’re working on and we’ll shape a solution around it."]);
+  T.FR.services.items.push(["Mentorat et coaching","Un accompagnement individuel pour fondateurs, dirigeants et leaders émergents afin d’affiner leurs décisions, gagner en confiance et grandir avec l’entreprise."],["Autres services","Vous avez besoin d’un service qui n’est pas dans la liste? Parlez-nous de votre projet et nous bâtirons une solution sur mesure."]);
+  T.AR.services.items.push(["الإرشاد والتدريب القيادي","توجيه فردي للمؤسسين والمديرين التنفيذيين والقادة الصاعدين لصقل قراراتهم وتعزيز ثقتهم والنمو مع أعمالهم."],["خدمات أخرى","تحتاج إلى خدمة غير مدرجة؟ أخبرنا بما تعمل عليه وسنصمّم لك حلًا يناسبك."]);
+  T.EN.services.sub="Practical support at every stage of your growth.";
+  T.FR.services.sub="Un soutien concret à chaque étape de votre croissance.";
+  T.AR.services.sub="دعم عملي في كل مرحلة من مراحل نموّك.";
+  T.EN.services.otherCta="Tell us what you need →";T.FR.services.otherCta="Dites-nous ce qu’il vous faut →";T.AR.services.otherCta="أخبرنا بما تحتاجه ←";
   T.EN.about.role="Founder, BridgeOne Inc.";T.FR.about.role="Fondateur, BridgeOne Inc.";T.AR.about.role="المؤسس، BridgeOne Inc.";
   T.EN.motto="Excellence With Purpose";T.FR.motto="L’excellence avec raison d’être";T.AR.motto="التميّز بهدف";
 })(window.BO_I18N);

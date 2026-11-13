@@ -87,5 +87,6 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.EN.values=[["Integrity","Honest advice, always"],["Excellence","High standards, every time"],["Purpose","Work that moves you forward"]];
   T.FR.values=[["Intégrité","Des conseils honnêtes, toujours"],["Excellence","Des standards élevés, chaque fois"],["Raison d’être","Un travail qui vous fait avancer"]];
   T.AR.values=[["النزاهة","مشورة صادقة دائمًا"],["التميّز","معايير عالية في كل مرة"],["الهدف","عمل يدفعك إلى الأمام"]];
+  T.EN.about.role="Founder, BridgeOne Inc.";T.FR.about.role="Fondateur, BridgeOne Inc.";T.AR.about.role="المؤسس، BridgeOne Inc.";
   T.EN.motto="Excellence With Purpose";T.FR.motto="L’excellence avec raison d’être";T.AR.motto="التميّز بهدف";
 })(window.BO_I18N);

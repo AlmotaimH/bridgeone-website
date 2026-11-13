@@ -65,7 +65,7 @@
       }
       btn.disabled = true;
       fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
-        .then(function (r) { if (!r.ok) throw new Error(); box.classList.add("sent"); })
+        .then(function (r) { if (!r.ok) throw new Error(); box.classList.add("sent"); box.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); })
         .catch(function () {
           btn.disabled = false;
           var p = document.querySelector(".form-fail");

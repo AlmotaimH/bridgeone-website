@@ -203,4 +203,5 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
            AR:["ويكتب أيضًا Bridging the Gap","وإلى جانب العمليات، يمتلك خلفية في الشؤون القانونية والامتثال التنظيمي، بحيث تُبنى الحوكمة والسياسات وضوابط المخاطر في خطط النمو منذ البداية. "]};
     for (var l in s){ T[l].about.bio=T[l].about.bio.replace(s[l][0], s[l][1]+s[l][0]); }
   })();
+  T.EN.stats.items[4]=["10+","clients advised"];T.FR.stats.items[4]=["10+","clients conseillés"];T.AR.stats.items[4]=["+10","عملاء قدّمنا لهم الاستشارات"];
 })(window.BO_I18N);

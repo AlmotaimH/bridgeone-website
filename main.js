@@ -98,48 +98,11 @@
     hero.addEventListener("pointerleave", function () { art.style.transform = ""; });
   }
 
-  /* Language switch (home page) */
-  function get(obj, path) {
-    return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, obj);
-  }
-  function setLang(code) {
-    if (!T || !T[code]) code = "EN";
-    var dict = T ? T[code] : null;
-    if (dict) {
-      document.querySelectorAll("[data-i18n]").forEach(function (el) {
-        var v = get(dict, el.getAttribute("data-i18n"));
-        if (typeof v === "string") el.textContent = v;
-      });
-      document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
-        var v = get(dict, el.getAttribute("data-i18n-ph"));
-        if (typeof v === "string") { el.setAttribute("placeholder", v); el.setAttribute("aria-label", v); }
-      });
-      if (dict.meta) document.title = dict.meta.title;
-    }
-    if (code === "AR" && !document.getElementById("ar-font")) {
-      var lf = document.createElement("link"); lf.id = "ar-font"; lf.rel = "stylesheet";
-      lf.href = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap";
-      document.head.appendChild(lf);
-    }
-    doc.setAttribute("lang", code.toLowerCase());
-    doc.setAttribute("dir", code === "AR" ? "rtl" : "ltr");
-    document.querySelectorAll(".langs button").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === code ? "true" : "false");
-    });
-    splitWords(heroH1);
-    try { localStorage.setItem("bo-lang", code); } catch (e) {}
-  }
-  document.querySelectorAll(".langs button").forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
-  });
-  var saved = null;
-  try { saved = localStorage.getItem("bo-lang"); } catch (e) {}
-  if (T) setLang(saved || "EN"); else splitWords(heroH1);
-
+  /* Languages are separate pages (/, /fr/, /ar/); nothing to switch here */
+  splitWords(heroH1);
   function msg(key, fallback) {
-    var code = (doc.getAttribute("lang") || "en").toUpperCase();
-    var v = T && T[code] ? get(T[code], key) : null;
-    return v || fallback;
+    var b = document.querySelector("[data-fail]");
+    return (b && b.getAttribute("data-fail")) || fallback;
   }
 
   /* Contact form */
@@ -213,6 +176,6 @@
   var copyBtn = document.querySelector("[data-copy]");
   if (copyBtn) copyBtn.addEventListener("click", function () {
     try { navigator.clipboard.writeText(window.location.href); } catch (e) {}
-    copyBtn.textContent = "Link copied";
+    copyBtn.textContent = copyBtn.getAttribute("data-copied") || "Link copied";
   });
 })();

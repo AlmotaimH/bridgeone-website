@@ -94,6 +94,21 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
   T.FR.services.sub="Un soutien concret à chaque étape de votre croissance.";
   T.AR.services.sub="دعم عملي في كل مرحلة من مراحل نموّك.";
   T.EN.services.otherCta="Tell us what you need →";T.FR.services.otherCta="Dites-nous ce qu’il vous faut →";T.AR.services.otherCta="أخبرنا بما تحتاجه ←";
+  /* --- Nov 2026 review fixes --- */
+  T.EN.nav.results="Why us";T.FR.nav.results="Pourquoi nous";T.AR.nav.results="لماذا نحن";
+  T.EN.why={title:"Why BridgeOne",lead:"A bridge is only useful if it reaches the other side. We stay until the plan is working.",items:[["Senior attention","Your work is led personally by an experienced advisor, from the first call to the final result."],["Plans you can act on","Clear priorities, owners and timelines — not an 80-page report."],["Built around you","Every engagement is shaped to your stage, your budget and your goals."],["Cross-border perspective","We help businesses build connections between Canadian and international markets."]]};
+  T.FR.why={title:"Pourquoi BridgeOne",lead:"Un pont n’est utile que s’il atteint l’autre rive. Nous restons jusqu’à ce que le plan fonctionne.",items:[["Une attention de haut niveau","Votre mandat est mené personnellement par un conseiller d’expérience, du premier appel au résultat final."],["Des plans applicables","Des priorités, des responsables et des échéances clairs — pas un rapport de 80 pages."],["Conçu autour de vous","Chaque mandat est adapté à votre stade, à votre budget et à vos objectifs."],["Une perspective transfrontalière","Nous aidons les entreprises à créer des liens entre les marchés canadiens et internationaux."]]};
+  T.AR.why={title:"لماذا BridgeOne",lead:"الجسر لا قيمة له إن لم يبلغ الضفة الأخرى. نبقى معك حتى تنجح الخطة.",items:[["اهتمام على أعلى مستوى","يقود عملك شخصيًا مستشار ذو خبرة، من أول اتصال حتى النتيجة النهائية."],["خطط قابلة للتنفيذ","أولويات ومسؤوليات وجداول زمنية واضحة، لا تقرير من ثمانين صفحة."],["مصمَّم حولك","كل مشروع يُصمَّم بما يناسب مرحلتك وميزانيتك وأهدافك."],["منظور عابر للحدود","نساعد الشركات على بناء الروابط بين السوق الكندية والأسواق الدولية."]]};
+  T.EN.contact.hours="Mon–Thu, 11:00 am – 8:00 pm ET";T.FR.contact.hours="Lun–jeu, 11 h – 20 h (HE)";T.AR.contact.hours="الاثنين–الخميس، 11:00 ص – 8:00 م بتوقيت الشرق";
+  T.EN.contact.bookBody="Call us Monday to Thursday, 11:00 am – 8:00 pm ET, for a free 30-minute consultation.";T.EN.contact.bookCta="Call +1 (647) 335-5647";
+  T.FR.contact.bookBody="Appelez-nous du lundi au jeudi, de 11 h à 20 h (HE), pour une consultation gratuite de 30 minutes.";T.FR.contact.bookCta="Appeler le +1 (647) 335-5647";
+  T.AR.contact.bookBody="اتصل بنا من الاثنين إلى الخميس، من 11:00 ص إلى 8:00 م بتوقيت الشرق، لاستشارة مجانية مدتها 30 دقيقة.";T.AR.contact.bookCta="اتصل الآن";
+  T.EN.about.cta="Let’s talk →";T.FR.about.cta="Parlons-en →";T.AR.about.cta="لنتحدث ←";
+  T.EN.insights.featured="Featured article";T.FR.insights.featured="À la une";T.AR.insights.featured="مقال مميز";
+  T.EN.insights.go="Read the article →";T.FR.insights.go="Lire l’article →";T.AR.insights.go="اقرأ المقال ←";
+  T.EN.insights.excerpt="Steady demand, repeatable sales and a team that can run without you — how to tell if now is the time to grow.";
+  T.FR.insights.excerpt="Une demande stable, des ventes reproductibles et une équipe autonome : comment savoir si le moment est venu de croître.";
+  T.AR.insights.excerpt="طلب ثابت، ومبيعات قابلة للتكرار، وفريق يعمل من دونك: كيف تعرف أن الوقت قد حان للنمو.";
   T.EN.about.role="Founder, BridgeOne Inc.";T.FR.about.role="Fondateur, BridgeOne Inc.";T.AR.about.role="المؤسس، BridgeOne Inc.";
   T.EN.motto="Excellence With Purpose";T.FR.motto="L’excellence avec raison d’être";T.AR.motto="التميّز بهدف";
 })(window.BO_I18N);

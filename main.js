@@ -116,6 +116,11 @@
       });
       if (dict.meta) document.title = dict.meta.title;
     }
+    if (code === "AR" && !document.getElementById("ar-font")) {
+      var lf = document.createElement("link"); lf.id = "ar-font"; lf.rel = "stylesheet";
+      lf.href = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap";
+      document.head.appendChild(lf);
+    }
     doc.setAttribute("lang", code.toLowerCase());
     doc.setAttribute("dir", code === "AR" ? "rtl" : "ltr");
     document.querySelectorAll(".langs button").forEach(function (b) {
@@ -149,6 +154,7 @@
         var f = inp.closest(".f");
         var bad = inp.type === "email" ? !emailRe.test(inp.value.trim()) : inp.value.trim().length < 2;
         f.classList.toggle("bad", bad);
+        if (bad) inp.setAttribute("aria-invalid", "true"); else inp.removeAttribute("aria-invalid");
         if (bad && ok) { inp.focus(); ok = false; }
       });
       if (!ok) return;

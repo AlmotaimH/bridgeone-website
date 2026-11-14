@@ -602,3 +602,4 @@ html[lang=ar] .hero .hero-c h1{line-height:1.3;letter-spacing:0}
 .statement-tile .statement,.statement-tile h2{max-width:calc(100% - 300px)}
 @media (max-width:900px){.why-logo{position:static;transform:none;width:120px;margin-bottom:12px;animation:none}.statement-tile .statement,.statement-tile h2{max-width:none}}
 @media (prefers-reduced-motion:reduce){.why-logo{animation:none}.art-s *{animation:none!important}.road .bar{transform:none}.road .msd,.road .today{opacity:1}}
+.portrait .ph img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%}

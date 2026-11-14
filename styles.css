@@ -771,3 +771,18 @@ h1,h2,h3{font-weight:700;letter-spacing:-.025em}
 @media (max-width:420px){.founder .skills{grid-template-columns:1fr}}
 .founder .sk b,.founder .sk small{align-self:stretch;text-align:start}
 @media (max-width:700px){.founder .skills{grid-template-columns:1fr}.founder .sk{display:grid;grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto auto;column-gap:16px;row-gap:2px;align-items:center;padding:18px}.founder .sk-i{grid-row:1/span 2;width:56px;height:56px;margin:0}.founder .sk b{align-self:end}.founder .sk small{align-self:start}}
+/* audit fixes */
+form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%;min-width:0}
+@media (max-width:640px){form.cf{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){.lk-tag{font-size:12.5px}}
+/* rhythm: consistent section spacing */
+.sec{padding:52px 0}
+.check-sec{padding-top:40px}
+#services{padding-top:44px}
+@media (max-width:760px){.sec{padding:44px 0}}
+/* Why tiles: icons in the same language as Core expertise */
+.why-bento .w0{--c:#F2B45A}.why-bento .w1{--c:#8C9BFF}.why-bento .w2{--c:#3FD0C9}.why-bento .w3{--c:#FF8FA8}
+.why-bento .tile .ico{width:60px;height:60px;border-radius:18px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#0A1431);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);box-shadow:0 12px 30px -12px color-mix(in srgb,var(--c) 70%,transparent);margin-bottom:10px}
+.why-bento .tile .ico svg{width:28px;height:28px}
+.why-bento .w0,.why-bento .w1,.why-bento .w2,.why-bento .w3{background:radial-gradient(260px 160px at 0% 0%,color-mix(in srgb,var(--c) 14%,transparent),transparent 70%),rgba(255,255,255,.025);border-color:color-mix(in srgb,var(--c) 26%,transparent)}
+@media (max-width:640px){.ftr .brand span{display:inline}}

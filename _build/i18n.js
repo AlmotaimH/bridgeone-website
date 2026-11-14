@@ -243,7 +243,7 @@ bio4:"Il est aussi l’auteur de Bridging the Gap, une infolettre LinkedIn qui t
 xp:["Leadership","Stratégie","Opérations","Gouvernance","Développement des affaires"],
 svc:"Développez des leaders plus solides, renforcez les compétences en gestion et bâtissez des équipes performantes grâce au développement du leadership, à la formation en gestion et à l’apprentissage organisationnel."},
 AR:{eyebrow:"استشارات إدارية، تطوير القيادات ونمو الأعمال",title:"تعرّف على المؤسس",role:"المؤسس، مستشار في القيادة والإدارة",
-body:"‏BridgeOne Inc.‎ شركة استشارات أعمال وإدارة مقرها منطقة تورنتو الكبرى. نساعد المؤسسات على سدّ الفجوة بين الرؤية والتنفيذ، وتحويل الأولويات الاستراتيجية إلى نتائج أعمال قابلة للقياس.",
+body:"⁦BridgeOne Inc.⁩ شركة استشارات أعمال وإدارة مقرها منطقة تورنتو الكبرى. نساعد المؤسسات على سدّ الفجوة بين الرؤية والتنفيذ، وتحويل الأولويات الاستراتيجية إلى نتائج أعمال قابلة للقياس.",
 bio:"يمتلك Hossam Almotaim، مؤسس BridgeOne، خبرة قيادية دولية تقارب عشرين عامًا في تطوير الأعمال والعمليات والإدارة المؤسسية، في كندا وتركيا ودول الخليج: الإمارات والسعودية وقطر والكويت وعُمان.",
 bio2:"قاد العمليات في أكثر من 120 موقعًا، مع مسؤولية كاملة عن الأرباح والخسائر وعن أداء الأعمال من البداية إلى النهاية. وتشمل خبرته التطوير المؤسسي، واستقطاب المواهب، وتطوير القيادات، وإدارة الأداء، وإعداد الميزانيات والتوقعات، والتنفيذ التشغيلي. وقد بنى فرقًا تضم أكثر من 1,000 شخص وطوّرها وقادها.",
 bio3:"ومن خلال الجمع بين خبرة واسعة في القيادة التشغيلية وخلفية في الشؤون القانونية والامتثال التنظيمي، يقدّم Hossam فهمًا عمليًا لكيفية تكامل الاستراتيجية والحوكمة وإدارة المخاطر. ويركّز نهجه على تقوية المؤسسات، وتطوير قادة فاعلين، وبناء الأسس التشغيلية للنمو المستدام.",
@@ -295,4 +295,5 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.svc0.why=[["Without a roadmap","Competing priorities, unclear owners, progress nobody can measure"],["With a roadmap","Agreed priorities, named owners, milestones reviewed every quarter"]];
   T.FR.svc0.why=[["Sans feuille de route","Priorités concurrentes, responsables flous, progrès impossibles à mesurer"],["Avec une feuille de route","Priorités convenues, responsables désignés, jalons revus chaque trimestre"]];
   T.AR.svc0.why=[["بدون خارطة طريق","أولويات متنافسة، مسؤوليات غير واضحة، وتقدّم لا يمكن قياسه"],["مع خارطة طريق","أولويات متفق عليها، مسؤولون محددون، ومراحل تُراجع كل ربع سنة"]];
+  T.AR.footer.copy=T.AR.footer.copy.replace(/BridgeOne Inc\.?/,"\u2066BridgeOne Inc.\u2069").replace(/^© ?2026 ?/,"© \u20662026\u2069 ");
 })(window.BO_I18N);

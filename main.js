@@ -371,7 +371,11 @@
       cards.forEach(function (c, k) { var pos = (k - i + n) % n; c.setAttribute("data-pos", pos); c.setAttribute("aria-current", pos === 0 ? "step" : "false"); });
       nds.forEach(function (d, k) { d.classList.toggle("on", k === i); d.classList.toggle("done", k < i); });
       arm.style.transform = "rotate(" + ((document.documentElement.dir === "rtl" ? -1 : 1) * (turns * n + i) * 360 / n) + "deg)";
-      if (i === 0) { rp.style.transition = "none"; rp.style.strokeDasharray = "0 100"; void rp.getBoundingClientRect(); rp.style.transition = ""; }
+      clearTimeout(rp._t);
+      if (i === 0 && !jump && prev === n - 1) {
+        rp.style.strokeDasharray = "100 100";
+        rp._t = setTimeout(function () { rp.style.transition = "none"; rp.style.strokeDasharray = "0 100"; void rp.getBoundingClientRect(); rp.style.transition = ""; }, 1300);
+      } else if (i === 0) { rp.style.transition = "none"; rp.style.strokeDasharray = "0 100"; void rp.getBoundingClientRect(); rp.style.transition = ""; }
       else rp.style.strokeDasharray = (i * 100 / n) + " 100";
     };
     nds.forEach(function (d, k) {

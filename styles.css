@@ -688,3 +688,18 @@ html[lang=ar] .lk-name{direction:ltr}
 @media (max-width:1040px){.founder .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.founder .sk-h{grid-column:1/-1}.founder .sk:nth-last-child(2){border-bottom:0}}
 @media (max-width:560px){.founder .skills{grid-template-columns:1fr}.founder .sk:nth-last-child(2){border-bottom:1px solid var(--border)}}
 @media (max-width:640px){.svc-bento .t0 .t0-chart{padding:14px 8px 12px;margin-left:-8px;margin-right:-8px}}
+/* ===== Brand name and tagline: logo colours and lettering ===== */
+:root{--brand-font:"Montserrat","Archivo",system-ui,sans-serif;--logo-gold:linear-gradient(100deg,#B98A4E 0%,#F9D3A4 32%,#C7AB7C 58%,#E8C894 80%,#B08A55 100%)}
+.brand span,.lk-name,.ftr .brand span{font-family:var(--brand-font);font-weight:500;letter-spacing:.3em;background:var(--logo-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand span{font-size:16px}
+.brand:hover span{filter:brightness(1.15)}
+.lk-name{font-size:24px;margin-inline-end:-.3em;margin-top:8px}
+.lk-rule{display:block;width:78%;height:1px;background:linear-gradient(90deg,transparent,#C7AB7C 20%,#C7AB7C 80%,transparent);position:relative;margin:4px 0 2px}
+.lk-rule::after{content:"";position:absolute;left:50%;top:-1px;width:18px;height:3px;margin-left:-9px;background:#F9D3A4;border-radius:2px}
+.lk-tag,.ftr .motto{font-family:var(--brand-font);font-weight:400;letter-spacing:.14em;color:#D9C29A}
+.lk-tag{font-size:13px}
+.ftr .motto{font-size:15px}
+html[lang=ar] .lk-tag,html[lang=ar] .ftr .motto{font-family:var(--font);letter-spacing:0}
+.wordmark{font-family:var(--brand-font);font-weight:500;letter-spacing:.18em;-webkit-text-stroke:1px rgba(201,164,92,.45)}
+@media (max-width:900px){.lk-name{font-size:17px}.lk-tag{font-size:11.5px}}
+.wordmark{font-size:10.5vw}

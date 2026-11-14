@@ -305,4 +305,5 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.AR.contact.fail="تعذّر إرسال رسالتك من الموقع حاليًا. يرجى مراسلتنا على ";
   T.EN.contact.sending="Sending…"; T.FR.contact.sending="Envoi…"; T.AR.contact.sending="جارٍ الإرسال…";
   T.EN.contact.mailbtn="Email us instead"; T.FR.contact.mailbtn="Nous écrire par courriel"; T.AR.contact.mailbtn="راسلنا عبر البريد";
+  T.AR.stats.items.forEach(function(x){ x[0]=String(x[0]).replace(/^\+(.*)$/,"$1+"); });
 })(window.BO_I18N);

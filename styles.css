@@ -926,3 +926,14 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
  .road figcaption{font-size:13px}
 }
 @media (max-width:420px){.hero .hero-c h1{font-size:26px;line-height:1.25}}
+/* phone polish round 2 */
+.stat b,.stat strong,.stat .num{unicode-bidi:isolate;direction:ltr}
+@media (max-width:760px){
+ .rlab{font-size:20px}
+ .road .rl{font-size:19.5px}.road .qh{font-size:19px}
+ .deck{padding-top:0}
+ .cc[data-pos]:not([data-pos="0"]){display:none}
+ .cycle{gap:20px}
+ .orbit .nl{font-size:13.5px}
+}
+[dir=rtl] .stat b{text-align:right}

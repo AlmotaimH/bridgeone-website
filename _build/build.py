@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '31'
+V = '32'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -187,7 +187,7 @@ def article_page(a, prev, nxt):
     nav += '</nav>'
     share = SITE + file
     if a['source']:
-        who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=4" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
+        who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=5" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
     else:
         who = '<img class="avatar logo-av" src="/assets/logo-mark.png" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
     return h + hdr + f'''<main id="main"><article class="article">

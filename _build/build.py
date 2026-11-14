@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '26'
+V = '27'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -222,7 +222,7 @@ INS = {
 
 def feature_card(L, a, label, go):
     return f'''<a class="feature" href="/insights/{a["slug"]}.html" hreflang="en">
-<div class="art"><img src="/assets/logo-mark.png" alt=""></div>
+<div class="art"><div class="lockup" aria-hidden="true"><img src="/assets/logo-mark.png" alt=""><span class="lk-name">BRIDGEONE</span><span class="lk-tag">{esc(g(L, "motto"))}</span></div></div>
 <div class="tx"><span class="meta">{esc(label)}, <time datetime="{a["date"]}">{fdate(L, a["date"])}</time></span>
 <h3 lang="en" dir="ltr">{esc(a["title"])}</h3>
 <p lang="en" dir="ltr">{esc(a["dek"])}</p>

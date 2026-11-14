@@ -296,4 +296,7 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.FR.svc0.why=[["Sans feuille de route","Priorités concurrentes, responsables flous, progrès impossibles à mesurer"],["Avec une feuille de route","Priorités convenues, responsables désignés, jalons revus chaque trimestre"]];
   T.AR.svc0.why=[["بدون خارطة طريق","أولويات متنافسة، مسؤوليات غير واضحة، وتقدّم لا يمكن قياسه"],["مع خارطة طريق","أولويات متفق عليها، مسؤولون محددون، ومراحل تُراجع كل ربع سنة"]];
   T.AR.footer.copy=T.AR.footer.copy.replace(/BridgeOne Inc\.?/,"\u2066BridgeOne Inc.\u2069").replace(/^© ?2026 ?/,"© \u20662026\u2069 ");
+  T.EN.contact.fail="Your message could not be sent online, so we've opened your email app with it filled in. You can also write to ";
+  T.FR.contact.fail="Votre message n’a pas pu être envoyé en ligne : nous avons ouvert votre application de courriel avec le message prérempli. Vous pouvez aussi écrire à ";
+  T.AR.contact.fail="تعذّر إرسال رسالتك عبر الموقع، لذا فتحنا تطبيق البريد لديك مع الرسالة جاهزة. يمكنك أيضًا مراسلتنا على ";
 })(window.BO_I18N);

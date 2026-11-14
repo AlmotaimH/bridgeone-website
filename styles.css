@@ -786,3 +786,15 @@ form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%
 .why-bento .tile .ico svg{width:28px;height:28px}
 .why-bento .w0,.why-bento .w1,.why-bento .w2,.why-bento .w3{background:radial-gradient(260px 160px at 0% 0%,color-mix(in srgb,var(--c) 14%,transparent),transparent 70%),rgba(255,255,255,.025);border-color:color-mix(in srgb,var(--c) 26%,transparent)}
 @media (max-width:640px){.ftr .brand span{display:inline}}
+/* Founder: portrait + row of three action photos */
+.portrait .inset{display:none}
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.gal img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid rgba(201,164,92,.35);filter:saturate(.92);transition:transform .35s var(--ease),border-color .35s}
+.gal img:hover{transform:translateY(-3px);border-color:rgba(242,180,90,.8)}
+.portrait figcaption{margin-top:18px}
+/* Engagement: track runs exactly from step 1 to step 4 */
+@media (min-width:1041px){.deck-steps::before{display:none}}
+.baseline{position:absolute;top:52px;height:2px;background:linear-gradient(90deg,rgba(242,180,90,.35),rgba(91,108,255,.35));pointer-events:none;z-index:0}
+@media (max-width:1040px){.baseline{display:none}}
+.deck-steps li.on:last-child .sn::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(242,180,90,.6);animation:ringdone 1.2s ease-out}
+@keyframes ringdone{from{transform:scale(.7);opacity:1}to{transform:scale(1.25);opacity:0}}

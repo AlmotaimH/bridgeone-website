@@ -65,11 +65,13 @@
       }
       btn.disabled = true;
       fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
-        .then(function (r) { if (!r.ok) throw new Error(); box.classList.add("sent"); box.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); })
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); }).then(function (j) { if (!j || String(j.success) !== "true") throw new Error(); box.classList.add("sent"); box.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); })
         .catch(function () {
           btn.disabled = false;
           var p = document.querySelector(".form-fail");
           if (p) { p.textContent = (box.getAttribute("data-fail") || "Something went wrong. Email us at ") + CONTACT_EMAIL; p.hidden = false; }
+          var body = "Name: " + data.get("name") + "\nEmail: " + data.get("email") + "\nCompany: " + (data.get("company") || "") + "\nService: " + (data.get("service") || "") + "\n\n" + data.get("message");
+          window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Website enquiry: " + data.get("name")) + "&body=" + encodeURIComponent(body);
         });
     });
   }
@@ -352,7 +354,9 @@
     var lis = [].slice.call(ds.children), sIdx = -1, sPaused = false, sTimer = null;
     var run = document.createElement("span"); run.className = "runner"; run.setAttribute("aria-hidden", "true");
     var fillb = document.createElement("span"); fillb.className = "fillbar"; fillb.setAttribute("aria-hidden", "true");
-    ds.appendChild(fillb); ds.appendChild(run);
+    var baseL = document.createElement("span"); baseL.className = "baseline"; baseL.setAttribute("aria-hidden", "true");
+    ds.appendChild(baseL); ds.appendChild(fillb); ds.appendChild(run);
+    var sizeBase = function () { var a = xOf(0), z = xOf(lis.length - 1); baseL.style.left = Math.min(a, z) + "px"; baseL.style.width = Math.abs(z - a) + "px"; };
     var xOf = function (i) { var r = lis[i].querySelector(".sn").getBoundingClientRect(), o = ds.getBoundingClientRect(); return r.left + r.width / 2 - o.left; };
     var place = function (i) {
       var x = xOf(i), x0 = xOf(0);
@@ -374,8 +378,8 @@
       li.addEventListener("mouseenter", function () { sPaused = true; goStep(k, true); });
       li.addEventListener("mouseleave", function () { sPaused = false; });
     });
-    window.addEventListener("resize", function () { if (sIdx >= 0) { ds.classList.add("snap"); place(sIdx); void ds.offsetWidth; ds.classList.remove("snap"); } });
-    var startSteps = function () { ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); sIdx = 0; mark(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 3200); };
+    window.addEventListener("resize", function () { sizeBase(); if (sIdx >= 0) { ds.classList.add("snap"); place(sIdx); void ds.offsetWidth; ds.classList.remove("snap"); } });
+    var startSteps = function () { sizeBase(); ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); sIdx = 0; mark(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 3200); };
     if ("IntersectionObserver" in window) {
       var sio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sio.disconnect(); startSteps(); } }, { threshold: 0.4 });
       sio.observe(ds);

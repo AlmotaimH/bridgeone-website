@@ -299,4 +299,5 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.contact.fail="Your message could not be sent online, so we've opened your email app with it filled in. You can also write to ";
   T.FR.contact.fail="Votre message n’a pas pu être envoyé en ligne : nous avons ouvert votre application de courriel avec le message prérempli. Vous pouvez aussi écrire à ";
   T.AR.contact.fail="تعذّر إرسال رسالتك عبر الموقع، لذا فتحنا تطبيق البريد لديك مع الرسالة جاهزة. يمكنك أيضًا مراسلتنا على ";
+  T.EN.approach.center="Each cycle builds on the last"; T.FR.approach.center="Chaque cycle s’appuie sur le précédent"; T.AR.approach.center="كل دورة تبني على سابقتها";
 })(window.BO_I18N);

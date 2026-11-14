@@ -348,42 +348,35 @@
     }
   }
 
-  /* ===== How an engagement runs: the light stops at each phase ===== */
-  var ds = document.querySelector(".deck-steps");
-  if (ds) {
-    var lis = [].slice.call(ds.children), sIdx = -1, sPaused = false, sTimer = null;
-    var run = document.createElement("span"); run.className = "runner"; run.setAttribute("aria-hidden", "true");
-    var fillb = document.createElement("span"); fillb.className = "fillbar"; fillb.setAttribute("aria-hidden", "true");
-    var baseL = document.createElement("span"); baseL.className = "baseline"; baseL.setAttribute("aria-hidden", "true");
-    ds.appendChild(baseL); ds.appendChild(fillb); ds.appendChild(run);
-    var sizeBase = function () { var a = xOf(0), z = xOf(lis.length - 1); baseL.style.left = Math.min(a, z) + "px"; baseL.style.width = Math.abs(z - a) + "px"; };
-    var xOf = function (i) { var r = lis[i].querySelector(".sn").getBoundingClientRect(), o = ds.getBoundingClientRect(); return r.left + r.width / 2 - o.left; };
-    var place = function (i) {
-      var x = xOf(i), x0 = xOf(0);
-      run.style.left = x + "px"; fillb.style.left = Math.min(x0, x) + "px"; fillb.style.width = Math.abs(x - x0) + "px";
+  /* ===== How an engagement runs: a cycle; the active card comes forward ===== */
+  var cyc = document.querySelector(".cycle");
+  if (cyc) {
+    var cards = [].slice.call(cyc.querySelectorAll(".cc")), nds = [].slice.call(cyc.querySelectorAll(".nd"));
+    var arm = cyc.querySelector(".arm"), rp = cyc.querySelector(".rp"), n = cards.length, cur = 0, turns = 0, paused = false;
+    var show = function (i, jump) {
+      var prev = cur;
+      if (!jump && i === 0 && prev === n - 1) turns++;
+      if (jump) turns = Math.floor(turns);
+      cur = i;
+      cards.forEach(function (c, k) { var pos = (k - i + n) % n; c.setAttribute("data-pos", pos); c.setAttribute("aria-current", pos === 0 ? "step" : "false"); });
+      nds.forEach(function (d, k) { d.classList.toggle("on", k === i); d.classList.toggle("done", k < i); });
+      arm.style.transform = "rotate(" + ((document.documentElement.dir === "rtl" ? -1 : 1) * (turns * n + i) * 360 / n) + "deg)";
+      if (i === 0) { rp.style.transition = "none"; rp.style.strokeDasharray = "0 100"; void rp.getBoundingClientRect(); rp.style.transition = ""; }
+      else rp.style.strokeDasharray = (i * 100 / n) + " 100";
     };
-    var mark = function (i) { lis.forEach(function (li, k) { li.classList.toggle("on", k === i); li.classList.toggle("done", k < i); }); };
-    var goStep = function (i, instant) {
-      if (i === 0 && sIdx > 0 && !instant) {
-        ds.classList.add("resetting"); mark(-1);
-        setTimeout(function () { ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); ds.classList.remove("resetting"); sIdx = 0; setTimeout(function () { mark(0); }, 250); }, 600);
-        return;
-      }
-      sIdx = i; place(i);
-      ds.classList.add("moving"); mark(-2);
-      lis.forEach(function (li, k) { li.classList.toggle("done", k < i); });
-      setTimeout(function () { ds.classList.remove("moving"); mark(i); }, instant ? 0 : 1050);
-    };
-    lis.forEach(function (li, k) {
-      li.addEventListener("mouseenter", function () { sPaused = true; goStep(k, true); });
-      li.addEventListener("mouseleave", function () { sPaused = false; });
+    nds.forEach(function (d, k) {
+      d.addEventListener("click", function () { show(k, true); });
+      d.addEventListener("mouseenter", function () { paused = true; });
+      d.addEventListener("mouseleave", function () { paused = false; });
     });
-    window.addEventListener("resize", function () { sizeBase(); if (sIdx >= 0) { ds.classList.add("snap"); place(sIdx); void ds.offsetWidth; ds.classList.remove("snap"); } });
-    var startSteps = function () { sizeBase(); ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); sIdx = 0; mark(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 3200); };
+    cyc.querySelector(".deck").addEventListener("mouseenter", function () { paused = true; });
+    cyc.querySelector(".deck").addEventListener("mouseleave", function () { paused = false; });
+    show(0, true);
+    var go = function () { if (!reduce) setInterval(function () { if (!paused && !document.hidden) show((cur + 1) % n); }, 3600); };
     if ("IntersectionObserver" in window) {
-      var sio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sio.disconnect(); startSteps(); } }, { threshold: 0.4 });
-      sio.observe(ds);
-    } else startSteps();
+      var cio2 = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { cio2.disconnect(); go(); } }, { threshold: 0.35 });
+      cio2.observe(cyc);
+    } else go();
   }
   })();
 })();

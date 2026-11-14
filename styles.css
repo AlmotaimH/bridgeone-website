@@ -650,3 +650,41 @@ html[lang=ar] .lk-name{direction:ltr}
 @media (max-width:900px){.annos{grid-template-columns:1fr;gap:18px;padding:12px 28px 44px}.anno,.anno.b{flex-direction:row;justify-self:start;text-align:start;max-width:none}.tagline{order:3;align-items:flex-start}.tagline p{text-align:start;font-size:22px}}
 .an-logo img{width:30px;height:auto}
 .hero-c{padding-top:64px}@media (max-width:760px){.hero-c{padding-top:36px}}
+/* ===== Services, redesigned as one system ===== */
+.svc-bento{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:18px}
+.svc-bento .tile{grid-column:auto;grid-row:auto;min-height:0}
+/* Lead card: Strategy, text left, roadmap right */
+.svc-bento .t0{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-areas:"ico chart" "h chart" "p chart" "dl chart";grid-template-rows:auto auto auto 1fr;column-gap:56px;row-gap:14px;padding:40px 44px;align-content:start}
+.svc-bento .t0 .ico{grid-area:ico;width:52px;height:52px}
+.svc-bento .t0 h3{grid-area:h;font-size:clamp(28px,2.6vw,36px);margin:0}
+.svc-bento .t0>p{grid-area:p;font-size:18px;max-width:520px}
+.svc-bento .t0 .dl{grid-area:dl;align-self:start;margin-top:6px}
+.svc-bento .t0 .t0-chart{grid-area:chart;align-self:center;margin:0;padding:24px 26px 18px;border-radius:18px;background:rgba(2,10,31,.55);border:1px solid var(--border)}
+/* Six equal service tiles */
+.svc-bento .t1,.svc-bento .t2,.svc-bento .t3,.svc-bento .t4,.svc-bento .t5,.svc-bento .t6{display:flex;flex-direction:column;gap:12px;padding:20px 20px 28px;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.svc-bento .t1 .ico,.svc-bento .t2 .ico,.svc-bento .t3 .ico,.svc-bento .t4 .ico,.svc-bento .t5 .ico,.svc-bento .t6 .ico{display:none}
+.svc-bento .tile .art-s,.svc-bento .t3 .art-s,.svc-bento .t6 .art-s{order:-1;position:relative;grid-column:auto;grid-row:auto;align-self:stretch;width:100%;height:170px;max-height:none;margin:0 0 10px;padding:30px 34px;box-sizing:border-box;border-radius:16px;border:1px solid color-mix(in srgb,var(--c) 22%,transparent);background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c) 22%,transparent),transparent 62%),radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/14px 14px,rgba(2,10,31,.55);overflow:visible}
+.svc-bento .t1 h3,.svc-bento .t2 h3,.svc-bento .t3 h3,.svc-bento .t4 h3,.svc-bento .t5 h3,.svc-bento .t6 h3{font-size:21px;padding:0 6px;margin:0}
+.svc-bento .t1 p,.svc-bento .t2 p,.svc-bento .t3 p,.svc-bento .t4 p,.svc-bento .t5 p,.svc-bento .t6 p{padding:0 6px;font-size:16px;line-height:1.6}
+.svc-bento .t1:hover,.svc-bento .t2:hover,.svc-bento .t3:hover,.svc-bento .t4:hover,.svc-bento .t5:hover,.svc-bento .t6:hover{transform:translateY(-4px);box-shadow:0 30px 60px -30px color-mix(in srgb,var(--c) 70%,transparent)}
+/* Other services strip */
+.svc-bento .cta-tile{grid-column:1/-1}
+.svc-bento .cta-tile .ico svg *{stroke-dashoffset:0!important;animation:none!important}
+@media (max-width:1040px){.svc-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.svc-bento .t0{grid-template-columns:minmax(0,1fr);grid-template-areas:"ico" "h" "p" "dl" "chart";padding:32px}.svc-bento .t0 .t0-chart{margin-top:10px}}
+@media (max-width:640px){.svc-bento{grid-template-columns:minmax(0,1fr)}.svc-bento .t0{padding:24px}.svc-bento .tile .art-s,.svc-bento .t3 .art-s,.svc-bento .t6 .art-s{height:150px;padding:26px 30px}}
+/* fix: drawing panels were shifted by an old offset */
+.svc-bento .tile .art-s,.svc-bento .t3 .art-s,.svc-bento .t6 .art-s{inset:auto}
+/* Founder: core expertise as a clean panel, no timeline */
+.founder .skills{display:block;padding:22px 22px 8px;border:1px solid var(--border);border-radius:18px;background:rgba(2,10,31,.45);border-top:1px solid var(--border)}
+.founder .skills::before,.founder .skills::after{content:none;display:none}
+.founder .sk-h{margin:0 0 6px;font-size:13px;font-weight:600;color:var(--gold-lt)}
+.founder .sk{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.founder .sk:last-child{border-bottom:0}
+.founder .sk-i{grid-row:1/span 2;width:40px;height:40px;border-radius:11px;background:rgba(242,180,90,.1);border:1px solid rgba(242,180,90,.3);box-shadow:none;color:var(--amber)}
+.founder .sk-i svg{width:20px;height:20px}
+.founder .sk b{font-size:15.5px}
+.founder .sk small{font-size:13.5px;line-height:1.4}
+.founder .sk:hover .sk-i{transform:none;background:rgba(242,180,90,.18);box-shadow:none}
+@media (max-width:1040px){.founder .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.founder .sk-h{grid-column:1/-1}.founder .sk:nth-last-child(2){border-bottom:0}}
+@media (max-width:560px){.founder .skills{grid-template-columns:1fr}.founder .sk:nth-last-child(2){border-bottom:1px solid var(--border)}}
+@media (max-width:640px){.svc-bento .t0 .t0-chart{padding:14px 8px 12px;margin-left:-8px;margin-right:-8px}}

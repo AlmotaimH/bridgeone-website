@@ -288,4 +288,5 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.hero.whereA=["Where you are","A vision, an idea, a plan on paper"]; T.EN.hero.whereB=["Where you want to be","Results you can measure"];
   T.FR.hero.whereA=["Là où vous êtes","Une vision, une idée, un plan sur papier"]; T.FR.hero.whereB=["Là où vous voulez aller","Des résultats mesurables"];
   T.AR.hero.whereA=["حيث أنت الآن","رؤية، فكرة، خطة على الورق"]; T.AR.hero.whereB=["حيث تريد أن تصل","نتائج قابلة للقياس"];
+  T.EN.about.xph="Core expertise"; T.FR.about.xph="Expertise principale"; T.AR.about.xph="مجالات الخبرة";
 })(window.BO_I18N);

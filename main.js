@@ -192,7 +192,7 @@
   /* What the bridge connects keeps changing */
   var ba = document.querySelector(".end.a b"), bb = document.querySelector(".end.b b"), PAIRS = null;
   try { PAIRS = JSON.parse((clock && clock.getAttribute("data-pairs")) || "null"); } catch (e) {}
-  if (PAIRS && ba && bb && !reduce) {
+  if (PAIRS && ba && bb) {
     var pi = 0;
     setInterval(function () {
       pi = (pi + 1) % PAIRS.length;
@@ -382,7 +382,7 @@
     cyc.querySelector(".deck").addEventListener("mouseenter", function () { paused = true; });
     cyc.querySelector(".deck").addEventListener("mouseleave", function () { paused = false; });
     show(0, true);
-    var go = function () { if (!reduce) setInterval(function () { if (!paused && !document.hidden) show((cur + 1) % n); }, 3600); };
+    var go = function () { setInterval(function () { if (!paused && !document.hidden) show((cur + 1) % n); }, 3600); };
     if ("IntersectionObserver" in window) {
       var cio2 = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { cio2.disconnect(); go(); } }, { threshold: 0.35 });
       cio2.observe(cyc);

@@ -938,3 +938,13 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 }
 [dir=rtl] .stat b{text-align:right}
 @media (max-width:900px){.cycle{margin-top:44px}}
+/* Reduce Motion (common on iPhones): no movement, but every drawing shows complete and words still change with a soft fade */
+@media (prefers-reduced-motion:reduce){
+ .art-s .br,.road .bar{transform:none!important}
+ .art-s .tr,.art-s .ring,.art-s .ck,.art-s .gp,.road .progl,.t0-chart .progl,.ico svg *{stroke-dashoffset:0!important}
+ .road .msd,.road .today,.t0-chart .ms circle,.t0-chart .area{opacity:1!important}
+ .span .deckglow{stroke-dashoffset:0!important}
+ .anno.end b{transition:opacity .35s!important}
+ .cc,.orbit .nn,.orbit .nl,.orbit .ring .rp{transition:opacity .4s,background .4s,color .4s!important}
+ .arm{transition:none!important}
+}

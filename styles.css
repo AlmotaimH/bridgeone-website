@@ -718,3 +718,20 @@ html[lang=ar] .lk-tag,html[lang=ar] .ftr .motto{font-family:var(--font);letter-s
 body{font-size:16px;line-height:1.7}
 h1,h2,h3{font-weight:700;letter-spacing:-.025em}
 .hero .hero-c h1{font-weight:800;letter-spacing:-.03em;font-size:clamp(34px,4.9vw,70px)}
+
+/* Founder, final layout: photo | story, then core expertise as a full-width row of cards.
+   The photo travels with the story so neither column is left with dead space. */
+.founder{grid-template-columns:minmax(0,340px) minmax(0,1fr);grid-template-areas:"p t" "s s";grid-template-rows:auto auto;column-gap:52px;row-gap:40px;align-items:start}
+.founder .portrait{grid-area:p;align-self:stretch;max-width:340px}
+.founder .portrait .p-in{position:sticky;top:110px}
+.founder .skills{grid-area:s;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;padding:32px 0 0;margin:0;border:0;border-top:1px solid var(--border);border-radius:0;background:none}
+.founder .sk-h{grid-column:1/-1;margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-lt)}
+.founder .sk{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:22px 20px 20px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));text-align:start;transition:border-color .3s,transform .3s var(--ease),background .3s}
+.founder .sk:last-child,.founder .sk:nth-last-child(2){border-bottom:1px solid var(--border)}
+.founder .sk:hover{border-color:rgba(242,180,90,.45);transform:translateY(-3px);background:linear-gradient(180deg,rgba(242,180,90,.08),rgba(255,255,255,.012))}
+.founder .sk-i{width:44px;height:44px;margin:0 0 10px;border-radius:12px}
+.founder .sk b{font-size:16px;line-height:1.3;align-self:auto}
+.founder .sk small{font-size:14px;line-height:1.5;color:var(--soft);max-width:none}
+@media (max-width:1200px){.founder .skills{grid-template-columns:repeat(6,minmax(0,1fr))}.founder .sk{grid-column:span 2}.founder .sk:nth-last-child(-n+2){grid-column:span 3}}
+@media (max-width:1040px){.founder{grid-template-columns:minmax(0,1fr);grid-template-areas:"p" "t" "s"}.founder .portrait .p-in{position:static}}
+@media (max-width:640px){.founder .skills{grid-template-columns:minmax(0,1fr)}.founder .sk,.founder .sk:nth-last-child(-n+2){grid-column:auto;flex-direction:row;align-items:flex-start;flex-wrap:wrap;column-gap:14px;padding:16px}.founder .sk-i{margin:0;width:40px;height:40px}.founder .sk b{flex:1 1 calc(100% - 60px);align-self:center}.founder .sk small{flex-basis:100%;padding-inline-start:54px;margin-top:-6px}}

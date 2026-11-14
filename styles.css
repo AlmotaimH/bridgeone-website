@@ -950,3 +950,5 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 }
 .who li:nth-child(8n+5){--c:#5EE0A0}.who li:nth-child(8n+6){--c:#B99BFF}.who li:nth-child(8n+7){--c:#FFB37A}.who li:nth-child(8n+8){--c:#6FC3FF}
 @media (prefers-reduced-motion:reduce){.who ul{display:flex;flex-wrap:wrap;gap:10px}.who li,.who .mq li{font-size:15px;padding:9px 16px}}
+/* engagement circle: keep the "Deliver" label clear of the card on phones */
+@media (max-width:900px){.orbit{margin-bottom:46px}.orbit .n0 .nl{bottom:calc(100% + 6px)}.cycle{margin-top:52px}}

@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '36'
+V = '37'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -118,7 +118,6 @@ def footer(L):
 </div>
 <div class="bot"><span>{esc(g(L, "footer.copy"))}</span><span>Greater Toronto Area, Ontario</span></div>
 </div>
-<div class="wordmark" aria-hidden="true">BRIDGEONE</div>
 </footer>
 {TOTOP}
 <script src="/main.js?v={V}"></script>

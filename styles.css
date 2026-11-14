@@ -737,3 +737,7 @@ h1,h2,h3{font-weight:700;letter-spacing:-.025em}
 .vs2 .yes b::before{content:"✓ ";color:#6FE3AD}
 @media (max-width:560px){.vs2{grid-template-columns:1fr}}
 .ed .n img{width:30px;height:auto}
+/* Footer finish: clean bottom bar, room for the back-to-top button */
+.ftr{padding-bottom:0}
+.ftr .bot{margin-top:40px;padding:22px 0 30px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--mute)}
+.ftr .bot{padding-inline-end:64px}

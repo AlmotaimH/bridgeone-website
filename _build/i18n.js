@@ -306,4 +306,7 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.contact.sending="Sending…"; T.FR.contact.sending="Envoi…"; T.AR.contact.sending="جارٍ الإرسال…";
   T.EN.contact.mailbtn="Email us instead"; T.FR.contact.mailbtn="Nous écrire par courriel"; T.AR.contact.mailbtn="راسلنا عبر البريد";
   T.AR.stats.items.forEach(function(x){ x[0]=String(x[0]).replace(/^\+(.*)$/,"$1+"); });
+  T.EN.who.items=["Founders & business owners","Startups & new ventures","Small and mid-sized businesses","Leadership teams & boards","Family businesses","Managers & young professionals","Companies entering Canada","Companies expanding into the GCC"];
+  T.FR.who.items=["Fondateurs et propriétaires d’entreprise","Startups et nouvelles entreprises","PME","Équipes de direction et conseils d’administration","Entreprises familiales","Gestionnaires et jeunes professionnels","Entreprises qui s’implantent au Canada","Entreprises qui s’étendent dans le Golfe"];
+  T.AR.who.items=["المؤسسون وأصحاب الأعمال","الشركات الناشئة والمشاريع الجديدة","الشركات الصغيرة والمتوسطة","فرق القيادة ومجالس الإدارة","الشركات العائلية","المديرون والمهنيون الشباب","الشركات الراغبة في دخول السوق الكندية","الشركات التي تتوسع في دول الخليج"];
 })(window.BO_I18N);

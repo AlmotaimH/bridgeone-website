@@ -948,3 +948,5 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
  .cc,.orbit .nn,.orbit .nl,.orbit .ring .rp{transition:opacity .4s,background .4s,color .4s!important}
  .arm{transition:none!important}
 }
+.who li:nth-child(8n+5){--c:#5EE0A0}.who li:nth-child(8n+6){--c:#B99BFF}.who li:nth-child(8n+7){--c:#FFB37A}.who li:nth-child(8n+8){--c:#6FC3FF}
+@media (prefers-reduced-motion:reduce){.who ul{display:flex;flex-wrap:wrap;gap:10px}.who li,.who .mq li{font-size:15px;padding:9px 16px}}

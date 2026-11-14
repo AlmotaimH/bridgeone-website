@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '45'
+V = '47'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -109,14 +109,16 @@ def inner_header(L, file, cur=''):
 
 def footer(L):
     pre = '/' + LANGS[L][2]
-    return f'''<footer class="ftr"><div class="wrap">
+    return f'''<footer class="ftr"><img class="ftr-wm" src="/assets/logo-mark.png" alt="" aria-hidden="true" loading="lazy"><div class="wrap">
+<div class="ftr-cta"><div><b>{esc(g(L, "band.title"))}</b></div><a class="btn btn-gold" href="{pre}#contact">{esc(g(L, "band.cta"))}</a></div>
 <div class="top">
 <div class="col main"><a class="brand" href="{pre}"><img src="/assets/logo-sm.png" alt="" width="54" height="34"><span>BRIDGEONE</span></a><span class="motto">{esc(g(L, "motto"))}</span>
 <p style="margin:0;max-width:360px;line-height:1.6">{esc(g(L, "footer.tag"))}</p></div>
 <nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
+<div class="col"><b>{esc(g(L, "nav.contact"))}</b><a href="tel:+16473355647" dir="ltr">+1 (647) 335-5647</a><a href="mailto:info@bridge-one.ca" dir="ltr">info@bridge-one.ca</a><span>{esc(g(L, "contact.hours"))}</span></div>
 <nav class="col" aria-label="Legal"><b>{esc(g(L, "footer.legal"))}</b><a href="{pre}privacy.html">{esc(g(L, "footer.privacy"))}</a><a href="{CO}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">{LI_ICON}LinkedIn</a></nav>
 </div>
-<div class="bot"><span>{esc(g(L, "footer.copy"))}</span><span>Greater Toronto Area, Ontario</span></div>
+<div class="bot"><span>{esc(g(L, "footer.copy"))}</span><span>{esc(g(L, "contact.loc"))}</span></div>
 </div>
 </footer>
 {TOTOP}

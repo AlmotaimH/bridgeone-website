@@ -801,9 +801,9 @@ form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%
 /* ===== How an engagement runs: cycle + card deck ===== */
 .cycle{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:56px;align-items:center}
 .orbit{position:relative;width:100%;max-width:420px;aspect-ratio:1;margin:0 auto}
-.ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.ring .rt{fill:none;stroke:rgba(255,255,255,.1);stroke-width:1.2}
-.ring .rp{fill:none;stroke:url(#none);stroke:#F2B45A;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:0 100;transition:stroke-dasharray 1.1s cubic-bezier(.65,0,.35,1);filter:drop-shadow(0 0 3px rgba(242,180,90,.8))}
+.orbit .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.orbit .ring .rt{fill:none;stroke:rgba(255,255,255,.1);stroke-width:1.2}
+.orbit .ring .rp{fill:none;stroke:url(#none);stroke:#F2B45A;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:0 100;transition:stroke-dasharray 1.1s cubic-bezier(.65,0,.35,1);filter:drop-shadow(0 0 3px rgba(242,180,90,.8))}
 .arm{position:absolute;inset:9%;border-radius:50%;transition:transform 1.1s cubic-bezier(.65,0,.35,1);pointer-events:none;z-index:2}
 .arm .lt{position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(242,180,90,.4),0 0 22px 6px rgba(242,180,90,.7)}
 .hub{position:absolute;inset:30%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:radial-gradient(circle,rgba(242,180,90,.12),rgba(2,10,31,.6) 70%);border:1px solid var(--border)}
@@ -836,9 +836,9 @@ form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%
 .cbar i{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.1)}
 .cbar i.on{background:linear-gradient(90deg,#F2B45A,#FFD9A0)}
 @media (max-width:900px){.cycle{grid-template-columns:minmax(0,1fr);gap:36px}.orbit{max-width:320px}.nl{font-size:13px}.cc{padding:28px}.cn{font-size:44px}}
-@media (prefers-reduced-motion:reduce){.cc,.arm,.ring .rp{transition:none}}
+@media (prefers-reduced-motion:reduce){.cc,.arm,.orbit .ring .rp{transition:none}}
 [dir=rtl] .arm{transform:none}
-[dir=rtl] .ring{transform:scaleX(-1) rotate(-90deg)}
+[dir=rtl] .orbit .ring{transform:scaleX(-1) rotate(-90deg)}
 @media (max-width:900px){.orbit{max-width:min(300px,calc(100% - 130px))}}
 .form-fail{margin:16px 0 0;padding:16px 18px;border-radius:14px;border:1px solid rgba(242,180,90,.45);background:rgba(242,180,90,.08);color:#fff;font-size:15px;display:flex;flex-direction:column;gap:12px}
 .form-fail[hidden]{display:none}
@@ -888,3 +888,21 @@ form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%
   .anno.end b{font-size:24px}
   .anno.end .an-i{width:50px;height:50px}
 }
+/* ===== Footer, designed ===== */
+.ftr{position:relative;isolation:isolate;overflow:hidden;border-top:0;background:radial-gradient(900px 420px at 85% 110%,rgba(242,180,90,.14),transparent 65%),radial-gradient(800px 400px at 0% 0%,rgba(91,108,255,.14),transparent 65%),linear-gradient(180deg,#040C26,#020A1F)}
+.ftr::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(242,180,90,.7) 30%,rgba(140,155,255,.7) 70%,transparent)}
+.ftr-wm{position:absolute;z-index:-1;width:min(720px,70vw);height:auto;inset-inline-end:-6%;bottom:-18%;opacity:.07;filter:grayscale(.2) blur(.3px);pointer-events:none;transform:rotate(-6deg)}
+.ftr-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:56px;padding:28px 32px;border-radius:var(--r-lg);border:1px solid rgba(242,180,90,.35);background:linear-gradient(90deg,rgba(242,180,90,.12),rgba(91,108,255,.12))}
+.ftr-cta b{font-size:clamp(20px,2vw,26px);color:#fff;font-weight:700;letter-spacing:-.01em}
+main:has(#contact)+.ftr .ftr-cta{display:none}
+.ftr .top{gap:40px;padding-top:56px;padding-bottom:36px}
+.ftr .col{flex:1 1 170px}
+.ftr .col.main{flex:2 1 300px}
+.ftr .col b{font-size:14px;color:var(--gold-lt);font-weight:600;margin-bottom:8px}
+.ftr .col span{padding:5px 0;color:var(--soft)}
+.ftr .bot{border-top:1px solid rgba(255,255,255,.08)}
+/* Founder: buttons under the photos */
+.links.pl{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.links.pl .btn{width:100%;justify-content:center}
+.founder-tx>.links{display:none}
+.ftr .col a[dir=ltr]{align-self:flex-start}

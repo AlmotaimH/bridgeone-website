@@ -603,3 +603,9 @@ html[lang=ar] .hero .hero-c h1{line-height:1.3;letter-spacing:0}
 @media (max-width:900px){.why-logo{position:static;transform:none;width:120px;margin-bottom:12px;animation:none}.statement-tile .statement,.statement-tile h2{max-width:none}}
 @media (prefers-reduced-motion:reduce){.why-logo{animation:none}.art-s *{animation:none!important}.road .bar{transform:none}.road .msd,.road .today{opacity:1}}
 .portrait .ph img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%}
+/* Service drawings sit in the layout, never on top of text */
+.svc-bento .tile .art-s{position:static;order:9;margin-top:auto;align-self:stretch;width:100%;height:auto;max-height:110px;padding-top:14px}
+.svc-bento .t3,.svc-bento .t6{display:grid;grid-template-columns:minmax(0,1fr) 210px;grid-auto-rows:min-content;column-gap:24px;align-content:start}
+.svc-bento .t3>*,.svc-bento .t6>*{grid-column:1}
+.svc-bento .t3 .art-s,.svc-bento .t6 .art-s{grid-column:2;grid-row:1/span 3;align-self:center;max-height:150px;margin:0;padding:0}
+@media (max-width:640px){.svc-bento .t3,.svc-bento .t6{display:flex}.svc-bento .t3 .art-s,.svc-bento .t6 .art-s{max-height:100px;padding-top:10px}}

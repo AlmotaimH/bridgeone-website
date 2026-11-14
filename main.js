@@ -85,10 +85,14 @@
   /* Headline: word-by-word reveal */
   var h1 = document.querySelector("[data-split]");
   if (h1 && !reduce) {
-    var ht = h1.textContent.trim(); h1.setAttribute("aria-label", ht); h1.innerHTML = "";
-    ht.split(/\s+/).forEach(function (w, i) {
-      var s = document.createElement("span"); s.className = "w"; s.setAttribute("aria-hidden", "true"); s.textContent = w;
-      s.style.animationDelay = (0.15 + i * 0.07) + "s"; h1.appendChild(s); h1.appendChild(document.createTextNode(" "));
+    h1.setAttribute("aria-label", h1.textContent.replace(/\s+/g, " ").trim());
+    var wi = 0, parts = h1.querySelectorAll(".ln").length ? h1.querySelectorAll(".ln") : [h1];
+    [].forEach.call(parts, function (p) {
+      var ht = p.textContent.trim(); p.innerHTML = ""; p.setAttribute("aria-hidden", "true");
+      ht.split(/\s+/).forEach(function (w) {
+        var s = document.createElement("span"); s.className = "w"; s.textContent = w;
+        s.style.animationDelay = (0.15 + wi++ * 0.07) + "s"; p.appendChild(s); p.appendChild(document.createTextNode(" "));
+      });
     });
   }
 
@@ -339,18 +343,28 @@
     var fillb = document.createElement("span"); fillb.className = "fillbar"; fillb.setAttribute("aria-hidden", "true");
     ds.appendChild(fillb); ds.appendChild(run);
     var xOf = function (i) { var r = lis[i].querySelector(".sn").getBoundingClientRect(), o = ds.getBoundingClientRect(); return r.left + r.width / 2 - o.left; };
-    var goStep = function (i) {
-      sIdx = i;
-      lis.forEach(function (li, k) { li.classList.toggle("on", k === i); li.classList.toggle("done", k < i); });
+    var place = function (i) {
       var x = xOf(i), x0 = xOf(0);
       run.style.left = x + "px"; fillb.style.left = Math.min(x0, x) + "px"; fillb.style.width = Math.abs(x - x0) + "px";
     };
+    var mark = function (i) { lis.forEach(function (li, k) { li.classList.toggle("on", k === i); li.classList.toggle("done", k < i); }); };
+    var goStep = function (i, instant) {
+      if (i === 0 && sIdx > 0 && !instant) {
+        ds.classList.add("resetting"); mark(-1);
+        setTimeout(function () { ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); ds.classList.remove("resetting"); sIdx = 0; setTimeout(function () { mark(0); }, 250); }, 600);
+        return;
+      }
+      sIdx = i; place(i);
+      ds.classList.add("moving"); mark(-2);
+      lis.forEach(function (li, k) { li.classList.toggle("done", k < i); });
+      setTimeout(function () { ds.classList.remove("moving"); mark(i); }, instant ? 0 : 1050);
+    };
     lis.forEach(function (li, k) {
-      li.addEventListener("mouseenter", function () { sPaused = true; goStep(k); });
+      li.addEventListener("mouseenter", function () { sPaused = true; goStep(k, true); });
       li.addEventListener("mouseleave", function () { sPaused = false; });
     });
-    window.addEventListener("resize", function () { if (sIdx >= 0) goStep(sIdx); });
-    var startSteps = function () { goStep(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 2800); };
+    window.addEventListener("resize", function () { if (sIdx >= 0) { ds.classList.add("snap"); place(sIdx); void ds.offsetWidth; ds.classList.remove("snap"); } });
+    var startSteps = function () { ds.classList.add("snap"); place(0); void ds.offsetWidth; ds.classList.remove("snap"); sIdx = 0; mark(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 3200); };
     if ("IntersectionObserver" in window) {
       var sio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sio.disconnect(); startSteps(); } }, { threshold: 0.4 });
       sio.observe(ds);

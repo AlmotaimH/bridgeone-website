@@ -228,7 +228,7 @@ footer: { tag: "استشارات إدارية وتطوير أعمال للشرك
     var X={
 EN:{eyebrow:"Management Consulting, Leadership Development & Business Growth",title:"Meet the Founder",role:"Founder, Leadership & Management Consultant",
 body:"BridgeOne Inc. is a business and management consulting firm based in the Greater Toronto Area. We help organizations bridge the gap between vision and execution, translating strategic priorities into measurable business results.",
-bio:"Hossam Almotaim, Founder of BridgeOne, brings nearly two decades of international leadership experience across business development, operations and organizational management, across Canada, Türkiye and the GCC: the UAE, Saudi Arabia, Qatar, Kuwait and Oman.",
+bio:"Hossam Almotaim, Founder of BridgeOne, brings nearly two decades of international leadership experience across business development, operations and organizational management, across Canada, Türkiye and the GCC: UAE, Saudi Arabia, Qatar, Kuwait and Oman.",
 bio2:"He has led operations across more than 120 locations, with full P&L accountability and end-to-end responsibility for business performance. His experience spans organizational development, talent acquisition, leadership development, performance management, budgeting, forecasting and operational execution. He has built, developed and led teams of more than 1,000 people.",
 bio3:"Combining extensive operational leadership with a background in legal and regulatory compliance, Hossam brings a practical understanding of how strategy, governance and risk management intersect. His approach focuses on strengthening organizations, developing effective leaders and building the operational foundations for sustainable growth.",
 bio4:"He is also the author of Bridging the Gap, a LinkedIn newsletter that turns leadership research and management insights into practical tools for today’s leaders.",
@@ -275,5 +275,13 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
       var it=L.stats.items, reg=it.splice(3,1)[0]; it.push(x.c);
       L.svc0=x.svc0; L.about.xpd=x.xpd; undash(L); }
     T.AR.contact.success=X.AR.success;
+  })();
+  /* --- Nov 13, 9 pm round --- */
+  (function(){
+    var X={EN:{h:["Management Consulting","Leadership Development","Business Growth"],q:["Q1","Q2","Q3","Q4"],rows:["Priorities","Owners & KPIs","Execution","Reviews"],cap:"Example roadmap for a strategy engagement: priorities first, then owners, execution and regular reviews"},
+           FR:{h:["Conseil en management","Développement du leadership","Croissance des affaires"],q:["T1","T2","T3","T4"],rows:["Priorités","Responsables","Exécution","Suivis"],cap:"Exemple de feuille de route d’un mandat stratégique : priorités, responsables, exécution et suivis réguliers"},
+           AR:{h:["استشارات إدارية","تطوير القيادات","نمو الأعمال"],q:["الربع 1","الربع 2","الربع 3","الربع 4"],rows:["الأولويات","المسؤولون","التنفيذ","المراجعات"],cap:"مثال على خارطة طريق لمشروع استراتيجي: الأولويات، ثم المسؤولون والتنفيذ والمراجعات المنتظمة"}};
+    for (var l in X){ T[l].hero.h=X[l].h; T[l].svc0.q=X[l].q; T[l].svc0.rows=X[l].rows; T[l].svc0.cap=X[l].cap; }
+    T.EN.stats.items[4][1]="countries: Canada, Türkiye, UAE, Saudi Arabia, Qatar, Kuwait and Oman";
   })();
 })(window.BO_I18N);

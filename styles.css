@@ -515,3 +515,90 @@ html[lang=ar] .hero .hero-c h1{line-height:1.3;letter-spacing:0}
 .cur{width:34px;height:34px;margin:12px 0 0 12px;border:1px solid rgba(242,180,90,.55);border-radius:10px;background:rgba(2,10,31,.75);color:var(--amber);display:grid;place-items:center;backdrop-filter:blur(4px)}
 .cur.big{width:40px;height:40px;margin:10px 0 0 10px;background:var(--amber);color:#020A1F;border-color:transparent}
 @media (max-width:560px){.hero .hero-c h1{font-size:33px}.hero-c{padding-top:72px;gap:18px}}
+
+/* ===================== Nov 13, 9 pm round ===================== */
+.sec{padding:64px 0}
+.sh{margin-bottom:32px}
+@media (max-width:760px){.sec{padding:52px 0}}
+/* Hero: clock to the side, headline in three lines */
+.hero-c{position:relative;padding-top:84px}
+.hero-c .pills{position:absolute;top:22px;inset-inline-start:28px;margin:0}
+.hero .hero-c h1 .ln{display:block}
+@media (max-width:760px){.hero-c .pills{position:static;align-self:flex-start}.hero-c{padding-top:28px}}
+/* Strategy roadmap */
+.road svg{width:100%;height:auto;display:block;font-family:inherit}
+.road .qh{fill:var(--mute);font-size:12px;font-weight:600}
+.road .rl{fill:#fff;font-size:12.5px;font-weight:600}
+.road .gl{stroke:rgba(255,255,255,.07);fill:none}
+.road .track{fill:rgba(255,255,255,.04)}
+.road .bar{fill:url(#rg1);transform-box:fill-box;transform-origin:left center;transform:scaleX(0);filter:drop-shadow(0 0 8px rgba(242,180,90,.35))}
+.t0.in .road .bar{animation:grow 1.1s cubic-bezier(.6,.1,.2,1) var(--d) forwards}
+@keyframes grow{to{transform:scaleX(1)}}
+.road .msd{fill:#0A1431;stroke:#F2B45A;stroke-width:2;opacity:0}
+.t0.in .road .msd{animation:fadein .4s var(--d) forwards}
+.road .today path{stroke:#FFDDA6;stroke-width:1.5;stroke-dasharray:3 4}
+.road .today circle{fill:#FFDDA6}
+.road .today{opacity:0}.t0.in .road .today{animation:fadein .5s var(--d) forwards}
+@keyframes fadein{to{opacity:1}}
+.road figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+/* Service tiles: each with its own colour and illustration */
+.svc-bento .t1{--c:#8C9BFF}.svc-bento .t2{--c:#F2B45A}.svc-bento .t3{--c:#3FD0C9}.svc-bento .t4{--c:#5EE0A0}.svc-bento .t5{--c:#FF8FA8}.svc-bento .t6{--c:#B99BFF}
+.svc-bento .t1,.svc-bento .t2,.svc-bento .t3,.svc-bento .t4,.svc-bento .t5,.svc-bento .t6{background:radial-gradient(420px 220px at 100% 0%,color-mix(in srgb,var(--c) 18%,transparent),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}
+.svc-bento .tile:hover{border-color:color-mix(in srgb,var(--c,#F2B45A) 55%,transparent)}
+.svc-bento .tile[class*=" t"] .ico{color:var(--c,var(--amber));border-color:color-mix(in srgb,var(--c,#F2B45A) 45%,transparent)}
+.art-s{position:absolute;top:20px;inset-inline-end:20px;width:112px;height:auto;color:var(--c);opacity:.95;pointer-events:none;overflow:visible}
+.t3 .art-s,.t6 .art-s{width:200px}
+.svc-bento .tile h3,.svc-bento .tile p{position:relative;z-index:1}
+.art-s *{vector-effect:non-scaling-stroke}
+.art-s .ln2{stroke:color-mix(in srgb,var(--c) 50%,transparent);fill:none;stroke-width:1.5}
+.art-s .nd{fill:color-mix(in srgb,var(--c) 18%,#0A1431);stroke:var(--c);stroke-width:1.5}
+.art-s .n5{fill:var(--c);stroke:none}
+.tile.in .art-s .nd{animation:ndp 3s ease-in-out infinite}
+.tile.in .art-s .n2{animation-delay:.4s}.tile.in .art-s .n3{animation-delay:.8s}.tile.in .art-s .n4{animation-delay:1.2s}
+@keyframes ndp{50%{fill:color-mix(in srgb,var(--c) 45%,#0A1431)}}
+.art-s .br{fill:color-mix(in srgb,var(--c) 30%,#0A1431);stroke:var(--c);stroke-width:1;transform-box:fill-box;transform-origin:bottom;transform:scaleY(.1)}
+.art-s .br.hi{fill:var(--c)}
+.tile.in .art-s .br{animation:growy .9s cubic-bezier(.6,.1,.2,1) var(--d) forwards}
+@keyframes growy{to{transform:scaleY(1)}}
+.art-s .tr{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;stroke-linecap:round}
+.tile.in .art-s .tr{animation:draw 1.2s .7s forwards}
+.art-s .arc{fill:none;stroke:color-mix(in srgb,var(--c) 45%,transparent);stroke-width:1.5;stroke-dasharray:4 5}
+.art-s .hub{fill:var(--c);filter:drop-shadow(0 0 8px var(--c))}
+.art-s .pt{fill:#0A1431;stroke:var(--c);stroke-width:2}
+.art-s .mv{fill:#fff;filter:drop-shadow(0 0 6px var(--c))}
+.art-s .ringbg{fill:none;stroke:color-mix(in srgb,var(--c) 18%,transparent);stroke-width:5}
+.art-s .ring{fill:none;stroke:var(--c);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.tile.in .art-s .ring{animation:draw 1.6s cubic-bezier(.6,.1,.2,1) forwards}
+.art-s .sh{fill:color-mix(in srgb,var(--c) 20%,#0A1431);stroke:var(--c);stroke-width:1.5}
+.art-s .ck{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.tile.in .art-s .ck{animation:draw .6s 1.4s forwards}
+.art-s .st{fill:none;stroke:color-mix(in srgb,var(--c) 60%,transparent);stroke-width:2;stroke-linejoin:round}
+.art-s .pp{fill:color-mix(in srgb,var(--c) 30%,#0A1431);stroke:var(--c);stroke-width:1.5}
+.tile.in .art-s .pp{animation:bob 2.4s ease-in-out infinite}
+.tile.in .art-s .p2{animation-delay:.3s}.tile.in .art-s .p3{animation-delay:.6s;fill:var(--c)}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.art-s .star{fill:#FFDDA6;filter:drop-shadow(0 0 6px #FFDDA6)}
+.art-s .gp{fill:none;stroke:var(--c);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1}
+.tile.in .art-s .gp{animation:draw 1.6s forwards}
+.art-s .mt{fill:color-mix(in srgb,var(--c) 30%,#0A1431);stroke:var(--c);stroke-width:2}
+.art-s .me{fill:color-mix(in srgb,var(--c) 20%,#0A1431);stroke:var(--c);stroke-width:1.5}
+.art-s .me2{fill:var(--c)}
+.art-s .sp{fill:#fff;opacity:.7}
+@media (max-width:640px){.art-s{width:84px;top:16px;inset-inline-end:16px}.t3 .art-s,.t6 .art-s{width:140px}}
+/* Approach: smooth, professional movement */
+.deck-steps li.on{transform:none}
+.deck-steps .sn{z-index:3}
+.runner{width:10px;height:10px;top:47px;margin-left:-5px;box-shadow:0 0 0 3px rgba(242,180,90,.35),0 0 18px 4px rgba(242,180,90,.55);transition:left 1s cubic-bezier(.65,0,.35,1),opacity .4s}
+.fillbar{transition:left 1s cubic-bezier(.65,0,.35,1),width 1s cubic-bezier(.65,0,.35,1),opacity .4s}
+.deck-steps.resetting .runner,.deck-steps.resetting .fillbar{opacity:0}
+.deck-steps.snap .runner,.deck-steps.snap .fillbar{transition:none}
+.deck-steps li.on .sn{box-shadow:0 0 0 6px rgba(242,180,90,.18),0 0 30px rgba(242,180,90,.7)}
+/* Founder: no sticky photo */
+.portrait{position:static}
+/* Why: BridgeOne logo */
+.statement-tile{overflow:hidden}
+.why-logo{position:absolute;inset-inline-end:44px;top:50%;width:230px;height:auto;transform:translateY(-50%);filter:drop-shadow(0 20px 50px rgba(242,180,90,.45));animation:float 6s ease-in-out infinite;pointer-events:none}
+@keyframes float{50%{transform:translateY(calc(-50% - 10px))}}
+.statement-tile .statement,.statement-tile h2{max-width:calc(100% - 300px)}
+@media (max-width:900px){.why-logo{position:static;transform:none;width:120px;margin-bottom:12px;animation:none}.statement-tile .statement,.statement-tile h2{max-width:none}}
+@media (prefers-reduced-motion:reduce){.why-logo{animation:none}.art-s *{animation:none!important}.road .bar{transform:none}.road .msd,.road .today{opacity:1}}

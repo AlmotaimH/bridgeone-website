@@ -98,7 +98,7 @@
 
   /* Toronto time + open / closed, live */
   var clock = document.querySelector("[data-clock]");
-  if (clock && window.Intl) {
+  if (clock && !clock.hidden && window.Intl) {
     var tick = function () {
       try {
         var o = {};

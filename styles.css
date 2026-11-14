@@ -649,3 +649,4 @@ html[lang=ar] .lk-name{direction:ltr}
 .tagline .an-i{width:44px;height:44px}
 @media (max-width:900px){.annos{grid-template-columns:1fr;gap:18px;padding:12px 28px 44px}.anno,.anno.b{flex-direction:row;justify-self:start;text-align:start;max-width:none}.tagline{order:3;align-items:flex-start}.tagline p{text-align:start;font-size:22px}}
 .an-logo img{width:30px;height:auto}
+.hero-c{padding-top:64px}@media (max-width:760px){.hero-c{padding-top:36px}}

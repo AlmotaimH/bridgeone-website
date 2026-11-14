@@ -300,4 +300,9 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.FR.contact.fail="Votre message n’a pas pu être envoyé en ligne : nous avons ouvert votre application de courriel avec le message prérempli. Vous pouvez aussi écrire à ";
   T.AR.contact.fail="تعذّر إرسال رسالتك عبر الموقع، لذا فتحنا تطبيق البريد لديك مع الرسالة جاهزة. يمكنك أيضًا مراسلتنا على ";
   T.EN.approach.center="Each cycle builds on the last"; T.FR.approach.center="Chaque cycle s’appuie sur le précédent"; T.AR.approach.center="كل دورة تبني على سابقتها";
+  T.EN.contact.fail="We couldn’t send your message from the website just now. Please email us at ";
+  T.FR.contact.fail="Nous n’avons pas pu envoyer votre message depuis le site. Écrivez-nous à ";
+  T.AR.contact.fail="تعذّر إرسال رسالتك من الموقع حاليًا. يرجى مراسلتنا على ";
+  T.EN.contact.sending="Sending…"; T.FR.contact.sending="Envoi…"; T.AR.contact.sending="جارٍ الإرسال…";
+  T.EN.contact.mailbtn="Email us instead"; T.FR.contact.mailbtn="Nous écrire par courriel"; T.AR.contact.mailbtn="راسلنا عبر البريد";
 })(window.BO_I18N);

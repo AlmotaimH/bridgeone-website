@@ -64,14 +64,24 @@
         return;
       }
       btn.disabled = true;
+      var label = btn.textContent; btn.classList.add("busy"); btn.textContent = box.getAttribute("data-sending") || "Sending…";
+      var fp = document.querySelector(".form-fail"); if (fp) fp.hidden = true;
       fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
         .then(function (r) { if (!r.ok) throw new Error(); return r.json(); }).then(function (j) { if (!j || String(j.success) !== "true") throw new Error(); box.classList.add("sent"); box.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); })
         .catch(function () {
-          btn.disabled = false;
-          var p = document.querySelector(".form-fail");
-          if (p) { p.textContent = (box.getAttribute("data-fail") || "Something went wrong. Email us at ") + CONTACT_EMAIL; p.hidden = false; }
+          btn.disabled = false; btn.classList.remove("busy"); btn.textContent = label;
           var body = "Name: " + data.get("name") + "\nEmail: " + data.get("email") + "\nCompany: " + (data.get("company") || "") + "\nService: " + (data.get("service") || "") + "\n\n" + data.get("message");
-          window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Website enquiry: " + data.get("name")) + "&body=" + encodeURIComponent(body);
+          var href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Website enquiry: " + data.get("name")) + "&body=" + encodeURIComponent(body);
+          if (fp) {
+            fp.innerHTML = "";
+            var t = document.createElement("span"); t.textContent = (box.getAttribute("data-fail") || "We couldn't send your message from the website. Please email us at ") + CONTACT_EMAIL + ".";
+            var a = document.createElement("a"); a.className = "btn btn-gold"; a.href = href; a.textContent = box.getAttribute("data-mailbtn") || "Email us instead";
+            var c = document.createElement("a"); c.className = "btn btn-glass"; c.href = "tel:+16473355647"; c.textContent = "+1 (647) 335-5647"; c.setAttribute("dir", "ltr");
+            var row = document.createElement("span"); row.className = "ff-row"; row.appendChild(a); row.appendChild(c);
+            fp.appendChild(t); fp.appendChild(row); fp.hidden = false;
+            btn.closest(".full").appendChild(fp);
+            fp.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+          }
         });
     });
   }

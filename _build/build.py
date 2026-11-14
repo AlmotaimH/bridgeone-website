@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '43'
+V = '44'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -303,7 +303,7 @@ def home_page(L):
     recent = [x for x in ARTS if x['source'] and x is not LATEST][-3:]
     body = body.replace('{{LATEST}}', feature_card(L, LATEST, g(L, 'insights.featured'), g(L, 'insights.go')))
     body = body.replace('{{EDITIONS}}', ed_rows(L, recent, INS[L]['read']))
-    body = body.replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail')))
+    body = body.replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
     body = body.replace('<a class="skip" href="#main" data-i18n="skip"></a>\n<header', '<header')
     hs = body.index('<header'); he = body.index('</header>') + len('</header>')
     body = body[:hs] + header(L, '', home=True).split('\n', 1)[1].rstrip('\n') + body[he:]

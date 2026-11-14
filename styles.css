@@ -840,3 +840,7 @@ form.cf .f input,form.cf .f select,form.cf .f textarea{width:100%;max-width:100%
 [dir=rtl] .arm{transform:none}
 [dir=rtl] .ring{transform:scaleX(-1) rotate(-90deg)}
 @media (max-width:900px){.orbit{max-width:min(300px,calc(100% - 130px))}}
+.form-fail{margin:16px 0 0;padding:16px 18px;border-radius:14px;border:1px solid rgba(242,180,90,.45);background:rgba(242,180,90,.08);color:#fff;font-size:15px;display:flex;flex-direction:column;gap:12px}
+.form-fail[hidden]{display:none}
+.ff-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn.busy{opacity:.75;cursor:progress}

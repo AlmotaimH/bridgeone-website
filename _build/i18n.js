@@ -284,4 +284,8 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
     for (var l in X){ T[l].hero.h=X[l].h; T[l].svc0.q=X[l].q; T[l].svc0.rows=X[l].rows; T[l].svc0.cap=X[l].cap; }
     T.EN.stats.items[4][1]="countries: Canada, Türkiye, UAE, Saudi Arabia, Qatar, Kuwait and Oman";
   })();
+  /* --- under-bridge labels (Nov 13) --- */
+  T.EN.hero.whereA=["Where you are","A vision, an idea, a plan on paper"]; T.EN.hero.whereB=["Where you want to be","Results you can measure"];
+  T.FR.hero.whereA=["Là où vous êtes","Une vision, une idée, un plan sur papier"]; T.FR.hero.whereB=["Là où vous voulez aller","Des résultats mesurables"];
+  T.AR.hero.whereA=["حيث أنت الآن","رؤية، فكرة، خطة على الورق"]; T.AR.hero.whereB=["حيث تريد أن تصل","نتائج قابلة للقياس"];
 })(window.BO_I18N);

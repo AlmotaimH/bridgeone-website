@@ -952,3 +952,17 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 @media (prefers-reduced-motion:reduce){.who ul{display:flex;flex-wrap:wrap;gap:10px}.who li,.who .mq li{font-size:15px;padding:9px 16px}}
 /* engagement circle: keep the "Deliver" label clear of the card on phones */
 @media (max-width:900px){.orbit{margin-bottom:46px}.orbit .n0 .nl{bottom:calc(100% + 6px)}.cycle{margin-top:52px}}
+/* ===== Full audit fixes (Nov 14) ===== */
+.who .wrap.has-mq>p{margin-inline-end:18px}
+/* tablet: under-bridge endpoints readable, even grids */
+@media (min-width:641px) and (max-width:900px){
+ .anno.end b{font-size:30px}.anno.end small{font-size:15px}.anno.end .an-i{width:60px;height:60px}
+ .annos .tagline p{font-size:24px}
+ .founder .skills{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+ .founder .sk{display:flex;flex-direction:column;align-items:flex-start;padding:18px 14px}
+ .founder .sk-i{width:48px;height:48px}
+ .ins-bento{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* phone: smaller back-to-top so it covers less text */
+@media (max-width:640px){.to-top{width:40px;height:40px;right:14px;bottom:86px;background:rgba(2,10,31,.65)}html[dir=rtl] .to-top{left:14px}}
+@media (min-width:641px) and (max-width:900px){.founder .sk b{font-size:15px}.founder .sk small{font-size:13px}.founder .sk{padding:16px 12px}}

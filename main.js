@@ -177,20 +177,42 @@
     requestAnimationFrame(frame);
   }
 
-  /* What the bridge connects keeps changing */
+  /* The bridge tells the engagement: progress crosses the deck from A to B,
+     lighting each stage of the approach; each crossing brings a new A/B pair */
   var ba = document.querySelector(".bank.a b"), bb = document.querySelector(".bank.b b"), PAIRS = null;
   try { PAIRS = JSON.parse((clock && clock.getAttribute("data-pairs")) || "null"); } catch (e) {}
-  if (PAIRS && ba && bb && !reduce) {
-    var pi = 0;
-    setInterval(function () {
-      pi = (pi + 1) % PAIRS.length;
-      [ba, bb].forEach(function (el, j) {
-        setTimeout(function () {
-          el.classList.add("swap");
-          setTimeout(function () { el.textContent = PAIRS[pi][j]; el.classList.remove("swap"); }, 360);
-        }, j * 280);
-      });
-    }, 3600);
+  var lane = document.querySelector(".lane"), stops = [].slice.call(document.querySelectorAll(".stop"));
+  var STOP_AT = [0.2418, 0.4139, 0.5861, 0.7582];
+  function swapPair(pi) {
+    if (!PAIRS || !ba || !bb) return;
+    [ba, bb].forEach(function (el, j) {
+      setTimeout(function () {
+        el.classList.add("swap");
+        setTimeout(function () { el.textContent = PAIRS[pi][j]; el.classList.remove("swap"); }, 360);
+      }, j * 280);
+    });
+  }
+  if (lane && reduce) {
+    lane.style.setProperty("--p", "1");
+    stops.forEach(function (s) { s.classList.add("on"); });
+  } else if (lane) {
+    var CYCLE = 8000, RUN0 = 500, RUN1 = 6000, OUT = 7400, laneSeen = true, pairI = 0, lastCycle = 0, t0 = null;
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { laneSeen = es[0].isIntersecting; }).observe(lane);
+    var ease = function (x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; };
+    var step = function (now) {
+      requestAnimationFrame(step);
+      if (t0 === null) t0 = now + 2600;          /* let the cables draw first */
+      if (!laneSeen || now < t0) return;
+      var el = now - t0, cyc = Math.floor(el / CYCLE), t = el % CYCLE;
+      if (cyc !== lastCycle) { lastCycle = cyc; pairI = PAIRS ? (pairI + 1) % PAIRS.length : 0; swapPair(pairI); }
+      var p = t < RUN0 ? 0 : t > RUN1 ? 1 : ease((t - RUN0) / (RUN1 - RUN0));
+      var fade = t > OUT ? Math.max(0, 1 - (t - OUT) / (CYCLE - OUT)) : 1;
+      lane.style.setProperty("--p", p.toFixed(4));
+      lane.style.setProperty("--h", (t < RUN1 + 300 ? Math.min(1, t / RUN0) : 0).toFixed(2));
+      lane.querySelector(".fill").style.opacity = fade.toFixed(2);
+      for (var i = 0; i < stops.length; i++) stops[i].classList.toggle("on", p >= STOP_AT[i] && t < OUT);
+    };
+    requestAnimationFrame(step);
   }
 
   /* The promise lights up word by word as you scroll */

@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '34'
+V = '35'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -51,7 +51,7 @@ def langs_html(L, file):
 def head(L, title, desc, file, alt=True, extra='', ogtype='website'):
     lang, d, pre = LANGS[L]
     url = SITE + pre + file
-    fonts = 'family=Archivo:wght@400..800&family=Montserrat:wght@400;500'
+    fonts = 'family=Montserrat:wght@400..800'
     if L == 'AR': fonts += '&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700'
     alts = ''
     if alt:

@@ -190,7 +190,7 @@
   }
 
   /* What the bridge connects keeps changing */
-  var ba = document.querySelector(".bank.a b"), bb = document.querySelector(".bank.b b"), PAIRS = null;
+  var ba = document.querySelector(".end.a b"), bb = document.querySelector(".end.b b"), PAIRS = null;
   try { PAIRS = JSON.parse((clock && clock.getAttribute("data-pairs")) || "null"); } catch (e) {}
   if (PAIRS && ba && bb && !reduce) {
     var pi = 0;

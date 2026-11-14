@@ -252,4 +252,28 @@ xp:["القيادة","الاستراتيجية","العمليات","الحوكم
 svc:"طوّر قادة أقوى، وابنِ قدرات إدارية، وكوّن فرقًا عالية الأداء من خلال برامج عملية لتطوير القيادات والتدريب الإداري والتعلّم المؤسسي."}};
     for (var l in X){ var x=X[l]; T[l].hero.eyebrow=x.eyebrow; ["title","role","body","bio","bio2","bio3","bio4","xp"].forEach(function(k){T[l].about[k]=x[k];}); T[l].services.items[5][1]=x.svc; }
   })();
+  /* --- Nov 13 evening: founder feedback round --- */
+  (function(){
+    var X={
+EN:{home:"Home",sub:"Tell us where you want to take your business. We reply within 1–2 business days.",success:"Thank you. We’ll be in touch within 1–2 business days.",
+ c:["7","countries: Canada, Türkiye, the UAE, Saudi Arabia, Qatar, Kuwait and Oman"],
+ svc0:{plan:"Plan",prog:"Progress",cap:"Example: progress tracked against the plan",list:["Clear priorities and a phased roadmap","Owners, milestones and KPIs for every goal","Regular reviews that keep execution on track"]},
+ xpd:["Building leaders and high-performing teams","Clear priorities and roadmaps that get used","120+ locations run with full P&L ownership","Compliance and risk built into growth","Partnerships, sales and new markets"]},
+FR:{home:"Accueil",sub:"Dites-nous où vous voulez mener votre entreprise. Nous répondons dans un délai de 1 à 2 jours ouvrables.",success:"Merci. Nous vous répondrons dans un délai de 1 à 2 jours ouvrables.",
+ c:["7","pays : Canada, Türkiye, Émirats arabes unis, Arabie saoudite, Qatar, Koweït et Oman"],
+ svc0:{plan:"Plan",prog:"Progrès",cap:"Exemple : progrès suivi par rapport au plan",list:["Des priorités claires et une feuille de route par étapes","Des responsables, des jalons et des indicateurs pour chaque objectif","Des suivis réguliers pour garder l’exécution sur la bonne voie"]},
+ xpd:["Former des leaders et des équipes performantes","Des priorités claires et des feuilles de route appliquées","Plus de 120 sites dirigés avec la pleine responsabilité du P&L","La conformité et le risque intégrés à la croissance","Partenariats, ventes et nouveaux marchés"]},
+AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخذ أعمالك. نرد خلال يوم إلى يومَي عمل.",success:"شكرًا لك. سنتواصل معك خلال يوم إلى يومَي عمل.",
+ c:["7","دول: كندا وتركيا والإمارات والسعودية وقطر والكويت وعُمان"],
+ svc0:{plan:"الخطة",prog:"التقدّم",cap:"مثال: متابعة التقدّم مقارنةً بالخطة",list:["أولويات واضحة وخارطة طريق على مراحل","مسؤولون ومراحل ومؤشرات أداء لكل هدف","مراجعات منتظمة تُبقي التنفيذ على المسار الصحيح"]},
+ xpd:["بناء القادة والفرق عالية الأداء","أولويات واضحة وخطط عمل تُطبَّق فعلًا","أكثر من 120 موقعًا بمسؤولية كاملة عن الأرباح والخسائر","الامتثال وإدارة المخاطر جزء من النمو","الشراكات والمبيعات والأسواق الجديدة"]}};
+    function undash(o){ for (var k in o){ var v=o[k];
+      if (typeof v==="string") o[k]=v.replace(/^(Thank you|Merci|شكرًا)\s*—\s*/,"$1. ").replace(/run without you — /,"run without you: ").replace(/\s+—\s+/g,", ").replace(/\s*—\s*/g,"، ".indexOf?", ":", ");
+      else if (v && typeof v==="object") undash(v); } }
+    for (var l in X){ var x=X[l], L=T[l];
+      L.nav.home=x.home; L.contact.sub=x.sub; L.contact.success=x.success;
+      var it=L.stats.items, reg=it.splice(3,1)[0]; it.push(x.c);
+      L.svc0=x.svc0; L.about.xpd=x.xpd; undash(L); }
+    T.AR.contact.success=X.AR.success;
+  })();
 })(window.BO_I18N);

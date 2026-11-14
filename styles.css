@@ -440,3 +440,78 @@ html[lang=ar] .article .dek{font-style:normal}
 .founder-tx p[data-i18n^="about.bio"]+p{margin-top:-6px}
 .xp{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px;padding:0}
 .xp li{font-size:13.5px;font-weight:600;color:#fff;padding:7px 14px;border-radius:99px;border:1px solid rgba(242,180,90,.35);background:linear-gradient(90deg,rgba(242,180,90,.12),rgba(91,108,255,.12))}
+
+/* ===================== Nov 13 evening round ===================== */
+/* Hero: the service line is the headline */
+.hero-c{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;padding-top:92px;padding-bottom:24px}
+.hero-c .pills{justify-content:center}
+.hero .hero-c h1{font-size:clamp(38px,5.3vw,76px);max-width:1140px;line-height:1.04;font-weight:800;letter-spacing:-.025em;margin:0}
+html[lang=ar] .hero .hero-c h1{line-height:1.3;letter-spacing:0}
+.hero-vp{margin:0;font-size:clamp(22px,2.5vw,34px);font-weight:700;line-height:1.25;background:linear-gradient(90deg,#F2B45A,#FFDDA6 45%,#A7B1FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-c .lead{max-width:720px}
+.hero-c .ctas{justify-content:center}
+/* Strategy tile: a real chart and what you get */
+.svc-bento .t0::after{content:none}
+.svc-bento .t0{justify-content:flex-start;gap:12px}
+.svc-bento .t0 .ico{margin-bottom:0}
+.t0-chart{margin:2px 0 8px;position:relative;z-index:1}
+.t0-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.t0-chart .gl path{stroke:rgba(255,255,255,.07);fill:none}
+.t0-chart .planl{stroke:rgba(255,255,255,.4);stroke-dasharray:5 6;fill:none;stroke-width:1.5}
+.t0-chart .area{fill:url(#t0f);opacity:0;transition:opacity 1.2s .8s}
+.t0-chart .progl{fill:none;stroke:url(#t0s);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.t0.in .t0-chart .progl{animation:draw 1.8s cubic-bezier(.6,.1,.2,1) forwards}
+.t0.in .t0-chart .area{opacity:1}
+.t0-chart .ms circle{fill:#0A1431;stroke:#F2B45A;stroke-width:2.5;opacity:0;transition:opacity .4s}
+.t0.in .t0-chart .ms circle{opacity:1}
+.t0.in .t0-chart .ms circle:nth-child(1){transition-delay:.5s}.t0.in .t0-chart .ms circle:nth-child(2){transition-delay:.9s}.t0.in .t0-chart .ms circle:nth-child(3){transition-delay:1.3s}.t0.in .t0-chart .ms circle:nth-child(4){transition-delay:1.7s;fill:#F2B45A}
+.t0-chart .lg{display:flex;gap:18px;font-size:13px;color:var(--soft);margin-bottom:6px}
+.t0-chart .k::before{content:"";display:inline-block;width:18px;border-top:2px dashed rgba(255,255,255,.5);vertical-align:middle;margin-inline-end:7px}
+.t0-chart .k.prog::before{border-top:3px solid #F2B45A}
+.t0-chart figcaption{font-size:12.5px;color:var(--mute);margin-top:6px}
+.dl{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:9px;position:relative;z-index:1}
+.dl li{position:relative;padding-inline-start:28px;font-size:16px;color:#fff}
+.dl li::before{content:"";position:absolute;inset-inline-start:0;top:.2em;width:18px;height:18px;border-radius:50%;background:rgba(242,180,90,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F2B45A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat;border:1px solid rgba(242,180,90,.5)}
+/* Radar: values next to labels, calmer lines */
+.rlab .rval{fill:#fff;font-weight:800}
+.rlab.low .rval{fill:var(--amber)}
+.rshape{filter:drop-shadow(0 0 8px rgba(242,180,90,.3));stroke-width:1.75}
+/* Approach: light stops at each phase */
+@media (min-width:1041px){.deck-steps::after{content:none;animation:none}}
+.deck-steps li{transition:transform .5s var(--ease),border-color .5s,background .5s,box-shadow .5s}
+.deck-steps li.on{transform:translateY(-6px);border-color:rgba(242,180,90,.7);background:linear-gradient(180deg,rgba(242,180,90,.13),rgba(91,108,255,.06));box-shadow:0 26px 60px -26px rgba(242,180,90,.5)}
+.deck-steps .sn{transition:background .5s,color .5s,border-color .5s}
+.deck-steps li.on .sn{background:linear-gradient(135deg,#F2B45A,#C9A45C);color:#020A1F;border-color:transparent}
+.deck-steps li.done .sn{border-color:var(--amber);color:#fff}
+.deck-steps li.on h3{color:var(--amber)}
+.runner{position:absolute;top:45px;width:14px;height:14px;margin-inline-start:0;margin-left:-7px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(242,180,90,.45),0 0 22px 6px rgba(242,180,90,.6);transition:left 1.1s cubic-bezier(.65,0,.35,1);z-index:2;pointer-events:none}
+.fillbar{position:absolute;top:52px;height:2px;background:linear-gradient(90deg,#F2B45A,#FFD9A0);box-shadow:0 0 12px rgba(242,180,90,.8);transition:left 1.1s cubic-bezier(.65,0,.35,1),width 1.1s cubic-bezier(.65,0,.35,1);z-index:1;pointer-events:none}
+@media (max-width:1040px){.runner,.fillbar{display:none}}
+/* Founder: smaller photo, connected core skills */
+.founder{grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:start;gap:52px;padding:36px}
+.portrait{max-width:340px;position:sticky;top:110px}
+.portrait figcaption{max-width:none;margin-top:44px}
+.skills{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;position:relative;margin-top:8px;padding-top:36px;border-top:1px solid var(--border)}
+.skills::before{content:"";position:absolute;top:70px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,rgba(242,180,90,.7),rgba(91,108,255,.7));opacity:.6}
+.skills::after{content:"";position:absolute;top:66px;left:10%;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 14px 4px rgba(242,180,90,.7);animation:skrun 6s ease-in-out infinite alternate}
+@keyframes skrun{to{left:calc(90% - 10px)}}
+.sk{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.sk-i{position:relative;z-index:1;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:var(--amber);background:radial-gradient(circle at 30% 25%,rgba(242,180,90,.28),#0A1431 70%);border:1px solid rgba(242,180,90,.55);box-shadow:0 0 34px -8px rgba(242,180,90,.6);transition:transform .35s var(--ease),box-shadow .35s;margin-bottom:8px}
+.sk:hover .sk-i{transform:translateY(-4px) scale(1.07);box-shadow:0 0 44px -4px rgba(242,180,90,.8)}
+.sk b{font-size:17px;color:#fff;line-height:1.25}
+.sk small{font-size:14px;color:var(--soft);line-height:1.45;max-width:22ch}
+@media (max-width:1040px){.founder{grid-template-columns:minmax(0,1fr)}.portrait{position:static;max-width:380px}.skills{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.skills::before,.skills::after{display:none}}
+@media (max-width:560px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}.sk:last-child{grid-column:1/-1}}
+/* Why BridgeOne: bigger type */
+.statement-tile h2{font-size:clamp(30px,3.4vw,46px);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.02em}
+.statement{background:linear-gradient(90deg,#fff,#FFE2B3 60%,#C9D0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.why-bento .tile h3{font-size:clamp(22px,1.9vw,26px)}
+.why-bento .tile p{font-size:18px;line-height:1.55}
+.why-bento .tile .ico{width:52px;height:52px}
+.why-bento .tile .ico svg{width:26px;height:26px}
+/* Article byline: BridgeOne logo */
+.avatar.logo-av{object-fit:contain;padding:9px;background:#020A1F}
+/* Pointer: a small growth arrow instead of a ring */
+.cur{width:34px;height:34px;margin:12px 0 0 12px;border:1px solid rgba(242,180,90,.55);border-radius:10px;background:rgba(2,10,31,.75);color:var(--amber);display:grid;place-items:center;backdrop-filter:blur(4px)}
+.cur.big{width:40px;height:40px;margin:10px 0 0 10px;background:var(--amber);color:#020A1F;border-color:transparent}
+@media (max-width:560px){.hero .hero-c h1{font-size:33px}.hero-c{padding-top:72px;gap:18px}}

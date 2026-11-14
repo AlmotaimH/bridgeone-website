@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '21'
+V = '22'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -92,7 +92,7 @@ def header(L, file, cur='', home=False):
     def a(h, key, k):
         c = ' aria-current="page"' if k == cur else ''
         return f'<a href="{h}"{c}>{esc(g(L, key))}</a>'
-    links = a(base + '#services', 'nav.services', 's') + a(base + '#approach', 'nav.approach', 'a') + a(base + '#why', 'nav.results', 'w') + a(pre + 'insights.html', 'nav.insights', 'i')
+    links = a(pre, 'nav.home', 'h') + a(base + '#services', 'nav.services', 's') + a(base + '#approach', 'nav.approach', 'a') + a(base + '#why', 'nav.results', 'w') + a(pre + 'insights.html', 'nav.insights', 'i')
     return f'''<a class="skip" href="#main">{esc(g(L, "skip"))}</a>
 <header class="hdr">
 <div class="wrap">
@@ -189,7 +189,7 @@ def article_page(a, prev, nxt):
     if a['source']:
         who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=2" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
     else:
-        who = '<div class="avatar" aria-hidden="true">B1</div><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
+        who = '<img class="avatar logo-av" src="/assets/logo-mark.png" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
     return h + hdr + f'''<main id="main"><article class="article">
 <a class="back" href="/insights.html">All editions</a>
 <p class="kicker">{esc(eyebrow)}</p>
@@ -241,7 +241,7 @@ def ed_rows(L, arts, readw):
 
 def insights_page(L):
     P = INS[L]
-    rows = ed_rows(L, list(reversed([x for x in ARTS if x is not LATEST])), P['read'])
+    rows = ed_rows(L, [x for x in ARTS if x is not LATEST], P['read'])
     note = f'<p class="note">{esc(P["note"])}</p>' if P['note'] else ''
     return head(L, P['title'], P['p'], 'insights.html') + inner_header(L, 'insights.html', 'i') + f'''<main id="main">
 <section class="phero"><div class="wrap">
@@ -301,7 +301,7 @@ def privacy_page(L):
 def home_page(L):
     tpl = open(B + '/index.tpl.html', encoding='utf-8').read()
     body = tpl.replace('{{LANGS}}', langs_html(L, ''))
-    recent = list(reversed([x for x in ARTS if x['source'] and x is not LATEST]))[:3]
+    recent = [x for x in ARTS if x['source'] and x is not LATEST][-3:]
     body = body.replace('{{LATEST}}', feature_card(L, LATEST, g(L, 'insights.featured'), g(L, 'insights.go')))
     body = body.replace('{{EDITIONS}}', ed_rows(L, recent, INS[L]['read']))
     body = body.replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail')))

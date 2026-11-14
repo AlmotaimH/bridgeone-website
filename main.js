@@ -146,7 +146,7 @@
     var L = 300, R = 1140, TOP = 46, QY = 396, DECK = 286;
     var cx = 0, cy = 0, vx = 0, vy = 0, tx = 0, ty = 0, inside = false, visible = true, started = false;
     setTimeout(function () { started = true; }, 2700);
-    if (fine) {
+    if (false) {
       heroEl.addEventListener("pointermove", function (e) {
         var r = span.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width * 1440, py = (e.clientY - r.top) / r.height * 380;
@@ -160,7 +160,7 @@
     var frame = function (now) {
       requestAnimationFrame(frame);
       if (!visible || !started || !mainCable) return;
-      var t = now / 1000, gx = inside ? tx : Math.sin(t * 0.55) * 18, gy = inside ? ty : Math.sin(t * 0.8) * 6 - 3;
+      var t = now / 1000, gx = Math.sin(t * 0.5) * 5, gy = Math.sin(t * 0.7) * 3;
       vx += (gx - cx) * 0.05; vy += (gy - cy) * 0.05; vx *= 0.9; vy *= 0.9; cx += vx; cy += vy;
       var qx = 720 + cx, qy = QY + cy;
       mainCable.setAttribute("d", "M" + L + " " + TOP + "Q" + qx.toFixed(1) + " " + qy.toFixed(1) + " " + R + " " + TOP);
@@ -210,8 +210,8 @@
   window.addEventListener("scroll", live, { passive: true }); live();
 
   if (fine && !reduce) {
-    /* A soft gold ring follows the pointer */
-    var cur = document.createElement("div"); cur.className = "cur"; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
+    /* A small gold growth arrow follows the pointer */
+    var cur = document.createElement("div"); cur.className = "cur"; cur.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>'; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
     var mx = 0, my = 0, rx = 0, ry = 0, curOn = false;
     window.addEventListener("pointermove", function (e) {
       mx = e.clientX; my = e.clientY;
@@ -243,6 +243,7 @@
     }
   }
 
+  (function () {
   /* ===== Icons draw themselves in, and redraw on hover ===== */
   var icoTiles = document.querySelectorAll(".tile .ico");
   icoTiles.forEach(function (ic) {
@@ -250,7 +251,7 @@
   });
   if ("IntersectionObserver" in window && !reduce) {
     var iio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.querySelector(".ico").classList.add("drawn"); iio.unobserve(e.target); } });
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.querySelector(".ico").classList.add("drawn"); e.target.classList.add("in"); iio.unobserve(e.target); } });
     }, { threshold: 0.35 });
     icoTiles.forEach(function (ic) { ic.classList.add("draw"); iio.observe(ic.closest(".tile")); });
   }
@@ -279,7 +280,8 @@
     for (var j = 0; j < N; j++) {
       var e5 = pt(j, 5); el("line", { x1: 0, y1: 0, x2: e5[0], y2: e5[1] }, grid);
       var lp = pt(j, 6.15), tx = el("text", { x: lp[0].toFixed(1), y: (lp[1] + 4).toFixed(1), "text-anchor": Math.abs(lp[0]) < 8 ? "middle" : (lp[0] > 0 ? "start" : "end"), "class": "rlab" });
-      tx.textContent = shortL[j];
+      tx.textContent = shortL[j] + " ";
+      var tv = document.createElementNS(NS, "tspan"); tv.setAttribute("class", "rval"); tx.appendChild(tv);
     }
     var shape = el("polygon", { "class": "rshape", fill: "url(#rg)" });
     var dots = []; for (var d = 0; d < N; d++) dots.push(el("circle", { r: 5, "class": "rdot" }));
@@ -309,6 +311,7 @@
         tgt[i] = +r.value; r.closest(".rng").querySelector("output").textContent = r.value;
         r.style.setProperty("--p", ((r.value - 1) / 4 * 100) + "%");
       });
+      grid.querySelectorAll(".rval").forEach(function (v, i) { v.textContent = tgt[i]; });
       verdict();
       if (reduce) { rv = tgt.slice(); draw(); } else if (!raf) raf = requestAnimationFrame(animate);
     }
@@ -318,6 +321,7 @@
       if (sel && pick >= 0) [].forEach.call(sel.options, function (o, i) { if (o.textContent === svcNames[pick]) sel.selectedIndex = i; });
     });
     ranges.forEach(function (r) { r.style.setProperty("--p", ((r.value - 1) / 4 * 100) + "%"); });
+    grid.querySelectorAll(".rval").forEach(function (v, i) { v.textContent = tgt[i]; });
     verdict();
     if (reduce || !("IntersectionObserver" in window)) { rv = tgt.slice(); draw(); }
     else {
@@ -326,4 +330,31 @@
       rio.observe(svg);
     }
   }
+
+  /* ===== How an engagement runs: the light stops at each phase ===== */
+  var ds = document.querySelector(".deck-steps");
+  if (ds) {
+    var lis = [].slice.call(ds.children), sIdx = -1, sPaused = false, sTimer = null;
+    var run = document.createElement("span"); run.className = "runner"; run.setAttribute("aria-hidden", "true");
+    var fillb = document.createElement("span"); fillb.className = "fillbar"; fillb.setAttribute("aria-hidden", "true");
+    ds.appendChild(fillb); ds.appendChild(run);
+    var xOf = function (i) { var r = lis[i].querySelector(".sn").getBoundingClientRect(), o = ds.getBoundingClientRect(); return r.left + r.width / 2 - o.left; };
+    var goStep = function (i) {
+      sIdx = i;
+      lis.forEach(function (li, k) { li.classList.toggle("on", k === i); li.classList.toggle("done", k < i); });
+      var x = xOf(i), x0 = xOf(0);
+      run.style.left = x + "px"; fillb.style.left = Math.min(x0, x) + "px"; fillb.style.width = Math.abs(x - x0) + "px";
+    };
+    lis.forEach(function (li, k) {
+      li.addEventListener("mouseenter", function () { sPaused = true; goStep(k); });
+      li.addEventListener("mouseleave", function () { sPaused = false; });
+    });
+    window.addEventListener("resize", function () { if (sIdx >= 0) goStep(sIdx); });
+    var startSteps = function () { goStep(0); if (!reduce) sTimer = setInterval(function () { if (!sPaused) goStep((sIdx + 1) % lis.length); }, 2800); };
+    if ("IntersectionObserver" in window) {
+      var sio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sio.disconnect(); startSteps(); } }, { threshold: 0.4 });
+      sio.observe(ds);
+    } else startSteps();
+  }
+  })();
 })();

@@ -289,4 +289,10 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.FR.hero.whereA=["Là où vous êtes","Une vision, une idée, un plan sur papier"]; T.FR.hero.whereB=["Là où vous voulez aller","Des résultats mesurables"];
   T.AR.hero.whereA=["حيث أنت الآن","رؤية، فكرة، خطة على الورق"]; T.AR.hero.whereB=["حيث تريد أن تصل","نتائج قابلة للقياس"];
   T.EN.about.xph="Core expertise"; T.FR.about.xph="Expertise principale"; T.AR.about.xph="مجالات الخبرة";
+  T.EN.check.overall="Overall score"; T.EN.check.you="Your business"; T.EN.check.target="Target level (4)"; T.EN.check.levels=["Needs attention","Building","Strong"];
+  T.FR.check.overall="Score global"; T.FR.check.you="Votre entreprise"; T.FR.check.target="Niveau cible (4)"; T.FR.check.levels=["À renforcer","En progression","Solide"];
+  T.AR.check.overall="التقييم العام"; T.AR.check.you="أعمالك"; T.AR.check.target="المستوى المستهدف (4)"; T.AR.check.levels=["يحتاج إلى اهتمام","في طور البناء","قوي"];
+  T.EN.svc0.why=[["Without a roadmap","Competing priorities, unclear owners, progress nobody can measure"],["With a roadmap","Agreed priorities, named owners, milestones reviewed every quarter"]];
+  T.FR.svc0.why=[["Sans feuille de route","Priorités concurrentes, responsables flous, progrès impossibles à mesurer"],["Avec une feuille de route","Priorités convenues, responsables désignés, jalons revus chaque trimestre"]];
+  T.AR.svc0.why=[["بدون خارطة طريق","أولويات متنافسة، مسؤوليات غير واضحة، وتقدّم لا يمكن قياسه"],["مع خارطة طريق","أولويات متفق عليها، مسؤولون محددون، ومراحل تُراجع كل ربع سنة"]];
 })(window.BO_I18N);

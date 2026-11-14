@@ -287,6 +287,9 @@
       tx.textContent = shortL[j] + " ";
       var tv = document.createElementNS(NS, "tspan"); tv.setAttribute("class", "rval"); tx.appendChild(tv);
     }
+    var tp = []; for (var ti = 0; ti < N; ti++) tp.push(pt(ti, 4).map(function (n) { return n.toFixed(1); }).join(","));
+    el("polygon", { points: tp.join(" "), "class": "rtarget" });
+    for (var sl = 1; sl <= 5; sl++) { var sp = pt(0, sl), st = el("text", { x: (sp[0] + 6).toFixed(1), y: (sp[1] + 4).toFixed(1), "class": "rscale" }); st.textContent = sl; }
     var shape = el("polygon", { "class": "rshape", fill: "url(#rg)" });
     var dots = []; for (var d = 0; d < N; d++) dots.push(el("circle", { r: 5, "class": "rdot" }));
     var vs = chk.querySelector(".vs"), va = chk.querySelector(".va"), cta = chk.querySelector(".verdict .btn");
@@ -301,7 +304,15 @@
       rv = rv.map(function (v, i) { var nv = v + (tgt[i] - v) * 0.18; if (Math.abs(tgt[i] - nv) > 0.01) done = false; else nv = tgt[i]; return nv; });
       draw(); raf = done ? 0 : requestAnimationFrame(animate);
     }
+    var ovn = chk.querySelector(".ovn"), ovt = chk.querySelector(".ovt"), ovb = chk.querySelector(".ovbar i"), lvls = [].slice.call(src.querySelectorAll(".lv")).map(function (s) { return s.textContent; });
+    function overall() {
+      var avg = tgt.reduce(function (a, b) { return a + b; }, 0) / N;
+      ovn.textContent = avg.toFixed(1); ovb.style.width = ((avg - 1) / 4 * 100) + "%";
+      ovt.textContent = lvls[avg < 2.75 ? 0 : avg < 3.75 ? 1 : 2] || "";
+      chk.setAttribute("data-level", avg < 2.75 ? "0" : avg < 3.75 ? "1" : "2");
+    }
     function verdict() {
+      overall();
       var min = Math.min.apply(null, tgt);
       pick = min >= 4 ? -1 : tgt.indexOf(min);
       dots.forEach(function (c, i) { c.classList.toggle("low", i === pick); });

@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '35'
+V = '36'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -187,7 +187,7 @@ def article_page(a, prev, nxt):
     nav += '</nav>'
     share = SITE + file
     if a['source']:
-        who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=6" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
+        who = f'<img class="avatar" src="/assets/founder-sm.jpg?v=7" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong><a href="{ME}" target="_blank" rel="noopener" style="color:#020A1F;text-decoration:none">Hossam Almotaim</a></strong>'
     else:
         who = '<img class="avatar logo-av" src="/assets/logo-mark.png" alt="" width="56" height="56"><div style="display:flex;flex-direction:column;font-size:15px"><strong style="color:#020A1F">BridgeOne</strong>'
     return h + hdr + f'''<main id="main"><article class="article">
@@ -233,7 +233,7 @@ def feature_card(L, a, label, go):
 def ed_rows(L, arts, readw):
     rows = ''
     for a in arts:
-        num = str(a['ed']) if a['ed'] else '+'
+        num = str(a['ed']) if a['ed'] else '<img src="/assets/logo-sm.png" alt="" width="30" height="19">'
         rows += f'''<a class="ed" href="/insights/{a["slug"]}.html" hreflang="en"><span class="n" aria-hidden="true">{num}</span>
 <span class="meta"><time datetime="{a["date"]}">{fdate(L, a["date"])}</time>, {a["read"]} {readw}</span><b lang="en" dir="ltr">{esc(a["title"])}</b><span class="dk" lang="en" dir="ltr">{esc(a["dek"])}</span></a>
 '''

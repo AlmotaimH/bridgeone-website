@@ -310,7 +310,7 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.FR.who.items=["Fondateurs et propriétaires d’entreprise","Startups et nouvelles entreprises","PME","Équipes de direction et conseils d’administration","Entreprises familiales","Gestionnaires et jeunes professionnels","Entreprises qui s’implantent au Canada","Entreprises qui s’étendent dans le Golfe"];
   T.AR.who.items=["المؤسسون وأصحاب الأعمال","الشركات الناشئة والمشاريع الجديدة","الشركات الصغيرة والمتوسطة","فرق القيادة ومجالس الإدارة","الشركات العائلية","المديرون والمهنيون الشباب","الشركات الراغبة في دخول السوق الكندية","الشركات التي تتوسع في دول الخليج"];
   /* budget figure (Nov 14): largest annual budget ~200M SAR ≈ US$53M */
-  T.EN.stats.items.splice(3,0,["US$50M+","largest annual budget managed, with full P&L ownership"]);
-  T.FR.stats.items.splice(3,0,["50 M$ US+","plus important budget annuel géré, avec la pleine responsabilité du P&L"]);
-  T.AR.stats.items.splice(3,0,["US$50M+","دولار أمريكي: أكبر ميزانية سنوية تمت إدارتها، مع مسؤولية كاملة عن الأرباح والخسائر"]);
+  T.EN.stats.items.splice(3,0,["US$50M+","in annual budgets managed, with full P&L accountability"]);
+  T.FR.stats.items.splice(3,0,["50 M$ US+","de budgets annuels gérés, avec la pleine responsabilité du P&L"]);
+  T.AR.stats.items.splice(3,0,["US$50M+","دولار أمريكي من الميزانيات السنوية المُدارة، بمسؤولية كاملة عن الأرباح والخسائر"]);
 })(window.BO_I18N);

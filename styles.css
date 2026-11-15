@@ -966,3 +966,9 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 /* phone: smaller back-to-top so it covers less text */
 @media (max-width:640px){.to-top{width:40px;height:40px;right:14px;bottom:86px;background:rgba(2,10,31,.65)}html[dir=rtl] .to-top{left:14px}}
 @media (min-width:641px) and (max-width:900px){.founder .sk b{font-size:15px}.founder .sk small{font-size:13px}.founder .sk{padding:16px 12px}}
+/* six figures: 3 × 2 on desktop and tablet, 2 × 3 on phones */
+.stat-row{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:30px}
+@media (max-width:760px){.stat-row{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:auto}}
+.stat b{white-space:nowrap}
+.stat b{white-space:normal}
+@media (max-width:760px){.stat b{font-size:clamp(28px,8.4vw,36px)}.stat{padding-inline-start:12px}}

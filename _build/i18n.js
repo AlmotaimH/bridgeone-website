@@ -309,4 +309,8 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.who.items=["Founders & business owners","Startups & new ventures","Small and mid-sized businesses","Leadership teams & boards","Family businesses","Managers & young professionals","Companies entering Canada","Companies expanding into the GCC"];
   T.FR.who.items=["Fondateurs et propriétaires d’entreprise","Startups et nouvelles entreprises","PME","Équipes de direction et conseils d’administration","Entreprises familiales","Gestionnaires et jeunes professionnels","Entreprises qui s’implantent au Canada","Entreprises qui s’étendent dans le Golfe"];
   T.AR.who.items=["المؤسسون وأصحاب الأعمال","الشركات الناشئة والمشاريع الجديدة","الشركات الصغيرة والمتوسطة","فرق القيادة ومجالس الإدارة","الشركات العائلية","المديرون والمهنيون الشباب","الشركات الراغبة في دخول السوق الكندية","الشركات التي تتوسع في دول الخليج"];
+  /* budget figure (Nov 14): largest annual budget ~200M SAR ≈ C$73M */
+  T.EN.stats.items.splice(3,0,["C$70M+","largest annual budget managed, with full P&L ownership"]);
+  T.FR.stats.items.splice(3,0,["70 M$+","plus important budget annuel géré, avec la pleine responsabilité du P&L"]);
+  T.AR.stats.items.splice(3,0,["C$70M+","دولار كندي: أكبر ميزانية سنوية تمت إدارتها، مع مسؤولية كاملة عن الأرباح والخسائر"]);
 })(window.BO_I18N);

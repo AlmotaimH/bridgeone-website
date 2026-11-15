@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '58'
+V = '59'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -79,6 +79,7 @@ def head(L, title, desc, file, alt=True, extra='', ogtype='website'):
 <link href="https://fonts.googleapis.com/css2?{fonts}&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="/styles.css?v={V}">
+<script data-goatcounter="https://bridgeone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 {extra}</head>
 '''
 
@@ -264,25 +265,28 @@ def insights_page(L):
 ''' + inner_footer(L)
 
 PRIV = {
- 'EN': dict(t='Privacy policy', up='Last updated: November 13, 2026', secs=[
+ 'EN': dict(t='Privacy policy', up='Last updated: November 15, 2026', secs=[
   (None, 'BridgeOne Inc. (“BridgeOne”, “we”) respects your privacy. This policy explains what personal information we collect through this website and how we use it, in line with Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA).'),
   ('What we collect', 'When you use our contact form, call or email us, or book a consultation, we collect the details you provide, such as your name, email address, company and message.'),
   ('How we use it', 'We use your information only to respond to your enquiry and provide our services. We do not sell your personal information.'),
   ('Service providers', 'We use trusted third parties to run this website, process forms and send email. They handle your information only on our behalf. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
+  ('Website statistics', 'We use GoatCounter to count page visits. It does not use cookies or collect personal information, and we see only totals such as which pages were viewed and which country or website visitors came from.'),
   ('Your choices', 'You can ask to access, correct or delete your information at any time by emailing {e}.'),
   ('Contact', 'Questions about this policy? Email {e}.')]),
- 'FR': dict(t='Politique de confidentialité', up='Dernière mise à jour : 13 novembre 2026', secs=[
+ 'FR': dict(t='Politique de confidentialité', up='Dernière mise à jour : 15 novembre 2026', secs=[
   (None, 'BridgeOne Inc. (« BridgeOne », « nous ») respecte votre vie privée. La présente politique explique quels renseignements personnels nous recueillons par l’entremise de ce site Web et comment nous les utilisons, conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) du Canada.'),
   ('Ce que nous recueillons', 'Lorsque vous utilisez notre formulaire de contact, nous appelez ou nous écrivez, ou réservez une consultation, nous recueillons les renseignements que vous fournissez, comme votre nom, votre adresse courriel, votre entreprise et votre message.'),
   ('Comment nous les utilisons', 'Nous utilisons vos renseignements uniquement pour répondre à votre demande et fournir nos services. Nous ne vendons pas vos renseignements personnels.'),
   ('Fournisseurs de services', 'Nous faisons appel à des tiers de confiance pour exploiter ce site Web, traiter les formulaires et envoyer des courriels. Ils traitent vos renseignements uniquement en notre nom. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
+  ('Statistiques du site', 'Nous utilisons GoatCounter pour compter les visites des pages. Il n’utilise pas de témoins (cookies) et ne recueille aucun renseignement personnel; nous ne voyons que des totaux, comme les pages consultées et le pays ou le site d’où viennent les visiteurs.'),
   ('Vos choix', 'Vous pouvez demander en tout temps à consulter, à corriger ou à supprimer vos renseignements en écrivant à {e}.'),
   ('Nous joindre', 'Des questions sur cette politique? Écrivez à {e}.')]),
- 'AR': dict(t='سياسة الخصوصية', up='آخر تحديث: 13 نوفمبر 2026', secs=[
+ 'AR': dict(t='سياسة الخصوصية', up='آخر تحديث: 15 نوفمبر 2026', secs=[
   (None, 'تحترم BridgeOne Inc. («BridgeOne» أو «نحن») خصوصيتك. توضّح هذه السياسة المعلومات الشخصية التي نجمعها عبر هذا الموقع وكيف نستخدمها، وفقًا لقانون حماية المعلومات الشخصية والوثائق الإلكترونية الكندي (PIPEDA).'),
   ('ما الذي نجمعه', 'عند استخدامك نموذج التواصل أو اتصالك بنا أو مراسلتنا أو حجز استشارة، نجمع البيانات التي تقدّمها، مثل اسمك وبريدك الإلكتروني وشركتك ورسالتك.'),
   ('كيف نستخدمها', 'نستخدم معلوماتك فقط للرد على استفسارك وتقديم خدماتنا. نحن لا نبيع معلوماتك الشخصية.'),
   ('مزوّدو الخدمات', 'نستعين بأطراف ثالثة موثوقة لتشغيل هذا الموقع ومعالجة النماذج وإرسال البريد الإلكتروني، وهم يتعاملون مع معلوماتك نيابةً عنا فقط. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
+  ('إحصاءات الموقع', 'نستخدم GoatCounter لعدّ زيارات الصفحات. لا يستخدم ملفات تعريف الارتباط (الكوكيز) ولا يجمع أي معلومات شخصية، ولا نرى إلا أرقامًا إجمالية مثل الصفحات التي تمت زيارتها والبلد أو الموقع الذي جاء منه الزوار.'),
   ('خياراتك', 'يمكنك في أي وقت طلب الاطلاع على معلوماتك أو تصحيحها أو حذفها بمراسلتنا على {e}.'),
   ('تواصل معنا', 'لديك أسئلة عن هذه السياسة؟ راسلنا على {e}.')]),
 }

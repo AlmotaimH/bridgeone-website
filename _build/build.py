@@ -7,10 +7,11 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '59'
+V = '60'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
+BOOK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0srKPxaDMRtpWccJchWfNSUF9ZbZWiJ8pr3ehx2mJmyDD91TGFnBl6-hY0ZeLh1fENI3kUYMsj'
 NL = 'https://www.linkedin.com/newsletters/bridging-the-gap-7508783536003420161/'
 T = json.loads(subprocess.check_output(['node', '-e',
     "global.window={};require('%s/i18n.js');console.log(JSON.stringify(window.BO_I18N))" % B]))
@@ -99,9 +100,9 @@ def header(L, file, cur='', home=False):
 <div class="wrap">
 <a class="brand" href="{pre}" aria-label="BridgeOne"><img src="/assets/logo-sm.png" alt="" width="54" height="34"><span>BRIDGEONE</span></a>
 <nav class="nav" aria-label="Main">{links}{a(base + '#contact', 'nav.contact', 'c')}</nav>
-<div class="hdr-r">{langs_html(L, file)}<a class="btn btn-gold" href="{base}#contact">{esc(g(L, "nav.cta"))}</a>{BURGER}</div>
+<div class="hdr-r">{langs_html(L, file)}<a class="btn btn-gold" href="{BOOK}" target="_blank" rel="noopener">{esc(g(L, "nav.cta"))}</a>{BURGER}</div>
 </div>
-<nav class="mnav" aria-label="Mobile">{links}<a class="btn btn-gold" href="{base}#contact">{esc(g(L, "nav.cta"))}</a></nav>
+<nav class="mnav" aria-label="Mobile">{links}<a class="btn btn-gold" href="{BOOK}" target="_blank" rel="noopener">{esc(g(L, "nav.cta"))}</a></nav>
 </header>
 '''
 
@@ -309,7 +310,7 @@ def home_page(L):
     recent = [x for x in ARTS if x['source'] and x is not LATEST][-3:]
     body = body.replace('{{LATEST}}', feature_card(L, LATEST, g(L, 'insights.featured'), g(L, 'insights.go')))
     body = body.replace('{{EDITIONS}}', ed_rows(L, recent, INS[L]['read']))
-    body = body.replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
+    body = body.replace('{{BOOK}}', BOOK).replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
     body = body.replace('<a class="skip" href="#main" data-i18n="skip"></a>\n<header', '<header')
     hs = body.index('<header'); he = body.index('</header>') + len('</header>')
     body = body[:hs] + header(L, '', home=True).split('\n', 1)[1].rstrip('\n') + body[he:]

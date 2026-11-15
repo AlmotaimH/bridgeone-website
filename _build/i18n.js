@@ -313,4 +313,9 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.stats.items.splice(3,0,["US$50M+","in annual budgets managed, with full P&L accountability"]);
   T.FR.stats.items.splice(3,0,["50 M$ US+","de budgets annuels gérés, avec la pleine responsabilité du P&L"]);
   T.AR.stats.items.splice(3,0,["US$50M+","دولار أمريكي من الميزانيات السنوية المُدارة، بمسؤولية كاملة عن الأرباح والخسائر"]);
+  /* booking page (Nov 15) */
+  T.EN.contact.bookCta="Book a free 30-minute call";T.FR.contact.bookCta="Réserver un appel gratuit de 30 minutes";T.AR.contact.bookCta="احجز مكالمة مجانية مدتها 30 دقيقة";
+  T.EN.contact.bookBody="Pick a time that suits you, Monday to Thursday, 10:00 am – 7:00 pm ET. You’ll get a video link by email.";
+  T.FR.contact.bookBody="Choisissez le moment qui vous convient, du lundi au jeudi, de 10 h à 19 h (HE). Vous recevrez un lien vidéo par courriel.";
+  T.AR.contact.bookBody="اختر الوقت المناسب لك، من الاثنين إلى الخميس، من 10:00 ص إلى 7:00 م بتوقيت الشرق. سيصلك رابط مكالمة الفيديو عبر البريد الإلكتروني.";
 })(window.BO_I18N);

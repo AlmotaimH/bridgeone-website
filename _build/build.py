@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '60'
+V = '61'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -49,7 +49,7 @@ def langs_html(L, file):
         out += f'<a href="/{LANGS[code][2]}{file}" hreflang="{LANGS[code][0]}"{extra}{cur}>{label}</a>'
     return out + '</div>'
 
-def head(L, title, desc, file, alt=True, extra='', ogtype='website'):
+def head(L, title, desc, file, alt=True, extra='', ogtype='website', og='assets/og-image.jpg'):
     lang, d, pre = LANGS[L]
     url = SITE + pre + file
     fonts = 'family=Montserrat:wght@400..800'
@@ -71,7 +71,7 @@ def head(L, title, desc, file, alt=True, extra='', ogtype='website'):
 {alts}<meta property="og:type" content="{ogtype}">
 <meta property="og:title" content="{att(title)}">
 <meta property="og:description" content="{att(desc)}">
-<meta property="og:image" content="{SITE}assets/og-image.jpg">
+<meta property="og:image" content="{SITE}{og}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
@@ -166,6 +166,31 @@ def load_articles():
         if a['source']: n += 1; a['ed'] = n
         else: a['ed'] = 0
     return arts
+
+# Edition covers and posters (assets/ed). cover = 16:9 image; posters = (file, alt)
+VIS = {
+ 'leadership-is-a-practice-not-a-position': ('e1', 'Edition 1 cover: Leadership is a practice, not a position, with a rising staircase of nine principles',
+   [('e1-principles', 'Infographic: nine principles across three pillars, lead yourself, lead with others and make a difference')]),
+ 'the-weight-leaders-carry': ('e2', 'Edition 2 cover: The Weight Leaders Carry, with a pressure curve across a leader\'s first years',
+   [('e2-weights', 'Infographic: the six weights leaders carry and the turning point for each')]),
+ 'why-good-leaders-misread-people': ('e3', 'Edition 3 cover: Why Good Leaders Misread People, showing what happened versus what you believe',
+   [('e3-perception', 'Poster: Same facts, different realities, with the Johari window and how perception errors form'),
+    ('e3-personality', 'Poster: Personality is if-then, not a label, with the HEXACO model and how situations trigger behaviour')]),
+ 'why-people-stop-trying': ('e4', 'Edition 4 cover: Why people stop trying, with the motivation and learning loop',
+   [('e4-guide', 'Field guide: the motivation and learning loop, where it breaks, a team check-up and a 30-day playbook'),
+    ('e4-motivation', 'Poster: Pay matters, meaning shapes effort, with the motivation spectrum'),
+    ('e4-learning', 'Poster: One in three feedback interventions can make it worse, and where feedback should point')]),
+ 'the-influence-triangle': ('e5', 'Edition 5 cover: The Influence Triangle of power, conflict and communication, with voice in the middle',
+   [('e5-guide', 'Field guide: find the weak corner of the influence triangle, a two-minute check-up and a 30-day playbook'),
+    ('e5-power', 'Poster: Your title buys compliance, trust earns commitment, with the five bases of power'),
+    ('e5-conflict', 'Poster: Fight about the work, never the person, with five ways to handle conflict'),
+    ('e5-communication', 'Poster: What you meant isn\'t what they heard, with the tapping experiment')]),
+ 'from-answers-to-questions': ('e6', 'Edition 6 cover: From Answers to Questions, with a double-diamond diagram of Goal, Reality, Options and Will',
+   [('e6-guide', 'Field guide: technical versus adaptive problems, a double-diamond diagnosis map, a team check-up and a 30-day playbook'),
+    ('e6-coaching', 'Poster: The best leaders ask before they answer, with coaching effect sizes from Theeboom, Beersma and van Vianen (2014)'),
+    ('e6-creative', 'Poster: First, think alone, then think together, with about 56 ideas from brainstorming groups versus 103 from people working alone first')]),
+}
+def cover_of(a): return VIS.get(a['slug'])
 ARTS = load_articles()
 LATEST = [a for a in ARTS if a['source']][-1]
 
@@ -177,7 +202,13 @@ def article_page(a, prev, nxt):
                      "publisher": {"@type": "Organization", "name": "BridgeOne Inc.", "url": SITE},
                      "mainEntityOfPage": SITE + file}, ensure_ascii=False)
     h = head(L, f'{a["title"]} | BridgeOne Inc.', a['dek'], file, alt=False, ogtype='article',
-             extra=f'<script type="application/ld+json">{ld}</script>\n')
+             extra=f'<script type="application/ld+json">{ld}</script>\n', og=(f'assets/ed/{cover_of(a)[0]}-cover-og.jpg' if cover_of(a) else 'assets/og-image.jpg'))
+    v = cover_of(a); cov = gal = ''
+    if v:
+        k, calt, posters = v
+        cov = f'<figure class="cover"><img src="/assets/ed/{k}-cover.jpg" alt="{att(calt)}" width="1600" height="900" fetchpriority="high"></figure>'
+        items = ''.join(f'<a class="pv" href="/assets/ed/{f}.jpg" target="_blank" rel="noopener"><img src="/assets/ed/{f}.jpg" alt="{att(t)}" width="1080" height="1350" loading="lazy"></a>' for f, t in posters)
+        gal = f'<section class="visuals" aria-labelledby="vis-h"><h2 id="vis-h">Visual summary</h2><p>Save or share the posters from this edition. Select one to open it full size.</p><div class="pvs">{items}</div></section>'
     hdr = inner_header(L, 'insights.html', 'i').replace('<header class="hdr">', '<div class="progress" aria-hidden="true"></div>\n<header class="hdr">')
     eyebrow = f'Bridging the Gap, edition {a["ed"]}' if a['ed'] else a['cat']
     src = ''
@@ -199,10 +230,10 @@ def article_page(a, prev, nxt):
 <h1>{esc(a["title"])}</h1>
 <p class="dek">{esc(a["dek"])}</p>
 <div class="byline">{who}<span style="color:#5A6870"><time datetime="{a["date"]}">{fdate(L, a["date"])}</time>, {a["read"]} min read</span></div></div>
-<div class="prose">
+{cov}<div class="prose">
 {a["body"]}
 </div>
-{src}
+{gal}{src}
 <div class="band"><h2>Want help putting ideas like these into practice in your organization?</h2><a class="btn btn-gold btn-lg" href="/#contact">Book a free consultation</a></div>
 <div class="share"><span>Share</span>
 <a class="btn btn-ghost" href="https://www.linkedin.com/sharing/share-offsite/?url={share}" target="_blank" rel="noopener">LinkedIn</a>
@@ -225,7 +256,7 @@ INS = {
 
 def feature_card(L, a, label, go):
     return f'''<a class="feature" href="/insights/{a["slug"]}.html" hreflang="en">
-<div class="art"><div class="lockup" aria-hidden="true"><img src="/assets/logo-mark.png" alt=""><span class="lk-name">BRIDGEONE</span><span class="lk-rule"></span><span class="lk-tag">{esc(g(L, "motto"))}</span></div></div>
+{('<div class="art has-cover"><img src="/assets/ed/' + cover_of(a)[0] + '-cover.jpg" alt="" width="1600" height="900" loading="lazy"></div>') if cover_of(a) else ('<div class="art"><div class="lockup" aria-hidden="true"><img src="/assets/logo-mark.png" alt=""><span class="lk-name">BRIDGEONE</span><span class="lk-rule"></span><span class="lk-tag">' + esc(g(L, "motto")) + '</span></div></div>')}
 <div class="tx"><span class="meta">{esc(label)}, <time datetime="{a["date"]}">{fdate(L, a["date"])}</time></span>
 <h3 lang="en" dir="ltr">{esc(a["title"])}</h3>
 <p lang="en" dir="ltr">{esc(a["dek"])}</p>
@@ -237,7 +268,8 @@ def ed_rows(L, arts, readw):
     rows = ''
     for a in arts:
         num = str(a['ed']) if a['ed'] else '<img src="/assets/logo-sm.png" alt="" width="30" height="19">'
-        rows += f'''<a class="ed" href="/insights/{a["slug"]}.html" hreflang="en"><span class="n" aria-hidden="true">{num}</span>
+        th = f'<img class="th" src="/assets/ed/{cover_of(a)[0]}-cover-sm.jpg" alt="" width="640" height="360" loading="lazy">' if cover_of(a) else ''
+        rows += f'''<a class="ed{' has-th' if th else ''}" href="/insights/{a["slug"]}.html" hreflang="en">{th}<span class="n" aria-hidden="true">{num}</span>
 <span class="meta"><time datetime="{a["date"]}">{fdate(L, a["date"])}</time>, {a["read"]} {readw}</span><b lang="en" dir="ltr">{esc(a["title"])}</b><span class="dk" lang="en" dir="ltr">{esc(a["dek"])}</span></a>
 '''
     return rows

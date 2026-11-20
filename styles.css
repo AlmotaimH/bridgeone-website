@@ -996,3 +996,6 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 }
 @media (prefers-reduced-motion:reduce){.pv{transition:none}.pv:hover{transform:none}}
 .ins-bento .ed .th{width:100%}
+.feature:has(.art.has-cover){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.feature .art.has-cover{background:transparent}
+@media (max-width:1040px){.feature:has(.art.has-cover){grid-template-columns:1fr}.feature .art.has-cover{min-height:0}}

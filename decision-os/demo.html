@@ -108,6 +108,15 @@ td.wrap{white-space:normal;min-width:200px}
 .pri li{counter-increment:p;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:13.5px}
 .pri li::before{content:counter(p);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(242,180,90,.15);color:var(--amber);font-weight:700;font-size:12px}
 .pri li span{color:var(--mute);font-size:12px}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.steps span{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border-2);color:var(--mute)}
+.steps span.done{color:var(--good);border-color:rgba(63,185,122,.45)}
+.steps span.cur{color:#14110a;background:var(--amber);border-color:var(--amber)}
+tr.sel td{background:rgba(242,180,90,.08)}
+#hT tr[data-i]{cursor:pointer}
+.ans{border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--soft)}
+.ans b{display:block;color:#fff;margin-bottom:3px}
+.ans.red{border-color:rgba(229,99,107,.5)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#0B1638;border:1px solid rgba(63,185,122,.5);color:#fff;padding:10px 16px;border-radius:12px;font-size:13.5px;opacity:0;transition:.25s;z-index:70}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .foot{margin-top:30px;font-size:11.5px;color:var(--mute);border-top:1px solid var(--border);padding-top:14px}
@@ -144,19 +153,20 @@ td.wrap{white-space:normal;min-width:200px}
 
 <div class="app">
 <nav class="side" aria-label="Decision OS modules">
- <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span><span style="display:block;margin-top:8px;color:var(--soft)">One system, four portals</span></div>
+ <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span><span style="display:block;margin-top:8px;color:var(--soft)">One system, four portals · People Portal includes HR</span></div>
  <div class="tabs" role="tablist">
   <button class="tab" role="tab" data-v="overview" aria-selected="true"><span class="n">1</span>Assessment</button>
   <p class="grp">People Portal</p>
   <button class="tab" role="tab" data-v="roster" aria-selected="false"><span class="n">2</span>Roster &amp; labour</button>
+  <button class="tab" role="tab" data-v="hr" aria-selected="false"><span class="n">3</span>HR requests &amp; answers</button>
   <p class="grp">Stock &amp; Supply Portal</p>
-  <button class="tab" role="tab" data-v="stock" aria-selected="false"><span class="n">3</span>Stock &amp; transfers</button>
-  <button class="tab" role="tab" data-v="price" aria-selected="false"><span class="n">4</span>Pricing &amp; markdowns</button>
+  <button class="tab" role="tab" data-v="stock" aria-selected="false"><span class="n">4</span>Stock &amp; transfers</button>
+  <button class="tab" role="tab" data-v="price" aria-selected="false"><span class="n">5</span>Pricing &amp; markdowns</button>
   <p class="grp">Franchise &amp; Network Portal</p>
-  <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">5</span>Locations &amp; franchise</button>
+  <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
   <p class="grp">Executive View</p>
-  <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">6</span>Cash &amp; buying plan</button>
-  <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">7</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
+  <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">7</span>Cash &amp; buying plan</button>
+  <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">8</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
  </div>
  <p class="note">Everything runs in your browser. Nothing you type leaves this page. Numbers are invented for the demo.</p>
 </nav>
@@ -202,6 +212,24 @@ td.wrap{white-space:normal;min-width:200px}
  </div>
 </section>
 
+
+<!-- HR -->
+<section data-p="hr" class="hide">
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · HR REQUESTS, APPROVALS &amp; ANSWERS</div><h1>HR requests that move, with the right checks</h1>
+ <p>Location Managers submit requests online. Each one follows an approval chain based on its risk, with a target time, and the HR Help Desk checks the details against employee records automatically before HR confirms.</p></div></div>
+ <div class="grid g4" id="hK"></div>
+ <div class="grid split" style="margin-top:16px">
+  <div class="card"><h2>HR answers <small>by province</small></h2><div class="f">
+   <label>Province<select id="hProv"><option value="on">Ontario</option><option value="qc">Quebec</option></select></label>
+   <label>Ask a question<input id="hQ" type="search" placeholder="e.g. overtime, schedule, injury"></label></div>
+   <div id="hA" style="margin-top:12px;display:grid;gap:10px"></div>
+   <p class="why">Answers in a client's portal come from their own handbook, contracts and policies. They are an operating guide, not legal advice; red answers mean stop and call HR.</p></div>
+  <div class="grid">
+   <div class="card"><h2>Request queue <small>select a request to see its checks</small></h2><div class="tw"><table id="hT"></table></div></div>
+   <div class="card" id="hD"></div>
+  </div>
+ </div>
+</section>
 <!-- STOCK -->
 <section data-p="stock" class="hide">
  <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · REORDER &amp; TRANSFERS</div><h1>Enough on the shelf, less cash on it</h1>
@@ -328,7 +356,7 @@ var ITEMS=[["Espresso beans 1 kg",21,12.6,2.8,5],["Whole milk 4 L",5.2,28.5,5.2,
 var SEASON=[["Holiday gift box",59,24,900,95,2.6,15,6],["Panettone 750 g",22,9.5,1150,150,2.8,10,5],["Holiday mug set",34,11,560,60,2.6,15,6],["Pumpkin spice blend",16,5.2,600,70,2.4,20,4]];
 /* name, price, cost, stock, weekly base, elasticity, salvage %cost, weeks */
 
-var state={answers:[0,1,0,1,0,2],log:[],role:"am",view:"overview"};
+var state={answers:[0,1,1,0,1,0,2],log:[],role:"am",view:"overview"};
 var SNAP={};
 
 function buildStock(){var r=rng(42),rows=[];LOCS.forEach(function(L){ITEMS.forEach(function(it,i){var avg=it[2]*L.size,sd=it[3]*Math.sqrt(L.size),lt=it[4];
@@ -473,8 +501,36 @@ function renderNew(){var inv=num("nInv",420000),s=num("nSales",135000),ramp=Math
 function renderFee(){var roy=num("fRoy",6),mk=num("fMkt",2),m=num("fMar",17),s=num("fSales",120000);var after=m-roy-mk,ok=after>=8?["good","Healthy"]:after>=5?["warn","Tight"]:["bad","At risk"];
  $("#fOut").innerHTML='<div class="grid g3">'+kpi("Franchisee margin after fees",pc(after),ok[1])+kpi("Franchisor income per unit",fk(s*(roy)/100)+"/mo","royalty only")+kpi("Franchisee profit",fk(s*after/100)+"/mo","after all fees")+'</div><p class="why"><span class="st '+ok[0]+'">'+ok[1]+'</span> Franchisees who keep less than about 8% of sales after fees often struggle to reinvest; below 5% the network is at risk. Thresholds are set with each client.</p>'}
 
+
+/* ---------- HR (People Portal) ---------- */
+var CH={std:["Location Manager","HR Help Desk","HR"],area:["Location Manager","Area Manager","HR Help Desk","HR"],full:["Location Manager","Area Manager","Operations","HR Help Desk","HR"]},CHL={std:"Routine",area:"Important",full:"Serious"},SLA={std:48,area:72,full:96};
+var HRQ=[{t:"Employment letter",loc:"OK",c:"std",cur:1,age:6,chk:["good","Name, position and start date match the employee record."]},
+{t:"New hire: part-time barista",loc:"MK",c:"area",cur:1,age:20,chk:["good","Position and pay rate are within the approved band."]},
+{t:"Pay change: shift supervisor",loc:"DT",c:"area",cur:1,age:79,chk:["warn","New rate is above the band for this position. Area Manager must add a reason."]},
+{t:"Transfer to Vaughan",loc:"MI",c:"area",cur:2,age:30,chk:["good","Employee is active; receiving location has an open position."]},
+{t:"Termination",loc:"VA",c:"full",cur:1,age:12,chk:["bad","No documented warnings on file. Stop and call HR before acting."]},
+{t:"Parental leave",loc:"MI",c:"std",cur:1,age:3,chk:["good","Eligibility confirmed; return date recorded."]}];
+var hrSel=0;
+var ANS=[{k:"overtime hours ot",q:"When is overtime paid?",on:"After 44 hours in a week, at 1.5 times the regular rate. Approve overtime in advance.",qc:"After 40 hours in a week, at 1.5 times the regular rate (or time off, if agreed). Approve overtime in advance."},
+{k:"schedule roster posting shift",q:"How far ahead must schedules be posted?",on:"Our standard: at least 7 days ahead. Build it from forecast sales and the location's labour target.",qc:"At least 7 days ahead as a standard; never less than 5 days."},
+{k:"injury accident burn cut",q:"Someone was injured at work. What now?",on:"First aid, incident report the same day, pay the full shift. Report to WSIB within 3 days if care went beyond first aid.",qc:"First aid, incident report the same day, pay the day of the accident. HR decides on the CNESST notice.",red:1},
+{k:"termination fire dismiss",q:"Can a manager end someone's employment?",on:"Not alone. Terminations are Serious requests: Area Manager, Operations, then HR confirm before anything is said.",qc:"Not alone. Terminations are Serious requests: Area Manager, Operations, then HR confirm before anything is said.",red:1}];
+function renderAns(){var pv=$("#hProv").value,q=($("#hQ").value||"").toLowerCase().trim();var list=ANS.filter(function(a){return !q||(a.k+" "+a.q.toLowerCase()).indexOf(q)>=0||q.split(/\s+/).some(function(w){return w.length>2&&a.k.indexOf(w)>=0})});
+ $("#hA").innerHTML=list.length?list.map(function(a){return '<div class="ans'+(a.red?' red':'')+'"><b>'+esc(a.q)+'</b>'+esc(a[pv])+(a.red?' <span class="st bad">Call HR</span>':'')+'</div>'}).join(""):'<p class="why">No answer in this demo. A client portal holds the full guide for their policies.</p>'}
+function renderHR(){var open=HRQ.filter(function(r){return r.cur<CH[r.c].length}),late=open.filter(function(r){return r.age>SLA[r.c]}),ok=HRQ.filter(function(r){return r.chk[0]==="good"}).length;
+ $("#hK").innerHTML=kpi("Open requests",String(open.length),HRQ.length-open.length+" completed")+kpi("Past target time",String(late.length),"Routine 48 h · Important 72 h · Serious 96 h")+kpi("Automatic checks passed",ok+" of "+HRQ.length,"against employee records")+kpi("Stop and call HR",String(HRQ.filter(function(r){return r.chk[0]==="bad"}).length),"held until HR reviews");
+ var t='<tr><th class="tl">Request</th><th class="tl">Location</th><th class="tl">Level</th><th class="tl">Waiting on</th><th>Age</th><th class="tl">Check</th></tr>';
+ HRQ.forEach(function(r,i){var done=r.cur>=CH[r.c].length,lateR=!done&&r.age>SLA[r.c];t+='<tr data-i="'+i+'"'+(i===hrSel?' class="sel"':'')+'><td class="tl">'+esc(r.t)+'</td><td class="tl">'+locName(r.loc)+'</td><td class="tl">'+CHL[r.c]+'</td><td class="tl">'+(done?'<span class="st good">Done</span>':esc(CH[r.c][r.cur]))+'</td><td>'+(lateR?'<span class="st bad">'+r.age+' h</span>':r.age+' h')+'</td><td class="tl"><span class="st '+r.chk[0]+'">'+({good:"Passed",warn:"Needs note",bad:"Stop"})[r.chk[0]]+'</span></td></tr>'});
+ $("#hT").innerHTML=t;$$("#hT tr[data-i]").forEach(function(tr){tr.addEventListener("click",function(){hrSel=+tr.dataset.i;renderHR()})});
+ var r=HRQ[hrSel],ch=CH[r.c],done=r.cur>=ch.length;
+ $("#hD").innerHTML='<h2>'+esc(r.t)+' <small>'+locName(r.loc)+' · '+CHL[r.c]+' · target '+SLA[r.c]+' h</small></h2><div class="steps">'+ch.map(function(x,i){return '<span class="'+(i<r.cur?'done':i===r.cur?'cur':'')+'">'+esc(x)+'</span>'}).join("")+'</div>'+
+ '<p class="why"><b>HR Help Desk check:</b> <span class="st '+r.chk[0]+'">'+({good:"Passed",warn:"Needs note",bad:"Stop"})[r.chk[0]]+'</span> '+esc(r.chk[1])+'</p>'+
+ (done?'<p class="why"><b>Completed.</b> The employee record was updated automatically and the letter is ready on the company letterhead.</p>':
+ '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s" id="hOk" type="button"'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?' disabled style="opacity:.5;cursor:not-allowed"':'')+'>'+(ch[r.cur]==="HR"?"HR confirms":"Approve as "+esc(ch[r.cur]))+'</button><button class="btn btn-line btn-s" id="hBack" type="button">Return with a note</button></div>'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?'<p class="why">This request is held: only HR can move it forward after review.</p>':''));
+ var ok=$("#hOk");if(ok)ok.addEventListener("click",function(){if(ok.disabled)return;var step=ch[r.cur];r.cur++;addLog("HR request","Approved","",r.t+", "+locName(r.loc)+": "+step+" approved",step);renderHR()});
+ var bk=$("#hBack");if(bk)bk.addEventListener("click",function(){var n=window.prompt("What needs to change before this can be approved?","");if(n===null)return;addLog("HR request","Returned with a note",n.trim(),r.t+", "+locName(r.loc)+": returned by "+ch[r.cur],ch[r.cur])})}
 /* ---------- OVERVIEW ---------- */
-var QS=[["Staff rosters","roster"],["Stock ordering and transfers","stock"],["Pricing, promotions and markdowns","price"],["Buying and cash planning","cash"],["Location performance reviews","loc"],["Opening or closing locations","loc"]];
+var QS=[["Staff rosters","roster"],["HR requests and approvals","hr"],["Stock ordering and transfers","stock"],["Pricing, promotions and markdowns","price"],["Buying and cash planning","cash"],["Location performance reviews","loc"],["Opening or closing locations","loc"]];
 var OPTS=["Gut feel","Spreadsheet","Data, reviewed"];
 function renderQs(){$("#qs").innerHTML=QS.map(function(q,i){return '<div class="q"><b>'+q[0]+'</b><div class="seg" role="group" aria-label="'+q[0]+'">'+OPTS.map(function(o,j){return '<button type="button" data-q="'+i+'" data-a="'+j+'" aria-pressed="'+(state.answers[i]===j)+'">'+o+'</button>'}).join("")+'</div></div>'}).join("");
  $$("#qs button").forEach(function(b){b.addEventListener("click",function(){state.answers[+b.dataset.q]=+b.dataset.a;renderQs();renderOverview(true)})})}
@@ -489,8 +545,8 @@ function ensureSnaps(){if(!SNAP.price){renderPrice()}if(!SNAP.stock){renderStock
 
 /* ---------- decision log ---------- */
 var ROLEN={lm:"Location Manager",am:"Area Manager",ex:"Executive"};
-function addLog(mod,status,note){var s=SNAP[{"Roster & labour":"roster","Stock transfers":"stock","Stock orders":"stock","Markdown plan":"price","Buying & cash plan":"cash"}[mod]]||{};
- var st=state.role==="lm"?(status==="Approved"?"Proposed":"Proposed with note"):status;state.log.unshift({t:new Date(),mod:mod,sum:s.summary||"",st:st,by:ROLEN[state.role],note:note||""});$("#logN").textContent=state.log.length;
+function addLog(mod,status,note,sum,by){var s=SNAP[{"Roster & labour":"roster","Stock transfers":"stock","Stock orders":"stock","Markdown plan":"price","Buying & cash plan":"cash"}[mod]]||{};
+ var st=state.role==="lm"?(status==="Approved"?"Proposed":"Proposed with note"):status;if(by)st=status;state.log.unshift({t:new Date(),mod:mod,sum:sum||s.summary||"",st:st,by:by||ROLEN[state.role],note:note||""});$("#logN").textContent=state.log.length;
  toast(st==="Proposed"||st==="Proposed with note"?"Sent to your Area Manager for approval":"Logged as "+st.toLowerCase())}
 $$(".act").forEach(function(b){b.addEventListener("click",function(){addLog(b.dataset.m,"Approved")})});
 $$(".adj").forEach(function(b){b.addEventListener("click",function(){var n=window.prompt("What would you change, and why?","");if(n===null)return;addLog(b.dataset.m,"Approved with changes",n.trim())})});
@@ -506,12 +562,13 @@ function on(ids,fn){ids.forEach(function(id){var el=$("#"+id);el.addEventListene
 on(["rLoc","rDay","rProd","rMin","rSmin","rSmax","rWft","rWpt","rOt","rPtcap"],function(){renderRoster()});
 on(["sSl","sRev","sTr","sLoc"],function(){renderStock()});
 $("#pItem").addEventListener("change",function(){fillItem();renderPrice()});on(["pPrice","pCost","pStock","pWeeks","pBase","pEl","pSalv"],function(){renderPrice()});on(["prD","prE","prC","prW"],renderPromo);
+on(["hProv","hQ"],renderAns);
 on(["cOpen","cFloor","cOut"],function(){renderCash()});
 on(["nInv","nSales","nRamp","nMar","nRent"],renderNew);on(["fRoy","fMkt","fMar","fSales"],renderFee);
 $("#reset").addEventListener("click",function(){location.hash="";location.reload()});
-function render(v){if(v==="overview")renderOverview();else if(v==="roster")renderRoster();else if(v==="stock")renderStock();else if(v==="price")renderPrice();else if(v==="cash")renderCash();else if(v==="loc")renderLoc();else if(v==="log")renderLog()}
-window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h!==state.view&&["overview","roster","stock","price","cash","loc","log"].indexOf(h)>=0)show(h)});
-var start=(location.hash||"").slice(1);show(["overview","roster","stock","price","cash","loc","log"].indexOf(start)>=0?start:"overview");
+function render(v){if(v==="overview")renderOverview();else if(v==="roster")renderRoster();else if(v==="hr"){renderHR();renderAns()}else if(v==="stock")renderStock();else if(v==="price")renderPrice();else if(v==="cash")renderCash();else if(v==="loc")renderLoc();else if(v==="log")renderLog()}
+window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h!==state.view&&["overview","roster","hr","stock","price","cash","loc","log"].indexOf(h)>=0)show(h)});
+var start=(location.hash||"").slice(1);show(["overview","roster","hr","stock","price","cash","loc","log"].indexOf(start)>=0?start:"overview");
 })();
 </script>
 </body>

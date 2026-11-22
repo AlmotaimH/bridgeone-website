@@ -354,4 +354,8 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
     pkgs:[["فحص صحة القرار","30 دقيقة · مجانًا","مكالمة قصيرة لمراجعة إجاباتك أعلاه وتحديد أهم 3 قرارات تستحق المعالجة أولًا."],["تدقيق القرارات","2 إلى 3 أسابيع","خريطة لقراراتك المتكررة، وأرقام نقطة الانطلاق، وخارطة طريق مرتبة حسب الأولوية."],["مشروع القرار المكثّف","6 إلى 10 أسابيع","أدوات قرار عملية لأولوية إلى ثلاث أولويات، وفريق مدرَّب، ونتائج مقاسة."],["شريك القرار","شهريًا","مراجعات مستمرة، وتحسين النماذج، وتدريب المديرين، مع جلسة استراتيجية كل ربع سنة."]],
     foot:"نستخدم أبسط أداة تحقق النتيجة، من جداول البيانات الذكية إلى منصات الذكاء الاصطناعي المتخصصة، ونبقى مستقلين عن أي مزوّد."};
   T.EN.dec.svc="Decision Intelligence"; T.FR.dec.svc="Intelligence décisionnelle"; T.AR.dec.svc="ذكاء القرار";
+  /* full check fixes (Nov 21, 2026): shorter search descriptions that mention Decision Intelligence */
+  T.EN.meta.desc="Management consulting in the Greater Toronto Area: strategy, operating models, decision intelligence and leadership development that turn plans into results.";
+  T.FR.meta.desc="Conseil en gestion dans le Grand Toronto : stratégie, modèles opérationnels, intelligence décisionnelle et développement du leadership.";
+  T.AR.meta.desc="استشارات إدارية في منطقة تورونتو الكبرى: الاستراتيجية ونماذج التشغيل وذكاء القرار وتطوير القيادات لتحويل الخطط إلى نتائج.";
 })(window.BO_I18N);

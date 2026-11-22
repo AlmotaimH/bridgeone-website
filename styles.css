@@ -1047,3 +1047,8 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 /* header fits the added "Decisions" link */
 .nav a,.hdr-r>.btn{white-space:nowrap}
 @media (max-width:1360px) and (min-width:1041px){.nav{gap:2px}.nav a{padding:8px 9px;font-size:14px}.hdr-r>.btn{padding:0 16px;font-size:14px}.brand span{display:none}}
+/* full check fixes (Nov 21, 2026) */
+/* sliders: bigger touch area, same 6px track look */
+.rng input{height:28px;margin:0;background-size:100% 6px;background-repeat:no-repeat;background-position:center}
+/* engagement cycle: labels stay inside small phone screens */
+@media (max-width:400px){.orbit{max-width:276px;margin-inline:auto}.orbit .nl{font-size:12.5px}}

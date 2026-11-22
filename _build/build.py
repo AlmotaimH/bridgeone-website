@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '68'
+V = '69'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -401,7 +401,8 @@ DOS = {
    ('Decision sprint','6 to 8 weeks','One or two tools set up on your data, with your managers trained and the first results measured.'),
    ('Decision OS with coaching','Monthly','All the tools you need, weekly recommendations and a monthly scorecard review with BridgeOne.'),
    ('Licensed copy','Annual','Your own branded copy of Decision OS, with roles and approvals, maintained by BridgeOne.')],
-  lic='Want Decision OS for your own team? We also license a branded copy, with roles and approvals, maintained by BridgeOne.',
+  lic='Each portal can be licensed as your own branded copy, with roles and approvals, maintained and updated by BridgeOne.',
+  hc='A short call to name the 3 decisions worth fixing first and the portal to start with.',
   ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether Decision OS fits.',
   note='Results depend on your data and how consistently recommendations are applied. Figures in the demo are illustrative.'),
  'FR': dict(title='BridgeOne Decision OS | Outils de décision pour entreprises multisites',
@@ -433,7 +434,8 @@ DOS = {
    ('Sprint décisionnel','6 à 8 semaines','Un ou deux outils mis en place sur vos données, gestionnaires formés et premiers résultats mesurés.'),
    ('Decision OS avec accompagnement','Mensuel','Tous les outils utiles, des recommandations hebdomadaires et un bilan mensuel avec BridgeOne.'),
    ('Copie sous licence','Annuel','Votre propre copie de Decision OS à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.')],
-  lic='Vous voulez Decision OS pour votre équipe? Nous offrons aussi une copie sous licence à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.',
+  lic='Chaque portail peut être offert sous licence comme copie à vos couleurs, avec rôles et approbations, maintenue et mise à jour par BridgeOne.',
+  hc='Un court appel pour cibler les 3 décisions à corriger en premier et le portail par lequel commencer.',
   ctaT='Découvrez ce que valent de meilleures décisions pour votre entreprise', ctaP='Commencez par un appel gratuit de 30 minutes. Nous vous dirons franchement si Decision OS vous convient.',
   note='Les résultats dépendent de vos données et de l’application constante des recommandations. Les chiffres de la démo sont illustratifs.'),
  'AR': dict(title='BridgeOne Decision OS | أدوات قرار للشركات متعددة الفروع',
@@ -465,7 +467,8 @@ DOS = {
    ('سبرنت القرارات','من 6 إلى 8 أسابيع','إعداد أداة أو أداتين على بياناتك، وتدريب المديرين، وقياس النتائج الأولى.'),
    ('Decision OS مع المتابعة','شهري','كل الأدوات التي تحتاجها، وتوصيات أسبوعية، ومراجعة شهرية لبطاقة الأداء مع BridgeOne.'),
    ('نسخة مرخّصة','سنوي','نسختك الخاصة من Decision OS بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.')],
-  lic='تريد Decision OS لفريقك؟ نوفّر أيضًا نسخة مرخّصة بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.',
+  lic='يمكن ترخيص كل بوابة كنسخة خاصة بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها وتحديثها.',
+  hc='مكالمة قصيرة لتحديد أهم 3 قرارات تستحق المعالجة أولًا والبوابة التي نبدأ بها.',
   ctaT='اكتشف قيمة القرارات الأفضل في شركتك', ctaP='ابدأ بمكالمة مجانية مدتها 30 دقيقة، وسنخبرك بصراحة إن كان Decision OS مناسبًا لك.',
   note='تعتمد النتائج على بياناتك ومدى الالتزام بتطبيق التوصيات. الأرقام في العرض التجريبي توضيحية.'),
 }
@@ -474,9 +477,10 @@ def dos_page(L):
     li = ''.join(f'<li>{esc(x)}</li>' for x in P['forL'])
     pt, pp, pa, pl = PORT[L]
     mods = ''.join(f'<article class="tile dos-m"><span class="dos-who">{esc(w)}</span><h3>{esc(t)}</h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in items) + '</ul></article>' for t, w, items in pl)
-    how = ''.join(f'<li><b>{esc(t)}</b><span>{esc(d)}</span></li>' for t, d in P['how'])
+    how = ''.join(f'<li><b><span class="dos-l">{esc(x[0])}</span> {esc(x[1])}</b><span>{esc(x[2])}</span></li>' for x in g(L, 'dec.steps'))
+    pkgs = [list(x) for x in g(L, 'dec.pkgs')]; pkgs[0][2] = P['hc']
     diff = ''.join(f'<div><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in P['diff'])
-    pk = ''.join(f'<article class="tile dx-pk{" dx-feat" if i == 2 else ""}"><span class="dx-dur">{esc(x[1])}</span><h3>{esc(x[0])}</h3><p>{esc(x[2])}</p></article>' for i, x in enumerate(g(L, 'dec.pkgs')))
+    pk = ''.join(f'<article class="tile dx-pk{" dx-feat" if i == 2 else ""}"><span class="dx-dur">{esc(x[1])}</span><h3>{esc(x[0])}</h3><p>{esc(x[2])}</p></article>' for i, x in enumerate(pkgs))
     ld = json.dumps({"@context": "https://schema.org", "@type": "Service", "name": "BridgeOne Decision OS", "serviceType": "Decision support for multi-location businesses",
         "provider": {"@type": "ProfessionalService", "name": "BridgeOne Inc.", "url": SITE}, "areaServed": "Canada", "description": P['desc'], "url": SITE + LANGS[L][2] + f}, ensure_ascii=False)
     return head(L, P['title'], P['desc'], f, extra=f'<script type="application/ld+json">{ld}</script>\n') + inner_header(L, f, 'd') + f'''<main id="main">
@@ -492,7 +496,7 @@ def dos_page(L):
 <div class="sh" style="margin-top:80px"><h2>{esc(pt)}</h2><p>{esc(pp)}</p></div>
 <div class="dos-mods dos-ports">{mods}</div>
 <p class="dos-lic">{esc(pa)}</p>
-<div class="sh" style="margin-top:80px"><h2>{esc(P["howT"])}</h2></div>
+<div class="sh" style="margin-top:80px"><h2>{esc(g(L, "dec.stepsT"))}</h2></div>
 <ol class="dos-how">{how}</ol>
 <div class="sh" style="margin-top:80px"><h2>{esc(P["diffT"])}</h2></div>
 <div class="dos-diff">{diff}</div>

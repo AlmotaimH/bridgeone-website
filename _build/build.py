@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '69'
+V = '70'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -402,6 +402,7 @@ DOS = {
    ('Decision OS with coaching','Monthly','All the tools you need, weekly recommendations and a monthly scorecard review with BridgeOne.'),
    ('Licensed copy','Annual','Your own branded copy of Decision OS, with roles and approvals, maintained by BridgeOne.')],
   lic='Each portal can be licensed as your own branded copy, with roles and approvals, maintained and updated by BridgeOne.',
+  sign='Every stage ends with a named deliverable and clear acceptance criteria. The next stage starts only when you sign it off.',
   hc='A short call to name the 3 decisions worth fixing first and the portal to start with.',
   ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether Decision OS fits.',
   note='Results depend on your data and how consistently recommendations are applied. Figures in the demo are illustrative.'),
@@ -435,6 +436,7 @@ DOS = {
    ('Decision OS avec accompagnement','Mensuel','Tous les outils utiles, des recommandations hebdomadaires et un bilan mensuel avec BridgeOne.'),
    ('Copie sous licence','Annuel','Votre propre copie de Decision OS à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.')],
   lic='Chaque portail peut être offert sous licence comme copie à vos couleurs, avec rôles et approbations, maintenue et mise à jour par BridgeOne.',
+  sign='Chaque étape se termine par un livrable précis et des critères d’acceptation clairs. L’étape suivante ne commence qu’après votre approbation.',
   hc='Un court appel pour cibler les 3 décisions à corriger en premier et le portail par lequel commencer.',
   ctaT='Découvrez ce que valent de meilleures décisions pour votre entreprise', ctaP='Commencez par un appel gratuit de 30 minutes. Nous vous dirons franchement si Decision OS vous convient.',
   note='Les résultats dépendent de vos données et de l’application constante des recommandations. Les chiffres de la démo sont illustratifs.'),
@@ -468,6 +470,7 @@ DOS = {
    ('Decision OS مع المتابعة','شهري','كل الأدوات التي تحتاجها، وتوصيات أسبوعية، ومراجعة شهرية لبطاقة الأداء مع BridgeOne.'),
    ('نسخة مرخّصة','سنوي','نسختك الخاصة من Decision OS بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.')],
   lic='يمكن ترخيص كل بوابة كنسخة خاصة بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها وتحديثها.',
+  sign='تنتهي كل مرحلة بمخرَج محدد ومعايير قبول واضحة، ولا تبدأ المرحلة التالية إلا بعد اعتمادك له.',
   hc='مكالمة قصيرة لتحديد أهم 3 قرارات تستحق المعالجة أولًا والبوابة التي نبدأ بها.',
   ctaT='اكتشف قيمة القرارات الأفضل في شركتك', ctaP='ابدأ بمكالمة مجانية مدتها 30 دقيقة، وسنخبرك بصراحة إن كان Decision OS مناسبًا لك.',
   note='تعتمد النتائج على بياناتك ومدى الالتزام بتطبيق التوصيات. الأرقام في العرض التجريبي توضيحية.'),
@@ -498,6 +501,7 @@ def dos_page(L):
 <p class="dos-lic">{esc(pa)}</p>
 <div class="sh" style="margin-top:80px"><h2>{esc(g(L, "dec.stepsT"))}</h2></div>
 <ol class="dos-how">{how}</ol>
+<p class="dos-lic">{esc(P["sign"])}</p>
 <div class="sh" style="margin-top:80px"><h2>{esc(P["diffT"])}</h2></div>
 <div class="dos-diff">{diff}</div>
 <div class="sh" style="margin-top:80px"><h2>{esc(P["pkgT"])}</h2></div>

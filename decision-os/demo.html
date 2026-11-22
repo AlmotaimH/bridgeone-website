@@ -166,7 +166,8 @@ tr.sel td{background:rgba(242,180,90,.08)}
   <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
   <p class="grp">Executive View</p>
   <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">7</span>Cash &amp; buying plan</button>
-  <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">8</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
+  <button class="tab" role="tab" data-v="deliv" aria-selected="false"><span class="n">8</span>Deliverables &amp; sign-off</button>
+  <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">9</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
  </div>
  <p class="note">Everything runs in your browser. Nothing you type leaves this page. Numbers are invented for the demo.</p>
 </nav>
@@ -176,7 +177,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 <!-- OVERVIEW -->
 <section data-p="overview">
  <div class="ph"><div><div class="kick">START HERE · ASSESSMENT &amp; BASELINE</div><h1>Where the money is in your everyday decisions</h1>
- <p>We start every client with this assessment. Answer how each decision is made today; the estimates below come from the other tools in this demo, run on the sample company's numbers.</p></div></div>
+ <p>We start every client with this assessment. Answer how each decision is made today; the estimates below come from the other tools in this demo, run on the sample company's numbers, and show which portal to start with.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>How are these decisions made today?</h2><div class="qs" id="qs"></div></div>
   <div class="grid">
@@ -309,6 +310,15 @@ tr.sel td{background:rgba(242,180,90,.08)}
  </div>
 </section>
 
+
+<!-- DELIVERABLES -->
+<section data-p="deliv" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · ENGAGEMENT DELIVERABLES &amp; SIGN-OFF</div><h1>Every stage ends with something you sign off</h1>
+ <p>Each BRIDGE stage has a named deliverable, an owner, a due week and clear acceptance criteria. The next stage starts only when an executive, or a manager they delegate, signs off the one before.</p></div></div>
+ <div class="grid g4" id="dK"></div>
+ <div class="card" style="margin-top:16px"><h2>BRIDGE deliverables <small>sample engagement, week 5 of 10</small></h2><div class="tw"><table id="dT"></table></div>
+ <p class="why">Sign-offs and change requests go into the decision log. Impact is reviewed against the baseline at 3, 6 and 12 months after go-live.</p></div>
+</section>
 <!-- LOG -->
 <section data-p="log" class="hide">
  <div class="ph"><div><div class="kick">EXECUTIVE VIEW · DECISION LOG &amp; MONTHLY SCORECARD</div><h1>Every decision, its owner and its result</h1>
@@ -529,6 +539,24 @@ function renderHR(){var open=HRQ.filter(function(r){return r.cur<CH[r.c].length}
  '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s" id="hOk" type="button"'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?' disabled style="opacity:.5;cursor:not-allowed"':'')+'>'+(ch[r.cur]==="HR"?"HR confirms":"Approve as "+esc(ch[r.cur]))+'</button><button class="btn btn-line btn-s" id="hBack" type="button">Return with a note</button></div>'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?'<p class="why">This request is held: only HR can move it forward after review.</p>':''));
  var ok=$("#hOk");if(ok)ok.addEventListener("click",function(){if(ok.disabled)return;var step=ch[r.cur];r.cur++;addLog("HR request","Approved","",r.t+", "+locName(r.loc)+": "+step+" approved",step);renderHR()});
  var bk=$("#hBack");if(bk)bk.addEventListener("click",function(){var n=window.prompt("What needs to change before this can be approved?","");if(n===null)return;addLog("HR request","Returned with a note",n.trim(),r.t+", "+locName(r.loc)+": returned by "+ch[r.cur],ch[r.cur])})}
+
+/* ---------- DELIVERABLES (Executive View) ---------- */
+var DEL=[{k:"B",st:"Baseline",d:"Decision map and baseline report",o:"BridgeOne",w:2,c:"12 recurring decisions mapped; baseline KPIs agreed for all 5 locations",s:"ok"},
+{k:"R",st:"Rules",d:"Decision rules and approval matrix",o:"BridgeOne with Operations and HR",w:3,c:"Goals, limits and who approves what, agreed in writing",s:"ok"},
+{k:"I",st:"Insight",d:"Back-test report",o:"BridgeOne",w:5,c:"Recommended rules beat last quarter's real decisions on at least 2 of 3 target KPIs",s:"wait"},
+{k:"D",st:"Decide",d:"Portals live with weekly recommendations",o:"BridgeOne",w:7,c:"People and Stock & Supply portals running on your data; every recommendation explained",s:"todo"},
+{k:"G",st:"Go live with people",d:"Trained managers and a 2-week side-by-side trial",o:"Your managers, coached by BridgeOne",w:9,c:"All Location and Area Managers trained; trial results reviewed",s:"todo"},
+{k:"E",st:"Evaluate",d:"First monthly scorecard against the baseline",o:"BridgeOne with the Executive team",w:10,c:"Scorecard shows each KPI against baseline; next improvements agreed",s:"todo"}];
+function renderDeliv(){var done=DEL.filter(function(x){return x.s==="ok"}).length,wait=DEL.filter(function(x){return x.s==="wait"||x.s==="chg"})[0],nxt=wait||DEL.filter(function(x){return x.s==="prog"||x.s==="todo"})[0];
+ $("#dK").innerHTML=kpi("Stages signed off",done+" of 6",done===6?"engagement complete":"next: "+(nxt?nxt.st:""))+kpi("Waiting for your sign-off",wait?"1":"0",wait?esc(wait.d):"nothing pending")+kpi("Next due",nxt?"Week "+nxt.w:"Done",nxt?esc(nxt.st):"")+kpi("Impact reviews","3 · 6 · 12","months after go-live");
+ var t='<tr><th class="tl">Stage</th><th class="tl">Deliverable</th><th class="tl">Owner</th><th>Due</th><th class="tl">Accepted when</th><th class="tl">Status</th><th class="tl"></th></tr>';
+ DEL.forEach(function(x,i){var stt=x.s==="ok"?'<span class="st good">Signed off</span>':x.s==="wait"?'<span class="st warn">Awaiting sign-off</span>':x.s==="chg"?'<span class="st bad">Changes requested</span>':x.s==="prog"?'<span class="st info">In progress</span>':'<span class="st" style="color:var(--mute)">Not started</span>';
+  var act=(x.s==="wait"||x.s==="chg")?'<div style="display:flex;flex-direction:column;gap:6px"><button class="btn btn-gold btn-s" data-ok="'+i+'" type="button">Sign off</button><button class="btn btn-line btn-s" data-chg="'+i+'" type="button">Request changes</button></div>':x.s==="prog"?'<button class="btn btn-line btn-s" data-dl="'+i+'" type="button">Mark delivered</button>':'';
+  t+='<tr><td class="tl"><b>'+x.k+'</b> '+esc(x.st)+'</td><td class="tl wrap">'+esc(x.d)+'</td><td class="tl wrap">'+esc(x.o)+'</td><td>W'+x.w+'</td><td class="tl wrap">'+esc(x.c)+'</td><td class="tl">'+stt+'</td><td class="tl">'+act+'</td></tr>'});
+ $("#dT").innerHTML=t;
+ $$("#dT [data-ok]").forEach(function(b){b.addEventListener("click",function(){var i=+b.dataset.ok;if(state.role==="lm"){toast("Only an executive or Area Manager can sign off a deliverable");return}DEL[i].s="ok";if(DEL[i+1]&&DEL[i+1].s==="todo")DEL[i+1].s="prog";addLog("Engagement deliverable","Signed off","",DEL[i].k+" · "+DEL[i].st+": "+DEL[i].d,ROLEN[state.role]);renderDeliv()})});
+ $$("#dT [data-dl]").forEach(function(b){b.addEventListener("click",function(){DEL[+b.dataset.dl].s="wait";toast("Delivered by BridgeOne: ready for your sign-off");renderDeliv()})});
+ $$("#dT [data-chg]").forEach(function(b){b.addEventListener("click",function(){var i=+b.dataset.chg;var n=window.prompt("What needs to change before you can sign this off?","");if(n===null)return;DEL[i].s="chg";addLog("Engagement deliverable","Changes requested",n.trim(),DEL[i].k+" · "+DEL[i].st+": "+DEL[i].d,ROLEN[state.role]);renderDeliv()})})}
 /* ---------- OVERVIEW ---------- */
 var QS=[["Staff rosters","roster"],["HR requests and approvals","hr"],["Stock ordering and transfers","stock"],["Pricing, promotions and markdowns","price"],["Buying and cash planning","cash"],["Location performance reviews","loc"],["Opening or closing locations","loc"]];
 var OPTS=["Gut feel","Spreadsheet","Data, reviewed"];
@@ -538,7 +566,7 @@ function renderOverview(skipQs){if(!skipQs)renderQs();var sc=state.answers.reduc
  var rs=rosterAllSavings();ensureSnaps();var items=[["Roster & labour",rs,"roster","Rosters follow hourly demand in all 5 locations"],["Pricing & markdowns",SNAP.price.save,"price","Planned markdowns on seasonal items"],["Stock & transfers",SNAP.stock.save,"stock","Fewer empty shelves; extra stock moved, not reordered"]];
  items.forEach(function(x){var qi=QS.findIndex(function(q){return q[1]===x[2]});x[1]=x[1]*(state.answers[qi]===2?.35:state.answers[qi]===1?.75:1)});items.sort(function(a,b){return b[1]-a[1]});
  var total=items.reduce(function(a,x){return a+x[1]},0);$("#impact").textContent=fk(total)+" a year";$("#cashFreed").textContent=fk(SNAP.cash.freed);
- $("#pri").innerHTML=items.map(function(x){return '<li><div>'+x[0]+'<br><span>'+x[3]+'</span></div><b>'+fk(x[1])+'/yr</b><a class="btn btn-line btn-s" href="#'+x[2]+'" data-go="'+x[2]+'">Open</a></li>'}).join("")+'<li><div>Cash &amp; buying<br><span>Keep cash above the floor in the busy season</span></div><b>'+fk(SNAP.cash.freed)+'</b><a class="btn btn-line btn-s" href="#cash" data-go="cash">Open</a></li>';
+ var PORT={roster:"People Portal",hr:"People Portal",stock:"Stock & Supply Portal",price:"Stock & Supply Portal",cash:"Executive View",loc:"Franchise & Network Portal"};$("#pri").innerHTML=items.map(function(x){return '<li><div>'+x[0]+' <small style="color:var(--gold-lt);font-weight:600">· '+PORT[x[2]]+'</small><br><span>'+x[3]+'</span></div><b>'+fk(x[1])+'/yr</b><a class="btn btn-line btn-s" href="#'+x[2]+'" data-go="'+x[2]+'">Open</a></li>'}).join("")+'<li><div>Cash &amp; buying <small style="color:var(--gold-lt);font-weight:600">· Executive View</small><br><span>Keep cash above the floor in the busy season</span></div><b>'+fk(SNAP.cash.freed)+'</b><a class="btn btn-line btn-s" href="#cash" data-go="cash">Open</a></li>';
  $$("#pri [data-go]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.dataset.go)})});
  var R=locRows(),t='<tr><th class="tl">Location</th><th>Sales</th><th>Labour %</th><th>Cost of goods %</th><th>Margin %</th><th>Days of stock</th></tr>';R.forEach(function(x){var st=STOCK.filter(function(r){return r.loc===x.L.id}),days=st.reduce(function(a,r){return a+r.oh/r.avg},0)/st.length;t+='<tr><td class="tl">'+x.L.name+'</td><td>'+fk(x.sales)+'</td><td>'+pc(x.lab)+'</td><td>'+pc(x.cogs)+'</td><td>'+pc(x.mar)+'</td><td>'+nf(days,1)+'</td></tr>'});$("#baseT").innerHTML=t}
 function ensureSnaps(){if(!SNAP.price){renderPrice()}if(!SNAP.stock){renderStock()}if(!SNAP.cash){renderCash()}}
@@ -566,9 +594,9 @@ on(["hProv","hQ"],renderAns);
 on(["cOpen","cFloor","cOut"],function(){renderCash()});
 on(["nInv","nSales","nRamp","nMar","nRent"],renderNew);on(["fRoy","fMkt","fMar","fSales"],renderFee);
 $("#reset").addEventListener("click",function(){location.hash="";location.reload()});
-function render(v){if(v==="overview")renderOverview();else if(v==="roster")renderRoster();else if(v==="hr"){renderHR();renderAns()}else if(v==="stock")renderStock();else if(v==="price")renderPrice();else if(v==="cash")renderCash();else if(v==="loc")renderLoc();else if(v==="log")renderLog()}
-window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h!==state.view&&["overview","roster","hr","stock","price","cash","loc","log"].indexOf(h)>=0)show(h)});
-var start=(location.hash||"").slice(1);show(["overview","roster","hr","stock","price","cash","loc","log"].indexOf(start)>=0?start:"overview");
+function render(v){if(v==="overview")renderOverview();else if(v==="roster")renderRoster();else if(v==="hr"){renderHR();renderAns()}else if(v==="stock")renderStock();else if(v==="price")renderPrice();else if(v==="cash")renderCash();else if(v==="loc")renderLoc();else if(v==="deliv")renderDeliv();else if(v==="log")renderLog()}
+window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h!==state.view&&["overview","roster","hr","stock","price","cash","deliv","loc","log"].indexOf(h)>=0)show(h)});
+var start=(location.hash||"").slice(1);show(["overview","roster","hr","stock","price","cash","deliv","loc","log"].indexOf(start)>=0?start:"overview");
 })();
 </script>
 </body>

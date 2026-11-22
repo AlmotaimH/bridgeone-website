@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '62'
+V = '63'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -94,7 +94,7 @@ def header(L, file, cur='', home=False):
     def a(h, key, k):
         c = ' aria-current="page"' if k == cur else ''
         return f'<a href="{h}"{c}>{esc(g(L, key))}</a>'
-    links = a(pre, 'nav.home', 'h') + a(base + '#services', 'nav.services', 's') + a(base + '#approach', 'nav.approach', 'a') + a(base + '#why', 'nav.results', 'w') + a(pre + 'insights.html', 'nav.insights', 'i')
+    links = a(pre, 'nav.home', 'h') + a(base + '#services', 'nav.services', 's') + a(base + '#decisions', 'nav.dec', 'd') + a(base + '#approach', 'nav.approach', 'a') + a(base + '#why', 'nav.results', 'w') + a(pre + 'insights.html', 'nav.insights', 'i')
     return f'''<a class="skip" href="#main">{esc(g(L, "skip"))}</a>
 <header class="hdr">
 <div class="wrap">

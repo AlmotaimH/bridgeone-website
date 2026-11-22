@@ -393,4 +393,30 @@
     } else go();
   }
   })();
+  /* ===== Decision check (Nov 21, 2026): answers drive the score and the suggested package ===== */
+  (function () {
+    var box = document.querySelector(".dx-check"); if (!box) return;
+    var ans = [1, 1, 1, 1, 1, 1];
+    var names = [].map.call(box.querySelectorAll(".dx-qn"), function (e) { return e.textContent; });
+    var src = box.querySelectorAll(".dx-src span");
+    var none = box.querySelector(".dx-gn").textContent;
+    var sep = document.documentElement.lang === "ar" ? "، " : ", ";
+    var pct = box.querySelector(".dx-pct"), ring = box.querySelector(".dx-rfg"), gains = box.querySelector(".dx-gains"), vs = box.querySelector(".dx-vs"), va = box.querySelector(".dx-va");
+    function render() {
+      [].forEach.call(box.querySelectorAll(".dx-seg button"), function (b) { b.setAttribute("aria-pressed", String(ans[+b.dataset.d] === +b.dataset.v)); });
+      var sum = ans.reduce(function (a, b) { return a + b; }, 0), p = Math.round(sum / 12 * 100);
+      pct.textContent = (document.documentElement.lang === "ar" ? "\u2066" + p + "%\u2069" : p + "%");
+      ring.style.strokeDasharray = Math.max(p, 1) + " 100";
+      var low = names.filter(function (n, i) { return ans[i] === 0; });
+      if (!low.length) low = names.filter(function (n, i) { return ans[i] === 1; });
+      gains.textContent = low.length ? low.slice(0, 3).join(sep) : none;
+      var k = p < 40 ? 0 : p < 75 ? 1 : 2;
+      vs.textContent = src[k * 2].textContent; va.textContent = src[k * 2 + 1].textContent;
+    }
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest(".dx-seg button"); if (!b) return;
+      ans[+b.dataset.d] = +b.dataset.v; render();
+    });
+    render();
+  })();
 })();

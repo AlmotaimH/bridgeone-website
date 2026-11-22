@@ -1062,3 +1062,28 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 .hdr .brand{flex-shrink:0}
 .hdr .nav{min-width:0}
 .hdr.compact .brand span{display:none}
+/* Decision OS product page */
+.dos-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.dos-dn{margin-top:14px!important;font-size:14px!important;color:var(--mute)!important}
+.dos-for{padding:34px 38px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:30px;align-items:center}
+.dos-for h2{font-size:clamp(24px,2.6vw,32px);margin:0}
+.dos-for ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
+.dos-for li{position:relative;padding-inline-start:22px;color:var(--soft);font-size:16px;line-height:1.45}
+.dos-for li::before{content:"";position:absolute;inset-inline-start:0;top:.5em;width:9px;height:9px;border-radius:50%;background:var(--amber)}
+.dos-mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.dos-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--amber);border:1px solid rgba(242,180,90,.45)}
+.dos-how{counter-reset:h;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.dos-how li{counter-increment:h;position:relative;padding:26px 24px 24px;border-top:2px solid rgba(242,180,90,.5);display:flex;flex-direction:column;gap:8px}
+.dos-how li::before{content:counter(h);font-size:13px;font-weight:700;color:var(--gold-lt)}
+.dos-how b{font-size:19px;color:#fff}
+.dos-how span{color:var(--soft);font-size:15.5px;line-height:1.5}
+.dos-diff{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.dos-diff h3{font-size:18px;margin:0 0 8px}
+.dos-diff p{margin:0;color:var(--soft);font-size:15.5px;line-height:1.5}
+.dos-note{margin-top:34px;font-size:13.5px;color:var(--mute)}
+.dos-band{margin:40px 0 0;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.dos-band h3{font-size:22px;margin:4px 0 6px}
+.dos-band p{margin:0;color:var(--soft);max-width:62ch}
+@media (max-width:1040px){.dos-how,.dos-diff{grid-template-columns:1fr 1fr}.dos-for{grid-template-columns:1fr}}
+@media (max-width:640px){.dos-how,.dos-diff,.dos-for ul{grid-template-columns:1fr}.dos-for{padding:26px 22px}.dos-band{padding:24px 22px}.dos-cta .btn{flex:1 1 auto}}
+.dos-lic{margin-top:22px;color:var(--soft);font-size:16px}

@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '65'
+V = '66'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -116,7 +116,7 @@ def footer(L):
 <div class="top">
 <div class="col main"><a class="brand" href="{pre}"><img src="/assets/logo-sm.png" alt="" width="54" height="34"><span>BRIDGEONE</span></a><span class="motto">{esc(g(L, "motto"))}</span>
 <p style="margin:0;max-width:360px;line-height:1.6">{esc(g(L, "footer.tag"))}</p></div>
-<nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
+<nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}decision-os.html">Decision OS</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
 <div class="col"><b>{esc(g(L, "nav.contact"))}</b><a href="tel:+16473355647" dir="ltr">+1 (647) 335-5647</a><a href="mailto:info@bridge-one.ca" dir="ltr">info@bridge-one.ca</a><span>{esc(g(L, "contact.hours"))}</span></div>
 <nav class="col" aria-label="Legal"><b>{esc(g(L, "footer.legal"))}</b><a href="{pre}privacy.html">{esc(g(L, "footer.privacy"))}</a><a href="{CO}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">{LI_ICON}LinkedIn</a></nav>
 </div>
@@ -342,7 +342,7 @@ def home_page(L):
     recent = [x for x in ARTS if x['source'] and x is not LATEST][-3:]
     body = body.replace('{{LATEST}}', feature_card(L, LATEST, g(L, 'insights.featured'), g(L, 'insights.go')))
     body = body.replace('{{EDITIONS}}', ed_rows(L, recent, INS[L]['read']))
-    body = body.replace('{{BOOK}}', BOOK).replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
+    body = body.replace('{{DOS}}', '/' + LANGS[L][2] + 'decision-os.html').replace('{{BOOK}}', BOOK).replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
     body = body.replace('<a class="skip" href="#main" data-i18n="skip"></a>\n<header', '<header')
     hs = body.index('<header'); he = body.index('</header>') + len('</header>')
     body = body[:hs] + header(L, '', home=True).split('\n', 1)[1].rstrip('\n') + body[he:]
@@ -368,12 +368,151 @@ def rep2(m, L):
     if not isinstance(v, str): raise SystemExit('not text: ' + key)
     return m.group(0) + esc(v)
 
+
+# ---------- Decision OS product page ----------
+DOS = {
+ 'EN': dict(title='BridgeOne Decision OS | Decision tools for multi-location businesses',
+  desc='Decision OS turns your sales, staffing, stock and cash data into weekly recommendations your managers can approve: rosters, stock transfers, markdowns, buying plans and location decisions.',
+  kick='BridgeOne Decision OS', h1='Better everyday decisions across every location',
+  lead='Decision OS is BridgeOne’s own decision system for businesses with several locations. It turns the data you already have into clear weekly recommendations for staffing, stock, pricing, buying and location decisions. Your managers approve them, and we measure the results with you every month.',
+  demo='Try the live demo', book='Book a free call', demoNote='The demo uses a fictional five-location business and runs entirely in your browser.',
+  forT='Built for businesses with more than one location', forL=['Retail chains and specialty stores','Cafés, restaurants and food service groups','Franchise networks, for franchisors and multi-unit franchisees','Service businesses with several branches or clinics'],
+  modT='Seven tools, one weekly rhythm', mods=[
+   ('Assessment and baseline','We look at how each decision is made today and put a dollar value on the gaps, so you know where to start.'),
+   ('Staff roster and labour cost','Hourly demand becomes the staff each hour needs, then shifts that cover it at the lowest cost within your rules and employment standards.'),
+   ('Stock, reorder and transfers','A safety stock and reorder point for every item at every location, with transfers from locations that have too much before anything new is ordered.'),
+   ('Pricing, promotions and markdowns','Week-by-week markdown plans that protect margin, and a quick check on whether a promotion is worth running.'),
+   ('Buying and cash plan','Thirteen weeks of cash in and out, with purchase orders timed so cash stays above the floor you set.'),
+   ('Location and franchise decisions','A scorecard that compares every location, a go or no-go check for new sites, and a fee check for franchise networks.'),
+   ('Decision log and monthly scorecard','Every recommendation, who approved it and what happened next, reviewed against the baseline each month.')],
+  howT='How it works', how=[
+   ('Assess','A free call, then a two to three week audit of your numbers and how decisions are made today.'),
+   ('Set up','We connect the data you already keep, from your point of sale, payroll, inventory and accounting exports or spreadsheets, and set the rules with you.'),
+   ('Decide weekly','Managers get recommendations they can approve, adjust or reject, each with a plain explanation of why.'),
+   ('Measure monthly','We compare results with the baseline, refine the rules and decide what to improve next.')],
+  diffT='What makes it different', diff=[
+   ('Explainable','Every recommendation shows the reason and the numbers behind it. Nothing is a black box.'),
+   ('Your rules, your call','Your service levels, wage rules, cash floor and approval roles. People decide; the tools advise.'),
+   ('Starts with what you have','No new software to buy on day one. We begin with your exports and grow from there.'),
+   ('Run with you','BridgeOne runs the assessment and works with your team directly, so the tools fit how your business really operates.')],
+  pkgT='Ways to work together', pkgs=[
+   ('Decision assessment','2 to 4 weeks','Baseline, maturity score and a ranked list of opportunities with estimated value.'),
+   ('Decision sprint','6 to 8 weeks','One or two tools set up on your data, with your managers trained and the first results measured.'),
+   ('Decision OS with coaching','Monthly','All the tools you need, weekly recommendations and a monthly scorecard review with BridgeOne.'),
+   ('Licensed copy','Annual','Your own branded copy of Decision OS, with roles and approvals, maintained by BridgeOne.')],
+  lic='Want Decision OS for your own team? We also license a branded copy, with roles and approvals, maintained by BridgeOne.',
+  ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether Decision OS fits.',
+  note='Results depend on your data and how consistently recommendations are applied. Figures in the demo are illustrative.'),
+ 'FR': dict(title='BridgeOne Decision OS | Outils de décision pour entreprises multisites',
+  desc='Decision OS transforme vos données de ventes, de personnel, de stocks et de trésorerie en recommandations hebdomadaires que vos gestionnaires approuvent : horaires, transferts, démarques, achats et décisions sur les emplacements.',
+  kick='BridgeOne Decision OS', h1='De meilleures décisions au quotidien, dans chaque emplacement',
+  lead='Decision OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il transforme les données dont vous disposez déjà en recommandations hebdomadaires claires sur le personnel, les stocks, les prix, les achats et les emplacements. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
+  demo='Essayer la démo', book='Réserver un appel gratuit', demoNote='La démo utilise une entreprise fictive de cinq emplacements et fonctionne entièrement dans votre navigateur (en anglais).',
+  forT='Conçu pour les entreprises de plus d’un emplacement', forL=['Chaînes de détail et boutiques spécialisées','Cafés, restaurants et groupes de restauration','Réseaux de franchises, franchiseurs et franchisés multi-unités','Entreprises de services avec plusieurs succursales ou cliniques'],
+  modT='Sept outils, un rythme hebdomadaire', mods=[
+   ('Évaluation et point de départ','Nous examinons comment chaque décision est prise aujourd’hui et chiffrons les écarts, pour savoir par où commencer.'),
+   ('Horaires et coût de main-d’œuvre','La demande horaire devient le personnel requis à chaque heure, puis des quarts qui la couvrent au moindre coût, selon vos règles et les normes du travail.'),
+   ('Stocks, réapprovisionnement et transferts','Un stock de sécurité et un point de commande pour chaque article à chaque emplacement, avec des transferts depuis les emplacements en surplus avant toute nouvelle commande.'),
+   ('Prix, promotions et démarques','Des plans de démarque semaine par semaine qui protègent la marge, et une vérification rapide de la rentabilité d’une promotion.'),
+   ('Achats et trésorerie','Treize semaines d’entrées et de sorties de fonds, avec des commandes planifiées pour garder la trésorerie au-dessus du seuil fixé.'),
+   ('Emplacements et franchises','Un tableau comparatif de chaque emplacement, une vérification « go ou no-go » pour un nouveau site et une analyse des redevances pour les réseaux de franchises.'),
+   ('Journal des décisions et bilan mensuel','Chaque recommandation, qui l’a approuvée et ce qui a suivi, comparé chaque mois au point de départ.')],
+  howT='Comment ça fonctionne', how=[
+   ('Évaluer','Un appel gratuit, puis un audit de deux à trois semaines de vos chiffres et de vos façons de décider.'),
+   ('Mettre en place','Nous relions les données que vous avez déjà (exportations de caisse, de paie, d’inventaire et de comptabilité, ou tableurs) et fixons les règles avec vous.'),
+   ('Décider chaque semaine','Vos gestionnaires reçoivent des recommandations à approuver, ajuster ou refuser, chacune expliquée simplement.'),
+   ('Mesurer chaque mois','Nous comparons les résultats au point de départ, affinons les règles et choisissons la prochaine amélioration.')],
+  diffT='Ce qui le distingue', diff=[
+   ('Explicable','Chaque recommandation montre sa raison et les chiffres qui la justifient. Aucune boîte noire.'),
+   ('Vos règles, votre décision','Vos niveaux de service, règles salariales, seuil de trésorerie et rôles d’approbation. Les personnes décident; les outils conseillent.'),
+   ('Part de ce que vous avez','Aucun logiciel à acheter au départ. Nous commençons avec vos exportations, puis évoluons.'),
+   ('Mené avec vous','BridgeOne réalise l’évaluation et travaille directement avec votre équipe, pour que les outils collent à votre réalité.')],
+  pkgT='Façons de travailler ensemble', pkgs=[
+   ('Évaluation décisionnelle','2 à 4 semaines','Point de départ, score de maturité et liste priorisée des occasions avec leur valeur estimée.'),
+   ('Sprint décisionnel','6 à 8 semaines','Un ou deux outils mis en place sur vos données, gestionnaires formés et premiers résultats mesurés.'),
+   ('Decision OS avec accompagnement','Mensuel','Tous les outils utiles, des recommandations hebdomadaires et un bilan mensuel avec BridgeOne.'),
+   ('Copie sous licence','Annuel','Votre propre copie de Decision OS à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.')],
+  lic='Vous voulez Decision OS pour votre équipe? Nous offrons aussi une copie sous licence à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.',
+  ctaT='Découvrez ce que valent de meilleures décisions pour votre entreprise', ctaP='Commencez par un appel gratuit de 30 minutes. Nous vous dirons franchement si Decision OS vous convient.',
+  note='Les résultats dépendent de vos données et de l’application constante des recommandations. Les chiffres de la démo sont illustratifs.'),
+ 'AR': dict(title='BridgeOne Decision OS | أدوات قرار للشركات متعددة الفروع',
+  desc='يحوّل Decision OS بيانات المبيعات والموظفين والمخزون والنقد إلى توصيات أسبوعية يعتمدها مديروك: جداول الموظفين، ونقل المخزون، والتخفيضات، وخطط الشراء، وقرارات الفروع.',
+  kick='BridgeOne Decision OS', h1='قرارات يومية أفضل في كل فرع',
+  lead='Decision OS هو نظام القرار الذي صمّمته BridgeOne للشركات التي تدير أكثر من فرع. يحوّل البيانات المتوفرة لديك أصلًا إلى توصيات أسبوعية واضحة في الموظفين والمخزون والتسعير والشراء وقرارات الفروع. يعتمدها مديروك، ونقيس النتائج معك كل شهر.',
+  demo='جرّب العرض التجريبي', book='احجز مكالمة مجانية', demoNote='يستخدم العرض التجريبي شركة وهمية لديها خمسة فروع، ويعمل بالكامل داخل متصفحك (باللغة الإنجليزية).',
+  forT='مصمَّم للشركات التي لديها أكثر من فرع', forL=['سلاسل التجزئة والمتاجر المتخصصة','المقاهي والمطاعم ومجموعات الأغذية','شبكات الامتياز التجاري، للمانحين وأصحاب الفروع المتعددة','شركات الخدمات ذات الفروع أو العيادات المتعددة'],
+  modT='سبع أدوات وإيقاع أسبوعي واحد', mods=[
+   ('التقييم وخط الأساس','ندرس كيف يُتخذ كل قرار اليوم ونقدّر قيمة الفجوات بالأرقام، لتعرف من أين تبدأ.'),
+   ('جداول الموظفين وتكلفة العمالة','يتحول الطلب في كل ساعة إلى عدد الموظفين المطلوب، ثم إلى ورديات تغطيه بأقل تكلفة ضمن قواعدك ومعايير العمل.'),
+   ('المخزون وإعادة الطلب والنقل','مخزون أمان ونقطة إعادة طلب لكل صنف في كل فرع، مع نقل الفائض من فرع إلى آخر قبل أي طلب جديد.'),
+   ('التسعير والعروض والتخفيضات','خطط تخفيض أسبوعية تحمي الهامش، وفحص سريع لمعرفة ما إذا كان العرض يستحق التنفيذ.'),
+   ('الشراء والتدفق النقدي','ثلاثة عشر أسبوعًا من التدفقات النقدية الداخلة والخارجة، مع توقيت أوامر الشراء ليبقى النقد فوق الحد الأدنى الذي تحدده.'),
+   ('قرارات الفروع والامتياز','بطاقة أداء تقارن كل الفروع، وفحص «نعم أم لا» للمواقع الجديدة، وتحليل للرسوم في شبكات الامتياز.'),
+   ('سجل القرارات وبطاقة الأداء الشهرية','كل توصية، ومن اعتمدها، وما حدث بعدها، مع مراجعة شهرية مقارنة بخط الأساس.')],
+  howT='كيف يعمل', how=[
+   ('التقييم','مكالمة مجانية، ثم تدقيق لمدة أسبوعين إلى ثلاثة لأرقامك وطريقة اتخاذ القرارات اليوم.'),
+   ('الإعداد','نربط البيانات التي تحتفظ بها أصلًا من نقاط البيع والرواتب والمخزون والمحاسبة أو جداول البيانات، ونضع القواعد معك.'),
+   ('قرارات أسبوعية','يحصل المديرون على توصيات يمكنهم اعتمادها أو تعديلها أو رفضها، مع شرح واضح لسبب كل توصية.'),
+   ('قياس شهري','نقارن النتائج بخط الأساس، ونحسّن القواعد، ونحدد الخطوة التالية.')],
+  diffT='ما الذي يميّزه', diff=[
+   ('قابل للتفسير','كل توصية تعرض سببها والأرقام التي تستند إليها، دون أي صندوق أسود.'),
+   ('قواعدك وقرارك','مستويات الخدمة وقواعد الأجور والحد الأدنى للنقد وأدوار الاعتماد كلها لك. الناس يقررون والأدوات تنصح.'),
+   ('يبدأ بما لديك','لا حاجة لشراء برنامج جديد في البداية. نبدأ بملفاتك الحالية ثم نتوسع.'),
+   ('ننفّذه معك','تجري BridgeOne التقييم وتعمل مع فريقك مباشرة، لتناسب الأدوات طريقة عمل شركتك فعلًا.')],
+  pkgT='طرق العمل معًا', pkgs=[
+   ('تقييم القرارات','من أسبوعين إلى 4 أسابيع','خط أساس ودرجة نضج وقائمة مرتبة بالفرص وقيمتها التقديرية.'),
+   ('سبرنت القرارات','من 6 إلى 8 أسابيع','إعداد أداة أو أداتين على بياناتك، وتدريب المديرين، وقياس النتائج الأولى.'),
+   ('Decision OS مع المتابعة','شهري','كل الأدوات التي تحتاجها، وتوصيات أسبوعية، ومراجعة شهرية لبطاقة الأداء مع BridgeOne.'),
+   ('نسخة مرخّصة','سنوي','نسختك الخاصة من Decision OS بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.')],
+  lic='تريد Decision OS لفريقك؟ نوفّر أيضًا نسخة مرخّصة بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.',
+  ctaT='اكتشف قيمة القرارات الأفضل في شركتك', ctaP='ابدأ بمكالمة مجانية مدتها 30 دقيقة، وسنخبرك بصراحة إن كان Decision OS مناسبًا لك.',
+  note='تعتمد النتائج على بياناتك ومدى الالتزام بتطبيق التوصيات. الأرقام في العرض التجريبي توضيحية.'),
+}
+def dos_page(L):
+    P = DOS[L]; f = 'decision-os.html'
+    li = ''.join(f'<li>{esc(x)}</li>' for x in P['forL'])
+    mods = ''.join(f'<article class="tile dos-m"><span class="dos-n">{i+1}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></article>' for i, (t, d) in enumerate(P['mods']))
+    how = ''.join(f'<li><b>{esc(t)}</b><span>{esc(d)}</span></li>' for t, d in P['how'])
+    diff = ''.join(f'<div><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in P['diff'])
+    pk = ''.join(f'<article class="tile dx-pk{" dx-feat" if i == 2 else ""}"><span class="dx-dur">{esc(x[1])}</span><h3>{esc(x[0])}</h3><p>{esc(x[2])}</p></article>' for i, x in enumerate(g(L, 'dec.pkgs')))
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Service", "name": "BridgeOne Decision OS", "serviceType": "Decision support for multi-location businesses",
+        "provider": {"@type": "ProfessionalService", "name": "BridgeOne Inc.", "url": SITE}, "areaServed": "Canada", "description": P['desc'], "url": SITE + LANGS[L][2] + f}, ensure_ascii=False)
+    return head(L, P['title'], P['desc'], f, extra=f'<script type="application/ld+json">{ld}</script>\n') + inner_header(L, f, 'd') + f'''<main id="main">
+<section class="phero dos-hero"><div class="wrap">
+<p class="kicker">{esc(P["kick"])}</p>
+<h1>{esc(P["h1"])}</h1>
+<p>{esc(P["lead"])}</p>
+<div class="dos-cta"><a class="btn btn-gold btn-lg" href="/decision-os/demo.html">{esc(P["demo"])}</a><a class="btn btn-glass btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a></div>
+<p class="dos-dn">{esc(P["demoNote"])}</p>
+</div></section>
+<section class="sec" style="padding-top:72px"><div class="wrap">
+<div class="glass dos-for"><h2>{esc(P["forT"])}</h2><ul>{li}</ul></div>
+<div class="sh" style="margin-top:80px"><h2>{esc(P["modT"])}</h2></div>
+<div class="dos-mods">{mods}</div>
+<div class="sh" style="margin-top:80px"><h2>{esc(P["howT"])}</h2></div>
+<ol class="dos-how">{how}</ol>
+<div class="sh" style="margin-top:80px"><h2>{esc(P["diffT"])}</h2></div>
+<div class="dos-diff">{diff}</div>
+<div class="sh" style="margin-top:80px"><h2>{esc(P["pkgT"])}</h2></div>
+<div class="dx-pkgs">{pk}</div>
+<p class="dos-lic">{esc(P["lic"])}</p>
+<p class="dos-note">{esc(P["note"])}</p>
+</div></section>
+<section class="sec fog" style="padding:80px 0"><div class="wrap subscribe">
+<div><h2>{esc(P["ctaT"])}</h2><p>{esc(P["ctaP"])}</p></div>
+<div class="dos-cta" style="margin:0"><a class="btn btn-gold btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a><a class="btn btn-glass btn-lg" href="/decision-os/demo.html">{esc(P["demo"])}</a></div>
+</div></section>
+</main>
+''' + inner_footer(L)
+
+
 # ---------- Write everything ----------
 for L in LANGS:
     pre = LANGS[L][2]
     write(pre + 'index.html', home_page(L))
     write(pre + 'insights.html', insights_page(L))
     write(pre + 'privacy.html', privacy_page(L))
+    write(pre + 'decision-os.html', dos_page(L))
 for i, a in enumerate(ARTS):
     write(f'insights/{a["slug"]}.html', article_page(a, ARTS[i-1] if i else None, ARTS[i+1] if i + 1 < len(ARTS) else None))
 first = [a for a in ARTS if not a['source']]
@@ -382,7 +521,8 @@ if first:
     write('article.html', f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="{SITE[:-1]}{to}"><meta http-equiv="refresh" content="0; url={to}"></head><body><a href="{to}">This article has moved.</a></body></html>\n')
 urls = []
 for L in LANGS:
-    for f in ['', 'insights.html', 'privacy.html']: urls.append(SITE + LANGS[L][2] + f)
+    for f in ['', 'decision-os.html', 'insights.html', 'privacy.html']: urls.append(SITE + LANGS[L][2] + f)
+urls.append(SITE + 'decision-os/demo.html')
 urls += [SITE + f'insights/{a["slug"]}.html' for a in ARTS]
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n')
 s = open(R + '/404.html').read(); write('404.html', re.sub(r'styles\.css\?v=\d+', f'styles.css?v={V}', s))

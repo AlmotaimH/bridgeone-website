@@ -379,4 +379,10 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
     [[T.EN,E],[T.FR,F],[T.AR,A]].forEach(function(x){var a=x[0].approach,d=x[1];a.sub=d.sub;a.get=d.get;a.ctaT=d.ctaT;
       for(var i=0;i<4;i++){a.steps[i][1]=d.s[i][0];a.steps[i][2]=d.s[i][1];}});
   })();
+  (function(){
+    var X={EN:{osT:"Decision OS: our own tools for multi-location businesses",osP:"Rosters, stock and transfers, markdowns, buying and cash, and location decisions, with recommendations your managers approve each week.",osCta:"Explore Decision OS",osDemo:"Try the live demo"},
+      FR:{osT:"Decision OS : nos propres outils pour les entreprises multisites",osP:"Horaires, stocks et transferts, démarques, achats et trésorerie, et décisions sur les emplacements, avec des recommandations que vos gestionnaires approuvent chaque semaine.",osCta:"Découvrir Decision OS",osDemo:"Essayer la démo"},
+      AR:{osT:"Decision OS: أدواتنا الخاصة للشركات متعددة الفروع",osP:"جداول الموظفين، والمخزون والنقل، والتخفيضات، والشراء والنقد، وقرارات الفروع، مع توصيات يعتمدها مديروك كل أسبوع.",osCta:"اكتشف Decision OS",osDemo:"جرّب العرض التجريبي"}};
+    ["EN","FR","AR"].forEach(function(l){var d=T[l].dec;for(var k in X[l])d[k]=X[l][k];});
+  })();
 })(window.BO_I18N);

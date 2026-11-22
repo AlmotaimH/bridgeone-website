@@ -358,4 +358,25 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
   T.EN.meta.desc="Management consulting in the Greater Toronto Area: strategy, operating models, decision intelligence and leadership development that turn plans into results.";
   T.FR.meta.desc="Conseil en gestion dans le Grand Toronto : stratégie, modèles opérationnels, intelligence décisionnelle et développement du leadership.";
   T.AR.meta.desc="استشارات إدارية في منطقة تورونتو الكبرى: الاستراتيجية ونماذج التشغيل وذكاء القرار وتطوير القيادات لتحويل الخطط إلى نتائج.";
+
+  /* engagement section refresh (Nov 22) */
+  (function(){
+    var E={sub:"Four clear stages, from a free first call to results you can measure.",get:"You get",ctaT:"Every engagement starts with a free 30-minute call.",
+      s:[["A free 30-minute call, then a close look at your numbers, operations and key decisions to find the real opportunity.","A baseline and your top priorities"],
+         ["A focused plan with priorities, owners, timelines and the measures we will track together.","A roadmap and a scorecard"],
+         ["We work alongside your team to put the plan into action: processes, training and, where it helps, decision tools.","Working changes and a trained team"],
+         ["We review results against the baseline every month, adjust, and set up the next stage.","A monthly scorecard and next steps"]]};
+    var F={sub:"Quatre étapes claires, d’un premier appel gratuit à des résultats mesurables.",get:"Ce que vous obtenez",ctaT:"Chaque mandat commence par un appel gratuit de 30 minutes.",
+      s:[["Un appel gratuit de 30 minutes, puis un examen attentif de vos chiffres, de vos opérations et de vos décisions clés pour cerner la vraie occasion.","Un point de départ chiffré et vos priorités"],
+         ["Un plan ciblé avec priorités, responsables, échéances et les indicateurs que nous suivrons ensemble.","Une feuille de route et un tableau de bord"],
+         ["Nous travaillons aux côtés de votre équipe pour mettre le plan en œuvre : processus, formation et, au besoin, outils d’aide à la décision.","Des changements concrets et une équipe formée"],
+         ["Chaque mois, nous comparons les résultats au point de départ, ajustons et préparons l’étape suivante.","Un tableau de bord mensuel et les prochaines étapes"]]};
+    var A={sub:"أربع مراحل واضحة، من مكالمة أولى مجانية إلى نتائج قابلة للقياس.",get:"ما تحصل عليه",ctaT:"يبدأ كل تعاون بمكالمة مجانية مدتها 30 دقيقة.",
+      s:[["مكالمة مجانية مدتها 30 دقيقة، ثم مراجعة دقيقة لأرقامك وعملياتك وقراراتك الرئيسية لتحديد الفرصة الحقيقية.","خط أساس واضح وأولوياتك الرئيسية"],
+         ["خطة مركّزة بأولويات ومسؤولين وجداول زمنية، والمؤشرات التي سنتابعها معًا.","خارطة طريق وبطاقة أداء"],
+         ["نعمل جنبًا إلى جنب مع فريقك لتنفيذ الخطة: الإجراءات والتدريب، وأدوات دعم القرار عند الحاجة.","تغييرات فعلية وفريق مدرَّب"],
+         ["نراجع النتائج شهريًا مقارنةً بخط الأساس، ونعدّل، ونجهّز المرحلة التالية.","بطاقة أداء شهرية وخطوات تالية"]]};
+    [[T.EN,E],[T.FR,F],[T.AR,A]].forEach(function(x){var a=x[0].approach,d=x[1];a.sub=d.sub;a.get=d.get;a.ctaT=d.ctaT;
+      for(var i=0;i<4;i++){a.steps[i][1]=d.s[i][0];a.steps[i][2]=d.s[i][1];}});
+  })();
 })(window.BO_I18N);

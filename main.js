@@ -420,3 +420,26 @@
     render();
   })();
 })();
+
+/* ===== Header guard (Nov 22, 2026): hide the BRIDGEONE wordmark whenever the menu would touch it ===== */
+(function () {
+  var hdr = document.querySelector(".hdr");
+  if (!hdr) return;
+  var brand = hdr.querySelector(".brand"), nav = hdr.querySelector(".nav");
+  if (!brand || !nav) return;
+  var rtl = document.documentElement.dir === "rtl";
+  function fit() {
+    hdr.classList.remove("compact");
+    if (getComputedStyle(nav).display === "none") return;
+    var links = nav.querySelectorAll("a"); if (!links.length) return;
+    var first = links[0].getBoundingClientRect(), last = links[links.length - 1].getBoundingClientRect();
+    var b = brand.getBoundingClientRect(), r = hdr.querySelector(".hdr-r"), rr = r ? r.getBoundingClientRect() : null;
+    var gapL = rtl ? b.left - first.right : first.left - b.right;
+    var gapR = rr ? (rtl ? last.left - rr.right : rr.left - last.right) : 99;
+    if (gapL < 12 || gapR < 8) hdr.classList.add("compact");
+  }
+  fit();
+  window.addEventListener("resize", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener("load", fit);
+})();

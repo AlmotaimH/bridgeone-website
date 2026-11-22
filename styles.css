@@ -1052,3 +1052,13 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 .rng input{height:28px;margin:0;background-size:100% 6px;background-repeat:no-repeat;background-position:center}
 /* engagement cycle: labels stay inside small phone screens */
 @media (max-width:400px){.orbit{max-width:276px;margin-inline:auto}.orbit .nl{font-size:12.5px}}
+
+/* Engagement: deliverable line + start CTA (Nov 22) */
+.cc .cg{margin:0;font-size:14.5px;color:var(--soft);line-height:1.45}
+.cc .cg b{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-lt);font-weight:600;margin-bottom:2px}
+.eng-cta{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center}
+.eng-cta p{margin:0;color:var(--soft);font-size:17px}
+/* Header: logo never shrinks under the menu */
+.hdr .brand{flex-shrink:0}
+.hdr .nav{min-width:0}
+.hdr.compact .brand span{display:none}

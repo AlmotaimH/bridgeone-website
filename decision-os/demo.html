@@ -44,6 +44,7 @@ h1,h2,h3{margin:0;color:#fff;letter-spacing:-.01em;line-height:1.2}
 .tab:hover{background:rgba(255,255,255,.04);color:#fff}
 .tab[aria-selected=true]{background:rgba(242,180,90,.12);color:#fff}
 .tab[aria-selected=true] .n{background:var(--amber);border-color:var(--amber);color:#14110a}
+.grp{margin:14px 12px 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .side .note{margin-top:18px;font-size:11.5px;color:var(--mute);padding:0 12px}
 main{padding:26px 30px 60px;min-width:0}
 .ph{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:18px}
@@ -115,8 +116,9 @@ td.wrap{white-space:normal;min-width:200px}
 @media (max-width:860px){
  .app{grid-template-columns:minmax(0,1fr)}
  .top{position:static}
- .side{position:sticky;top:0;height:auto;z-index:20;background:rgba(2,10,31,.95);border-right:0;border-bottom:1px solid var(--border);padding:8px 10px}
+ .side{position:sticky;top:0;height:auto;z-index:20;background:#020A1F;border-right:0;border-bottom:1px solid var(--border);padding:8px 10px}
  .side .co,.side .note{display:none}
+ .grp{margin:0 2px 0 8px;align-self:center;flex:none;font-size:10px;max-width:7.5em;line-height:1.2;letter-spacing:.04em}
  .tabs{flex-direction:row;overflow-x:auto;scrollbar-width:none}
  .tab{flex:none;padding:8px 10px;font-size:13px}
  main{padding:18px 16px 50px}
@@ -135,21 +137,25 @@ td.wrap{white-space:normal;min-width:200px}
  <span class="pill">Live demo · fictional sample data</span>
  <span class="sp"></span>
  <label class="hide-m" style="font-size:12.5px;color:var(--soft)">View as
-  <select id="role" aria-label="View as role"><option value="lm">Location Manager</option><option value="am" selected>Area Manager</option><option value="ow">Owner</option></select></label>
+  <select id="role" aria-label="View as role"><option value="lm">Location Manager</option><option value="am" selected>Area Manager</option><option value="ex">Executive (CEO, COO, CFO, Owner)</option></select></label>
  <button class="btn btn-line btn-s" id="reset" type="button">Reset demo</button>
  <a class="btn btn-gold btn-s" id="book" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0aO-BlcStGVecBihE2OnPBUyP5SknhKZ5tUgFDl0L_cGZ54JCzUtOTi8MWzA1suHI3szzGr0B9" target="_blank" rel="noopener">Book a free call</a>
 </div></header>
 
 <div class="app">
 <nav class="side" aria-label="Decision OS modules">
- <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span></div>
+ <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span><span style="display:block;margin-top:8px;color:var(--soft)">One system, four portals</span></div>
  <div class="tabs" role="tablist">
-  <button class="tab" role="tab" data-v="overview" aria-selected="true"><span class="n">1</span>Overview</button>
+  <button class="tab" role="tab" data-v="overview" aria-selected="true"><span class="n">1</span>Assessment</button>
+  <p class="grp">People Portal</p>
   <button class="tab" role="tab" data-v="roster" aria-selected="false"><span class="n">2</span>Roster &amp; labour</button>
+  <p class="grp">Stock &amp; Supply Portal</p>
   <button class="tab" role="tab" data-v="stock" aria-selected="false"><span class="n">3</span>Stock &amp; transfers</button>
   <button class="tab" role="tab" data-v="price" aria-selected="false"><span class="n">4</span>Pricing &amp; markdowns</button>
-  <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">5</span>Buying &amp; cash</button>
-  <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
+  <p class="grp">Franchise &amp; Network Portal</p>
+  <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">5</span>Locations &amp; franchise</button>
+  <p class="grp">Executive View</p>
+  <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">6</span>Cash &amp; buying plan</button>
   <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">7</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
  </div>
  <p class="note">Everything runs in your browser. Nothing you type leaves this page. Numbers are invented for the demo.</p>
@@ -158,8 +164,8 @@ td.wrap{white-space:normal;min-width:200px}
 <main id="main">
 
 <!-- OVERVIEW -->
-<section id="overview" data-p="overview">
- <div class="ph"><div><div class="kick">STEP 1 · ASSESSMENT &amp; BASELINE</div><h1>Where the money is in your everyday decisions</h1>
+<section data-p="overview">
+ <div class="ph"><div><div class="kick">START HERE · ASSESSMENT &amp; BASELINE</div><h1>Where the money is in your everyday decisions</h1>
  <p>We start every client with this assessment. Answer how each decision is made today; the estimates below come from the other tools in this demo, run on the sample company's numbers.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>How are these decisions made today?</h2><div class="qs" id="qs"></div></div>
@@ -175,8 +181,8 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- ROSTER -->
-<section id="roster" data-p="roster" class="hide">
- <div class="ph"><div><div class="kick">TOOL 2 · STAFF ROSTER &amp; LABOUR COST</div><h1>The right people, at the right hour</h1>
+<section data-p="roster" class="hide">
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · STAFF ROSTER &amp; LABOUR COST</div><h1>The right people, at the right hour</h1>
  <p>Hourly demand becomes the staff each hour needs, then shifts that cover it at the lowest cost within your rules.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -197,8 +203,8 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- STOCK -->
-<section id="stock" data-p="stock" class="hide">
- <div class="ph"><div><div class="kick">TOOL 3 · STOCK, REORDER &amp; TRANSFERS</div><h1>Enough on the shelf, less cash on it</h1>
+<section data-p="stock" class="hide">
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · REORDER &amp; TRANSFERS</div><h1>Enough on the shelf, less cash on it</h1>
  <p>Every item at every location gets a safety stock and a reorder point. Before ordering, the tool checks whether another location has extra to move.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -217,8 +223,8 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- PRICE -->
-<section id="price" data-p="price" class="hide">
- <div class="ph"><div><div class="kick">TOOL 4 · PRICING, PROMOTIONS &amp; MARKDOWNS</div><h1>Mark down on purpose, not in a panic</h1>
+<section data-p="price" class="hide">
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · PRICING, PROMOTIONS &amp; MARKDOWNS</div><h1>Mark down on purpose, not in a panic</h1>
  <p>For each seasonal item, the tool tests every week-by-week discount path and keeps the one with the highest total margin, including what's left at the end of the season.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Item</h2><div class="f">
@@ -239,8 +245,8 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- CASH -->
-<section id="cash" data-p="cash" class="hide">
- <div class="ph"><div><div class="kick">TOOL 5 · BUYING &amp; CASH PLAN</div><h1>Buy what you need without running out of cash</h1>
+<section data-p="cash" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · CASH &amp; BUYING PLAN</div><h1>Buy what you need without running out of cash</h1>
  <p>Thirteen weeks of sales receipts, payroll, rent and supplier payments. Orders that can wait are moved or split so cash never drops below your floor.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -257,8 +263,8 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- LOCATIONS -->
-<section id="loc" data-p="loc" class="hide">
- <div class="ph"><div><div class="kick">TOOL 6 · LOCATIONS &amp; FRANCHISE DECISIONS</div><h1>Know which locations carry the network</h1>
+<section data-p="loc" class="hide">
+ <div class="ph"><div><div class="kick">FRANCHISE &amp; NETWORK PORTAL · LOCATION &amp; FRANCHISE DECISIONS</div><h1>Know which locations carry the network</h1>
  <p>A scorecard that compares every location with the network, a go/no-go check for a new location, and a fee check for franchise networks.</p></div></div>
  <div class="card" style="margin-bottom:16px"><h2>Location scorecard <small>last 4 weeks, % of sales</small></h2><div class="tw"><table id="lT"></table></div><p class="why">Flags appear when a cost line is more than 2 points above the network average. Each flag links to the tool that fixes it.</p></div>
  <div class="grid g2">
@@ -276,9 +282,9 @@ td.wrap{white-space:normal;min-width:200px}
 </section>
 
 <!-- LOG -->
-<section id="log" data-p="log" class="hide">
- <div class="ph"><div><div class="kick">STEP 7 · DECISION LOG &amp; MONTHLY SCORECARD</div><h1>Every decision, its owner and its result</h1>
- <p>Approvals follow your roles: Location Managers propose, Area Managers and the Owner approve. Each month we compare results with the baseline.</p></div>
+<section data-p="log" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · DECISION LOG &amp; MONTHLY SCORECARD</div><h1>Every decision, its owner and its result</h1>
+ <p>Approvals follow your roles: Location Managers propose; Area Managers and executives approve. Each month we compare results with the baseline.</p></div>
  <button class="btn btn-line btn-s" id="csv" type="button">Download CSV</button></div>
  <div class="card"><div class="tw"><table id="logT"></table></div><p class="why" id="logEmpty">Approve or adjust a recommendation in any tool and it appears here.</p></div>
 </section>
@@ -476,13 +482,13 @@ function renderOverview(skipQs){if(!skipQs)renderQs();var sc=state.answers.reduc
  var rs=rosterAllSavings();ensureSnaps();var items=[["Roster & labour",rs,"roster","Rosters follow hourly demand in all 5 locations"],["Pricing & markdowns",SNAP.price.save,"price","Planned markdowns on seasonal items"],["Stock & transfers",SNAP.stock.save,"stock","Fewer empty shelves; extra stock moved, not reordered"]];
  items.forEach(function(x){var qi=QS.findIndex(function(q){return q[1]===x[2]});x[1]=x[1]*(state.answers[qi]===2?.35:state.answers[qi]===1?.75:1)});items.sort(function(a,b){return b[1]-a[1]});
  var total=items.reduce(function(a,x){return a+x[1]},0);$("#impact").textContent=fk(total)+" a year";$("#cashFreed").textContent=fk(SNAP.cash.freed);
- $("#pri").innerHTML=items.map(function(x){return '<li><div>'+x[0]+'<br><span>'+x[3]+'</span></div><b>'+fk(x[1])+'/yr</b><a class="btn btn-line btn-s" href="#'+x[2]+'" data-go="'+x[2]+'">Open</a></li>'}).join("")+'<li><div>Buying &amp; cash<br><span>Keep cash above the floor in the busy season</span></div><b>'+fk(SNAP.cash.freed)+'</b><a class="btn btn-line btn-s" href="#cash" data-go="cash">Open</a></li>';
+ $("#pri").innerHTML=items.map(function(x){return '<li><div>'+x[0]+'<br><span>'+x[3]+'</span></div><b>'+fk(x[1])+'/yr</b><a class="btn btn-line btn-s" href="#'+x[2]+'" data-go="'+x[2]+'">Open</a></li>'}).join("")+'<li><div>Cash &amp; buying<br><span>Keep cash above the floor in the busy season</span></div><b>'+fk(SNAP.cash.freed)+'</b><a class="btn btn-line btn-s" href="#cash" data-go="cash">Open</a></li>';
  $$("#pri [data-go]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.dataset.go)})});
  var R=locRows(),t='<tr><th class="tl">Location</th><th>Sales</th><th>Labour %</th><th>Cost of goods %</th><th>Margin %</th><th>Days of stock</th></tr>';R.forEach(function(x){var st=STOCK.filter(function(r){return r.loc===x.L.id}),days=st.reduce(function(a,r){return a+r.oh/r.avg},0)/st.length;t+='<tr><td class="tl">'+x.L.name+'</td><td>'+fk(x.sales)+'</td><td>'+pc(x.lab)+'</td><td>'+pc(x.cogs)+'</td><td>'+pc(x.mar)+'</td><td>'+nf(days,1)+'</td></tr>'});$("#baseT").innerHTML=t}
 function ensureSnaps(){if(!SNAP.price){renderPrice()}if(!SNAP.stock){renderStock()}if(!SNAP.cash){renderCash()}}
 
 /* ---------- decision log ---------- */
-var ROLEN={lm:"Location Manager",am:"Area Manager",ow:"Owner"};
+var ROLEN={lm:"Location Manager",am:"Area Manager",ex:"Executive"};
 function addLog(mod,status,note){var s=SNAP[{"Roster & labour":"roster","Stock transfers":"stock","Stock orders":"stock","Markdown plan":"price","Buying & cash plan":"cash"}[mod]]||{};
  var st=state.role==="lm"?(status==="Approved"?"Proposed":"Proposed with note"):status;state.log.unshift({t:new Date(),mod:mod,sum:s.summary||"",st:st,by:ROLEN[state.role],note:note||""});$("#logN").textContent=state.log.length;
  toast(st==="Proposed"||st==="Proposed with note"?"Sent to your Area Manager for approval":"Logged as "+st.toLowerCase())}

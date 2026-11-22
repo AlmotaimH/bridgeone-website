@@ -380,9 +380,9 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
       for(var i=0;i<4;i++){a.steps[i][1]=d.s[i][0];a.steps[i][2]=d.s[i][1];}});
   })();
   (function(){
-    var X={EN:{osT:"Decision OS: our own tools for multi-location businesses",osP:"Rosters, stock and transfers, markdowns, buying and cash, and location decisions, with recommendations your managers approve each week.",osCta:"Explore Decision OS",osDemo:"Try the live demo"},
-      FR:{osT:"Decision OS : nos propres outils pour les entreprises multisites",osP:"Horaires, stocks et transferts, démarques, achats et trésorerie, et décisions sur les emplacements, avec des recommandations que vos gestionnaires approuvent chaque semaine.",osCta:"Découvrir Decision OS",osDemo:"Essayer la démo"},
-      AR:{osT:"Decision OS: أدواتنا الخاصة للشركات متعددة الفروع",osP:"جداول الموظفين، والمخزون والنقل، والتخفيضات، والشراء والنقد، وقرارات الفروع، مع توصيات يعتمدها مديروك كل أسبوع.",osCta:"اكتشف Decision OS",osDemo:"جرّب العرض التجريبي"}};
+    var X={EN:{osT:"Decision OS: our own tools for multi-location businesses",osP:"One system, four portals: People, Stock & Supply, Franchise & Network, and an Executive View for the CEO, COO, CFO and owners. Recommendations your managers approve each week.",osCta:"Explore Decision OS",osDemo:"Try the live demo"},
+      FR:{osT:"Decision OS : nos propres outils pour les entreprises multisites",osP:"Un système, quatre portails : Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires. Des recommandations que vos gestionnaires approuvent chaque semaine.",osCta:"Découvrir Decision OS",osDemo:"Essayer la démo"},
+      AR:{osT:"Decision OS: أدواتنا الخاصة للشركات متعددة الفروع",osP:"نظام واحد وأربع بوابات: الموارد البشرية، والمخزون والإمداد، والامتياز والشبكة، ورؤية تنفيذية للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك. توصيات يعتمدها مديروك كل أسبوع.",osCta:"اكتشف Decision OS",osDemo:"جرّب العرض التجريبي"}};
     ["EN","FR","AR"].forEach(function(l){var d=T[l].dec;for(var k in X[l])d[k]=X[l][k];});
   })();
 })(window.BO_I18N);

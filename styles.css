@@ -1087,3 +1087,10 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 @media (max-width:1040px){.dos-how,.dos-diff{grid-template-columns:1fr 1fr}.dos-for{grid-template-columns:1fr}}
 @media (max-width:640px){.dos-how,.dos-diff,.dos-for ul{grid-template-columns:1fr}.dos-for{padding:26px 22px}.dos-band{padding:24px 22px}.dos-cta .btn{flex:1 1 auto}}
 .dos-lic{margin-top:22px;color:var(--soft);font-size:16px}
+.dos-ports{grid-template-columns:repeat(4,minmax(0,1fr))}
+.dos-who{font-size:13px;font-weight:600;color:var(--gold-lt)}
+.dos-m ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.dos-m li{position:relative;padding-inline-start:18px;color:var(--soft);font-size:15px;line-height:1.45}
+.dos-m li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--amber)}
+@media (max-width:1180px){.dos-ports{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.dos-ports{grid-template-columns:1fr}}

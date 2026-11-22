@@ -7,7 +7,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '66'
+V = '67'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -370,11 +370,12 @@ def rep2(m, L):
 
 
 # ---------- Decision OS product page ----------
+PORT = {'EN': ('One system, four portals', "Start with the portal you need and add the others when you're ready. They share the same data, so a sales forecast that sets tomorrow's roster also sets stock orders and the cash plan.", 'Every engagement starts with an assessment and baseline.', [('People Portal', 'For HR and operations managers', ['Staff rosters built from hourly demand', 'Labour cost and overtime control within your rules', 'Leave, approvals and HR policies in one place']), ('Stock & Supply Portal', 'For operations, buying and merchandising teams', ['Reorder points and safety stock for every item and location', 'Transfers between locations before new orders', 'Markdown plans and promotion checks that protect margin']), ('Franchise & Network Portal', 'For franchisors, area managers and multi-unit operators', ['Scorecards that compare every location', 'Go or no-go checks for new locations', 'Franchise fee and franchisee health checks']), ('Executive View', 'For the CEO, COO, CFO and owners', ['Thirteen-week cash and buying plan', 'Monthly scorecard against the baseline', 'Decision log: who approved what, and what happened next'])]), 'FR': ('Un système, quatre portails', 'Commencez par le portail dont vous avez besoin et ajoutez les autres quand vous êtes prêt. Ils partagent les mêmes données : la prévision de ventes qui fixe l’horaire de demain fixe aussi les commandes et le plan de trésorerie.', 'Chaque mandat commence par une évaluation et un point de départ.', [('Portail Personnel', 'Pour les gestionnaires RH et des opérations', ['Horaires bâtis à partir de la demande horaire', 'Contrôle du coût de main-d’œuvre et des heures supplémentaires selon vos règles', 'Congés, approbations et politiques RH au même endroit']), ('Portail Stocks et approvisionnement', 'Pour les équipes des opérations, des achats et de la mise en marché', ['Points de commande et stocks de sécurité pour chaque article et emplacement', 'Transferts entre emplacements avant toute nouvelle commande', 'Plans de démarque et vérification des promotions qui protègent la marge']), ('Portail Franchises et réseau', 'Pour les franchiseurs, directeurs régionaux et exploitants multi-unités', ['Tableaux comparatifs de chaque emplacement', 'Vérification « go ou no-go » des nouveaux emplacements', 'Analyse des redevances et de la santé des franchisés']), ('Vue de la direction', 'Pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires', ['Plan de trésorerie et d’achats sur treize semaines', 'Bilan mensuel par rapport au point de départ', 'Journal des décisions : qui a approuvé quoi, et ce qui a suivi'])]), 'AR': ('نظام واحد وأربع بوابات', 'ابدأ بالبوابة التي تحتاجها وأضف الباقي عندما تكون مستعدًا. تتشارك البوابات البيانات نفسها، فتوقّع المبيعات الذي يحدد جدول الغد يحدد أيضًا طلبات المخزون وخطة النقد.', 'يبدأ كل تعاون بتقييم وخط أساس.', [('بوابة الموارد البشرية', 'لمديري الموارد البشرية والعمليات', ['جداول موظفين مبنية على الطلب في كل ساعة', 'ضبط تكلفة العمالة والعمل الإضافي ضمن قواعدك', 'الإجازات والاعتمادات وسياسات الموارد البشرية في مكان واحد']), ('بوابة المخزون والإمداد', 'لفرق العمليات والمشتريات والتسويق التجاري', ['نقاط إعادة الطلب ومخزون الأمان لكل صنف وفرع', 'نقل المخزون بين الفروع قبل أي طلب جديد', 'خطط تخفيض وفحص للعروض يحميان الهامش']), ('بوابة الامتياز والشبكة', 'لمانحي الامتياز ومديري المناطق ومشغّلي الفروع المتعددة', ['بطاقات أداء تقارن كل الفروع', 'فحص «نعم أم لا» للمواقع الجديدة', 'تحليل رسوم الامتياز وصحة أصحاب الفروع']), ('الرؤية التنفيذية', 'للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك', ['خطة نقد ومشتريات لثلاثة عشر أسبوعًا', 'بطاقة أداء شهرية مقارنة بخط الأساس', 'سجل القرارات: من اعتمد ماذا، وما الذي حدث بعدها'])])}
 DOS = {
  'EN': dict(title='BridgeOne Decision OS | Decision tools for multi-location businesses',
   desc='Decision OS turns your sales, staffing, stock and cash data into weekly recommendations your managers can approve: rosters, stock transfers, markdowns, buying plans and location decisions.',
   kick='BridgeOne Decision OS', h1='Better everyday decisions across every location',
-  lead='Decision OS is BridgeOne’s own decision system for businesses with several locations. It turns the data you already have into clear weekly recommendations for staffing, stock, pricing, buying and location decisions. Your managers approve them, and we measure the results with you every month.',
+  lead='Decision OS is BridgeOne’s own decision system for businesses with several locations. It brings four portals, People, Stock & Supply, Franchise & Network and an Executive View, onto the data you already have, with clear weekly recommendations. Your managers approve them, and we measure the results with you every month.',
   demo='Try the live demo', book='Book a free call', demoNote='The demo uses a fictional five-location business and runs entirely in your browser.',
   forT='Built for businesses with more than one location', forL=['Retail chains and specialty stores','Cafés, restaurants and food service groups','Franchise networks, for franchisors and multi-unit franchisees','Service businesses with several branches or clinics'],
   modT='Seven tools, one weekly rhythm', mods=[
@@ -406,7 +407,7 @@ DOS = {
  'FR': dict(title='BridgeOne Decision OS | Outils de décision pour entreprises multisites',
   desc='Decision OS transforme vos données de ventes, de personnel, de stocks et de trésorerie en recommandations hebdomadaires que vos gestionnaires approuvent : horaires, transferts, démarques, achats et décisions sur les emplacements.',
   kick='BridgeOne Decision OS', h1='De meilleures décisions au quotidien, dans chaque emplacement',
-  lead='Decision OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il transforme les données dont vous disposez déjà en recommandations hebdomadaires claires sur le personnel, les stocks, les prix, les achats et les emplacements. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
+  lead='Decision OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il réunit quatre portails (Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction) sur les données dont vous disposez déjà, avec des recommandations hebdomadaires claires. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
   demo='Essayer la démo', book='Réserver un appel gratuit', demoNote='La démo utilise une entreprise fictive de cinq emplacements et fonctionne entièrement dans votre navigateur (en anglais).',
   forT='Conçu pour les entreprises de plus d’un emplacement', forL=['Chaînes de détail et boutiques spécialisées','Cafés, restaurants et groupes de restauration','Réseaux de franchises, franchiseurs et franchisés multi-unités','Entreprises de services avec plusieurs succursales ou cliniques'],
   modT='Sept outils, un rythme hebdomadaire', mods=[
@@ -438,7 +439,7 @@ DOS = {
  'AR': dict(title='BridgeOne Decision OS | أدوات قرار للشركات متعددة الفروع',
   desc='يحوّل Decision OS بيانات المبيعات والموظفين والمخزون والنقد إلى توصيات أسبوعية يعتمدها مديروك: جداول الموظفين، ونقل المخزون، والتخفيضات، وخطط الشراء، وقرارات الفروع.',
   kick='BridgeOne Decision OS', h1='قرارات يومية أفضل في كل فرع',
-  lead='Decision OS هو نظام القرار الذي صمّمته BridgeOne للشركات التي تدير أكثر من فرع. يحوّل البيانات المتوفرة لديك أصلًا إلى توصيات أسبوعية واضحة في الموظفين والمخزون والتسعير والشراء وقرارات الفروع. يعتمدها مديروك، ونقيس النتائج معك كل شهر.',
+  lead='Decision OS هو نظام القرار الذي صمّمته BridgeOne للشركات التي تدير أكثر من فرع. يجمع أربع بوابات، الموارد البشرية والمخزون والإمداد والامتياز والشبكة والرؤية التنفيذية، على البيانات المتوفرة لديك أصلًا، مع توصيات أسبوعية واضحة. يعتمدها مديروك، ونقيس النتائج معك كل شهر.',
   demo='جرّب العرض التجريبي', book='احجز مكالمة مجانية', demoNote='يستخدم العرض التجريبي شركة وهمية لديها خمسة فروع، ويعمل بالكامل داخل متصفحك (باللغة الإنجليزية).',
   forT='مصمَّم للشركات التي لديها أكثر من فرع', forL=['سلاسل التجزئة والمتاجر المتخصصة','المقاهي والمطاعم ومجموعات الأغذية','شبكات الامتياز التجاري، للمانحين وأصحاب الفروع المتعددة','شركات الخدمات ذات الفروع أو العيادات المتعددة'],
   modT='سبع أدوات وإيقاع أسبوعي واحد', mods=[
@@ -471,7 +472,8 @@ DOS = {
 def dos_page(L):
     P = DOS[L]; f = 'decision-os.html'
     li = ''.join(f'<li>{esc(x)}</li>' for x in P['forL'])
-    mods = ''.join(f'<article class="tile dos-m"><span class="dos-n">{i+1}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></article>' for i, (t, d) in enumerate(P['mods']))
+    pt, pp, pa, pl = PORT[L]
+    mods = ''.join(f'<article class="tile dos-m"><span class="dos-who">{esc(w)}</span><h3>{esc(t)}</h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in items) + '</ul></article>' for t, w, items in pl)
     how = ''.join(f'<li><b>{esc(t)}</b><span>{esc(d)}</span></li>' for t, d in P['how'])
     diff = ''.join(f'<div><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in P['diff'])
     pk = ''.join(f'<article class="tile dx-pk{" dx-feat" if i == 2 else ""}"><span class="dx-dur">{esc(x[1])}</span><h3>{esc(x[0])}</h3><p>{esc(x[2])}</p></article>' for i, x in enumerate(g(L, 'dec.pkgs')))
@@ -487,8 +489,9 @@ def dos_page(L):
 </div></section>
 <section class="sec" style="padding-top:72px"><div class="wrap">
 <div class="glass dos-for"><h2>{esc(P["forT"])}</h2><ul>{li}</ul></div>
-<div class="sh" style="margin-top:80px"><h2>{esc(P["modT"])}</h2></div>
-<div class="dos-mods">{mods}</div>
+<div class="sh" style="margin-top:80px"><h2>{esc(pt)}</h2><p>{esc(pp)}</p></div>
+<div class="dos-mods dos-ports">{mods}</div>
+<p class="dos-lic">{esc(pa)}</p>
 <div class="sh" style="margin-top:80px"><h2>{esc(P["howT"])}</h2></div>
 <ol class="dos-how">{how}</ol>
 <div class="sh" style="margin-top:80px"><h2>{esc(P["diffT"])}</h2></div>

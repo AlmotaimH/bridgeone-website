@@ -8,7 +8,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '71'
+V = '72'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -304,7 +304,7 @@ PRIV = {
   ('What we collect', 'When you use our contact form, call or email us, or book a consultation, we collect the details you provide, such as your name, email address, company and message.'),
   ('How we use it', 'We use your information only to respond to your enquiry and provide our services. We do not sell your personal information.'),
   ('How long we keep it', 'We keep your information only as long as we need it to respond to you, deliver our services and meet legal or contractual obligations, then delete it.'),
-  ('Service providers', 'We use trusted providers that handle your information only on our behalf: GitHub Pages hosts this website, FormSubmit delivers contact-form messages to our inbox, Google Calendar handles consultation bookings, Google Fonts supplies the website fonts, and Microsoft 365 runs our email. Some of these providers may store or process information outside Canada, including in the United States, where it is subject to local law. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
+  ('Service providers', 'We use trusted providers to host this website, deliver contact-form messages, handle consultation bookings and run our email. They handle your information only on our behalf, and some may process it outside Canada. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
   ('Tools on this site', 'The business health check, the decision check and the Decision OS demo run entirely in your browser. Nothing you enter in them is sent to us or saved.'),
   ('Website statistics', 'We use GoatCounter to count page visits. It does not use cookies or collect personal information, and we see only totals such as which pages were viewed and which country or website visitors came from.'),
   ('Your choices', 'You can ask to access, correct or delete your information at any time by emailing {e}.'),
@@ -314,7 +314,7 @@ PRIV = {
   ('Ce que nous recueillons', 'Lorsque vous utilisez notre formulaire de contact, nous appelez ou nous écrivez, ou réservez une consultation, nous recueillons les renseignements que vous fournissez, comme votre nom, votre adresse courriel, votre entreprise et votre message.'),
   ('Comment nous les utilisons', 'Nous utilisons vos renseignements uniquement pour répondre à votre demande et fournir nos services. Nous ne vendons pas vos renseignements personnels.'),
   ('Durée de conservation', 'Nous conservons vos renseignements seulement le temps nécessaire pour vous répondre, fournir nos services et respecter nos obligations légales ou contractuelles, puis nous les supprimons.'),
-  ('Fournisseurs de services', 'Nous faisons appel à des fournisseurs de confiance qui traitent vos renseignements uniquement en notre nom : GitHub Pages héberge ce site, FormSubmit achemine les messages du formulaire vers notre boîte courriel, Google Agenda gère les réservations de consultation, Google Fonts fournit les polices du site et Microsoft 365 gère nos courriels. Certains de ces fournisseurs peuvent conserver ou traiter des renseignements à l’extérieur du Canada, notamment aux États-Unis, où ils sont soumis aux lois locales. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
+  ('Fournisseurs de services', 'Nous faisons appel à des fournisseurs de confiance pour héberger ce site, acheminer les messages du formulaire, gérer les réservations de consultation et nos courriels. Ils traitent vos renseignements uniquement en notre nom, et certains peuvent les traiter à l’extérieur du Canada. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
   ('Outils sur ce site', 'Le diagnostic d’entreprise, le diagnostic des décisions et la démo Decision OS fonctionnent entièrement dans votre navigateur. Rien de ce que vous y saisissez ne nous est transmis ni n’est conservé.'),
   ('Statistiques du site', 'Nous utilisons GoatCounter pour compter les visites des pages. Il n’utilise pas de témoins (cookies) et ne recueille aucun renseignement personnel; nous ne voyons que des totaux, comme les pages consultées et le pays ou le site d’où viennent les visiteurs.'),
   ('Vos choix', 'Vous pouvez demander en tout temps à consulter, à corriger ou à supprimer vos renseignements en écrivant à {e}.'),
@@ -324,7 +324,7 @@ PRIV = {
   ('ما الذي نجمعه', 'عند استخدامك نموذج التواصل أو اتصالك بنا أو مراسلتنا أو حجز استشارة، نجمع البيانات التي تقدّمها، مثل اسمك وبريدك الإلكتروني وشركتك ورسالتك.'),
   ('كيف نستخدمها', 'نستخدم معلوماتك فقط للرد على استفسارك وتقديم خدماتنا. نحن لا نبيع معلوماتك الشخصية.'),
   ('مدة الاحتفاظ', 'نحتفظ بمعلوماتك فقط للمدة اللازمة للرد عليك وتقديم خدماتنا والوفاء بالتزاماتنا القانونية أو التعاقدية، ثم نحذفها.'),
-  ('مزوّدو الخدمات', 'نستعين بمزوّدين موثوقين يتعاملون مع معلوماتك نيابةً عنا فقط: GitHub Pages لاستضافة الموقع، وFormSubmit لإيصال رسائل نموذج التواصل إلى بريدنا، وتقويم Google لحجز الاستشارات، وGoogle Fonts لخطوط الموقع، وMicrosoft 365 لبريدنا الإلكتروني. قد يحتفظ بعض هؤلاء المزوّدين بالمعلومات أو يعالجونها خارج كندا، بما في ذلك الولايات المتحدة، حيث تخضع للقوانين المحلية. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
+  ('مزوّدو الخدمات', 'نستعين بمزوّدين موثوقين لاستضافة هذا الموقع وإيصال رسائل نموذج التواصل وإدارة حجوزات الاستشارات وبريدنا الإلكتروني. يتعاملون مع معلوماتك نيابةً عنا فقط، وقد يعالجها بعضهم خارج كندا. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
   ('الأدوات على هذا الموقع', 'يعمل فحص الأعمال وفحص القرارات والعرض التجريبي لـ Decision OS بالكامل داخل متصفحك، ولا يُرسَل إلينا أو يُحفَظ أي شيء تُدخله فيها.'),
   ('إحصاءات الموقع', 'نستخدم GoatCounter لعدّ زيارات الصفحات. لا يستخدم ملفات تعريف الارتباط (الكوكيز) ولا يجمع أي معلومات شخصية، ولا نرى إلا أرقامًا إجمالية مثل الصفحات التي تمت زيارتها والبلد أو الموقع الذي جاء منه الزوار.'),
   ('خياراتك', 'يمكنك في أي وقت طلب الاطلاع على معلوماتك أو تصحيحها أو حذفها بمراسلتنا على {e}.'),

@@ -405,8 +405,8 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "about.body":"BridgeOne Inc. is a business and management consulting firm based in the Greater Toronto Area. We help organizations bridge the gap between vision and execution, translating strategic priorities into better everyday decisions and measurable business results.",
      "why.items.1":["Plans and tools you can act on","Clear priorities, owners and timelines, and decision tools your managers use every week, not an 80-page report."],
      "footer.tag":"Management consulting, decision intelligence and leadership development that turn strategy into results.",
-     "meta.title":"BridgeOne Inc. | Management Consulting & Decision Intelligence in the Greater Toronto Area",
-     "meta.desc":"Management consulting in the Greater Toronto Area: strategy, decision intelligence with BridgeOne Decision OS, operating models and leadership development that turn plans into results."},
+     "meta.title":"BridgeOne | Management Consulting & Decision Intelligence, Toronto",
+     "meta.desc":"Toronto-area management consulting: strategy, decision intelligence with BridgeOne Decision OS, and leadership development that turn plans into results."},
     FR:{"hero.eyebrow":"Conseil en gestion, intelligence décisionnelle et développement du leadership",
      "hero.h":["Conseil en gestion","Intelligence décisionnelle","Développement du leadership"],
      "hero.sub":"BridgeOne aide les fondateurs, les propriétaires d’entreprise et les équipes de direction à transformer leur stratégie en résultats : des plans clairs, de meilleures décisions au quotidien fondées sur leurs propres données, et des leaders qui les font tenir.",
@@ -424,8 +424,8 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "about.body":"BridgeOne Inc. est une firme de conseil en affaires et en gestion établie dans la région du Grand Toronto. Nous aidons les organisations à combler l’écart entre vision et exécution, en traduisant leurs priorités stratégiques en meilleures décisions au quotidien et en résultats mesurables.",
      "why.items.1":["Des plans et des outils concrets","Des priorités, des responsables et des échéances clairs, et des outils de décision que vos gestionnaires utilisent chaque semaine, pas un rapport de 80 pages."],
      "footer.tag":"Conseil en gestion, intelligence décisionnelle et développement du leadership qui transforment la stratégie en résultats.",
-     "meta.title":"BridgeOne Inc. | Conseil en gestion et intelligence décisionnelle dans la région du Grand Toronto",
-     "meta.desc":"Conseil en gestion dans la région du Grand Toronto : stratégie, intelligence décisionnelle avec BridgeOne Decision OS, modèles opérationnels et développement du leadership qui transforment les plans en résultats."},
+     "meta.title":"BridgeOne | Conseil en gestion et intelligence décisionnelle",
+     "meta.desc":"Conseil en gestion dans le Grand Toronto : stratégie, intelligence décisionnelle avec Decision OS et leadership qui transforment les plans en résultats."},
     AR:{"hero.eyebrow":"الاستشارات الإدارية وذكاء القرار وتطوير القيادة",
      "hero.h":["الاستشارات الإدارية","ذكاء القرار","تطوير القيادة"],
      "hero.sub":"تساعد BridgeOne المؤسسين وأصحاب الأعمال وفرق القيادة على تحويل الاستراتيجية إلى نتائج: خطط واضحة، وقرارات يومية أفضل مبنية على بياناتهم، وقادة يرسّخونها.",
@@ -443,7 +443,7 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "about.body":"BridgeOne Inc. شركة استشارات أعمال وإدارة مقرها منطقة تورنتو الكبرى. نساعد المؤسسات على سد الفجوة بين الرؤية والتنفيذ، بتحويل الأولويات الاستراتيجية إلى قرارات يومية أفضل ونتائج أعمال قابلة للقياس.",
      "why.items.1":["خطط وأدوات قابلة للتنفيذ","أولويات ومسؤولون وجداول زمنية واضحة، وأدوات قرار يستخدمها مديروك كل أسبوع، لا تقرير من 80 صفحة."],
      "footer.tag":"استشارات إدارية وذكاء قرار وتطوير قيادة تحوّل الاستراتيجية إلى نتائج.",
-     "meta.title":"BridgeOne Inc. | الاستشارات الإدارية وذكاء القرار في منطقة تورنتو الكبرى",
+     "meta.title":"BridgeOne | الاستشارات الإدارية وذكاء القرار في تورنتو",
      "meta.desc":"استشارات إدارية في منطقة تورنتو الكبرى: الاستراتيجية، وذكاء القرار عبر BridgeOne Decision OS، ونماذج التشغيل، وتطوير القيادة التي تحوّل الخطط إلى نتائج."}};
     function setp(o,path,v){var k=path.split("."),i;for(i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=v;}
     ["EN","FR","AR"].forEach(function(l){for(var p in X[l])setp(T[l],p,X[l][p]);});

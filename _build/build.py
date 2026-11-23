@@ -1,3 +1,4 @@
+from urllib.parse import quote
 #!/usr/bin/env python3
 """BridgeOne site builder.
 Edit text in _build/i18n.js, the home template in _build/index.tpl.html,
@@ -7,7 +8,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '70'
+V = '71'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -236,7 +237,7 @@ def article_page(a, prev, nxt):
 {gal}{src}
 <div class="band"><h2>Want help putting ideas like these into practice in your organization?</h2><a class="btn btn-gold btn-lg" href="/#contact">Book a free consultation</a></div>
 <div class="share"><span>Share</span>
-<a class="btn btn-ghost" href="https://www.linkedin.com/sharing/share-offsite/?url={share}" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn btn-ghost" href="https://www.linkedin.com/sharing/share-offsite/?url={quote(share, safe="")}" target="_blank" rel="noopener">LinkedIn</a>
 <button class="btn btn-ghost" type="button" data-copy data-copied="Link copied">Copy link</button></div>
 {nav}
 </article></main>
@@ -298,30 +299,36 @@ def insights_page(L):
 ''' + inner_footer(L)
 
 PRIV = {
- 'EN': dict(t='Privacy policy', up='Last updated: November 15, 2026', secs=[
+ 'EN': dict(t='Privacy policy', up='Last updated: November 22, 2026', secs=[
   (None, 'BridgeOne Inc. (“BridgeOne”, “we”) respects your privacy. This policy explains what personal information we collect through this website and how we use it, in line with Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA).'),
   ('What we collect', 'When you use our contact form, call or email us, or book a consultation, we collect the details you provide, such as your name, email address, company and message.'),
   ('How we use it', 'We use your information only to respond to your enquiry and provide our services. We do not sell your personal information.'),
-  ('Service providers', 'We use trusted third parties to run this website, process forms and send email. They handle your information only on our behalf. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
+  ('How long we keep it', 'We keep your information only as long as we need it to respond to you, deliver our services and meet legal or contractual obligations, then delete it.'),
+  ('Service providers', 'We use trusted providers that handle your information only on our behalf: GitHub Pages hosts this website, FormSubmit delivers contact-form messages to our inbox, Google Calendar handles consultation bookings, Google Fonts supplies the website fonts, and Microsoft 365 runs our email. Some of these providers may store or process information outside Canada, including in the United States, where it is subject to local law. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
+  ('Tools on this site', 'The business health check, the decision check and the Decision OS demo run entirely in your browser. Nothing you enter in them is sent to us or saved.'),
   ('Website statistics', 'We use GoatCounter to count page visits. It does not use cookies or collect personal information, and we see only totals such as which pages were viewed and which country or website visitors came from.'),
   ('Your choices', 'You can ask to access, correct or delete your information at any time by emailing {e}.'),
-  ('Contact', 'Questions about this policy? Email {e}.')]),
- 'FR': dict(t='Politique de confidentialité', up='Dernière mise à jour : 15 novembre 2026', secs=[
+  ('Contact', 'Hossam Almotaim, Founder, is responsible for privacy at BridgeOne. Questions about this policy? Email {e}.')]),
+ 'FR': dict(t='Politique de confidentialité', up='Dernière mise à jour : 22 novembre 2026', secs=[
   (None, 'BridgeOne Inc. (« BridgeOne », « nous ») respecte votre vie privée. La présente politique explique quels renseignements personnels nous recueillons par l’entremise de ce site Web et comment nous les utilisons, conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) du Canada.'),
   ('Ce que nous recueillons', 'Lorsque vous utilisez notre formulaire de contact, nous appelez ou nous écrivez, ou réservez une consultation, nous recueillons les renseignements que vous fournissez, comme votre nom, votre adresse courriel, votre entreprise et votre message.'),
   ('Comment nous les utilisons', 'Nous utilisons vos renseignements uniquement pour répondre à votre demande et fournir nos services. Nous ne vendons pas vos renseignements personnels.'),
-  ('Fournisseurs de services', 'Nous faisons appel à des tiers de confiance pour exploiter ce site Web, traiter les formulaires et envoyer des courriels. Ils traitent vos renseignements uniquement en notre nom. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
+  ('Durée de conservation', 'Nous conservons vos renseignements seulement le temps nécessaire pour vous répondre, fournir nos services et respecter nos obligations légales ou contractuelles, puis nous les supprimons.'),
+  ('Fournisseurs de services', 'Nous faisons appel à des fournisseurs de confiance qui traitent vos renseignements uniquement en notre nom : GitHub Pages héberge ce site, FormSubmit achemine les messages du formulaire vers notre boîte courriel, Google Agenda gère les réservations de consultation, Google Fonts fournit les polices du site et Microsoft 365 gère nos courriels. Certains de ces fournisseurs peuvent conserver ou traiter des renseignements à l’extérieur du Canada, notamment aux États-Unis, où ils sont soumis aux lois locales. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
+  ('Outils sur ce site', 'Le diagnostic d’entreprise, le diagnostic des décisions et la démo Decision OS fonctionnent entièrement dans votre navigateur. Rien de ce que vous y saisissez ne nous est transmis ni n’est conservé.'),
   ('Statistiques du site', 'Nous utilisons GoatCounter pour compter les visites des pages. Il n’utilise pas de témoins (cookies) et ne recueille aucun renseignement personnel; nous ne voyons que des totaux, comme les pages consultées et le pays ou le site d’où viennent les visiteurs.'),
   ('Vos choix', 'Vous pouvez demander en tout temps à consulter, à corriger ou à supprimer vos renseignements en écrivant à {e}.'),
-  ('Nous joindre', 'Des questions sur cette politique? Écrivez à {e}.')]),
- 'AR': dict(t='سياسة الخصوصية', up='آخر تحديث: 15 نوفمبر 2026', secs=[
+  ('Nous joindre', 'Hossam Almotaim, fondateur, est responsable de la protection des renseignements personnels chez BridgeOne. Des questions sur cette politique? Écrivez à {e}.')]),
+ 'AR': dict(t='سياسة الخصوصية', up='آخر تحديث: 22 نوفمبر 2026', secs=[
   (None, 'تحترم BridgeOne Inc. («BridgeOne» أو «نحن») خصوصيتك. توضّح هذه السياسة المعلومات الشخصية التي نجمعها عبر هذا الموقع وكيف نستخدمها، وفقًا لقانون حماية المعلومات الشخصية والوثائق الإلكترونية الكندي (PIPEDA).'),
   ('ما الذي نجمعه', 'عند استخدامك نموذج التواصل أو اتصالك بنا أو مراسلتنا أو حجز استشارة، نجمع البيانات التي تقدّمها، مثل اسمك وبريدك الإلكتروني وشركتك ورسالتك.'),
   ('كيف نستخدمها', 'نستخدم معلوماتك فقط للرد على استفسارك وتقديم خدماتنا. نحن لا نبيع معلوماتك الشخصية.'),
-  ('مزوّدو الخدمات', 'نستعين بأطراف ثالثة موثوقة لتشغيل هذا الموقع ومعالجة النماذج وإرسال البريد الإلكتروني، وهم يتعاملون مع معلوماتك نيابةً عنا فقط. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
+  ('مدة الاحتفاظ', 'نحتفظ بمعلوماتك فقط للمدة اللازمة للرد عليك وتقديم خدماتنا والوفاء بالتزاماتنا القانونية أو التعاقدية، ثم نحذفها.'),
+  ('مزوّدو الخدمات', 'نستعين بمزوّدين موثوقين يتعاملون مع معلوماتك نيابةً عنا فقط: GitHub Pages لاستضافة الموقع، وFormSubmit لإيصال رسائل نموذج التواصل إلى بريدنا، وتقويم Google لحجز الاستشارات، وGoogle Fonts لخطوط الموقع، وMicrosoft 365 لبريدنا الإلكتروني. قد يحتفظ بعض هؤلاء المزوّدين بالمعلومات أو يعالجونها خارج كندا، بما في ذلك الولايات المتحدة، حيث تخضع للقوانين المحلية. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
+  ('الأدوات على هذا الموقع', 'يعمل فحص الأعمال وفحص القرارات والعرض التجريبي لـ Decision OS بالكامل داخل متصفحك، ولا يُرسَل إلينا أو يُحفَظ أي شيء تُدخله فيها.'),
   ('إحصاءات الموقع', 'نستخدم GoatCounter لعدّ زيارات الصفحات. لا يستخدم ملفات تعريف الارتباط (الكوكيز) ولا يجمع أي معلومات شخصية، ولا نرى إلا أرقامًا إجمالية مثل الصفحات التي تمت زيارتها والبلد أو الموقع الذي جاء منه الزوار.'),
   ('خياراتك', 'يمكنك في أي وقت طلب الاطلاع على معلوماتك أو تصحيحها أو حذفها بمراسلتنا على {e}.'),
-  ('تواصل معنا', 'لديك أسئلة عن هذه السياسة؟ راسلنا على {e}.')]),
+  ('تواصل معنا', 'المؤسس Hossam Almotaim هو المسؤول عن الخصوصية في BridgeOne. لديك أسئلة عن هذه السياسة؟ راسلنا على {e}.')]),
 }
 def privacy_page(L):
     P = PRIV[L]; e = '<a href="mailto:info@bridge-one.ca" dir="ltr">info@bridge-one.ca</a>'; body = ''
@@ -373,7 +380,7 @@ def rep2(m, L):
 PORT = {'EN': ('One system, four portals', "Start with the portal you need and add the others when you're ready. They share the same data, so a sales forecast that sets tomorrow's roster also sets stock orders and the cash plan.", 'Every engagement starts with an assessment and baseline.', [('People Portal', 'Our HR Portal and staff scheduling in one place, for HR and operations managers', ['Staff rosters built from hourly demand and your labour target', 'Labour cost and overtime control within employment standards', 'HR answers and step-by-step decision guides, by province', 'Online HR requests with approval chains, target times and automatic checks against employee records', 'Letters and forms on your letterhead, ready to issue']), ('Stock & Supply Portal', 'For operations, buying and merchandising teams', ['Reorder points and safety stock for every item and location', 'Transfers between locations before new orders', 'Markdown plans and promotion checks that protect margin']), ('Franchise & Network Portal', 'For franchisors, area managers and multi-unit operators', ['Scorecards that compare every location', 'Go or no-go checks for new locations', 'Franchise fee and franchisee health checks']), ('Executive View', 'For the CEO, COO, CFO and owners', ['Thirteen-week cash and buying plan', 'Monthly scorecard against the baseline', 'Decision log: who approved what, and what happened next'])]), 'FR': ('Un système, quatre portails', 'Commencez par le portail dont vous avez besoin et ajoutez les autres quand vous êtes prêt. Ils partagent les mêmes données : la prévision de ventes qui fixe l’horaire de demain fixe aussi les commandes et le plan de trésorerie.', 'Chaque mandat commence par une évaluation et un point de départ.', [('Portail Personnel', 'Notre portail RH et les horaires réunis, pour les gestionnaires RH et des opérations', ['Horaires bâtis à partir de la demande horaire et de votre cible de main-d’œuvre', 'Contrôle du coût de main-d’œuvre et des heures supplémentaires selon les normes du travail', 'Réponses RH et guides de décision étape par étape, par province', 'Demandes RH en ligne avec circuits d’approbation, délais cibles et vérification automatique des dossiers des employés', 'Lettres et formulaires à votre en-tête, prêts à remettre']), ('Portail Stocks et approvisionnement', 'Pour les équipes des opérations, des achats et de la mise en marché', ['Points de commande et stocks de sécurité pour chaque article et emplacement', 'Transferts entre emplacements avant toute nouvelle commande', 'Plans de démarque et vérification des promotions qui protègent la marge']), ('Portail Franchises et réseau', 'Pour les franchiseurs, directeurs régionaux et exploitants multi-unités', ['Tableaux comparatifs de chaque emplacement', 'Vérification « go ou no-go » des nouveaux emplacements', 'Analyse des redevances et de la santé des franchisés']), ('Vue de la direction', 'Pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires', ['Plan de trésorerie et d’achats sur treize semaines', 'Bilan mensuel par rapport au point de départ', 'Journal des décisions : qui a approuvé quoi, et ce qui a suivi'])]), 'AR': ('نظام واحد وأربع بوابات', 'ابدأ بالبوابة التي تحتاجها وأضف الباقي عندما تكون مستعدًا. تتشارك البوابات البيانات نفسها، فتوقّع المبيعات الذي يحدد جدول الغد يحدد أيضًا طلبات المخزون وخطة النقد.', 'يبدأ كل تعاون بتقييم وخط أساس.', [('بوابة الموارد البشرية', 'بوابة الموارد البشرية وجداول الموظفين في مكان واحد، لمديري الموارد البشرية والعمليات', ['جداول موظفين مبنية على الطلب في كل ساعة وعلى هدف تكلفة العمالة', 'ضبط تكلفة العمالة والعمل الإضافي ضمن معايير العمل', 'إجابات الموارد البشرية وأدلة قرار خطوة بخطوة حسب المقاطعة', 'طلبات موارد بشرية إلكترونية بمسارات اعتماد ومُهل مستهدفة وتحقق تلقائي من سجلات الموظفين', 'خطابات ونماذج على ترويسة شركتك جاهزة للإصدار']), ('بوابة المخزون والإمداد', 'لفرق العمليات والمشتريات والتسويق التجاري', ['نقاط إعادة الطلب ومخزون الأمان لكل صنف وفرع', 'نقل المخزون بين الفروع قبل أي طلب جديد', 'خطط تخفيض وفحص للعروض يحميان الهامش']), ('بوابة الامتياز والشبكة', 'لمانحي الامتياز ومديري المناطق ومشغّلي الفروع المتعددة', ['بطاقات أداء تقارن كل الفروع', 'فحص «نعم أم لا» للمواقع الجديدة', 'تحليل رسوم الامتياز وصحة أصحاب الفروع']), ('الرؤية التنفيذية', 'للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك', ['خطة نقد ومشتريات لثلاثة عشر أسبوعًا', 'بطاقة أداء شهرية مقارنة بخط الأساس', 'سجل القرارات: من اعتمد ماذا، وما الذي حدث بعدها'])])}
 DOS = {
  'EN': dict(title='BridgeOne Decision OS | Decision tools for multi-location businesses',
-  desc='Decision OS turns your sales, staffing, stock and cash data into weekly recommendations your managers can approve: rosters, stock transfers, markdowns, buying plans and location decisions.',
+  desc='BridgeOne Decision OS turns your sales, staff, stock and cash data into weekly decisions your managers approve. Four portals for multi-location businesses.',
   kick='BridgeOne Decision OS', h1='Better everyday decisions across every location',
   lead='Decision OS is BridgeOne’s own decision system for businesses with several locations. It brings four portals, People, Stock & Supply, Franchise & Network and an Executive View, onto the data you already have, with clear weekly recommendations. Your managers approve them, and we measure the results with you every month.',
   demo='Try the live demo', book='Book a free call', demoNote='The demo uses a fictional five-location business and runs entirely in your browser.',
@@ -407,7 +414,7 @@ DOS = {
   ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether Decision OS fits.',
   note='Results depend on your data and how consistently recommendations are applied. Figures in the demo are illustrative.'),
  'FR': dict(title='BridgeOne Decision OS | Outils de décision pour entreprises multisites',
-  desc='Decision OS transforme vos données de ventes, de personnel, de stocks et de trésorerie en recommandations hebdomadaires que vos gestionnaires approuvent : horaires, transferts, démarques, achats et décisions sur les emplacements.',
+  desc='BridgeOne Decision OS transforme vos données en décisions hebdomadaires que vos gestionnaires approuvent. Quatre portails pour les entreprises multisites.',
   kick='BridgeOne Decision OS', h1='De meilleures décisions au quotidien, dans chaque emplacement',
   lead='Decision OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il réunit quatre portails (Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction) sur les données dont vous disposez déjà, avec des recommandations hebdomadaires claires. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
   demo='Essayer la démo', book='Réserver un appel gratuit', demoNote='La démo utilise une entreprise fictive de cinq emplacements et fonctionne entièrement dans votre navigateur (en anglais).',

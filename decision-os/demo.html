@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Decision OS live demo | BridgeOne Inc.</title>
 <meta name="description" content="Try BridgeOne Decision OS with a fictional five-location business: staff rosters, stock and transfers, markdowns, buying and cash, and location decisions.">
+<link rel="canonical" href="https://bridge-one.ca/decision-os/demo.html">
+<meta property="og:title" content="BridgeOne Decision OS live demo">
+<meta property="og:description" content="Try Decision OS with a fictional five-location business: rosters, HR approvals, stock, markdowns, cash and location decisions.">
+<meta property="og:image" content="https://bridge-one.ca/assets/og-image.jpg">
+<meta property="og:url" content="https://bridge-one.ca/decision-os/demo.html">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
@@ -48,7 +54,7 @@ h1,h2,h3{margin:0;color:#fff;letter-spacing:-.01em;line-height:1.2}
 .side .note{margin-top:18px;font-size:11.5px;color:var(--mute);padding:0 12px}
 main{padding:26px 30px 60px;min-width:0}
 .ph{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:18px}
-.ph h1{font-size:26px}
+.ph h1,.ph .pt{font-size:26px}
 .ph p{margin:6px 0 0;color:var(--soft);max-width:72ch}
 .kick{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold-lt);margin-bottom:6px}
 .grid{display:grid;gap:16px}
@@ -121,6 +127,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .foot{margin-top:30px;font-size:11.5px;color:var(--mute);border-top:1px solid var(--border);padding-top:14px}
 .hide{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:860px){
  .app{grid-template-columns:minmax(0,1fr)}
@@ -134,7 +141,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
  .g3,.g2{grid-template-columns:minmax(0,1fr)}
  .top .in{padding:10px 14px;gap:10px;flex-wrap:wrap}
  .top .hide-m{display:none}
- .ph h1{font-size:22px}
+ .ph h1,.ph .pt{font-size:22px}
 }
 @media (max-width:520px){.chart .ax{font-size:19px}.chart{margin:0 -6px}.g4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.kpi .v{font-size:21px}.q{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
@@ -154,29 +161,30 @@ tr.sel td{background:rgba(242,180,90,.08)}
 <div class="app">
 <nav class="side" aria-label="Decision OS modules">
  <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span><span style="display:block;margin-top:8px;color:var(--soft)">One system, four portals · People Portal includes HR</span></div>
- <div class="tabs" role="tablist">
-  <button class="tab" role="tab" data-v="overview" aria-selected="true"><span class="n">1</span>Assessment</button>
+ <div class="tabs">
+  <button class="tab" type="button" data-v="overview" aria-selected="true"><span class="n">1</span>Assessment</button>
   <p class="grp">People Portal</p>
-  <button class="tab" role="tab" data-v="roster" aria-selected="false"><span class="n">2</span>Roster &amp; labour</button>
-  <button class="tab" role="tab" data-v="hr" aria-selected="false"><span class="n">3</span>HR requests &amp; answers</button>
+  <button class="tab" type="button" data-v="roster" aria-selected="false"><span class="n">2</span>Roster &amp; labour</button>
+  <button class="tab" type="button" data-v="hr" aria-selected="false"><span class="n">3</span>HR requests &amp; answers</button>
   <p class="grp">Stock &amp; Supply Portal</p>
-  <button class="tab" role="tab" data-v="stock" aria-selected="false"><span class="n">4</span>Stock &amp; transfers</button>
-  <button class="tab" role="tab" data-v="price" aria-selected="false"><span class="n">5</span>Pricing &amp; markdowns</button>
+  <button class="tab" type="button" data-v="stock" aria-selected="false"><span class="n">4</span>Stock &amp; transfers</button>
+  <button class="tab" type="button" data-v="price" aria-selected="false"><span class="n">5</span>Pricing &amp; markdowns</button>
   <p class="grp">Franchise &amp; Network Portal</p>
-  <button class="tab" role="tab" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
+  <button class="tab" type="button" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
   <p class="grp">Executive View</p>
-  <button class="tab" role="tab" data-v="cash" aria-selected="false"><span class="n">7</span>Cash &amp; buying plan</button>
-  <button class="tab" role="tab" data-v="deliv" aria-selected="false"><span class="n">8</span>Deliverables &amp; sign-off</button>
-  <button class="tab" role="tab" data-v="log" aria-selected="false"><span class="n">9</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
+  <button class="tab" type="button" data-v="cash" aria-selected="false"><span class="n">7</span>Cash &amp; buying plan</button>
+  <button class="tab" type="button" data-v="deliv" aria-selected="false"><span class="n">8</span>Deliverables &amp; sign-off</button>
+  <button class="tab" type="button" data-v="log" aria-selected="false"><span class="n">9</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
  </div>
  <p class="note">Everything runs in your browser. Nothing you type leaves this page. Numbers are invented for the demo.</p>
 </nav>
 
 <main id="main">
+<h1 class="sr">BridgeOne Decision OS live demo</h1>
 
 <!-- OVERVIEW -->
 <section data-p="overview">
- <div class="ph"><div><div class="kick">START HERE · ASSESSMENT &amp; BASELINE</div><h1>Where the money is in your everyday decisions</h1>
+ <div class="ph"><div><div class="kick">START HERE · ASSESSMENT &amp; BASELINE</div><h2 class="pt">Where the money is in your everyday decisions</h2>
  <p>We start every client with this assessment. Answer how each decision is made today; the estimates below come from the other tools in this demo, run on the sample company's numbers, and show which portal to start with.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>How are these decisions made today?</h2><div class="qs" id="qs"></div></div>
@@ -193,7 +201,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- ROSTER -->
 <section data-p="roster" class="hide">
- <div class="ph"><div><div class="kick">PEOPLE PORTAL · STAFF ROSTER &amp; LABOUR COST</div><h1>The right people, at the right hour</h1>
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · STAFF ROSTER &amp; LABOUR COST</div><h2 class="pt">The right people, at the right hour</h2>
  <p>Hourly demand becomes the staff each hour needs, then shifts that cover it at the lowest cost within your rules.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -216,7 +224,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- HR -->
 <section data-p="hr" class="hide">
- <div class="ph"><div><div class="kick">PEOPLE PORTAL · HR REQUESTS, APPROVALS &amp; ANSWERS</div><h1>HR requests that move, with the right checks</h1>
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · HR REQUESTS, APPROVALS &amp; ANSWERS</div><h2 class="pt">HR requests that move, with the right checks</h2>
  <p>Location Managers submit requests online. Each one follows an approval chain based on its risk, with a target time, and the HR Help Desk checks the details against employee records automatically before HR confirms.</p></div></div>
  <div class="grid g4" id="hK"></div>
  <div class="grid split" style="margin-top:16px">
@@ -233,7 +241,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 </section>
 <!-- STOCK -->
 <section data-p="stock" class="hide">
- <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · REORDER &amp; TRANSFERS</div><h1>Enough on the shelf, less cash on it</h1>
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · REORDER &amp; TRANSFERS</div><h2 class="pt">Enough on the shelf, less cash on it</h2>
  <p>Every item at every location gets a safety stock and a reorder point. Before ordering, the tool checks whether another location has extra to move.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -253,7 +261,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- PRICE -->
 <section data-p="price" class="hide">
- <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · PRICING, PROMOTIONS &amp; MARKDOWNS</div><h1>Mark down on purpose, not in a panic</h1>
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · PRICING, PROMOTIONS &amp; MARKDOWNS</div><h2 class="pt">Mark down on purpose, not in a panic</h2>
  <p>For each seasonal item, the tool tests every week-by-week discount path and keeps the one with the highest total margin, including what's left at the end of the season.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Item</h2><div class="f">
@@ -275,7 +283,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- CASH -->
 <section data-p="cash" class="hide">
- <div class="ph"><div><div class="kick">EXECUTIVE VIEW · CASH &amp; BUYING PLAN</div><h1>Buy what you need without running out of cash</h1>
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · CASH &amp; BUYING PLAN</div><h2 class="pt">Buy what you need without running out of cash</h2>
  <p>Thirteen weeks of sales receipts, payroll, rent and supplier payments. Orders that can wait are moved or split so cash never drops below your floor.</p></div></div>
  <div class="grid split">
   <div class="card"><h2>Settings</h2><div class="f">
@@ -293,7 +301,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- LOCATIONS -->
 <section data-p="loc" class="hide">
- <div class="ph"><div><div class="kick">FRANCHISE &amp; NETWORK PORTAL · LOCATION &amp; FRANCHISE DECISIONS</div><h1>Know which locations carry the network</h1>
+ <div class="ph"><div><div class="kick">FRANCHISE &amp; NETWORK PORTAL · LOCATION &amp; FRANCHISE DECISIONS</div><h2 class="pt">Know which locations carry the network</h2>
  <p>A scorecard that compares every location with the network, a go/no-go check for a new location, and a fee check for franchise networks.</p></div></div>
  <div class="card" style="margin-bottom:16px"><h2>Location scorecard <small>last 4 weeks, % of sales</small></h2><div class="tw"><table id="lT"></table></div><p class="why">Flags appear when a cost line is more than 2 points above the network average. Each flag links to the tool that fixes it.</p></div>
  <div class="grid g2">
@@ -313,7 +321,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 
 <!-- DELIVERABLES -->
 <section data-p="deliv" class="hide">
- <div class="ph"><div><div class="kick">EXECUTIVE VIEW · ENGAGEMENT DELIVERABLES &amp; SIGN-OFF</div><h1>Every stage ends with something you sign off</h1>
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · ENGAGEMENT DELIVERABLES &amp; SIGN-OFF</div><h2 class="pt">Every stage ends with something you sign off</h2>
  <p>Each BRIDGE stage has a named deliverable, an owner, a due week and clear acceptance criteria. The next stage starts only when an executive, or a manager they delegate, signs off the one before.</p></div></div>
  <div class="grid g4" id="dK"></div>
  <div class="card" style="margin-top:16px"><h2>BRIDGE deliverables <small>sample engagement, week 5 of 10</small></h2><div class="tw"><table id="dT"></table></div>
@@ -321,7 +329,7 @@ tr.sel td{background:rgba(242,180,90,.08)}
 </section>
 <!-- LOG -->
 <section data-p="log" class="hide">
- <div class="ph"><div><div class="kick">EXECUTIVE VIEW · DECISION LOG &amp; MONTHLY SCORECARD</div><h1>Every decision, its owner and its result</h1>
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · DECISION LOG &amp; MONTHLY SCORECARD</div><h2 class="pt">Every decision, its owner and its result</h2>
  <p>Approvals follow your roles and the risk of each decision: Location Managers propose; Area Managers, Operations and executives approve; for people decisions, the HR Help Desk checks and HR confirms. Each month we compare results with the baseline.</p></div>
  <button class="btn btn-line btn-s" id="csv" type="button">Download CSV</button></div>
  <div class="card"><div class="tw"><table id="logT"></table></div><p class="why" id="logEmpty">Approve or adjust a recommendation in any tool and it appears here.</p></div>
@@ -344,7 +352,7 @@ var pc=function(n,d){return (n).toFixed(d==null?1:d)+"%"};
 var nf=function(n,d){return Number(n).toLocaleString("en-CA",{maximumFractionDigits:d||0,minimumFractionDigits:d||0})};
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function num(id,def){var v=parseFloat($("#"+id).value);return isFinite(v)?v:def}
+function num(id,def,lo,hi){var v=parseFloat($("#"+id).value);if(!isFinite(v))v=def;if(lo!=null&&v<lo)v=lo;if(hi!=null&&v>hi)v=hi;return v}
 function kpi(l,v,d){return '<div class="card kpi"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="d">'+(d||"")+'</div></div>'}
 function delta(a,b,lowerBetter,fmt){var d=b-a;if(Math.abs(d)<1e-9)return 'no change';var good=lowerBetter?d<0:d>0;return '<span class="'+(good?"up":"dn")+'">'+(d>0?"+":"−")+fmt(Math.abs(d))+'</span> vs today'}
 var tip=$("#tip");
@@ -378,12 +386,12 @@ var POS=[["Coffee roaster",26000,1,30,false,1],["Dairy co-op",9000,1,14,false,1]
 /* supplier, amount, order week, net days, can move, latest week */
 
 /* ---------- tabs ---------- */
-function show(v){state.view=v;$$(".tab").forEach(function(t){t.setAttribute("aria-selected",t.dataset.v===v?"true":"false");if(t.dataset.v===v&&innerWidth<=860){var tb=t.parentNode;tb.scrollLeft=t.offsetLeft-tb.offsetLeft-12}});$$("section[data-p]").forEach(function(s){s.classList.toggle("hide",s.dataset.p!==v)});hideTip();try{history.replaceState(null,"","#"+v)}catch(e){}window.scrollTo(0,0);render(v)}
+function show(v){state.view=v;$$(".tab").forEach(function(t){t.setAttribute("aria-selected",t.dataset.v===v?"true":"false");if(t.dataset.v===v)t.setAttribute("aria-current","page");else t.removeAttribute("aria-current");if(t.dataset.v===v&&innerWidth<=860){var tb=t.parentNode;tb.scrollLeft=t.offsetLeft-tb.offsetLeft-12}});$$("section[data-p]").forEach(function(s){s.classList.toggle("hide",s.dataset.p!==v)});hideTip();try{history.replaceState(null,"","#"+v)}catch(e){}window.scrollTo(0,0);render(v)}
 $$(".tab").forEach(function(t){t.addEventListener("click",function(){show(t.dataset.v)})});
 
 /* ---------- charts (SVG, hand-built) ---------- */
 function niceMax(m){if(m<=0)return 1;var p=Math.pow(10,Math.floor(Math.log10(m))),n=m/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p}
-function frame(W,H,P,max,ticks,fmt){var s='';var m1=max/Math.pow(10,Math.floor(Math.log10(max)));ticks=(m1===2.5||m1===10||m1===5)?5:4;for(var i=0;i<=ticks;i++){var v=max*i/ticks,y=P.t+(H-P.t-P.b)*(1-i/ticks);s+='<line class="gl" x1="'+P.l+'" x2="'+(W-P.r)+'" y1="'+y+'" y2="'+y+'"/><text class="ax" x="'+(P.l-8)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(v)+'</text>'}return s}
+function frame(W,H,P,max,ticks,fmt){var s='';var t4=max/4;ticks=(max>40||Math.abs(t4-Math.round(t4))<1e-9)?4:5;for(var i=0;i<=ticks;i++){var v=max*i/ticks,y=P.t+(H-P.t-P.b)*(1-i/ticks);s+='<line class="gl" x1="'+P.l+'" x2="'+(W-P.r)+'" y1="'+y+'" y2="'+y+'"/><text class="ax" x="'+(P.l-8)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(v)+'</text>'}return s}
 function lineChart(el,labels,series,opt){opt=opt||{};var W=720,H=opt.h||260,P={l:56,r:16,t:12,b:30};var all=[];series.forEach(function(s){all=all.concat(s.v)});if(opt.floor!=null)all.push(opt.floor);
  var min=opt.min!=null?opt.min:Math.min(0,Math.min.apply(null,all));var max=niceMax(Math.max.apply(null,all)*1.05);var n=labels.length,x=function(i){return P.l+(W-P.l-P.r)*(n===1?.5:i/(n-1))},y=function(v){return P.t+(H-P.t-P.b)*(1-(v-min)/(max-min))};
  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opt.label||"chart")+'">'+frame(W,H,P,max,4,opt.fmt||function(v){return Math.round(v)});
@@ -429,21 +437,21 @@ function rosterWeek(loc,o){var days=[],staff=staffFor(loc),need=0,planH=0,curH=0
  /* current roster cost: same staff mix, typical overtime of 6% hours */
  var ftShare=.55;costCur=curH*(ftShare*o.wft+(1-ftShare)*o.wpt)+curH*.06*o.wft*.5;
  return {days:days,staff:staff,need:need,planH:planH,curH:curH,ot:ot,costPlan:costPlan,costCur:costCur,sales:sales}}
-function ropts(){return {prod:Math.max(4,num("rProd",9)),min:Math.max(1,num("rMin",2)),smin:Math.max(2,Math.round(num("rSmin",4))),smax:Math.max(Math.round(num("rSmin",4)),Math.round(num("rSmax",8))),wft:num("rWft",23),wpt:num("rWpt",18.5),ot:num("rOt",44),ptcap:num("rPtcap",24)}}
+function ropts(){var smin=Math.round(num("rSmin",4,2,8));return {prod:num("rProd",9,4,60),min:Math.round(num("rMin",2,1,10)),smin:smin,smax:Math.max(smin,Math.round(num("rSmax",8,smin,12))),wft:num("rWft",23,0,200),wpt:num("rWpt",18.5,0,200),ot:num("rOt",44,20,80),ptcap:num("rPtcap",24,0,60)}}
 function renderRoster(){var o=ropts(),L=LOCS[$("#rLoc").selectedIndex],d=$("#rDay").selectedIndex,W=rosterWeek(L,o),R=W.days[d];
  var under=0,over=0,curUnder=0,curOver=0;R.req.forEach(function(v,i){under+=Math.max(0,v-R.cov[i]);over+=Math.max(0,R.cov[i]-v);curUnder+=Math.max(0,v-R.cur[i]);curOver+=Math.max(0,R.cur[i]-v)});
  var lpC=W.costCur/W.sales*100,lpP=W.costPlan/W.sales*100;
  $("#rK").innerHTML=kpi("Labour cost this week",fk(W.costPlan),delta(W.costCur,W.costPlan,true,fk))+kpi("Labour % of sales",pc(lpP),delta(lpC,lpP,true,function(v){return v.toFixed(1)+" pts"}))+kpi("Short-staffed hours ("+DAYS[d].slice(0,3)+")",String(under),"today's roster: "+curUnder)+kpi("Overtime hours this week",nf(W.ot,0),"paid at 1.5×");
  $("#rChT").textContent="Coverage by hour · "+L.name+", "+DAYS[d];
  barLine($("#rCh"),R.hrs.map(function(h){return String(h)}),{n:"Staff needed",v:R.req,c:"#B98432"},[{n:"Current roster",v:R.cur,c:"#AEB9CC"},{n:"Recommended roster",v:R.cov,c:"#6C7CEE"}],{label:"Staff needed and rostered by hour",h:250,tipLabel:function(i){return R.hrs[i]+":00 to "+(R.hrs[i]+1)+":00"}});
- $("#rWhy").innerHTML='<b>Why:</b> at '+o.prod+' customers per staff-hour, '+L.name+' needs between '+Math.min.apply(null,R.req)+' and '+Math.max.apply(null,R.req)+' people on '+DAYS[d]+'. The current flat roster leaves '+curUnder+' hours short and '+curOver+' hours over; the recommended shifts follow the peaks instead.'+(over?' '+over+' hour'+(over>1?'s':'')+' of overlap remain where a shift can\'t be shorter than '+o.smin+' hours.':'');
+ $("#rWhy").innerHTML='<b>Why:</b> at '+o.prod+' customers per staff-hour, '+L.name+' needs between '+Math.min.apply(null,R.req)+' and '+Math.max.apply(null,R.req)+' people on '+DAYS[d]+'. The current roster leaves '+curUnder+' hours short and '+curOver+' hours over; the recommended shifts follow the peaks instead.'+(over?' '+over+' hour'+(over>1?'s':'')+' of overlap remain where a shift can\'t be shorter than '+o.smin+' hours.':'');
  $("#rShT").textContent=L.name+", "+DAYS[d]+" · "+R.shifts.length+" shifts";
  var rows='<tr><th>Shift</th><th>Hours</th><th class="tl">Assigned to</th><th>Type</th></tr>';R.shifts.slice().sort(function(a,b){return a.s-b.s}).forEach(function(s){rows+='<tr><td>'+s.s+':00 to '+s.e+':00</td><td>'+s.len+'</td><td class="tl">'+esc(s.who)+'</td><td>'+(s.type==="FT"?"Full-time":"Part-time")+'</td></tr>'});$("#rT").innerHTML=rows;
  SNAP.roster={save:(W.costCur-W.costPlan)*52,summary:L.name+": "+fk(W.costPlan)+"/week labour ("+pc(lpP)+" of sales)"};return W}
 function rosterAllSavings(){var o=ropts(),s=0;LOCS.forEach(function(L){var W=rosterWeek(L,o);s+=(W.costCur-W.costPlan)*52});return s}
 
 /* ---------- STOCK ---------- */
-function stockCalc(){var z=+$("#sSl").value,rev=Math.max(1,num("sRev",7)),trip=num("sTr",35);var rows=STOCK.map(function(r){var ss=z*r.sd*Math.sqrt(r.lt),rop=r.avg*r.lt+ss,out=rop+r.avg*rev,pos=r.oh+r.oo;return Object.assign({},r,{ss:ss,rop:rop,out:out,pos:pos,need:pos<rop?Math.ceil(out-pos):0,surplus:r.oh>out*1.25?Math.floor(r.oh-out):0})});
+function stockCalc(){var z=+$("#sSl").value,rev=num("sRev",7,1,30),trip=num("sTr",35,0,1e5);var rows=STOCK.map(function(r){var ss=z*r.sd*Math.sqrt(r.lt),rop=r.avg*r.lt+ss,out=rop+r.avg*rev,pos=r.oh+r.oo;return Object.assign({},r,{ss:ss,rop:rop,out:out,pos:pos,need:pos<rop?Math.ceil(out-pos):0,surplus:r.oh>out*1.25?Math.floor(r.oh-out):0})});
  var transfers=[];ITEMS.forEach(function(it,i){var sur=rows.filter(function(r){return r.item===i&&r.surplus>0}).sort(function(a,b){return b.surplus-a.surplus}),sh=rows.filter(function(r){return r.item===i&&r.need>0}).sort(function(a,b){return b.need-a.need});
   sh.forEach(function(s){sur.forEach(function(u){if(s.need<=0||u.surplus<=0)return;var q=Math.min(s.need,u.surplus);var value=q*it[1]*.35;if(value<trip&&q*it[1]<trip*3)return;transfers.push({item:i,from:u.loc,to:s.loc,q:q,value:q*it[1]});s.need-=q;u.surplus-=q;u.oh-=q;s.pos+=q})})});
  return {rows:rows,transfers:transfers,z:z}}
@@ -465,7 +473,7 @@ var STEPS=[0,.1,.2,.3,.4,.5,.6];
 function simulate(path,o){var stock=o.stock,profit=0,left=[],rev=0;for(var w=0;w<path.length;w++){var p=o.price*(1-path[w]),dem=o.base*Math.pow(p/o.price,-o.el),sold=Math.min(stock,dem);stock-=sold;rev+=sold*p;profit+=sold*(p-o.cost);left.push(stock)}
  profit+=stock*o.cost*o.salv/100;return {profit:profit,left:left,rev:rev,end:stock}}
 function bestPath(o){var W=o.weeks,best=null;(function rec(path,minI){if(path.length===W){var r=simulate(path,o);if(!best||r.profit>best.r.profit+1e-6)best={p:path.slice(),r:r};return}for(var i=minI;i<STEPS.length;i++){path.push(STEPS[i]);rec(path,i);path.pop()}})([],0);return best}
-function popts(){return {price:num("pPrice",50),cost:num("pCost",20),stock:Math.max(0,num("pStock",500)),weeks:Math.min(8,Math.max(2,Math.round(num("pWeeks",6)))),base:Math.max(1,num("pBase",80)),el:Math.max(.3,num("pEl",2)),salv:Math.min(100,Math.max(0,num("pSalv",30)))}}
+function popts(){return {price:num("pPrice",50,0.5,1e6),cost:num("pCost",20,0,1e6),stock:Math.round(num("pStock",500,0,1e7)),weeks:Math.round(num("pWeeks",6,2,8)),base:num("pBase",80,1,1e7),el:num("pEl",2,.3,5),salv:num("pSalv",30,0,100)}}
 function fillItem(){var it=SEASON[$("#pItem").selectedIndex];$("#pPrice").value=it[1];$("#pCost").value=it[2];$("#pStock").value=it[3];$("#pBase").value=it[4];$("#pEl").value=it[5];$("#pSalv").value=it[6];$("#pWeeks").value=it[7]}
 function renderPrice(){var o=popts(),B=bestPath(o),habit=[];for(var w=0;w<o.weeks;w++)habit.push(w===o.weeks-1?.5:0);var H=simulate(habit,o);
  var gain=B.r.profit-H.profit;
@@ -476,7 +484,7 @@ function renderPrice(){var o=popts(),B=bestPath(o),habit=[];for(var w=0;w<o.week
  $("#pWhy").innerHTML='<b>Why:</b> the tool compared every discount path for '+o.weeks+' weeks (discounts only go deeper, never back up). '+(gain>0?'This plan earns <b>'+fm(gain)+'</b> more margin than holding full price and clearing at 50% in the last week.':'Holding the price is already the best plan for this item.')+' Leftovers are valued at '+o.salv+'% of cost.';
  var tot=0;SEASON.forEach(function(it){var oo={price:it[1],cost:it[2],stock:it[3],base:it[4],el:it[5],salv:it[6],weeks:it[7]};var b=bestPath(oo),h=[];for(var w2=0;w2<oo.weeks;w2++)h.push(w2===oo.weeks-1?.5:0);tot+=b.r.profit-simulate(h,oo).profit});
  SNAP.price={save:tot*1.6,summary:$("#pItem").value+": "+B.p.map(function(d){return Math.round(d*100)+"%"}).join(" → ")};renderPromo()}
-function renderPromo(){var d=num("prD",20)/100,e=num("prE",2.2),c=num("prC",30)/100,w=num("prW",2);var it=SEASON[$("#pItem").selectedIndex],o=popts();var base=o.base,price=o.price,cost=o.cost;
+function renderPromo(){var d=num("prD",20,0,90)/100,e=num("prE",2.2,.3,5),c=num("prC",30,0,100)/100,w=Math.round(num("prW",2,1,12));var it=SEASON[$("#pItem").selectedIndex],o=popts();var base=o.base,price=o.price,cost=o.cost;
  var up=Math.pow(1-d,-e),units=base*up,inc=units-base,margNew=units*(price*(1-d)-cost),margOld=base*(price-cost),cann=inc*c*(price-cost)*.6;var net=(margNew-margOld-cann)*w;
  $("#prOut").innerHTML='At '+Math.round(d*100)+'% off, '+esc(it[0]).toLowerCase()+' sells about <b>'+nf(units)+'</b> a week instead of '+nf(base)+' (+'+Math.round((up-1)*100)+'%). After the lower price and the sales it takes from other items, the promotion '+(net>=0?'<span class="st good">adds about '+fm(net)+' margin</span> over '+w+' week'+(w>1?'s':'')+'.':'<span class="st bad">loses about '+fm(-net)+' margin</span> over '+w+' week'+(w>1?'s':'')+'. Try a smaller discount.')}
 
@@ -489,7 +497,7 @@ function cashPlan(o){var base=POS.map(function(p,i){return {i:i,sup:p[0],amt:p[1
   var cand=plan.filter(function(p){return p.move&&p.week+Math.round(p.net/7)<=wk&&p.week<p.late}).sort(function(a,b){return b.amt-a.amt});if(!cand.length){var sp=plan.filter(function(p){return p.move&&!p.split&&p.amt>15000})[0];if(!sp)break;var half=Math.round(sp.amt/2);sp.amt-=half;sp.split=true;plan.push({i:sp.i,sup:sp.sup+" (second half)",amt:half,week:Math.min(sp.late,sp.week+3),net:sp.net,move:false,late:sp.late,split:true,part:true});continue}
   cand[0].week+=1}
  return {base:base,plan:plan}}
-function renderCash(){var o={open:num("cOpen",85000),floor:num("cFloor",30000),outlook:+$("#cOut").value};var P=cashPlan(o),A=cashSim(P.base,o),B=cashSim(P.plan,o);
+function renderCash(){var o={open:num("cOpen",85000,-1e9,1e9),floor:num("cFloor",30000,-1e9,1e9),outlook:+$("#cOut").value};var P=cashPlan(o),A=cashSim(P.base,o),B=cashSim(P.plan,o);
  var minA=Math.min.apply(null,A),minB=Math.min.apply(null,B),belowA=A.filter(function(v){return v<o.floor}).length,belowB=B.filter(function(v){return v<o.floor}).length;
  $("#cK").innerHTML=kpi("Lowest cash, recommended",fk(minB),delta(minA,minB,false,fk))+kpi("Weeks below the floor",String(belowB),"current plan: "+belowA)+kpi("Orders moved or split",String(P.plan.filter(function(p,i){var b=P.base[p.i];return p.part||!b||p.week!==b.week||p.amt!==b.amt}).length),"only orders marked “can move”")+kpi("Cash at week 13",fk(B[12]),"same total buying");
  var lab=[];for(var w=1;w<=13;w++)lab.push("W"+w);lineChart($("#cCh"),lab,[{n:"Current plan",v:A,c:"#AEB9CC"},{n:"Recommended plan",v:B,c:"#6C7CEE"}],{label:"Cash at the end of each week",fmt:fk,floor:o.floor,h:260,tipLabel:function(i){return "Week "+(i+1)}});
@@ -504,11 +512,11 @@ function renderLoc(){var R=locRows(),avg=function(k){return R.reduce(function(a,
   t+='<tr><td class="tl">'+x.L.name+'</td><td>'+fk(x.sales)+'</td><td>'+fm(x.sales/x.L.sqft)+'</td><td>'+pc(x.cogs)+'</td><td>'+pc(x.lab)+'</td><td>'+pc(x.rent)+'</td><td>'+pc(x.oth)+'</td><td><b>'+pc(x.mar)+'</b></td><td>'+(ranked.indexOf(x)+1)+'</td><td class="tl">'+f.join(" ")+'</td></tr>'});
  t+='<tr><td class="tl"><b>Network average</b></td><td>'+fk(avg("sales"))+'</td><td>·</td><td>'+pc(A.cogs)+'</td><td>'+pc(A.lab)+'</td><td>'+pc(A.rent)+'</td><td>'+pc(A.oth)+'</td><td><b>'+pc(A.mar)+'</b></td><td>·</td><td></td></tr>';$("#lT").innerHTML=t;
  $$("#lT [data-go]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.dataset.go)})});renderNew();renderFee()}
-function renderNew(){var inv=num("nInv",420000),s=num("nSales",135000),ramp=Math.max(1,num("nRamp",9)),m=num("nMar",24)/100,rent=num("nRent",16500);var cum=-inv,pay=null,m1=0;
+function renderNew(){var inv=num("nInv",420000,0,1e9),s=num("nSales",135000,0,1e9),ramp=num("nRamp",9,1,60),m=num("nMar",24,0,100)/100,rent=num("nRent",16500,0,1e8);var cum=-inv,pay=null,m1=0;
  for(var mo=1;mo<=120;mo++){var sales=s*Math.min(1,.55+.45*mo/ramp);var cf=sales*m-rent;if(mo===1)m1=cf;cum+=cf;if(cum>=0&&pay===null){pay=mo;break}}
  var be=rent/m,mature=s*m-rent,v=pay!==null&&pay<=30?["good","Go","Pays back in "+pay+" months."]:pay!==null&&pay<=42?["warn","Review","Pays back in "+pay+" months; test a lower fit-out cost or a better rent."]:["bad","No-go as planned",pay?"Payback takes "+pay+" months.":"It doesn't pay back within 10 years at these numbers."];
- $("#nOut").innerHTML='<div class="grid g3">'+kpi("Break-even monthly sales",fk(be),"to cover rent from margin")+kpi("Monthly cash when mature",fk(mature),"after rent")+kpi("Payback",pay?pay+" months":"over 10 years","incl. ramp-up")+'</div><p class="why"><span class="st '+v[0]+'">'+v[1]+'</span> '+v[2]+' Thresholds: go within 30 months, review up to 42.</p>'}
-function renderFee(){var roy=num("fRoy",6),mk=num("fMkt",2),m=num("fMar",17),s=num("fSales",120000);var after=m-roy-mk,ok=after>=8?["good","Healthy"]:after>=5?["warn","Tight"]:["bad","At risk"];
+ $("#nOut").innerHTML='<div class="grid g3">'+kpi("Break-even monthly sales",isFinite(be)?fk(be):"Not reachable","to cover rent from margin")+kpi("Monthly cash when mature",fk(mature),"after rent")+kpi("Payback",pay?pay+" months":"over 10 years","incl. ramp-up")+'</div><p class="why"><span class="st '+v[0]+'">'+v[1]+'</span> '+v[2]+' Thresholds: go within 30 months, review up to 42.</p>'}
+function renderFee(){var roy=num("fRoy",6,0,50),mk=num("fMkt",2,0,50),m=num("fMar",17,-50,100),s=num("fSales",120000,0,1e9);var after=m-roy-mk,ok=after>=8?["good","Healthy"]:after>=5?["warn","Tight"]:["bad","At risk"];
  $("#fOut").innerHTML='<div class="grid g3">'+kpi("Franchisee margin after fees",pc(after),ok[1])+kpi("Franchisor income per unit",fk(s*(roy)/100)+"/mo","royalty only")+kpi("Franchisee profit",fk(s*after/100)+"/mo","after all fees")+'</div><p class="why"><span class="st '+ok[0]+'">'+ok[1]+'</span> Franchisees who keep less than about 8% of sales after fees often struggle to reinvest; below 5% the network is at risk. Thresholds are set with each client.</p>'}
 
 

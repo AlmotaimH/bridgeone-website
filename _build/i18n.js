@@ -380,13 +380,13 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
       for(var i=0;i<4;i++){a.steps[i][1]=d.s[i][0];a.steps[i][2]=d.s[i][1];}});
   })();
   (function(){
-    var X={EN:{osT:"Decision OS: our own tools for multi-location businesses",osP:"One system, four portals: People, Stock & Supply, Franchise & Network, and an Executive View for the CEO, COO, CFO and owners. Recommendations your managers approve each week.",osCta:"Explore Decision OS",osDemo:"Try the live demo"},
-      FR:{osT:"Decision OS : nos propres outils pour les entreprises multisites",osP:"Un système, quatre portails : Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires. Des recommandations que vos gestionnaires approuvent chaque semaine.",osCta:"Découvrir Decision OS",osDemo:"Essayer la démo"},
-      AR:{osT:"Decision OS: أدواتنا الخاصة للشركات متعددة الفروع",osP:"نظام واحد وأربع بوابات: الموارد البشرية، والمخزون والإمداد، والامتياز والشبكة، ورؤية تنفيذية للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك. توصيات يعتمدها مديروك كل أسبوع.",osCta:"اكتشف Decision OS",osDemo:"جرّب العرض التجريبي"}};
+    var X={EN:{osT:"Our own tools for multi-location businesses",osP:"One system, four portals: People, Stock & Supply, Franchise & Network, and an Executive View for the CEO, COO, CFO and owners. Recommendations your managers approve each week.",osCta:"Explore BridgeOne OS",osDemo:"Try the live demo"},
+      FR:{osT:"Nos propres outils pour les entreprises multisites",osP:"Un système, quatre portails : Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires. Des recommandations que vos gestionnaires approuvent chaque semaine.",osCta:"Découvrir BridgeOne OS",osDemo:"Essayer la démo"},
+      AR:{osT:"أدواتنا الخاصة للشركات متعددة الفروع",osP:"نظام واحد وأربع بوابات: الموارد البشرية، والمخزون والإمداد، والامتياز والشبكة، ورؤية تنفيذية للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك. توصيات يعتمدها مديروك كل أسبوع.",osCta:"اكتشف BridgeOne OS",osDemo:"جرّب العرض التجريبي"}};
     ["EN","FR","AR"].forEach(function(l){var d=T[l].dec;for(var k in X[l])d[k]=X[l][k];});
   })();
   (function(){
-    // Nov 22: whole-site alignment with Decision Intelligence and Decision OS
+    // Nov 22: whole-site alignment with Decision Intelligence and BridgeOne OS
     var X={
     EN:{"hero.eyebrow":"Management Consulting, Decision Intelligence & Leadership Development",
      "hero.h":["Management Consulting","Decision Intelligence","Leadership Development"],
@@ -398,15 +398,15 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "services.items.1.1":"Design the structure, roles, decision rights and governance your organization needs to run well and scale.",
      "services.items.4.1":"Scale with the right policies, HR practices, controls and risk awareness in place from the start, province by province.",
      "dec.kicker":"Decision Intelligence",
-     "dec.sub":"Who to schedule, what to reorder, what to charge, where to open next. Your most frequent decisions shouldn’t depend on who’s working that day. We turn them into a simple, data-backed system with Decision OS, our own tools, and we measure the result.",
+     "dec.sub":"Who to schedule, what to reorder, what to charge, where to open next. Your most frequent decisions shouldn’t depend on who’s working that day. We turn them into a simple, data-backed system with BridgeOne OS, our own tools, and we measure the result.",
      "dec.items":["Staff scheduling and labour cost","HR requests and approvals","Stock ordering and transfers","Pricing, promotions and markdowns","Cash and buying","Location and franchise decisions"],
-     "dec.foot":"We build and own our tools, use the lightest one that works, from smart spreadsheets to full Decision OS portals, and work alongside the payroll, point-of-sale and accounting systems you already use.",
-     "dec.svc":"Decision Intelligence & Decision OS",
+     "dec.foot":"We build and own our tools, use the lightest one that works, from smart spreadsheets to full BridgeOne OS portals, and work alongside the payroll, point-of-sale and accounting systems you already use.",
+     "dec.svc":"Decision Intelligence & BridgeOne OS",
      "about.body":"BridgeOne Inc. is a business and management consulting firm based in the Greater Toronto Area. We help organizations bridge the gap between vision and execution, translating strategic priorities into better everyday decisions and measurable business results.",
      "why.items.1":["Plans and tools you can act on","Clear priorities, owners and timelines, and decision tools your managers use every week, not an 80-page report."],
      "footer.tag":"Management consulting, decision intelligence and leadership development that turn strategy into results.",
      "meta.title":"BridgeOne | Management Consulting & Decision Intelligence, Toronto",
-     "meta.desc":"Toronto-area management consulting: strategy, decision intelligence with BridgeOne Decision OS, and leadership development that turn plans into results."},
+     "meta.desc":"Toronto-area management consulting: strategy, decision intelligence with BridgeOne OS, and leadership development that turn plans into results."},
     FR:{"hero.eyebrow":"Conseil en gestion, intelligence décisionnelle et développement du leadership",
      "hero.h":["Conseil en gestion","Intelligence décisionnelle","Développement du leadership"],
      "hero.sub":"BridgeOne aide les fondateurs, les propriétaires d’entreprise et les équipes de direction à transformer leur stratégie en résultats : des plans clairs, de meilleures décisions au quotidien fondées sur leurs propres données, et des leaders qui les font tenir.",
@@ -417,15 +417,15 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "services.items.1.1":"Concevez la structure, les rôles, les pouvoirs de décision et la gouvernance dont votre organisation a besoin pour bien fonctionner et croître.",
      "services.items.4.1":"Croissez avec les bonnes politiques, pratiques RH, contrôles et une conscience des risques en place dès le départ, province par province.",
      "dec.kicker":"Intelligence décisionnelle",
-     "dec.sub":"Qui mettre à l’horaire, quoi commander, quel prix fixer, où ouvrir ensuite. Vos décisions les plus fréquentes ne devraient pas dépendre de qui travaille ce jour-là. Nous en faisons un système simple, fondé sur les données, avec Decision OS, nos propres outils, et nous mesurons le résultat.",
+     "dec.sub":"Qui mettre à l’horaire, quoi commander, quel prix fixer, où ouvrir ensuite. Vos décisions les plus fréquentes ne devraient pas dépendre de qui travaille ce jour-là. Nous en faisons un système simple, fondé sur les données, avec BridgeOne OS, nos propres outils, et nous mesurons le résultat.",
      "dec.items":["Horaires et coût de main-d’œuvre","Demandes et approbations RH","Commandes et transferts de stock","Prix, promotions et démarques","Trésorerie et achats","Décisions sur les emplacements et les franchises"],
-     "dec.foot":"Nous concevons nos propres outils, utilisons le plus simple qui fonctionne, du tableur intelligent aux portails Decision OS complets, et travaillons avec vos systèmes de paie, de caisse et de comptabilité actuels.",
-     "dec.svc":"Intelligence décisionnelle et Decision OS",
+     "dec.foot":"Nous concevons nos propres outils, utilisons le plus simple qui fonctionne, du tableur intelligent aux portails BridgeOne OS complets, et travaillons avec vos systèmes de paie, de caisse et de comptabilité actuels.",
+     "dec.svc":"Intelligence décisionnelle et BridgeOne OS",
      "about.body":"BridgeOne Inc. est une firme de conseil en affaires et en gestion établie dans la région du Grand Toronto. Nous aidons les organisations à combler l’écart entre vision et exécution, en traduisant leurs priorités stratégiques en meilleures décisions au quotidien et en résultats mesurables.",
      "why.items.1":["Des plans et des outils concrets","Des priorités, des responsables et des échéances clairs, et des outils de décision que vos gestionnaires utilisent chaque semaine, pas un rapport de 80 pages."],
      "footer.tag":"Conseil en gestion, intelligence décisionnelle et développement du leadership qui transforment la stratégie en résultats.",
      "meta.title":"BridgeOne | Conseil en gestion et intelligence décisionnelle",
-     "meta.desc":"Conseil en gestion dans le Grand Toronto : stratégie, intelligence décisionnelle avec Decision OS et leadership qui transforment les plans en résultats."},
+     "meta.desc":"Conseil en gestion dans le Grand Toronto : stratégie, intelligence décisionnelle avec BridgeOne OS et leadership qui transforment les plans en résultats."},
     AR:{"hero.eyebrow":"الاستشارات الإدارية وذكاء القرار وتطوير القيادة",
      "hero.h":["الاستشارات الإدارية","ذكاء القرار","تطوير القيادة"],
      "hero.sub":"تساعد BridgeOne المؤسسين وأصحاب الأعمال وفرق القيادة على تحويل الاستراتيجية إلى نتائج: خطط واضحة، وقرارات يومية أفضل مبنية على بياناتهم، وقادة يرسّخونها.",
@@ -436,15 +436,15 @@ AR:{home:"الرئيسية",sub:"أخبرنا إلى أين تريد أن تأخ
      "services.items.1.1":"صمّم الهيكل والأدوار وصلاحيات القرار والحوكمة التي تحتاجها مؤسستك لتعمل بكفاءة وتتوسع.",
      "services.items.4.1":"توسّع مع السياسات وممارسات الموارد البشرية والضوابط والوعي بالمخاطر من البداية، في كل مقاطعة.",
      "dec.kicker":"ذكاء القرار",
-     "dec.sub":"من تضع في جدول العمل، وماذا تطلب، وبأي سعر تبيع، وأين تفتح فرعك التالي. قراراتك الأكثر تكرارًا لا ينبغي أن تعتمد على من يعمل ذلك اليوم. نحوّلها إلى نظام بسيط مبني على البيانات عبر Decision OS، أدواتنا الخاصة، ونقيس النتيجة.",
+     "dec.sub":"من تضع في جدول العمل، وماذا تطلب، وبأي سعر تبيع، وأين تفتح فرعك التالي. قراراتك الأكثر تكرارًا لا ينبغي أن تعتمد على من يعمل ذلك اليوم. نحوّلها إلى نظام بسيط مبني على البيانات عبر BridgeOne OS، أدواتنا الخاصة، ونقيس النتيجة.",
      "dec.items":["جداول الموظفين وتكلفة العمالة","طلبات واعتمادات الموارد البشرية","طلب المخزون ونقله بين الفروع","التسعير والعروض والتخفيضات","النقد والمشتريات","قرارات الفروع والامتياز"],
-     "dec.foot":"نصمّم أدواتنا ونملكها، ونستخدم أبسط ما ينجح، من جداول البيانات الذكية إلى بوابات Decision OS الكاملة، ونعمل جنبًا إلى جنب مع أنظمة الرواتب ونقاط البيع والمحاسبة التي تستخدمها.",
-     "dec.svc":"ذكاء القرار وDecision OS",
+     "dec.foot":"نصمّم أدواتنا ونملكها، ونستخدم أبسط ما ينجح، من جداول البيانات الذكية إلى بوابات BridgeOne OS الكاملة، ونعمل جنبًا إلى جنب مع أنظمة الرواتب ونقاط البيع والمحاسبة التي تستخدمها.",
+     "dec.svc":"ذكاء القرار وBridgeOne OS",
      "about.body":"BridgeOne Inc. شركة استشارات أعمال وإدارة مقرها منطقة تورنتو الكبرى. نساعد المؤسسات على سد الفجوة بين الرؤية والتنفيذ، بتحويل الأولويات الاستراتيجية إلى قرارات يومية أفضل ونتائج أعمال قابلة للقياس.",
      "why.items.1":["خطط وأدوات قابلة للتنفيذ","أولويات ومسؤولون وجداول زمنية واضحة، وأدوات قرار يستخدمها مديروك كل أسبوع، لا تقرير من 80 صفحة."],
      "footer.tag":"استشارات إدارية وذكاء قرار وتطوير قيادة تحوّل الاستراتيجية إلى نتائج.",
      "meta.title":"BridgeOne | الاستشارات الإدارية وذكاء القرار في تورنتو",
-     "meta.desc":"استشارات إدارية في منطقة تورنتو الكبرى: الاستراتيجية، وذكاء القرار عبر BridgeOne Decision OS، ونماذج التشغيل، وتطوير القيادة التي تحوّل الخطط إلى نتائج."}};
+     "meta.desc":"استشارات إدارية في منطقة تورنتو الكبرى: الاستراتيجية، وذكاء القرار عبر BridgeOne OS، ونماذج التشغيل، وتطوير القيادة التي تحوّل الخطط إلى نتائج."}};
     function setp(o,path,v){var k=path.split("."),i;for(i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=v;}
     ["EN","FR","AR"].forEach(function(l){for(var p in X[l])setp(T[l],p,X[l][p]);});
   })();

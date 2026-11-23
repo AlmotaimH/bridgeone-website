@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BridgeOne OS live demo | BridgeOne Inc.</title>
+<meta name="description" content="Try BridgeOne OS with a fictional five-location business: staff rosters, stock and transfers, markdowns, buying and cash, and location decisions.">
+<link rel="canonical" href="https://bridge-one.ca/bridgeone-os/demo.html">
+<meta property="og:title" content="BridgeOne OS live demo">
+<meta property="og:description" content="Try BridgeOne OS with a fictional five-location business: rosters, HR approvals, stock, markdowns, cash and location decisions.">
+<meta property="og:image" content="https://bridge-one.ca/assets/og-image.jpg">
+<meta property="og:url" content="https://bridge-one.ca/bridgeone-os/demo.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon-32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
+<script data-goatcounter="https://bridgeone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>
+:root{--night:#020A1F;--panel:#0A1431;--panel-2:#0E1A3D;--gold:#C9A45C;--gold-lt:#E8C98A;--amber:#F2B45A;--text:#EEF2F8;--soft:#AEB9CC;--mute:#8592AA;--border:rgba(255,255,255,.08);--border-2:rgba(255,255,255,.14);
+--s1:#B98432;--s2:#6C7CEE;--good:#3FB97A;--warn:#E9A23B;--bad:#E5636B;--grad:linear-gradient(120deg,#F2B45A 0%,#C9A45C 45%,#8C7BFF 100%);--r:16px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--text);font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--gold-lt)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px}
+h1,h2,h3{margin:0;color:#fff;letter-spacing:-.01em;line-height:1.2}
+/* top bar */
+.top{position:sticky;top:0;z-index:30;background:rgba(2,10,31,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.top .in{display:flex;align-items:center;gap:16px;padding:12px 22px;max-width:1500px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700}
+.brand img{width:40px;height:25px;object-fit:contain}
+.brand small{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--gold-lt)}
+.pill{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid rgba(242,180,90,.45);color:var(--amber);white-space:nowrap}
+.sp{flex:1}
+.top select{background:var(--panel);border:1px solid var(--border-2);border-radius:10px;padding:7px 10px;font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:9px 16px;font-weight:700;font-size:13.5px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn-gold{background:var(--grad);color:#14110a}
+.btn-line{background:transparent;border:1px solid var(--border-2);color:var(--text)}
+.btn-line:hover{border-color:var(--gold-lt)}
+.btn-s{padding:6px 12px;font-size:12.5px}
+/* layout */
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1500px;margin:0 auto;min-height:calc(100vh - 62px)}
+.side{border-right:1px solid var(--border);padding:20px 14px;position:sticky;top:62px;height:calc(100vh - 62px);overflow:auto}
+.side .co{padding:10px 12px 18px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.side .co b{display:block;color:#fff;font-size:14px}
+.side .co span{font-size:12px;color:var(--mute)}
+.tabs{display:flex;flex-direction:column;gap:4px}
+.tab{display:flex;align-items:center;gap:10px;text-align:left;background:transparent;border:0;border-radius:10px;padding:10px 12px;color:var(--soft);font-weight:600;font-size:14px;cursor:pointer}
+.tab .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;border:1px solid var(--border-2);color:var(--gold-lt);flex:none}
+.tab:hover{background:rgba(255,255,255,.04);color:#fff}
+.tab[aria-selected=true]{background:rgba(242,180,90,.12);color:#fff}
+.tab[aria-selected=true] .n{background:var(--amber);border-color:var(--amber);color:#14110a}
+.grp{margin:14px 12px 4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.side .note{margin-top:18px;font-size:11.5px;color:var(--mute);padding:0 12px}
+main{padding:26px 30px 60px;min-width:0}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.ph h1,.ph .pt{font-size:26px}
+.ph p{margin:6px 0 0;color:var(--soft);max-width:72ch}
+.kick{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold-lt);margin-bottom:6px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.split{grid-template-columns:320px minmax(0,1fr);align-items:start}
+.card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;min-width:0}
+.card h2{font-size:16px;margin-bottom:12px}
+.card h2 small{font-weight:500;color:var(--mute);font-size:12.5px;margin-left:6px}
+.kpi .l{font-size:12.5px;color:var(--soft)}
+.kpi .v{font-size:26px;font-weight:800;color:#fff;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12.5px;color:var(--mute)}
+.kpi .d .up{color:var(--good);font-weight:700}
+.kpi .d .dn{color:var(--bad);font-weight:700}
+/* forms */
+.f{display:grid;gap:12px}
+.f label{display:grid;gap:5px;font-size:12.5px;color:var(--soft);font-weight:600}
+.f input,.f select{background:#071030;border:1px solid var(--border-2);border-radius:10px;padding:8px 10px;font-size:14px;width:100%}
+.f .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f .hint{font-size:11.5px;color:var(--mute);font-weight:500}
+/* tables */
+.tw{overflow:auto;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap}
+th{background:#071030;color:var(--soft);font-weight:600;font-size:12px;position:sticky;top:0}
+th:first-child,td:first-child,.tl{text-align:left}
+tr:last-child td{border-bottom:0}
+td.wrap{white-space:normal;min-width:200px}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px}
+.st.good{color:var(--good);background:rgba(63,185,122,.12)}
+.st.warn{color:var(--warn);background:rgba(233,162,59,.12)}
+.st.bad{color:var(--bad);background:rgba(229,99,107,.13)}
+.st.info{color:#A9B4FF;background:rgba(108,124,238,.14)}
+.why{font-size:12.5px;color:var(--soft);margin:10px 0 0}
+.why b{color:#fff}
+/* charts */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .ax{fill:var(--mute);font-size:11px}
+.chart .gl{stroke:rgba(255,255,255,.07)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--soft);margin-bottom:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.ln{height:3px;border-radius:2px;vertical-align:3px}
+.tip{position:fixed;z-index:60;pointer-events:none;background:#0B1638;border:1px solid var(--border-2);border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;max-width:240px}
+/* assessment */
+.qs{display:grid;gap:10px}
+.q{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:12px}
+.q b{font-size:13.5px;color:#fff}
+.seg{display:inline-flex;border:1px solid var(--border-2);border-radius:999px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:6px 11px;font-size:12px;font-weight:600;color:var(--soft);cursor:pointer}
+.seg button[aria-pressed=true]{background:rgba(242,180,90,.18);color:#fff}
+.ring{display:grid;place-items:center;position:relative;width:150px;height:150px;margin:6px auto 10px}
+.ring b{position:absolute;font-size:30px;color:#fff}
+.ring small{position:absolute;top:96px;font-size:11px;color:var(--mute)}
+.pri{counter-reset:p;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.pri li{counter-increment:p;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:12px;font-size:13.5px}
+.pri li::before{content:counter(p);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(242,180,90,.15);color:var(--amber);font-weight:700;font-size:12px}
+.pri li span{color:var(--mute);font-size:12px}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.steps span{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border-2);color:var(--mute)}
+.steps span.done{color:var(--good);border-color:rgba(63,185,122,.45)}
+.steps span.cur{color:#14110a;background:var(--amber);border-color:var(--amber)}
+tr.sel td{background:rgba(242,180,90,.08)}
+#hT tr[data-i]{cursor:pointer}
+.ans{border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--soft)}
+.ans b{display:block;color:#fff;margin-bottom:3px}
+.ans.red{border-color:rgba(229,99,107,.5)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#0B1638;border:1px solid rgba(63,185,122,.5);color:#fff;padding:10px 16px;border-radius:12px;font-size:13.5px;opacity:0;transition:.25s;z-index:70}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.foot{margin-top:30px;font-size:11.5px;color:var(--mute);border-top:1px solid var(--border);padding-top:14px}
+.hide{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+ .app{grid-template-columns:minmax(0,1fr)}
+ .top{position:static}
+ .side{position:sticky;top:0;height:auto;z-index:20;background:#020A1F;border-right:0;border-bottom:1px solid var(--border);padding:8px 10px}
+ .side .co,.side .note{display:none}
+ .grp{margin:0 2px 0 8px;align-self:center;flex:none;font-size:10px;max-width:7.5em;line-height:1.2;letter-spacing:.04em}
+ .tabs{flex-direction:row;overflow-x:auto;scrollbar-width:none}
+ .tab{flex:none;padding:8px 10px;font-size:13px}
+ main{padding:18px 16px 50px}
+ .g3,.g2{grid-template-columns:minmax(0,1fr)}
+ .top .in{padding:10px 14px;gap:10px;flex-wrap:wrap}
+ .top .hide-m{display:none}
+ .ph h1,.ph .pt{font-size:22px}
+}
+@media (max-width:520px){.chart .ax{font-size:19px}.chart{margin:0 -6px}.g4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.kpi .v{font-size:21px}.q{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+ <a class="brand" href="/bridgeone-os.html"><img src="/assets/logo-sm.png" alt="" width="40" height="25"><span>BridgeOne OS<small>BRIDGEONE INC.</small></span></a>
+ <span class="pill">Live demo · fictional sample data</span>
+ <span class="sp"></span>
+ <label class="hide-m" style="font-size:12.5px;color:var(--soft)">View as
+  <select id="role" aria-label="View as role"><option value="lm">Location Manager</option><option value="am" selected>Area Manager</option><option value="ex">Executive (CEO, COO, CFO, Owner)</option></select></label>
+ <button class="btn btn-line btn-s" id="reset" type="button">Reset demo</button>
+ <a class="btn btn-gold btn-s" id="book" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0aO-BlcStGVecBihE2OnPBUyP5SknhKZ5tUgFDl0L_cGZ54JCzUtOTi8MWzA1suHI3szzGr0B9" target="_blank" rel="noopener">Book a free call</a>
+</div></header>
+
+<div class="app">
+<nav class="side" aria-label="BridgeOne OS modules">
+ <div class="co"><b>Maple Row Market &amp; Café</b><span>Fictional sample company · 5 locations in the GTA</span><span style="display:block;margin-top:8px;color:var(--soft)">One system, four portals · People Portal includes HR</span></div>
+ <div class="tabs">
+  <button class="tab" type="button" data-v="overview" aria-selected="true"><span class="n">1</span>Assessment</button>
+  <p class="grp">People Portal</p>
+  <button class="tab" type="button" data-v="roster" aria-selected="false"><span class="n">2</span>Roster &amp; labour</button>
+  <button class="tab" type="button" data-v="hr" aria-selected="false"><span class="n">3</span>HR requests &amp; answers</button>
+  <p class="grp">Stock &amp; Supply Portal</p>
+  <button class="tab" type="button" data-v="stock" aria-selected="false"><span class="n">4</span>Stock &amp; transfers</button>
+  <button class="tab" type="button" data-v="price" aria-selected="false"><span class="n">5</span>Pricing &amp; markdowns</button>
+  <p class="grp">Franchise &amp; Network Portal</p>
+  <button class="tab" type="button" data-v="loc" aria-selected="false"><span class="n">6</span>Locations &amp; franchise</button>
+  <p class="grp">Executive View</p>
+  <button class="tab" type="button" data-v="cash" aria-selected="false"><span class="n">7</span>Cash &amp; buying plan</button>
+  <button class="tab" type="button" data-v="deliv" aria-selected="false"><span class="n">8</span>Deliverables &amp; sign-off</button>
+  <button class="tab" type="button" data-v="log" aria-selected="false"><span class="n">9</span>Decision log <span id="logN" class="pill" style="margin-left:auto;padding:1px 8px">0</span></button>
+ </div>
+ <p class="note">Everything runs in your browser. Nothing you type leaves this page. Numbers are invented for the demo.</p>
+</nav>
+
+<main id="main">
+<h1 class="sr">BridgeOne OS live demo</h1>
+
+<!-- OVERVIEW -->
+<section data-p="overview">
+ <div class="ph"><div><div class="kick">START HERE · ASSESSMENT &amp; BASELINE</div><h2 class="pt">Where the money is in your everyday decisions</h2>
+ <p>We start every client with this assessment. Answer how each decision is made today; the estimates below come from the other tools in this demo, run on the sample company's numbers, and show which portal to start with.</p></div></div>
+ <div class="grid split">
+  <div class="card"><h2>How are these decisions made today?</h2><div class="qs" id="qs"></div></div>
+  <div class="grid">
+   <div class="grid g3">
+    <div class="card"><h2>Decision maturity</h2><div class="ring"><svg viewBox="0 0 120 120" width="150" height="150" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/><circle id="ringArc" cx="60" cy="60" r="50" fill="none" stroke="#F2B45A" stroke-width="10" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" transform="rotate(-90 60 60)"/></svg><b id="ringV">0%</b><small>of decisions data-backed</small></div></div>
+    <div class="card kpi" style="grid-column:span 2"><div class="l">Estimated annual impact in this sample</div><div class="v" id="impact">$0</div><div class="d">Labour savings, markdown margin and fewer lost sales, plus <b id="cashFreed" style="color:#fff">$0</b> of cash kept above the safety floor. Your results depend on your numbers.</div></div>
+   </div>
+   <div class="card"><h2>Where we would start <small>ranked by estimated annual value</small></h2><ol class="pri" id="pri"></ol></div>
+   <div class="card"><h2>Baseline by location <small>last 4 weeks</small></h2><div class="tw"><table id="baseT"></table></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ROSTER -->
+<section data-p="roster" class="hide">
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · STAFF ROSTER &amp; LABOUR COST</div><h2 class="pt">The right people, at the right hour</h2>
+ <p>Hourly demand becomes the staff each hour needs, then shifts that cover it at the lowest cost within your rules.</p></div></div>
+ <div class="grid split">
+  <div class="card"><h2>Settings</h2><div class="f">
+   <label>Location<select id="rLoc"></select></label>
+   <label>Day to show<select id="rDay"></select></label>
+   <div class="row"><label>Customers per staff-hour<input id="rProd" type="number" min="4" max="40" value="9"></label><label>Minimum staff on floor<input id="rMin" type="number" min="1" max="6" value="2"></label></div>
+   <div class="row"><label>Shortest shift (h)<input id="rSmin" type="number" min="3" max="6" value="4"></label><label>Longest shift (h)<input id="rSmax" type="number" min="6" max="10" value="8"></label></div>
+   <div class="row"><label>Full-time wage $/h<input id="rWft" type="number" step=".25" value="23"></label><label>Part-time wage $/h<input id="rWpt" type="number" step=".25" value="18.5"></label></div>
+   <div class="row"><label>Overtime after (h/week)<input id="rOt" type="number" value="44"></label><label>Part-time cap (h/week)<input id="rPtcap" type="number" value="24"></label></div>
+   <span class="hint">Default rules are Ontario-style examples. We confirm the rules for each province or country with you before going live.</span>
+  </div></div>
+  <div class="grid">
+   <div class="grid g4" id="rK"></div>
+   <div class="card"><h2 id="rChT">Coverage by hour</h2><div class="legend"><span><i style="background:var(--s1)"></i>Staff needed</span><span><i class="ln" style="background:#AEB9CC"></i>Current roster</span><span><i class="ln" style="background:var(--s2)"></i>Recommended roster</span></div><div class="chart" id="rCh"></div><p class="why" id="rWhy"></p></div>
+   <div class="card"><h2>Recommended shifts <small id="rShT"></small></h2><div class="tw"><table id="rT"></table></div><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s act" data-m="Roster & labour" type="button">Approve this roster</button><button class="btn btn-line btn-s adj" data-m="Roster & labour" type="button">Adjust with a note</button></div></div>
+  </div>
+ </div>
+</section>
+
+
+<!-- HR -->
+<section data-p="hr" class="hide">
+ <div class="ph"><div><div class="kick">PEOPLE PORTAL · HR REQUESTS, APPROVALS &amp; ANSWERS</div><h2 class="pt">HR requests that move, with the right checks</h2>
+ <p>Location Managers submit requests online. Each one follows an approval chain based on its risk, with a target time, and the HR Help Desk checks the details against employee records automatically before HR confirms.</p></div></div>
+ <div class="grid g4" id="hK"></div>
+ <div class="grid split" style="margin-top:16px">
+  <div class="card"><h2>HR answers <small>by province</small></h2><div class="f">
+   <label>Province<select id="hProv"><option value="on">Ontario</option><option value="qc">Quebec</option></select></label>
+   <label>Ask a question<input id="hQ" type="search" placeholder="e.g. overtime, schedule, injury"></label></div>
+   <div id="hA" style="margin-top:12px;display:grid;gap:10px"></div>
+   <p class="why">Answers in a client's portal come from their own handbook, contracts and policies. They are an operating guide, not legal advice; red answers mean stop and call HR.</p></div>
+  <div class="grid">
+   <div class="card"><h2>Request queue <small>select a request to see its checks</small></h2><div class="tw"><table id="hT"></table></div></div>
+   <div class="card" id="hD"></div>
+  </div>
+ </div>
+</section>
+<!-- STOCK -->
+<section data-p="stock" class="hide">
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · REORDER &amp; TRANSFERS</div><h2 class="pt">Enough on the shelf, less cash on it</h2>
+ <p>Every item at every location gets a safety stock and a reorder point. Before ordering, the tool checks whether another location has extra to move.</p></div></div>
+ <div class="grid split">
+  <div class="card"><h2>Settings</h2><div class="f">
+   <label>Target service level<select id="sSl"><option value="1.28">90% of days in stock</option><option value="1.645" selected>95% of days in stock</option><option value="2.054">98% of days in stock</option><option value="2.326">99% of days in stock</option></select></label>
+   <div class="row"><label>Days between orders<input id="sRev" type="number" min="1" max="14" value="7"></label><label>Cost per transfer trip $<input id="sTr" type="number" value="35"></label></div>
+   <label>Location for the chart<select id="sLoc"></select></label>
+   <span class="hint">Safety stock = service factor × daily demand variability × √lead time. Reorder point = daily demand × lead time + safety stock.</span>
+  </div></div>
+  <div class="grid">
+   <div class="grid g4" id="sK"></div>
+   <div class="card"><h2>Transfers before new orders</h2><div class="tw"><table id="sTT"></table></div><p class="why">Stock is moved only when a location has more than its target and another is below its reorder point, and only when the trip costs less than the margin at risk.</p><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s act" data-m="Stock transfers" type="button">Approve transfers</button><button class="btn btn-line btn-s adj" data-m="Stock transfers" type="button">Adjust with a note</button></div></div>
+   <div class="card"><h2>Orders to place this week</h2><div class="tw"><table id="sOT"></table></div><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s act" data-m="Stock orders" type="button">Approve orders</button><button class="btn btn-line btn-s adj" data-m="Stock orders" type="button">Adjust with a note</button></div></div>
+   <div class="card"><h2 id="sChT">Days of stock</h2><div class="legend"><span><i style="background:var(--s1)"></i>On hand now</span><span><i style="background:var(--s2)"></i>Target (reorder point + one order cycle)</span></div><div class="chart" id="sCh"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- PRICE -->
+<section data-p="price" class="hide">
+ <div class="ph"><div><div class="kick">STOCK &amp; SUPPLY PORTAL · PRICING, PROMOTIONS &amp; MARKDOWNS</div><h2 class="pt">Mark down on purpose, not in a panic</h2>
+ <p>For each seasonal item, the tool tests every week-by-week discount path and keeps the one with the highest total margin, including what's left at the end of the season.</p></div></div>
+ <div class="grid split">
+  <div class="card"><h2>Item</h2><div class="f">
+   <label>Seasonal item<select id="pItem"></select></label>
+   <div class="row"><label>Full price $<input id="pPrice" type="number" step=".5"></label><label>Unit cost $<input id="pCost" type="number" step=".25"></label></div>
+   <div class="row"><label>Units in stock (all locations)<input id="pStock" type="number"></label><label>Weeks left in season<input id="pWeeks" type="number" min="2" max="8"></label></div>
+   <div class="row"><label>Weekly sales at full price<input id="pBase" type="number"></label><label>Price sensitivity<input id="pEl" type="number" step=".1" min=".5" max="4"></label></div>
+   <label>Value of leftovers (% of cost)<input id="pSalv" type="number" min="0" max="100"></label>
+   <span class="hint">Price sensitivity 2.0 means a 10% lower price sells about 23% more. We estimate it from your own sales history.</span>
+  </div></div>
+  <div class="grid">
+   <div class="grid g4" id="pK"></div>
+   <div class="card"><h2>Units left at the end of each week</h2><div class="legend"><span><i class="ln" style="background:#AEB9CC"></i>Usual habit: hold, then 50% off in the last week</span><span><i class="ln" style="background:var(--s2)"></i>Recommended plan</span></div><div class="chart" id="pCh"></div></div>
+   <div class="card"><h2>Recommended discount plan</h2><div class="tw"><table id="pT"></table></div><p class="why" id="pWhy"></p><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s act" data-m="Markdown plan" type="button">Approve plan</button><button class="btn btn-line btn-s adj" data-m="Markdown plan" type="button">Adjust with a note</button></div></div>
+   <div class="card"><h2>Promotion check <small>is this promo worth running?</small></h2><div class="f"><div class="row" style="grid-template-columns:repeat(4,minmax(0,1fr))"><label>Discount %<input id="prD" type="number" value="20"></label><label>Price sensitivity<input id="prE" type="number" step=".1" value="2.2"></label><label>Sales taken from other items %<input id="prC" type="number" value="30"></label><label>Weeks<input id="prW" type="number" value="2"></label></div></div><p class="why" id="prOut"></p></div>
+  </div>
+ </div>
+</section>
+
+<!-- CASH -->
+<section data-p="cash" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · CASH &amp; BUYING PLAN</div><h2 class="pt">Buy what you need without running out of cash</h2>
+ <p>Thirteen weeks of sales receipts, payroll, rent and supplier payments. Orders that can wait are moved or split so cash never drops below your floor.</p></div></div>
+ <div class="grid split">
+  <div class="card"><h2>Settings</h2><div class="f">
+   <div class="row"><label>Opening cash $<input id="cOpen" type="number" value="85000" step="1000"></label><label>Cash floor $<input id="cFloor" type="number" value="30000" step="1000"></label></div>
+   <label>Sales outlook<select id="cOut"><option value=".9">Cautious (−10%)</option><option value="1" selected>Expected</option><option value="1.1">Strong (+10%)</option></select></label>
+   <span class="hint">Supplier payments follow each order's terms (net days). Orders marked "can move" may shift up to their latest useful week.</span>
+  </div></div>
+  <div class="grid">
+   <div class="grid g4" id="cK"></div>
+   <div class="card"><h2>Cash at the end of each week</h2><div class="legend"><span><i class="ln" style="background:#AEB9CC"></i>Current buying plan</span><span><i class="ln" style="background:var(--s2)"></i>Recommended plan</span><span><i class="ln" style="background:var(--bad)"></i>Cash floor</span></div><div class="chart" id="cCh"></div></div>
+   <div class="card"><h2>Purchase orders</h2><div class="tw"><table id="cT"></table></div><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s act" data-m="Buying & cash plan" type="button">Approve buying plan</button><button class="btn btn-line btn-s adj" data-m="Buying & cash plan" type="button">Adjust with a note</button></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- LOCATIONS -->
+<section data-p="loc" class="hide">
+ <div class="ph"><div><div class="kick">FRANCHISE &amp; NETWORK PORTAL · LOCATION &amp; FRANCHISE DECISIONS</div><h2 class="pt">Know which locations carry the network</h2>
+ <p>A scorecard that compares every location with the network, a go/no-go check for a new location, and a fee check for franchise networks.</p></div></div>
+ <div class="card" style="margin-bottom:16px"><h2>Location scorecard <small>last 4 weeks, % of sales</small></h2><div class="tw"><table id="lT"></table></div><p class="why">Flags appear when a cost line is more than 2 points above the network average. Each flag links to the tool that fixes it.</p></div>
+ <div class="grid g2">
+  <div class="card"><h2>New location: go or no-go?</h2><div class="f">
+   <div class="row"><label>Fit-out and opening cost $<input id="nInv" type="number" value="420000" step="5000"></label><label>Monthly sales when mature $<input id="nSales" type="number" value="135000" step="5000"></label></div>
+   <div class="row"><label>Months to reach maturity<input id="nRamp" type="number" value="9"></label><label>Margin before rent %<input id="nMar" type="number" value="24"></label></div>
+   <label>Monthly rent $<input id="nRent" type="number" value="16500" step="500"></label>
+  </div><div id="nOut" style="margin-top:14px"></div></div>
+  <div class="card"><h2>Franchise fee check</h2><div class="f">
+   <div class="row"><label>Royalty % of sales<input id="fRoy" type="number" step=".5" value="6"></label><label>Marketing fund % of sales<input id="fMkt" type="number" step=".5" value="2"></label></div>
+   <label>Franchisee margin before fees %<input id="fMar" type="number" step=".5" value="17"></label>
+   <label>Average monthly sales per franchise $<input id="fSales" type="number" value="120000" step="5000"></label>
+  </div><div id="fOut" style="margin-top:14px"></div></div>
+ </div>
+</section>
+
+
+<!-- DELIVERABLES -->
+<section data-p="deliv" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · ENGAGEMENT DELIVERABLES &amp; SIGN-OFF</div><h2 class="pt">Every stage ends with something you sign off</h2>
+ <p>Each BRIDGE stage has a named deliverable, an owner, a due week and clear acceptance criteria. The next stage starts only when an executive, or a manager they delegate, signs off the one before.</p></div></div>
+ <div class="grid g4" id="dK"></div>
+ <div class="card" style="margin-top:16px"><h2>BRIDGE deliverables <small>sample engagement, week 5 of 10</small></h2><div class="tw"><table id="dT"></table></div>
+ <p class="why">Sign-offs and change requests go into the decision log. Impact is reviewed against the baseline at 3, 6 and 12 months after go-live.</p></div>
+</section>
+<!-- LOG -->
+<section data-p="log" class="hide">
+ <div class="ph"><div><div class="kick">EXECUTIVE VIEW · DECISION LOG &amp; MONTHLY SCORECARD</div><h2 class="pt">Every decision, its owner and its result</h2>
+ <p>Approvals follow your roles and the risk of each decision: Location Managers propose; Area Managers, Operations and executives approve; for people decisions, the HR Help Desk checks and HR confirms. Each month we compare results with the baseline.</p></div>
+ <button class="btn btn-line btn-s" id="csv" type="button">Download CSV</button></div>
+ <div class="card"><div class="tw"><table id="logT"></table></div><p class="why" id="logEmpty">Approve or adjust a recommendation in any tool and it appears here.</p></div>
+</section>
+
+<p class="foot">BridgeOne OS is designed and owned by BridgeOne Inc. This demo uses a fictional company and invented numbers; it is not advice for any real business. © 2026 BridgeOne Inc. All rights reserved. <a href="/bridgeone-os.html">About BridgeOne OS</a> · <a href="/">bridge-one.ca</a></p>
+</main>
+</div>
+<div class="tip" id="tip" role="status"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- helpers ---------- */
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var fm=function(n){return (n<0?"−$":"$")+Math.round(Math.abs(n)).toLocaleString("en-CA")};
+var fk=function(n){var a=Math.abs(n);return (n<0?"−$":"$")+(a>=1e6?(a/1e6).toFixed(2)+"M":a>=1e4?Math.round(a/1e3)+"k":Math.round(a).toLocaleString("en-CA"))};
+var pc=function(n,d){return (n).toFixed(d==null?1:d)+"%"};
+var nf=function(n,d){return Number(n).toLocaleString("en-CA",{maximumFractionDigits:d||0,minimumFractionDigits:d||0})};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function num(id,def,lo,hi){var v=parseFloat($("#"+id).value);if(!isFinite(v))v=def;if(lo!=null&&v<lo)v=lo;if(hi!=null&&v>hi)v=hi;return v}
+function kpi(l,v,d){return '<div class="card kpi"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="d">'+(d||"")+'</div></div>'}
+function delta(a,b,lowerBetter,fmt){var d=b-a;if(Math.abs(d)<1e-9)return 'no change';var good=lowerBetter?d<0:d>0;return '<span class="'+(good?"up":"dn")+'">'+(d>0?"+":"−")+fmt(Math.abs(d))+'</span> vs today'}
+var tip=$("#tip");
+function showTip(e,html){tip.innerHTML=html;tip.style.display="block";var x=e.clientX+14,y=e.clientY+14;var w=tip.offsetWidth,h=tip.offsetHeight;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=x+"px";tip.style.top=y+"px"}
+function hideTip(){tip.style.display="none"}
+function toast(t){var el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){el.classList.remove("on")},2400)}
+
+/* ---------- sample company (fictional) ---------- */
+var LOCS=[{id:"DT",name:"Downtown Toronto",size:1.35,sqft:3200},{id:"MI",name:"Mississauga",size:1.1,sqft:3600},{id:"MK",name:"Markham",size:.95,sqft:2900},{id:"OK",name:"Oakville",size:.8,sqft:2600},{id:"VA",name:"Vaughan",size:.9,sqft:3000}];
+var DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], OPEN=7, CLOSE=21;
+var DAYF=[.88,.9,.95,1,1.12,1.25,1.05];
+var HOURP=[.45,.85,.9,.7,.75,1.15,1.25,.85,.7,.75,.95,1.05,.8,.5]; /* 7:00..20:00 */
+var AVG_TICKET=14.5;
+function demand(loc,d,h){return 30*loc.size*DAYF[d]*HOURP[h-OPEN]}
+
+var ITEMS=[["Espresso beans 1 kg",21,12.6,2.8,5],["Whole milk 4 L",5.2,28.5,5.2,2],["Oat milk 1 L",2.9,18.6,4.2,3],["Butter croissant (frozen 12)",14,9.3,2.4,4],["Sourdough loaf",3.4,25.2,5.8,2],["Olive oil 1 L",8.8,6.6,1.8,6],["Spaghetti 500 g",1.6,16.8,3.6,5],["Crushed tomatoes 796 ml",1.5,13.2,3.0,5],["Maple granola 500 g",4.1,7.8,2.2,6],["Sparkling water 12-pack",5.5,11.7,3.2,4],["Dark chocolate bar",2.2,15.3,4.0,7],["Cold-pressed juice",3.8,20.4,4.8,3]];
+/* name, unit cost, base daily demand, sd, lead time days */
+
+var SEASON=[["Holiday gift box",59,24,900,95,2.6,15,6],["Panettone 750 g",22,9.5,1150,150,2.8,10,5],["Holiday mug set",34,11,560,60,2.6,15,6],["Pumpkin spice blend",16,5.2,600,70,2.4,20,4]];
+/* name, price, cost, stock, weekly base, elasticity, salvage %cost, weeks */
+
+var state={answers:[0,1,1,0,1,0,2],log:[],role:"am",view:"overview"};
+var SNAP={};
+
+function buildStock(){var r=rng(42),rows=[];LOCS.forEach(function(L){ITEMS.forEach(function(it,i){var avg=it[2]*L.size,sd=it[3]*Math.sqrt(L.size),lt=it[4];
+ var target=avg*lt+1.645*sd*Math.sqrt(lt)+avg*7;var f=[.35,.6,1.1,1.9,.5,1.5,.8,1.6,.45,1.4,1.2,.55][(i+LOCS.indexOf(L)*5)%12]*(.85+r()*.3);
+ rows.push({loc:L.id,item:i,avg:avg,sd:sd,lt:lt,cost:it[1],oh:Math.round(target*f),oo:r()<.2?Math.round(avg*3):0})})});return rows}
+var STOCK=buildStock();
+
+var POS=[["Coffee roaster",26000,1,30,false,1],["Dairy co-op",9000,1,14,false,1],["Bakery supplier",7000,2,14,false,2],["Holiday gift boxes",38000,2,45,true,6],["Grocery distributor",31000,3,30,false,3],["Packaging",12000,3,30,true,8],["Dairy co-op",9000,4,14,false,4],["Coffee roaster",26000,5,30,false,5],["Equipment (espresso machine)",24000,5,0,true,10],["Grocery distributor",33000,7,30,false,7],["Spring range pre-order",42000,6,30,true,11],["Dairy co-op",9500,8,14,false,8],["Coffee roaster",27000,9,30,false,9]];
+/* supplier, amount, order week, net days, can move, latest week */
+
+/* ---------- tabs ---------- */
+function show(v){state.view=v;$$(".tab").forEach(function(t){t.setAttribute("aria-selected",t.dataset.v===v?"true":"false");if(t.dataset.v===v)t.setAttribute("aria-current","page");else t.removeAttribute("aria-current");if(t.dataset.v===v&&innerWidth<=860){var tb=t.parentNode;tb.scrollLeft=t.offsetLeft-tb.offsetLeft-12}});$$("section[data-p]").forEach(function(s){s.classList.toggle("hide",s.dataset.p!==v)});hideTip();try{history.replaceState(null,"","#"+v)}catch(e){}window.scrollTo(0,0);render(v)}
+$$(".tab").forEach(function(t){t.addEventListener("click",function(){show(t.dataset.v)})});
+
+/* ---------- charts (SVG, hand-built) ---------- */
+function niceMax(m){if(m<=0)return 1;var p=Math.pow(10,Math.floor(Math.log10(m))),n=m/p;return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p}
+function frame(W,H,P,max,ticks,fmt){var s='';var t4=max/4;ticks=(max>40||Math.abs(t4-Math.round(t4))<1e-9)?4:5;for(var i=0;i<=ticks;i++){var v=max*i/ticks,y=P.t+(H-P.t-P.b)*(1-i/ticks);s+='<line class="gl" x1="'+P.l+'" x2="'+(W-P.r)+'" y1="'+y+'" y2="'+y+'"/><text class="ax" x="'+(P.l-8)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(v)+'</text>'}return s}
+function lineChart(el,labels,series,opt){opt=opt||{};var W=720,H=opt.h||260,P={l:56,r:16,t:12,b:30};var all=[];series.forEach(function(s){all=all.concat(s.v)});if(opt.floor!=null)all.push(opt.floor);
+ var min=opt.min!=null?opt.min:Math.min(0,Math.min.apply(null,all));var max=niceMax(Math.max.apply(null,all)*1.05);var n=labels.length,x=function(i){return P.l+(W-P.l-P.r)*(n===1?.5:i/(n-1))},y=function(v){return P.t+(H-P.t-P.b)*(1-(v-min)/(max-min))};
+ var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opt.label||"chart")+'">'+frame(W,H,P,max,4,opt.fmt||function(v){return Math.round(v)});
+ labels.forEach(function(l,i){if(n<=14||i%2===0)s+='<text class="ax" x="'+x(i)+'" y="'+(H-10)+'" text-anchor="middle">'+esc(l)+'</text>'});
+ if(opt.floor!=null)s+='<line x1="'+P.l+'" x2="'+(W-P.r)+'" y1="'+y(opt.floor)+'" y2="'+y(opt.floor)+'" stroke="#E5636B" stroke-width="2" stroke-dasharray="6 5"/>';
+ series.forEach(function(se){var d=se.v.map(function(v,i){return (i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)}).join(" ");s+='<path d="'+d+'" fill="none" stroke="'+se.c+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+  se.v.forEach(function(v,i){s+='<circle cx="'+x(i)+'" cy="'+y(v)+'" r="3.5" fill="'+se.c+'" stroke="#0A1431" stroke-width="2"/>'})});
+ labels.forEach(function(l,i){var x0=n===1?P.l:x(i)-(W-P.l-P.r)/(n-1)/2;s+='<rect class="hit" data-i="'+i+'" x="'+Math.max(P.l,x0)+'" y="'+P.t+'" width="'+((W-P.l-P.r)/Math.max(1,n-1))+'" height="'+(H-P.t-P.b)+'" fill="transparent"/>'});
+ s+='<line class="xh" x1="0" x2="0" y1="'+P.t+'" y2="'+(H-P.b)+'" stroke="rgba(255,255,255,.25)" visibility="hidden"/></svg>';el.innerHTML=s;
+ var xh=el.querySelector(".xh");$$(".hit",el).forEach(function(r){r.addEventListener("mousemove",function(e){var i=+r.dataset.i;xh.setAttribute("x1",x(i));xh.setAttribute("x2",x(i));xh.setAttribute("visibility","visible");
+  showTip(e,'<b>'+esc(opt.tipLabel?opt.tipLabel(i):labels[i])+'</b><br>'+series.map(function(se){return '<span style="color:'+se.c+'">●</span> '+esc(se.n)+': '+(opt.tf||opt.fmt||nf)(se.v[i])}).join("<br>")+(opt.floor!=null?'<br><span style="color:#E5636B">●</span> Floor: '+(opt.tf||opt.fmt)(opt.floor):''))});
+  r.addEventListener("mouseleave",function(){xh.setAttribute("visibility","hidden");hideTip()})})}
+function barLine(el,labels,bars,lines,opt){var W=720,H=opt.h||260,P={l:40,r:12,t:12,b:30};var all=bars.v.slice();lines.forEach(function(l){all=all.concat(l.v)});var max=niceMax(Math.max.apply(null,all)*1.1);
+ var n=labels.length,bw=(W-P.l-P.r)/n,y=function(v){return P.t+(H-P.t-P.b)*(1-v/max)};var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opt.label)+'">'+frame(W,H,P,max,4,function(v){return Math.round(v)});
+ bars.v.forEach(function(v,i){var h=(H-P.t-P.b)*v/max,x=P.l+i*bw+bw*.18;s+='<path d="M'+x+' '+(H-P.b)+'v'+(-(Math.max(h-4,0)))+'q0 -4 4 -4h'+(bw*.64-8)+'q4 0 4 4v'+(Math.max(h-4,0))+'z" fill="'+bars.c+'"/>';s+='<text class="ax" x="'+(x+bw*.32)+'" y="'+(H-10)+'" text-anchor="middle">'+esc(labels[i])+'</text>'});
+ lines.forEach(function(se){var d='';se.v.forEach(function(v,i){var x0=P.l+i*bw+bw*.12,x1=P.l+(i+1)*bw-bw*.12;d+='M'+x0+' '+y(v)+'H'+x1});s+='<path d="'+d+'" stroke="'+se.c+'" stroke-width="3" stroke-linecap="round" fill="none"/>'});
+ labels.forEach(function(l,i){s+='<rect class="hit" data-i="'+i+'" x="'+(P.l+i*bw)+'" y="'+P.t+'" width="'+bw+'" height="'+(H-P.t-P.b)+'" fill="transparent"/>'});s+='</svg>';el.innerHTML=s;
+ $$(".hit",el).forEach(function(r){r.addEventListener("mousemove",function(e){var i=+r.dataset.i;showTip(e,'<b>'+esc(opt.tipLabel?opt.tipLabel(i):labels[i])+'</b><br><span style="color:'+bars.c+'">●</span> '+esc(bars.n)+': '+bars.v[i]+lines.map(function(se){return '<br><span style="color:'+se.c+'">●</span> '+esc(se.n)+': '+se.v[i]}).join(""))});r.addEventListener("mouseleave",hideTip)})}
+function bars2(el,labels,a,b,opt){var W=720,H=opt.h||280,P={l:44,r:12,t:12,b:64};var max=niceMax(Math.max.apply(null,a.v.concat(b.v))*1.08);var n=labels.length,gw=(W-P.l-P.r)/n,bw=Math.min(18,gw*.34),y=function(v){return P.t+(H-P.t-P.b)*(1-Math.min(v,max)/max)};
+ var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opt.label)+'">'+frame(W,H,P,max,4,function(v){return Math.round(v)});
+ function bar(x,v,c){var h=(H-P.b)-y(v);var r=Math.min(4,h);return '<path d="M'+x+' '+(H-P.b)+'v'+(-(h-r))+'q0 '+(-r)+' '+r+' '+(-r)+'h'+(bw-2*r)+'q'+r+' 0 '+r+' '+r+'v'+(h-r)+'z" fill="'+c+'"/>'}
+ labels.forEach(function(l,i){var cx=P.l+gw*i+gw/2;s+=bar(cx-bw-1,a.v[i],a.c)+bar(cx+1,b.v[i],b.c);s+='<text class="ax" transform="translate('+cx+' '+(H-P.b+12)+') rotate(-35)" text-anchor="end">'+esc(l.length>16?l.slice(0,15)+"…":l)+'</text>';s+='<rect class="hit" data-i="'+i+'" x="'+(P.l+gw*i)+'" y="'+P.t+'" width="'+gw+'" height="'+(H-P.t-P.b)+'" fill="transparent"/>'});
+ s+='</svg>';el.innerHTML=s;$$(".hit",el).forEach(function(r){r.addEventListener("mousemove",function(e){var i=+r.dataset.i;showTip(e,'<b>'+esc(labels[i])+'</b><br><span style="color:'+a.c+'">●</span> '+a.n+': '+nf(a.v[i],1)+' days<br><span style="color:'+b.c+'">●</span> '+b.n+': '+nf(b.v[i],1)+' days')});r.addEventListener("mouseleave",hideTip)})}
+
+/* ---------- ROSTER ---------- */
+function rosterDay(loc,d,o){var hrs=[],req=[];for(var h=OPEN;h<CLOSE;h++){hrs.push(h);req.push(Math.max(o.min,Math.ceil(demand(loc,d,h)/o.prod)))}
+ var cov=req.map(function(){return 0}),shifts=[],N=req.length,guard=0;
+ while(guard++<60){var s=-1;for(var i=0;i<N;i++){if(cov[i]<req[i]){s=i;break}}if(s<0)break;
+  var best=null;for(var L=o.smin;L<=o.smax;L++){var st=s;if(st+L>N)st=Math.max(0,N-L);var gain=0,waste=0;for(var k=st;k<st+L&&k<N;k++){if(cov[k]<req[k])gain++;else waste++}var sc=gain-waste*.6;if(!best||sc>best.sc||(sc===best.sc&&L>best.L))best={st:st,L:Math.min(L,N-st),sc:sc}}
+  for(var k2=best.st;k2<best.st+best.L;k2++)cov[k2]++;shifts.push({s:best.st+OPEN,e:best.st+best.L+OPEN,len:best.L})}
+ var blocks=[],cur=req.slice();for(var bi=0;bi<N;bi+=2)blocks.push([bi,Math.min(N,bi+2)]);blocks.forEach(function(b){var m=0;for(var i=b[0];i<b[1];i++)m=Math.max(m,req[i]);for(var j=b[0];j<b[1];j++)cur[j]=m});
+ return {hrs:hrs,req:req,cov:cov,shifts:shifts,cur:cur}}
+function staffFor(loc){var ft=Math.max(3,Math.round(3*loc.size)),pt=Math.round(7*loc.size)+2,list=[];var FN=["Ava","Liam","Noah","Mia","Omar","Sara","Lucas","Zoe","Ethan","Layla","Ryan","Nora","Adam","Hana","Leo","Ivy","Jad","Emma"];var r=rng(loc.size*1000|0);
+ for(var i=0;i<ft;i++)list.push({n:FN[(i*3+Math.floor(r()*5))%FN.length]+" "+String.fromCharCode(65+i),t:"FT",h:0});for(var j=0;j<pt;j++)list.push({n:FN[(j*5+7+Math.floor(r()*4))%FN.length]+" "+String.fromCharCode(75+j),t:"PT",h:0});return list}
+function rosterWeek(loc,o){var days=[],staff=staffFor(loc),need=0,planH=0,curH=0,ot=0,costPlan=0,costCur=0,sales=0;
+ for(var d=0;d<7;d++){var R=rosterDay(loc,d,o);days.push(R);R.req.forEach(function(v,i){need+=v;sales+=demand(loc,d,R.hrs[i])*AVG_TICKET});R.cur.forEach(function(v){curH+=v})}
+ /* assign shifts: longest first; part-time within cap, then full-time, overtime last */
+ var all=[];days.forEach(function(R,d){R.shifts.forEach(function(s){s.d=d;all.push(s)})});all.sort(function(a,b){return b.len-a.len});
+ var dayUsed={};all.forEach(function(s){var pick=null,cands=staff.filter(function(p){return !dayUsed[p.n+"|"+s.d]});
+  cands.sort(function(a,b){function cost(p){if(p.t==="PT")return p.h+s.len<=o.ptcap?o.wpt:999;return p.h+s.len<=o.ot?o.wft:o.wft*1.5}return cost(a)-cost(b)||a.h-b.h});pick=cands[0];
+  if(!pick){pick={n:"Extra staff needed",t:"PT",h:0}}s.who=pick.n;s.type=pick.t;var otH=pick.t==="FT"?Math.max(0,pick.h+s.len-o.ot)-Math.max(0,pick.h-o.ot):0;pick.h+=s.len;dayUsed[pick.n+"|"+s.d]=1;
+  var rate=pick.t==="PT"?o.wpt:o.wft;costPlan+=rate*(s.len-otH)+rate*1.5*otH;ot+=otH;planH+=s.len});
+ /* current roster cost: same staff mix, typical overtime of 6% hours */
+ var ftShare=.55;costCur=curH*(ftShare*o.wft+(1-ftShare)*o.wpt)+curH*.06*o.wft*.5;
+ return {days:days,staff:staff,need:need,planH:planH,curH:curH,ot:ot,costPlan:costPlan,costCur:costCur,sales:sales}}
+function ropts(){var smin=Math.round(num("rSmin",4,2,8));return {prod:num("rProd",9,4,60),min:Math.round(num("rMin",2,1,10)),smin:smin,smax:Math.max(smin,Math.round(num("rSmax",8,smin,12))),wft:num("rWft",23,0,200),wpt:num("rWpt",18.5,0,200),ot:num("rOt",44,20,80),ptcap:num("rPtcap",24,0,60)}}
+function renderRoster(){var o=ropts(),L=LOCS[$("#rLoc").selectedIndex],d=$("#rDay").selectedIndex,W=rosterWeek(L,o),R=W.days[d];
+ var under=0,over=0,curUnder=0,curOver=0;R.req.forEach(function(v,i){under+=Math.max(0,v-R.cov[i]);over+=Math.max(0,R.cov[i]-v);curUnder+=Math.max(0,v-R.cur[i]);curOver+=Math.max(0,R.cur[i]-v)});
+ var lpC=W.costCur/W.sales*100,lpP=W.costPlan/W.sales*100;
+ $("#rK").innerHTML=kpi("Labour cost this week",fk(W.costPlan),delta(W.costCur,W.costPlan,true,fk))+kpi("Labour % of sales",pc(lpP),delta(lpC,lpP,true,function(v){return v.toFixed(1)+" pts"}))+kpi("Short-staffed hours ("+DAYS[d].slice(0,3)+")",String(under),"today's roster: "+curUnder)+kpi("Overtime hours this week",nf(W.ot,0),"paid at 1.5×");
+ $("#rChT").textContent="Coverage by hour · "+L.name+", "+DAYS[d];
+ barLine($("#rCh"),R.hrs.map(function(h){return String(h)}),{n:"Staff needed",v:R.req,c:"#B98432"},[{n:"Current roster",v:R.cur,c:"#AEB9CC"},{n:"Recommended roster",v:R.cov,c:"#6C7CEE"}],{label:"Staff needed and rostered by hour",h:250,tipLabel:function(i){return R.hrs[i]+":00 to "+(R.hrs[i]+1)+":00"}});
+ $("#rWhy").innerHTML='<b>Why:</b> at '+o.prod+' customers per staff-hour, '+L.name+' needs between '+Math.min.apply(null,R.req)+' and '+Math.max.apply(null,R.req)+' people on '+DAYS[d]+'. The current roster leaves '+curUnder+' hours short and '+curOver+' hours over; the recommended shifts follow the peaks instead.'+(over?' '+over+' hour'+(over>1?'s':'')+' of overlap remain where a shift can\'t be shorter than '+o.smin+' hours.':'');
+ $("#rShT").textContent=L.name+", "+DAYS[d]+" · "+R.shifts.length+" shifts";
+ var rows='<tr><th>Shift</th><th>Hours</th><th class="tl">Assigned to</th><th>Type</th></tr>';R.shifts.slice().sort(function(a,b){return a.s-b.s}).forEach(function(s){rows+='<tr><td>'+s.s+':00 to '+s.e+':00</td><td>'+s.len+'</td><td class="tl">'+esc(s.who)+'</td><td>'+(s.type==="FT"?"Full-time":"Part-time")+'</td></tr>'});$("#rT").innerHTML=rows;
+ SNAP.roster={save:(W.costCur-W.costPlan)*52,summary:L.name+": "+fk(W.costPlan)+"/week labour ("+pc(lpP)+" of sales)"};return W}
+function rosterAllSavings(){var o=ropts(),s=0;LOCS.forEach(function(L){var W=rosterWeek(L,o);s+=(W.costCur-W.costPlan)*52});return s}
+
+/* ---------- STOCK ---------- */
+function stockCalc(){var z=+$("#sSl").value,rev=num("sRev",7,1,30),trip=num("sTr",35,0,1e5);var rows=STOCK.map(function(r){var ss=z*r.sd*Math.sqrt(r.lt),rop=r.avg*r.lt+ss,out=rop+r.avg*rev,pos=r.oh+r.oo;return Object.assign({},r,{ss:ss,rop:rop,out:out,pos:pos,need:pos<rop?Math.ceil(out-pos):0,surplus:r.oh>out*1.25?Math.floor(r.oh-out):0})});
+ var transfers=[];ITEMS.forEach(function(it,i){var sur=rows.filter(function(r){return r.item===i&&r.surplus>0}).sort(function(a,b){return b.surplus-a.surplus}),sh=rows.filter(function(r){return r.item===i&&r.need>0}).sort(function(a,b){return b.need-a.need});
+  sh.forEach(function(s){sur.forEach(function(u){if(s.need<=0||u.surplus<=0)return;var q=Math.min(s.need,u.surplus);var value=q*it[1]*.35;if(value<trip&&q*it[1]<trip*3)return;transfers.push({item:i,from:u.loc,to:s.loc,q:q,value:q*it[1]});s.need-=q;u.surplus-=q;u.oh-=q;s.pos+=q})})});
+ return {rows:rows,transfers:transfers,z:z}}
+function renderStock(){var C=stockCalc(),rows=C.rows,locI=$("#sLoc").selectedIndex,L=LOCS[locI];
+ var risk0=STOCK.filter(function(r,i){return r.oh+r.oo<C.rows[i].rop}).length;var orders=rows.filter(function(r){return r.need>0});var risk1=0;/* after orders + transfers every item is at/above reorder point */
+ var cashNow=STOCK.reduce(function(a,r){return a+r.oh*r.cost},0),cashTarget=rows.reduce(function(a,r){return a+Math.min(r.oh,r.out)*r.cost+(r.need>0?r.need*r.cost:0)},0);
+ var tUnits=C.transfers.reduce(function(a,t){return a+t.q},0),tVal=C.transfers.reduce(function(a,t){return a+t.value},0);
+ $("#sK").innerHTML=kpi("Item-locations at risk of running out",String(risk0),'<span class="up">0</span> after orders and transfers')+kpi("Transfers suggested",String(C.transfers.length),nf(tUnits)+" units, "+fk(tVal)+" of stock reused")+kpi("Orders to place",String(orders.length),fk(orders.reduce(function(a,r){return a+r.need*r.cost},0))+" at cost")+kpi("Stock held in excess",fk(rows.reduce(function(a,r){return a+Math.max(0,r.oh-r.out)*r.cost},0)),"above target, all locations");
+ var t='<tr><th class="tl">Item</th><th class="tl">From</th><th class="tl">To</th><th>Units</th><th>Value at cost</th></tr>';if(!C.transfers.length)t+='<tr><td class="tl" colspan="5">No transfer beats a normal order at these settings.</td></tr>';
+ C.transfers.forEach(function(x){t+='<tr><td class="tl">'+esc(ITEMS[x.item][0])+'</td><td class="tl">'+locName(x.from)+'</td><td class="tl">'+locName(x.to)+'</td><td>'+nf(x.q)+'</td><td>'+fm(x.value)+'</td></tr>'});$("#sTT").innerHTML=t;
+ var o='<tr><th class="tl">Location</th><th class="tl">Item</th><th>On hand</th><th>Reorder point</th><th>Order qty</th><th>Cost</th></tr>';orders.sort(function(a,b){return a.loc<b.loc?-1:a.loc>b.loc?1:a.item-b.item}).forEach(function(r){o+='<tr><td class="tl">'+locName(r.loc)+'</td><td class="tl">'+esc(ITEMS[r.item][0])+'</td><td>'+nf(r.oh)+'</td><td>'+nf(r.rop)+'</td><td><b>'+nf(r.need)+'</b></td><td>'+fm(r.need*r.cost)+'</td></tr>'});if(!orders.length)o+='<tr><td class="tl" colspan="6">Nothing to order this week.</td></tr>';$("#sOT").innerHTML=o;
+ var lr=STOCK.filter(function(r){return r.loc===L.id}),cr=rows.filter(function(r){return r.loc===L.id});$("#sChT").textContent="Days of stock · "+L.name;
+ bars2($("#sCh"),lr.map(function(r){return ITEMS[r.item][0]}),{n:"On hand now",v:lr.map(function(r){return +(r.oh/r.avg).toFixed(1)}),c:"#B98432"},{n:"Target",v:cr.map(function(r){return +(r.out/r.avg).toFixed(1)}),c:"#6C7CEE"},{label:"Days of stock on hand vs target"});
+ var lostSales=risk0*ITEMS.reduce(function(a,it){return a+it[2]*it[1]},0)/ITEMS.length*2*.6*26; SNAP.stock={save:lostSales,summary:orders.length+" orders, "+C.transfers.length+" transfers"};return C}
+function locName(id){for(var i=0;i<LOCS.length;i++)if(LOCS[i].id===id)return LOCS[i].name;return id}
+
+/* ---------- MARKDOWNS ---------- */
+var STEPS=[0,.1,.2,.3,.4,.5,.6];
+function simulate(path,o){var stock=o.stock,profit=0,left=[],rev=0;for(var w=0;w<path.length;w++){var p=o.price*(1-path[w]),dem=o.base*Math.pow(p/o.price,-o.el),sold=Math.min(stock,dem);stock-=sold;rev+=sold*p;profit+=sold*(p-o.cost);left.push(stock)}
+ profit+=stock*o.cost*o.salv/100;return {profit:profit,left:left,rev:rev,end:stock}}
+function bestPath(o){var W=o.weeks,best=null;(function rec(path,minI){if(path.length===W){var r=simulate(path,o);if(!best||r.profit>best.r.profit+1e-6)best={p:path.slice(),r:r};return}for(var i=minI;i<STEPS.length;i++){path.push(STEPS[i]);rec(path,i);path.pop()}})([],0);return best}
+function popts(){return {price:num("pPrice",50,0.5,1e6),cost:num("pCost",20,0,1e6),stock:Math.round(num("pStock",500,0,1e7)),weeks:Math.round(num("pWeeks",6,2,8)),base:num("pBase",80,1,1e7),el:num("pEl",2,.3,5),salv:num("pSalv",30,0,100)}}
+function fillItem(){var it=SEASON[$("#pItem").selectedIndex];$("#pPrice").value=it[1];$("#pCost").value=it[2];$("#pStock").value=it[3];$("#pBase").value=it[4];$("#pEl").value=it[5];$("#pSalv").value=it[6];$("#pWeeks").value=it[7]}
+function renderPrice(){var o=popts(),B=bestPath(o),habit=[];for(var w=0;w<o.weeks;w++)habit.push(w===o.weeks-1?.5:0);var H=simulate(habit,o);
+ var gain=B.r.profit-H.profit;
+ $("#pK").innerHTML=kpi("Season margin, recommended",fk(B.r.profit),delta(H.profit,B.r.profit,false,fk))+kpi("Units left at season end",nf(B.r.end),"usual habit: "+nf(H.end))+kpi("Sell-through",pc((o.stock-B.r.end)/Math.max(1,o.stock)*100,0),"usual habit: "+pc((o.stock-H.end)/Math.max(1,o.stock)*100,0))+kpi("Deepest discount",pc(Math.max.apply(null,B.p)*100,0),"never raised back up");
+ var labels=[];for(var i=1;i<=o.weeks;i++)labels.push("Week "+i);
+ lineChart($("#pCh"),labels,[{n:"Usual habit",v:H.left.map(Math.round),c:"#AEB9CC"},{n:"Recommended plan",v:B.r.left.map(Math.round),c:"#6C7CEE"}],{label:"Units left at the end of each week",fmt:function(v){return nf(v)},h:240});
+ var t='<tr><th class="tl">Week</th><th>Discount</th><th>Price</th><th>Expected units sold</th><th>Units left</th></tr>',st=o.stock;B.p.forEach(function(d,w){var p=o.price*(1-d),dem=Math.min(st,o.base*Math.pow(1-d,-o.el));st-=dem;t+='<tr><td class="tl">Week '+(w+1)+'</td><td>'+(d?pc(d*100,0)+' off':'Full price')+'</td><td>'+fm(p)+'</td><td>'+nf(dem)+'</td><td>'+nf(st)+'</td></tr>'});$("#pT").innerHTML=t;
+ $("#pWhy").innerHTML='<b>Why:</b> the tool compared every discount path for '+o.weeks+' weeks (discounts only go deeper, never back up). '+(gain>0?'This plan earns <b>'+fm(gain)+'</b> more margin than holding full price and clearing at 50% in the last week.':'Holding the price is already the best plan for this item.')+' Leftovers are valued at '+o.salv+'% of cost.';
+ var tot=0;SEASON.forEach(function(it){var oo={price:it[1],cost:it[2],stock:it[3],base:it[4],el:it[5],salv:it[6],weeks:it[7]};var b=bestPath(oo),h=[];for(var w2=0;w2<oo.weeks;w2++)h.push(w2===oo.weeks-1?.5:0);tot+=b.r.profit-simulate(h,oo).profit});
+ SNAP.price={save:tot*1.6,summary:$("#pItem").value+": "+B.p.map(function(d){return Math.round(d*100)+"%"}).join(" → ")};renderPromo()}
+function renderPromo(){var d=num("prD",20,0,90)/100,e=num("prE",2.2,.3,5),c=num("prC",30,0,100)/100,w=Math.round(num("prW",2,1,12));var it=SEASON[$("#pItem").selectedIndex],o=popts();var base=o.base,price=o.price,cost=o.cost;
+ var up=Math.pow(1-d,-e),units=base*up,inc=units-base,margNew=units*(price*(1-d)-cost),margOld=base*(price-cost),cann=inc*c*(price-cost)*.6;var net=(margNew-margOld-cann)*w;
+ $("#prOut").innerHTML='At '+Math.round(d*100)+'% off, '+esc(it[0]).toLowerCase()+' sells about <b>'+nf(units)+'</b> a week instead of '+nf(base)+' (+'+Math.round((up-1)*100)+'%). After the lower price and the sales it takes from other items, the promotion '+(net>=0?'<span class="st good">adds about '+fm(net)+' margin</span> over '+w+' week'+(w>1?'s':'')+'.':'<span class="st bad">loses about '+fm(-net)+' margin</span> over '+w+' week'+(w>1?'s':'')+'. Try a smaller discount.')}
+
+/* ---------- CASH ---------- */
+function cashSim(plan,o){var cash=o.open,out=[];for(var w=1;w<=13;w++){var sales=(118000+(w>=3&&w<=6?24000:0)-(w>=8?9000:0))*o.outlook,receipts=sales,cogs=0;var payroll=w%2===0?52000:0,rent=(w===1||w===5||w===9||w===13)?61000:0,other=9500;
+ plan.forEach(function(p){var payW=p.week+Math.round(p.net/7);if(payW===w)cogs+=p.amt});cash+=receipts-receipts*.42-payroll-rent-other-cogs;out.push(Math.round(cash))}return out}
+/* note: 42% of sales covers goods bought outside these listed orders (daily suppliers), so listed POs are the large planned buys */
+function cashPlan(o){var base=POS.map(function(p,i){return {i:i,sup:p[0],amt:p[1],week:p[2],net:p[3],move:p[4],late:p[5]}});var plan=base.map(function(p){return Object.assign({},p)});
+ for(var it=0;it<40;it++){var c=cashSim(plan,o),wk=-1;for(var w=0;w<13;w++)if(c[w]<o.floor){wk=w+1;break}if(wk<0)break;
+  var cand=plan.filter(function(p){return p.move&&p.week+Math.round(p.net/7)<=wk&&p.week<p.late}).sort(function(a,b){return b.amt-a.amt});if(!cand.length){var sp=plan.filter(function(p){return p.move&&!p.split&&p.amt>15000})[0];if(!sp)break;var half=Math.round(sp.amt/2);sp.amt-=half;sp.split=true;plan.push({i:sp.i,sup:sp.sup+" (second half)",amt:half,week:Math.min(sp.late,sp.week+3),net:sp.net,move:false,late:sp.late,split:true,part:true});continue}
+  cand[0].week+=1}
+ return {base:base,plan:plan}}
+function renderCash(){var o={open:num("cOpen",85000,-1e9,1e9),floor:num("cFloor",30000,-1e9,1e9),outlook:+$("#cOut").value};var P=cashPlan(o),A=cashSim(P.base,o),B=cashSim(P.plan,o);
+ var minA=Math.min.apply(null,A),minB=Math.min.apply(null,B),belowA=A.filter(function(v){return v<o.floor}).length,belowB=B.filter(function(v){return v<o.floor}).length;
+ $("#cK").innerHTML=kpi("Lowest cash, recommended",fk(minB),delta(minA,minB,false,fk))+kpi("Weeks below the floor",String(belowB),"current plan: "+belowA)+kpi("Orders moved or split",String(P.plan.filter(function(p,i){var b=P.base[p.i];return p.part||!b||p.week!==b.week||p.amt!==b.amt}).length),"only orders marked “can move”")+kpi("Cash at week 13",fk(B[12]),"same total buying");
+ var lab=[];for(var w=1;w<=13;w++)lab.push("W"+w);lineChart($("#cCh"),lab,[{n:"Current plan",v:A,c:"#AEB9CC"},{n:"Recommended plan",v:B,c:"#6C7CEE"}],{label:"Cash at the end of each week",fmt:fk,floor:o.floor,h:260,tipLabel:function(i){return "Week "+(i+1)}});
+ var t='<tr><th class="tl">Supplier</th><th>Amount</th><th>Terms</th><th>Order week now</th><th>Recommended</th><th class="tl">Note</th></tr>';P.plan.slice().sort(function(a,b){return a.week-b.week}).forEach(function(p){var b=P.base[p.i],moved=!p.part&&b.week!==p.week;t+='<tr><td class="tl">'+esc(p.sup)+'</td><td>'+fm(p.amt)+'</td><td>'+(p.net?"Net "+p.net:"On order")+'</td><td>'+(p.part?"·":"W"+b.week)+'</td><td><b>W'+p.week+'</b></td><td class="tl">'+(p.part?'<span class="st info">split</span>':moved?'<span class="st warn">moved '+(p.week-b.week)+' wk</span>':p.split?'<span class="st info">split</span>':p.move?'can move':'fixed')+'</td></tr>'});$("#cT").innerHTML=t;
+ SNAP.cash={freed:Math.max(0,minB-minA),summary:"Lowest cash "+fk(minB)+" (was "+fk(minA)+")"}}
+
+/* ---------- LOCATIONS ---------- */
+function locRows(){var o=ropts();return LOCS.map(function(L,i){var sales=Math.round(rosterWeek(L,o).sales),cogs=[31.5,33.8,32.2,34.9,32.6][i],lab=[24.1,27.9,25.6,29.4,26.2][i],rent=[14.2,10.8,11.5,13.6,11.9][i],oth=[8.1,8.6,8.3,9.2,8.4][i];return {L:L,sales:sales*4,cogs:cogs,lab:lab,rent:rent,oth:oth,mar:100-cogs-lab-rent-oth}})}
+function renderLoc(){var R=locRows(),avg=function(k){return R.reduce(function(a,x){return a+x[k]},0)/R.length};var A={cogs:avg("cogs"),lab:avg("lab"),rent:avg("rent"),oth:avg("oth"),mar:avg("mar")};
+ var ranked=R.slice().sort(function(a,b){return b.mar-a.mar});var t='<tr><th class="tl">Location</th><th>Sales (4 wk)</th><th>Sales / sq ft</th><th>Cost of goods</th><th>Labour</th><th>Rent</th><th>Other</th><th>Margin</th><th>Rank</th><th class="tl">Flags</th></tr>';
+ R.forEach(function(x){var f=[];if(x.lab>A.lab+2)f.push('<span class="st warn">Labour high · <a href="#roster" data-go="roster">fix</a></span>');if(x.cogs>A.cogs+2)f.push('<span class="st warn">Cost of goods high · <a href="#stock" data-go="stock">fix</a></span>');if(x.rent>A.rent+2)f.push('<span class="st info">Rent heavy</span>');if(!f.length)f.push('<span class="st good">On track</span>');
+  t+='<tr><td class="tl">'+x.L.name+'</td><td>'+fk(x.sales)+'</td><td>'+fm(x.sales/x.L.sqft)+'</td><td>'+pc(x.cogs)+'</td><td>'+pc(x.lab)+'</td><td>'+pc(x.rent)+'</td><td>'+pc(x.oth)+'</td><td><b>'+pc(x.mar)+'</b></td><td>'+(ranked.indexOf(x)+1)+'</td><td class="tl">'+f.join(" ")+'</td></tr>'});
+ t+='<tr><td class="tl"><b>Network average</b></td><td>'+fk(avg("sales"))+'</td><td>·</td><td>'+pc(A.cogs)+'</td><td>'+pc(A.lab)+'</td><td>'+pc(A.rent)+'</td><td>'+pc(A.oth)+'</td><td><b>'+pc(A.mar)+'</b></td><td>·</td><td></td></tr>';$("#lT").innerHTML=t;
+ $$("#lT [data-go]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.dataset.go)})});renderNew();renderFee()}
+function renderNew(){var inv=num("nInv",420000,0,1e9),s=num("nSales",135000,0,1e9),ramp=num("nRamp",9,1,60),m=num("nMar",24,0,100)/100,rent=num("nRent",16500,0,1e8);var cum=-inv,pay=null,m1=0;
+ for(var mo=1;mo<=120;mo++){var sales=s*Math.min(1,.55+.45*mo/ramp);var cf=sales*m-rent;if(mo===1)m1=cf;cum+=cf;if(cum>=0&&pay===null){pay=mo;break}}
+ var be=rent/m,mature=s*m-rent,v=pay!==null&&pay<=30?["good","Go","Pays back in "+pay+" months."]:pay!==null&&pay<=42?["warn","Review","Pays back in "+pay+" months; test a lower fit-out cost or a better rent."]:["bad","No-go as planned",pay?"Payback takes "+pay+" months.":"It doesn't pay back within 10 years at these numbers."];
+ $("#nOut").innerHTML='<div class="grid g3">'+kpi("Break-even monthly sales",isFinite(be)?fk(be):"Not reachable","to cover rent from margin")+kpi("Monthly cash when mature",fk(mature),"after rent")+kpi("Payback",pay?pay+" months":"over 10 years","incl. ramp-up")+'</div><p class="why"><span class="st '+v[0]+'">'+v[1]+'</span> '+v[2]+' Thresholds: go within 30 months, review up to 42.</p>'}
+function renderFee(){var roy=num("fRoy",6,0,50),mk=num("fMkt",2,0,50),m=num("fMar",17,-50,100),s=num("fSales",120000,0,1e9);var after=m-roy-mk,ok=after>=8?["good","Healthy"]:after>=5?["warn","Tight"]:["bad","At risk"];
+ $("#fOut").innerHTML='<div class="grid g3">'+kpi("Franchisee margin after fees",pc(after),ok[1])+kpi("Franchisor income per unit",fk(s*(roy)/100)+"/mo","royalty only")+kpi("Franchisee profit",fk(s*after/100)+"/mo","after all fees")+'</div><p class="why"><span class="st '+ok[0]+'">'+ok[1]+'</span> Franchisees who keep less than about 8% of sales after fees often struggle to reinvest; below 5% the network is at risk. Thresholds are set with each client.</p>'}
+
+
+/* ---------- HR (People Portal) ---------- */
+var CH={std:["Location Manager","HR Help Desk","HR"],area:["Location Manager","Area Manager","HR Help Desk","HR"],full:["Location Manager","Area Manager","Operations","HR Help Desk","HR"]},CHL={std:"Routine",area:"Important",full:"Serious"},SLA={std:48,area:72,full:96};
+var HRQ=[{t:"Employment letter",loc:"OK",c:"std",cur:1,age:6,chk:["good","Name, position and start date match the employee record."]},
+{t:"New hire: part-time barista",loc:"MK",c:"area",cur:1,age:20,chk:["good","Position and pay rate are within the approved band."]},
+{t:"Pay change: shift supervisor",loc:"DT",c:"area",cur:1,age:79,chk:["warn","New rate is above the band for this position. Area Manager must add a reason."]},
+{t:"Transfer to Vaughan",loc:"MI",c:"area",cur:2,age:30,chk:["good","Employee is active; receiving location has an open position."]},
+{t:"Termination",loc:"VA",c:"full",cur:1,age:12,chk:["bad","No documented warnings on file. Stop and call HR before acting."]},
+{t:"Parental leave",loc:"MI",c:"std",cur:1,age:3,chk:["good","Eligibility confirmed; return date recorded."]}];
+var hrSel=0;
+var ANS=[{k:"overtime hours ot",q:"When is overtime paid?",on:"After 44 hours in a week, at 1.5 times the regular rate. Approve overtime in advance.",qc:"After 40 hours in a week, at 1.5 times the regular rate (or time off, if agreed). Approve overtime in advance."},
+{k:"schedule roster posting shift",q:"How far ahead must schedules be posted?",on:"Our standard: at least 7 days ahead. Build it from forecast sales and the location's labour target.",qc:"At least 7 days ahead as a standard; never less than 5 days."},
+{k:"injury accident burn cut",q:"Someone was injured at work. What now?",on:"First aid, incident report the same day, pay the full shift. Report to WSIB within 3 days if care went beyond first aid.",qc:"First aid, incident report the same day, pay the day of the accident. HR decides on the CNESST notice.",red:1},
+{k:"termination fire dismiss",q:"Can a manager end someone's employment?",on:"Not alone. Terminations are Serious requests: Area Manager, Operations, then HR confirm before anything is said.",qc:"Not alone. Terminations are Serious requests: Area Manager, Operations, then HR confirm before anything is said.",red:1}];
+function renderAns(){var pv=$("#hProv").value,q=($("#hQ").value||"").toLowerCase().trim();var list=ANS.filter(function(a){return !q||(a.k+" "+a.q.toLowerCase()).indexOf(q)>=0||q.split(/\s+/).some(function(w){return w.length>2&&a.k.indexOf(w)>=0})});
+ $("#hA").innerHTML=list.length?list.map(function(a){return '<div class="ans'+(a.red?' red':'')+'"><b>'+esc(a.q)+'</b>'+esc(a[pv])+(a.red?' <span class="st bad">Call HR</span>':'')+'</div>'}).join(""):'<p class="why">No answer in this demo. A client portal holds the full guide for their policies.</p>'}
+function renderHR(){var open=HRQ.filter(function(r){return r.cur<CH[r.c].length}),late=open.filter(function(r){return r.age>SLA[r.c]}),ok=HRQ.filter(function(r){return r.chk[0]==="good"}).length;
+ $("#hK").innerHTML=kpi("Open requests",String(open.length),HRQ.length-open.length+" completed")+kpi("Past target time",String(late.length),"Routine 48 h · Important 72 h · Serious 96 h")+kpi("Automatic checks passed",ok+" of "+HRQ.length,"against employee records")+kpi("Stop and call HR",String(HRQ.filter(function(r){return r.chk[0]==="bad"}).length),"held until HR reviews");
+ var t='<tr><th class="tl">Request</th><th class="tl">Location</th><th class="tl">Level</th><th class="tl">Waiting on</th><th>Age</th><th class="tl">Check</th></tr>';
+ HRQ.forEach(function(r,i){var done=r.cur>=CH[r.c].length,lateR=!done&&r.age>SLA[r.c];t+='<tr data-i="'+i+'"'+(i===hrSel?' class="sel"':'')+'><td class="tl">'+esc(r.t)+'</td><td class="tl">'+locName(r.loc)+'</td><td class="tl">'+CHL[r.c]+'</td><td class="tl">'+(done?'<span class="st good">Done</span>':esc(CH[r.c][r.cur]))+'</td><td>'+(lateR?'<span class="st bad">'+r.age+' h</span>':r.age+' h')+'</td><td class="tl"><span class="st '+r.chk[0]+'">'+({good:"Passed",warn:"Needs note",bad:"Stop"})[r.chk[0]]+'</span></td></tr>'});
+ $("#hT").innerHTML=t;$$("#hT tr[data-i]").forEach(function(tr){tr.addEventListener("click",function(){hrSel=+tr.dataset.i;renderHR()})});
+ var r=HRQ[hrSel],ch=CH[r.c],done=r.cur>=ch.length;
+ $("#hD").innerHTML='<h2>'+esc(r.t)+' <small>'+locName(r.loc)+' · '+CHL[r.c]+' · target '+SLA[r.c]+' h</small></h2><div class="steps">'+ch.map(function(x,i){return '<span class="'+(i<r.cur?'done':i===r.cur?'cur':'')+'">'+esc(x)+'</span>'}).join("")+'</div>'+
+ '<p class="why"><b>HR Help Desk check:</b> <span class="st '+r.chk[0]+'">'+({good:"Passed",warn:"Needs note",bad:"Stop"})[r.chk[0]]+'</span> '+esc(r.chk[1])+'</p>'+
+ (done?'<p class="why"><b>Completed.</b> The employee record was updated automatically and the letter is ready on the company letterhead.</p>':
+ '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-s" id="hOk" type="button"'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?' disabled style="opacity:.5;cursor:not-allowed"':'')+'>'+(ch[r.cur]==="HR"?"HR confirms":"Approve as "+esc(ch[r.cur]))+'</button><button class="btn btn-line btn-s" id="hBack" type="button">Return with a note</button></div>'+(r.chk[0]==="bad"&&ch[r.cur]!=="HR"?'<p class="why">This request is held: only HR can move it forward after review.</p>':''));
+ var ok=$("#hOk");if(ok)ok.addEventListener("click",function(){if(ok.disabled)return;var step=ch[r.cur];r.cur++;addLog("HR request","Approved","",r.t+", "+locName(r.loc)+": "+step+" approved",step);renderHR()});
+ var bk=$("#hBack");if(bk)bk.addEventListener("click",function(){var n=window.prompt("What needs to change before this can be approved?","");if(n===null)return;addLog("HR request","Returned with a note",n.trim(),r.t+", "+locName(r.loc)+": returned by "+ch[r.cur],ch[r.cur])})}
+
+/* ---------- DELIVERABLES (Executive View) ---------- */
+var DEL=[{k:"B",st:"Baseline",d:"Decision map and baseline report",o:"BridgeOne",w:2,c:"12 recurring decisions mapped; baseline KPIs agreed for all 5 locations",s:"ok"},
+{k:"R",st:"Rules",d:"Decision rules and approval matrix",o:"BridgeOne with Operations and HR",w:3,c:"Goals, limits and who approves what, agreed in writing",s:"ok"},
+{k:"I",st:"Insight",d:"Back-test report",o:"BridgeOne",w:5,c:"Recommended rules beat last quarter's real decisions on at least 2 of 3 target KPIs",s:"wait"},
+{k:"D",st:"Decide",d:"Portals live with weekly recommendations",o:"BridgeOne",w:7,c:"People and Stock & Supply portals running on your data; every recommendation explained",s:"todo"},
+{k:"G",st:"Go live with people",d:"Trained managers and a 2-week side-by-side trial",o:"Your managers, coached by BridgeOne",w:9,c:"All Location and Area Managers trained; trial results reviewed",s:"todo"},
+{k:"E",st:"Evaluate",d:"First monthly scorecard against the baseline",o:"BridgeOne with the Executive team",w:10,c:"Scorecard shows each KPI against baseline; next improvements agreed",s:"todo"}];
+function renderDeliv(){var done=DEL.filter(function(x){return x.s==="ok"}).length,wait=DEL.filter(function(x){return x.s==="wait"||x.s==="chg"})[0],nxt=wait||DEL.filter(function(x){return x.s==="prog"||x.s==="todo"})[0];
+ $("#dK").innerHTML=kpi("Stages signed off",done+" of 6",done===6?"engagement complete":"next: "+(nxt?nxt.st:""))+kpi("Waiting for your sign-off",wait?"1":"0",wait?esc(wait.d):"nothing pending")+kpi("Next due",nxt?"Week "+nxt.w:"Done",nxt?esc(nxt.st):"")+kpi("Impact reviews","3 · 6 · 12","months after go-live");
+ var t='<tr><th class="tl">Stage</th><th class="tl">Deliverable</th><th class="tl">Owner</th><th>Due</th><th class="tl">Accepted when</th><th class="tl">Status</th><th class="tl"></th></tr>';
+ DEL.forEach(function(x,i){var stt=x.s==="ok"?'<span class="st good">Signed off</span>':x.s==="wait"?'<span class="st warn">Awaiting sign-off</span>':x.s==="chg"?'<span class="st bad">Changes requested</span>':x.s==="prog"?'<span class="st info">In progress</span>':'<span class="st" style="color:var(--mute)">Not started</span>';
+  var act=(x.s==="wait"||x.s==="chg")?'<div style="display:flex;flex-direction:column;gap:6px"><button class="btn btn-gold btn-s" data-ok="'+i+'" type="button">Sign off</button><button class="btn btn-line btn-s" data-chg="'+i+'" type="button">Request changes</button></div>':x.s==="prog"?'<button class="btn btn-line btn-s" data-dl="'+i+'" type="button">Mark delivered</button>':'';
+  t+='<tr><td class="tl"><b>'+x.k+'</b> '+esc(x.st)+'</td><td class="tl wrap">'+esc(x.d)+'</td><td class="tl wrap">'+esc(x.o)+'</td><td>W'+x.w+'</td><td class="tl wrap">'+esc(x.c)+'</td><td class="tl">'+stt+'</td><td class="tl">'+act+'</td></tr>'});
+ $("#dT").innerHTML=t;
+ $$("#dT [data-ok]").forEach(function(b){b.addEventListener("click",function(){var i=+b.dataset.ok;if(state.role==="lm"){toast("Only an executive or Area Manager can sign off a deliverable");return}DEL[i].s="ok";if(DEL[i+1]&&DEL[i+1].s==="todo")DEL[i+1].s="prog";addLog("Engagement deliverable","Signed off","",DEL[i].k+" · "+DEL[i].st+": "+DEL[i].d,ROLEN[state.role]);renderDeliv()})});
+ $$("#dT [data-dl]").forEach(function(b){b.addEventListener("click",function(){DEL[+b.dataset.dl].s="wait";toast("Delivered by BridgeOne: ready for your sign-off");renderDeliv()})});
+ $$("#dT [data-chg]").forEach(function(b){b.addEventListener("click",function(){var i=+b.dataset.chg;var n=window.prompt("What needs to change before you can sign this off?","");if(n===null)return;DEL[i].s="chg";addLog("Engagement deliverable","Changes requested",n.trim(),DEL[i].k+" · "+DEL[i].st+": "+DEL[i].d,ROLEN[state.role]);renderDeliv()})})}
+/* ---------- OVERVIEW ---------- */
+var QS=[["Staff rosters","roster"],["HR requests and approvals","hr"],["Stock ordering and transfers","stock"],["Pricing, promotions and markdowns","price"],["Buying and cash planning","cash"],["Location performance reviews","loc"],["Opening or closing locations","loc"]];
+var OPTS=["Gut feel","Spreadsheet","Data, reviewed"];
+function renderQs(){$("#qs").innerHTML=QS.map(function(q,i){return '<div class="q"><b>'+q[0]+'</b><div class="seg" role="group" aria-label="'+q[0]+'">'+OPTS.map(function(o,j){return '<button type="button" data-q="'+i+'" data-a="'+j+'" aria-pressed="'+(state.answers[i]===j)+'">'+o+'</button>'}).join("")+'</div></div>'}).join("");
+ $$("#qs button").forEach(function(b){b.addEventListener("click",function(){state.answers[+b.dataset.q]=+b.dataset.a;renderQs();renderOverview(true)})})}
+function renderOverview(skipQs){if(!skipQs)renderQs();var sc=state.answers.reduce(function(a,v){return a+v},0)/(QS.length*2);$("#ringV").textContent=Math.round(sc*100)+"%";$("#ringArc").setAttribute("stroke-dashoffset",(314*(1-sc)).toFixed(1));
+ var rs=rosterAllSavings();ensureSnaps();var items=[["Roster & labour",rs,"roster","Rosters follow hourly demand in all 5 locations"],["Pricing & markdowns",SNAP.price.save,"price","Planned markdowns on seasonal items"],["Stock & transfers",SNAP.stock.save,"stock","Fewer empty shelves; extra stock moved, not reordered"]];
+ items.forEach(function(x){var qi=QS.findIndex(function(q){return q[1]===x[2]});x[1]=x[1]*(state.answers[qi]===2?.35:state.answers[qi]===1?.75:1)});items.sort(function(a,b){return b[1]-a[1]});
+ var total=items.reduce(function(a,x){return a+x[1]},0);$("#impact").textContent=fk(total)+" a year";$("#cashFreed").textContent=fk(SNAP.cash.freed);
+ var PORT={roster:"People Portal",hr:"People Portal",stock:"Stock & Supply Portal",price:"Stock & Supply Portal",cash:"Executive View",loc:"Franchise & Network Portal"};$("#pri").innerHTML=items.map(function(x){return '<li><div>'+x[0]+' <small style="color:var(--gold-lt);font-weight:600">· '+PORT[x[2]]+'</small><br><span>'+x[3]+'</span></div><b>'+fk(x[1])+'/yr</b><a class="btn btn-line btn-s" href="#'+x[2]+'" data-go="'+x[2]+'">Open</a></li>'}).join("")+'<li><div>Cash &amp; buying <small style="color:var(--gold-lt);font-weight:600">· Executive View</small><br><span>Keep cash above the floor in the busy season</span></div><b>'+fk(SNAP.cash.freed)+'</b><a class="btn btn-line btn-s" href="#cash" data-go="cash">Open</a></li>';
+ $$("#pri [data-go]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.dataset.go)})});
+ var R=locRows(),t='<tr><th class="tl">Location</th><th>Sales</th><th>Labour %</th><th>Cost of goods %</th><th>Margin %</th><th>Days of stock</th></tr>';R.forEach(function(x){var st=STOCK.filter(function(r){return r.loc===x.L.id}),days=st.reduce(function(a,r){return a+r.oh/r.avg},0)/st.length;t+='<tr><td class="tl">'+x.L.name+'</td><td>'+fk(x.sales)+'</td><td>'+pc(x.lab)+'</td><td>'+pc(x.cogs)+'</td><td>'+pc(x.mar)+'</td><td>'+nf(days,1)+'</td></tr>'});$("#baseT").innerHTML=t}
+function ensureSnaps(){if(!SNAP.price){renderPrice()}if(!SNAP.stock){renderStock()}if(!SNAP.cash){renderCash()}}
+
+/* ---------- decision log ---------- */
+var ROLEN={lm:"Location Manager",am:"Area Manager",ex:"Executive"};
+function addLog(mod,status,note,sum,by){var s=SNAP[{"Roster & labour":"roster","Stock transfers":"stock","Stock orders":"stock","Markdown plan":"price","Buying & cash plan":"cash"}[mod]]||{};
+ var st=state.role==="lm"?(status==="Approved"?"Proposed":"Proposed with note"):status;if(by)st=status;state.log.unshift({t:new Date(),mod:mod,sum:sum||s.summary||"",st:st,by:by||ROLEN[state.role],note:note||""});$("#logN").textContent=state.log.length;
+ toast(st==="Proposed"||st==="Proposed with note"?"Sent to your Area Manager for approval":"Logged as "+st.toLowerCase())}
+$$(".act").forEach(function(b){b.addEventListener("click",function(){addLog(b.dataset.m,"Approved")})});
+$$(".adj").forEach(function(b){b.addEventListener("click",function(){var n=window.prompt("What would you change, and why?","");if(n===null)return;addLog(b.dataset.m,"Approved with changes",n.trim())})});
+function renderLog(){var t='<tr><th class="tl">When</th><th class="tl">Tool</th><th class="tl">Decision</th><th class="tl">Status</th><th class="tl">By</th><th class="tl">Note</th></tr>';state.log.forEach(function(l){var cls=/Proposed/.test(l.st)?"info":/changes/.test(l.st)?"warn":"good";t+='<tr><td class="tl">'+l.t.toLocaleString("en-CA",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})+'</td><td class="tl">'+esc(l.mod)+'</td><td class="tl wrap">'+esc(l.sum)+'</td><td class="tl"><span class="st '+cls+'">'+esc(l.st)+'</span></td><td class="tl">'+esc(l.by)+'</td><td class="tl wrap">'+esc(l.note)+'</td></tr>'});
+ $("#logT").innerHTML=state.log.length?t:"";$("#logEmpty").classList.toggle("hide",state.log.length>0)}
+$("#csv").addEventListener("click",function(){var rows=[["When","Tool","Decision","Status","By","Note"]].concat(state.log.map(function(l){return [l.t.toISOString(),l.mod,l.sum,l.st,l.by,l.note]}));var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"'}).join(",")}).join("\n");var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="decision-log-demo.csv";a.click()});
+$("#role").addEventListener("change",function(){state.role=this.value;$$(".act").forEach(function(b){b.textContent=state.role==="lm"?"Propose for approval":b.textContent.replace("Propose for approval",{"Roster & labour":"Approve this roster","Stock transfers":"Approve transfers","Stock orders":"Approve orders","Markdown plan":"Approve plan","Buying & cash plan":"Approve buying plan"}[b.dataset.m])});toast("Viewing as "+ROLEN[state.role])});
+
+/* ---------- wiring ---------- */
+function fillSelect(sel,arr){$(sel).innerHTML=arr.map(function(x){return '<option>'+esc(x)+'</option>'}).join("")}
+fillSelect("#rLoc",LOCS.map(function(l){return l.name}));fillSelect("#sLoc",LOCS.map(function(l){return l.name}));fillSelect("#rDay",DAYS);$("#rDay").selectedIndex=5;fillSelect("#pItem",SEASON.map(function(s){return s[0]}));fillItem();
+function on(ids,fn){ids.forEach(function(id){var el=$("#"+id);el.addEventListener("input",fn);el.addEventListener("change",fn)})}
+on(["rLoc","rDay","rProd","rMin","rSmin","rSmax","rWft","rWpt","rOt","rPtcap"],function(){renderRoster()});
+on(["sSl","sRev","sTr","sLoc"],function(){renderStock()});
+$("#pItem").addEventListener("change",function(){fillItem();renderPrice()});on(["pPrice","pCost","pStock","pWeeks","pBase","pEl","pSalv"],function(){renderPrice()});on(["prD","prE","prC","prW"],renderPromo);
+on(["hProv","hQ"],renderAns);
+on(["cOpen","cFloor","cOut"],function(){renderCash()});
+on(["nInv","nSales","nRamp","nMar","nRent"],renderNew);on(["fRoy","fMkt","fMar","fSales"],renderFee);
+$("#reset").addEventListener("click",function(){location.hash="";location.reload()});
+function render(v){if(v==="overview")renderOverview();else if(v==="roster")renderRoster();else if(v==="hr"){renderHR();renderAns()}else if(v==="stock")renderStock();else if(v==="price")renderPrice();else if(v==="cash")renderCash();else if(v==="loc")renderLoc();else if(v==="deliv")renderDeliv();else if(v==="log")renderLog()}
+window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(h!==state.view&&["overview","roster","hr","stock","price","cash","deliv","loc","log"].indexOf(h)>=0)show(h)});
+var start=(location.hash||"").slice(1);show(["overview","roster","hr","stock","price","cash","deliv","loc","log"].indexOf(start)>=0?start:"overview");
+})();
+</script>
+</body>
+</html>

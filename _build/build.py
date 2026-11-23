@@ -8,7 +8,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '72'
+V = '73'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -117,7 +117,7 @@ def footer(L):
 <div class="top">
 <div class="col main"><a class="brand" href="{pre}"><img src="/assets/logo-sm.png" alt="" width="54" height="34"><span>BRIDGEONE</span></a><span class="motto">{esc(g(L, "motto"))}</span>
 <p style="margin:0;max-width:360px;line-height:1.6">{esc(g(L, "footer.tag"))}</p></div>
-<nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}decision-os.html">Decision OS</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
+<nav class="col" aria-label="Footer"><b>{esc(g(L, "footer.company"))}</b><a href="{pre}#about">{esc(g(L, "footer.about"))}</a><a href="{pre}#services">{esc(g(L, "nav.services"))}</a><a href="{pre}bridgeone-os.html">BridgeOne OS</a><a href="{pre}insights.html">{esc(g(L, "nav.insights"))}</a><a href="{pre}#contact">{esc(g(L, "nav.contact"))}</a></nav>
 <div class="col"><b>{esc(g(L, "nav.contact"))}</b><a href="tel:+16473355647" dir="ltr">+1 (647) 335-5647</a><a href="mailto:info@bridge-one.ca" dir="ltr">info@bridge-one.ca</a><span>{esc(g(L, "contact.hours"))}</span></div>
 <nav class="col" aria-label="Legal"><b>{esc(g(L, "footer.legal"))}</b><a href="{pre}privacy.html">{esc(g(L, "footer.privacy"))}</a><a href="{CO}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">{LI_ICON}LinkedIn</a></nav>
 </div>
@@ -305,7 +305,7 @@ PRIV = {
   ('How we use it', 'We use your information only to respond to your enquiry and provide our services. We do not sell your personal information.'),
   ('How long we keep it', 'We keep your information only as long as we need it to respond to you, deliver our services and meet legal or contractual obligations, then delete it.'),
   ('Service providers', 'We use trusted providers to host this website, deliver contact-form messages, handle consultation bookings and run our email. They handle your information only on our behalf, and some may process it outside Canada. Our newsletter, Bridging the Gap, is published on LinkedIn, and subscriptions are managed by LinkedIn under its own privacy policy.'),
-  ('Tools on this site', 'The business health check, the decision check and the Decision OS demo run entirely in your browser. Nothing you enter in them is sent to us or saved.'),
+  ('Tools on this site', 'The business health check, the decision check and the BridgeOne OS demo run entirely in your browser. Nothing you enter in them is sent to us or saved.'),
   ('Website statistics', 'We use GoatCounter to count page visits. It does not use cookies or collect personal information, and we see only totals such as which pages were viewed and which country or website visitors came from.'),
   ('Your choices', 'You can ask to access, correct or delete your information at any time by emailing {e}.'),
   ('Contact', 'Hossam Almotaim, Founder, is responsible for privacy at BridgeOne. Questions about this policy? Email {e}.')]),
@@ -315,7 +315,7 @@ PRIV = {
   ('Comment nous les utilisons', 'Nous utilisons vos renseignements uniquement pour répondre à votre demande et fournir nos services. Nous ne vendons pas vos renseignements personnels.'),
   ('Durée de conservation', 'Nous conservons vos renseignements seulement le temps nécessaire pour vous répondre, fournir nos services et respecter nos obligations légales ou contractuelles, puis nous les supprimons.'),
   ('Fournisseurs de services', 'Nous faisons appel à des fournisseurs de confiance pour héberger ce site, acheminer les messages du formulaire, gérer les réservations de consultation et nos courriels. Ils traitent vos renseignements uniquement en notre nom, et certains peuvent les traiter à l’extérieur du Canada. Notre infolettre, Bridging the Gap, est publiée sur LinkedIn; les abonnements sont gérés par LinkedIn selon sa propre politique de confidentialité.'),
-  ('Outils sur ce site', 'Le diagnostic d’entreprise, le diagnostic des décisions et la démo Decision OS fonctionnent entièrement dans votre navigateur. Rien de ce que vous y saisissez ne nous est transmis ni n’est conservé.'),
+  ('Outils sur ce site', 'Le diagnostic d’entreprise, le diagnostic des décisions et la démo BridgeOne OS fonctionnent entièrement dans votre navigateur. Rien de ce que vous y saisissez ne nous est transmis ni n’est conservé.'),
   ('Statistiques du site', 'Nous utilisons GoatCounter pour compter les visites des pages. Il n’utilise pas de témoins (cookies) et ne recueille aucun renseignement personnel; nous ne voyons que des totaux, comme les pages consultées et le pays ou le site d’où viennent les visiteurs.'),
   ('Vos choix', 'Vous pouvez demander en tout temps à consulter, à corriger ou à supprimer vos renseignements en écrivant à {e}.'),
   ('Nous joindre', 'Hossam Almotaim, fondateur, est responsable de la protection des renseignements personnels chez BridgeOne. Des questions sur cette politique? Écrivez à {e}.')]),
@@ -325,7 +325,7 @@ PRIV = {
   ('كيف نستخدمها', 'نستخدم معلوماتك فقط للرد على استفسارك وتقديم خدماتنا. نحن لا نبيع معلوماتك الشخصية.'),
   ('مدة الاحتفاظ', 'نحتفظ بمعلوماتك فقط للمدة اللازمة للرد عليك وتقديم خدماتنا والوفاء بالتزاماتنا القانونية أو التعاقدية، ثم نحذفها.'),
   ('مزوّدو الخدمات', 'نستعين بمزوّدين موثوقين لاستضافة هذا الموقع وإيصال رسائل نموذج التواصل وإدارة حجوزات الاستشارات وبريدنا الإلكتروني. يتعاملون مع معلوماتك نيابةً عنا فقط، وقد يعالجها بعضهم خارج كندا. تُنشر نشرتنا Bridging the Gap على لينكدإن، وتُدار الاشتراكات فيها من قِبل لينكدإن وفق سياسة الخصوصية الخاصة به.'),
-  ('الأدوات على هذا الموقع', 'يعمل فحص الأعمال وفحص القرارات والعرض التجريبي لـ Decision OS بالكامل داخل متصفحك، ولا يُرسَل إلينا أو يُحفَظ أي شيء تُدخله فيها.'),
+  ('الأدوات على هذا الموقع', 'يعمل فحص الأعمال وفحص القرارات والعرض التجريبي لـ BridgeOne OS بالكامل داخل متصفحك، ولا يُرسَل إلينا أو يُحفَظ أي شيء تُدخله فيها.'),
   ('إحصاءات الموقع', 'نستخدم GoatCounter لعدّ زيارات الصفحات. لا يستخدم ملفات تعريف الارتباط (الكوكيز) ولا يجمع أي معلومات شخصية، ولا نرى إلا أرقامًا إجمالية مثل الصفحات التي تمت زيارتها والبلد أو الموقع الذي جاء منه الزوار.'),
   ('خياراتك', 'يمكنك في أي وقت طلب الاطلاع على معلوماتك أو تصحيحها أو حذفها بمراسلتنا على {e}.'),
   ('تواصل معنا', 'المؤسس Hossam Almotaim هو المسؤول عن الخصوصية في BridgeOne. لديك أسئلة عن هذه السياسة؟ راسلنا على {e}.')]),
@@ -349,7 +349,7 @@ def home_page(L):
     recent = [x for x in ARTS if x['source'] and x is not LATEST][-3:]
     body = body.replace('{{LATEST}}', feature_card(L, LATEST, g(L, 'insights.featured'), g(L, 'insights.go')))
     body = body.replace('{{EDITIONS}}', ed_rows(L, recent, INS[L]['read']))
-    body = body.replace('{{DOS}}', '/' + LANGS[L][2] + 'decision-os.html').replace('{{BOOK}}', BOOK).replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
+    body = body.replace('{{DOS}}', '/' + LANGS[L][2] + 'bridgeone-os.html').replace('{{BOOK}}', BOOK).replace('{{ME}}', ME).replace('{{NL}}', NL).replace('{{FAIL}}', att(g(L, 'contact.fail'))).replace('data-fail=', 'data-sending="' + att(g(L, 'contact.sending')) + '" data-mailbtn="' + att(g(L, 'contact.mailbtn')) + '" data-fail=')
     body = body.replace('<a class="skip" href="#main" data-i18n="skip"></a>\n<header', '<header')
     hs = body.index('<header'); he = body.index('</header>') + len('</header>')
     body = body[:hs] + header(L, '', home=True).split('\n', 1)[1].rstrip('\n') + body[he:]
@@ -376,13 +376,13 @@ def rep2(m, L):
     return m.group(0) + esc(v)
 
 
-# ---------- Decision OS product page ----------
+# ---------- BridgeOne OS product page ----------
 PORT = {'EN': ('One system, four portals', "Start with the portal you need and add the others when you're ready. They share the same data, so a sales forecast that sets tomorrow's roster also sets stock orders and the cash plan.", 'Every engagement starts with an assessment and baseline.', [('People Portal', 'Our HR Portal and staff scheduling in one place, for HR and operations managers', ['Staff rosters built from hourly demand and your labour target', 'Labour cost and overtime control within employment standards', 'HR answers and step-by-step decision guides, by province', 'Online HR requests with approval chains, target times and automatic checks against employee records', 'Letters and forms on your letterhead, ready to issue']), ('Stock & Supply Portal', 'For operations, buying and merchandising teams', ['Reorder points and safety stock for every item and location', 'Transfers between locations before new orders', 'Markdown plans and promotion checks that protect margin']), ('Franchise & Network Portal', 'For franchisors, area managers and multi-unit operators', ['Scorecards that compare every location', 'Go or no-go checks for new locations', 'Franchise fee and franchisee health checks']), ('Executive View', 'For the CEO, COO, CFO and owners', ['Thirteen-week cash and buying plan', 'Monthly scorecard against the baseline', 'Decision log: who approved what, and what happened next'])]), 'FR': ('Un système, quatre portails', 'Commencez par le portail dont vous avez besoin et ajoutez les autres quand vous êtes prêt. Ils partagent les mêmes données : la prévision de ventes qui fixe l’horaire de demain fixe aussi les commandes et le plan de trésorerie.', 'Chaque mandat commence par une évaluation et un point de départ.', [('Portail Personnel', 'Notre portail RH et les horaires réunis, pour les gestionnaires RH et des opérations', ['Horaires bâtis à partir de la demande horaire et de votre cible de main-d’œuvre', 'Contrôle du coût de main-d’œuvre et des heures supplémentaires selon les normes du travail', 'Réponses RH et guides de décision étape par étape, par province', 'Demandes RH en ligne avec circuits d’approbation, délais cibles et vérification automatique des dossiers des employés', 'Lettres et formulaires à votre en-tête, prêts à remettre']), ('Portail Stocks et approvisionnement', 'Pour les équipes des opérations, des achats et de la mise en marché', ['Points de commande et stocks de sécurité pour chaque article et emplacement', 'Transferts entre emplacements avant toute nouvelle commande', 'Plans de démarque et vérification des promotions qui protègent la marge']), ('Portail Franchises et réseau', 'Pour les franchiseurs, directeurs régionaux et exploitants multi-unités', ['Tableaux comparatifs de chaque emplacement', 'Vérification « go ou no-go » des nouveaux emplacements', 'Analyse des redevances et de la santé des franchisés']), ('Vue de la direction', 'Pour le PDG, le chef de l’exploitation, le chef des finances et les propriétaires', ['Plan de trésorerie et d’achats sur treize semaines', 'Bilan mensuel par rapport au point de départ', 'Journal des décisions : qui a approuvé quoi, et ce qui a suivi'])]), 'AR': ('نظام واحد وأربع بوابات', 'ابدأ بالبوابة التي تحتاجها وأضف الباقي عندما تكون مستعدًا. تتشارك البوابات البيانات نفسها، فتوقّع المبيعات الذي يحدد جدول الغد يحدد أيضًا طلبات المخزون وخطة النقد.', 'يبدأ كل تعاون بتقييم وخط أساس.', [('بوابة الموارد البشرية', 'بوابة الموارد البشرية وجداول الموظفين في مكان واحد، لمديري الموارد البشرية والعمليات', ['جداول موظفين مبنية على الطلب في كل ساعة وعلى هدف تكلفة العمالة', 'ضبط تكلفة العمالة والعمل الإضافي ضمن معايير العمل', 'إجابات الموارد البشرية وأدلة قرار خطوة بخطوة حسب المقاطعة', 'طلبات موارد بشرية إلكترونية بمسارات اعتماد ومُهل مستهدفة وتحقق تلقائي من سجلات الموظفين', 'خطابات ونماذج على ترويسة شركتك جاهزة للإصدار']), ('بوابة المخزون والإمداد', 'لفرق العمليات والمشتريات والتسويق التجاري', ['نقاط إعادة الطلب ومخزون الأمان لكل صنف وفرع', 'نقل المخزون بين الفروع قبل أي طلب جديد', 'خطط تخفيض وفحص للعروض يحميان الهامش']), ('بوابة الامتياز والشبكة', 'لمانحي الامتياز ومديري المناطق ومشغّلي الفروع المتعددة', ['بطاقات أداء تقارن كل الفروع', 'فحص «نعم أم لا» للمواقع الجديدة', 'تحليل رسوم الامتياز وصحة أصحاب الفروع']), ('الرؤية التنفيذية', 'للرئيس التنفيذي ومدير العمليات والمدير المالي والملاك', ['خطة نقد ومشتريات لثلاثة عشر أسبوعًا', 'بطاقة أداء شهرية مقارنة بخط الأساس', 'سجل القرارات: من اعتمد ماذا، وما الذي حدث بعدها'])])}
 DOS = {
- 'EN': dict(title='BridgeOne Decision OS | Decision tools for multi-location businesses',
-  desc='BridgeOne Decision OS turns your sales, staff, stock and cash data into weekly decisions your managers approve. Four portals for multi-location businesses.',
-  kick='BridgeOne Decision OS', h1='Better everyday decisions across every location',
-  lead='Decision OS is BridgeOne’s own decision system for businesses with several locations. It brings four portals, People, Stock & Supply, Franchise & Network and an Executive View, onto the data you already have, with clear weekly recommendations. Your managers approve them, and we measure the results with you every month.',
+ 'EN': dict(title='BridgeOne OS | Decision tools for multi-location businesses',
+  desc='BridgeOne OS turns your sales, staff, stock and cash data into weekly decisions your managers approve. Four portals for multi-location businesses.',
+  kick='BridgeOne OS', h1='Better everyday decisions across every location',
+  lead='BridgeOne OS is our own decision system for businesses with several locations. It brings four portals, People, Stock & Supply, Franchise & Network and an Executive View, onto the data you already have, with clear weekly recommendations. Your managers approve them, and we measure the results with you every month.',
   demo='Try the live demo', book='Book a free call', demoNote='The demo uses a fictional five-location business and runs entirely in your browser.',
   forT='Built for businesses with more than one location', forL=['Retail chains and specialty stores','Cafés, restaurants and food service groups','Franchise networks, for franchisors and multi-unit franchisees','Service businesses with several branches or clinics'],
   modT='Seven tools, one weekly rhythm', mods=[
@@ -406,17 +406,17 @@ DOS = {
   pkgT='Ways to work together', pkgs=[
    ('Decision assessment','2 to 4 weeks','Baseline, maturity score and a ranked list of opportunities with estimated value.'),
    ('Decision sprint','6 to 8 weeks','One or two tools set up on your data, with your managers trained and the first results measured.'),
-   ('Decision OS with coaching','Monthly','All the tools you need, weekly recommendations and a monthly scorecard review with BridgeOne.'),
-   ('Licensed copy','Annual','Your own branded copy of Decision OS, with roles and approvals, maintained by BridgeOne.')],
+   ('BridgeOne OS with coaching','Monthly','All the tools you need, weekly recommendations and a monthly scorecard review with BridgeOne.'),
+   ('Licensed copy','Annual','Your own branded copy of BridgeOne OS, with roles and approvals, maintained by BridgeOne.')],
   lic='Each portal can be licensed as your own branded copy, with roles and approvals, maintained and updated by BridgeOne.',
   sign='Every stage ends with a named deliverable and clear acceptance criteria. The next stage starts only when you sign it off.',
   hc='A short call to name the 3 decisions worth fixing first and the portal to start with.',
-  ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether Decision OS fits.',
+  ctaT='See what better decisions are worth in your business', ctaP='Start with a free 30-minute call. We’ll tell you honestly whether BridgeOne OS fits.',
   note='Results depend on your data and how consistently recommendations are applied. Figures in the demo are illustrative.'),
- 'FR': dict(title='BridgeOne Decision OS | Outils de décision pour entreprises multisites',
-  desc='BridgeOne Decision OS transforme vos données en décisions hebdomadaires que vos gestionnaires approuvent. Quatre portails pour les entreprises multisites.',
-  kick='BridgeOne Decision OS', h1='De meilleures décisions au quotidien, dans chaque emplacement',
-  lead='Decision OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il réunit quatre portails (Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction) sur les données dont vous disposez déjà, avec des recommandations hebdomadaires claires. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
+ 'FR': dict(title='BridgeOne OS | Outils de décision pour entreprises multisites',
+  desc='BridgeOne OS transforme vos données en décisions hebdomadaires que vos gestionnaires approuvent. Quatre portails pour les entreprises multisites.',
+  kick='BridgeOne OS', h1='De meilleures décisions au quotidien, dans chaque emplacement',
+  lead='BridgeOne OS est le système de décision conçu par BridgeOne pour les entreprises qui comptent plusieurs emplacements. Il réunit quatre portails (Personnel, Stocks et approvisionnement, Franchises et réseau, et une Vue de la direction) sur les données dont vous disposez déjà, avec des recommandations hebdomadaires claires. Vos gestionnaires les approuvent, et nous mesurons les résultats avec vous chaque mois.',
   demo='Essayer la démo', book='Réserver un appel gratuit', demoNote='La démo utilise une entreprise fictive de cinq emplacements et fonctionne entièrement dans votre navigateur (en anglais).',
   forT='Conçu pour les entreprises de plus d’un emplacement', forL=['Chaînes de détail et boutiques spécialisées','Cafés, restaurants et groupes de restauration','Réseaux de franchises, franchiseurs et franchisés multi-unités','Entreprises de services avec plusieurs succursales ou cliniques'],
   modT='Sept outils, un rythme hebdomadaire', mods=[
@@ -440,17 +440,17 @@ DOS = {
   pkgT='Façons de travailler ensemble', pkgs=[
    ('Évaluation décisionnelle','2 à 4 semaines','Point de départ, score de maturité et liste priorisée des occasions avec leur valeur estimée.'),
    ('Sprint décisionnel','6 à 8 semaines','Un ou deux outils mis en place sur vos données, gestionnaires formés et premiers résultats mesurés.'),
-   ('Decision OS avec accompagnement','Mensuel','Tous les outils utiles, des recommandations hebdomadaires et un bilan mensuel avec BridgeOne.'),
-   ('Copie sous licence','Annuel','Votre propre copie de Decision OS à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.')],
+   ('BridgeOne OS avec accompagnement','Mensuel','Tous les outils utiles, des recommandations hebdomadaires et un bilan mensuel avec BridgeOne.'),
+   ('Copie sous licence','Annuel','Votre propre copie de BridgeOne OS à vos couleurs, avec rôles et approbations, maintenue par BridgeOne.')],
   lic='Chaque portail peut être offert sous licence comme copie à vos couleurs, avec rôles et approbations, maintenue et mise à jour par BridgeOne.',
   sign='Chaque étape se termine par un livrable précis et des critères d’acceptation clairs. L’étape suivante ne commence qu’après votre approbation.',
   hc='Un court appel pour cibler les 3 décisions à corriger en premier et le portail par lequel commencer.',
-  ctaT='Découvrez ce que valent de meilleures décisions pour votre entreprise', ctaP='Commencez par un appel gratuit de 30 minutes. Nous vous dirons franchement si Decision OS vous convient.',
+  ctaT='Découvrez ce que valent de meilleures décisions pour votre entreprise', ctaP='Commencez par un appel gratuit de 30 minutes. Nous vous dirons franchement si BridgeOne OS vous convient.',
   note='Les résultats dépendent de vos données et de l’application constante des recommandations. Les chiffres de la démo sont illustratifs.'),
- 'AR': dict(title='BridgeOne Decision OS | أدوات قرار للشركات متعددة الفروع',
-  desc='يحوّل Decision OS بيانات المبيعات والموظفين والمخزون والنقد إلى توصيات أسبوعية يعتمدها مديروك: جداول الموظفين، ونقل المخزون، والتخفيضات، وخطط الشراء، وقرارات الفروع.',
-  kick='BridgeOne Decision OS', h1='قرارات يومية أفضل في كل فرع',
-  lead='Decision OS هو نظام القرار الذي صمّمته BridgeOne للشركات التي تدير أكثر من فرع. يجمع أربع بوابات، الموارد البشرية والمخزون والإمداد والامتياز والشبكة والرؤية التنفيذية، على البيانات المتوفرة لديك أصلًا، مع توصيات أسبوعية واضحة. يعتمدها مديروك، ونقيس النتائج معك كل شهر.',
+ 'AR': dict(title='BridgeOne OS | أدوات قرار للشركات متعددة الفروع',
+  desc='يحوّل BridgeOne OS بيانات المبيعات والموظفين والمخزون والنقد إلى توصيات أسبوعية يعتمدها مديروك: جداول الموظفين، ونقل المخزون، والتخفيضات، وخطط الشراء، وقرارات الفروع.',
+  kick='BridgeOne OS', h1='قرارات يومية أفضل في كل فرع',
+  lead='BridgeOne OS هو نظام القرار الذي صمّمته BridgeOne للشركات التي تدير أكثر من فرع. يجمع أربع بوابات، الموارد البشرية والمخزون والإمداد والامتياز والشبكة والرؤية التنفيذية، على البيانات المتوفرة لديك أصلًا، مع توصيات أسبوعية واضحة. يعتمدها مديروك، ونقيس النتائج معك كل شهر.',
   demo='جرّب العرض التجريبي', book='احجز مكالمة مجانية', demoNote='يستخدم العرض التجريبي شركة وهمية لديها خمسة فروع، ويعمل بالكامل داخل متصفحك (باللغة الإنجليزية).',
   forT='مصمَّم للشركات التي لديها أكثر من فرع', forL=['سلاسل التجزئة والمتاجر المتخصصة','المقاهي والمطاعم ومجموعات الأغذية','شبكات الامتياز التجاري، للمانحين وأصحاب الفروع المتعددة','شركات الخدمات ذات الفروع أو العيادات المتعددة'],
   modT='سبع أدوات وإيقاع أسبوعي واحد', mods=[
@@ -474,16 +474,16 @@ DOS = {
   pkgT='طرق العمل معًا', pkgs=[
    ('تقييم القرارات','من أسبوعين إلى 4 أسابيع','خط أساس ودرجة نضج وقائمة مرتبة بالفرص وقيمتها التقديرية.'),
    ('سبرنت القرارات','من 6 إلى 8 أسابيع','إعداد أداة أو أداتين على بياناتك، وتدريب المديرين، وقياس النتائج الأولى.'),
-   ('Decision OS مع المتابعة','شهري','كل الأدوات التي تحتاجها، وتوصيات أسبوعية، ومراجعة شهرية لبطاقة الأداء مع BridgeOne.'),
-   ('نسخة مرخّصة','سنوي','نسختك الخاصة من Decision OS بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.')],
+   ('BridgeOne OS مع المتابعة','شهري','كل الأدوات التي تحتاجها، وتوصيات أسبوعية، ومراجعة شهرية لبطاقة الأداء مع BridgeOne.'),
+   ('نسخة مرخّصة','سنوي','نسختك الخاصة من BridgeOne OS بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها.')],
   lic='يمكن ترخيص كل بوابة كنسخة خاصة بهويتك، مع الأدوار والاعتمادات، وتتولى BridgeOne صيانتها وتحديثها.',
   sign='تنتهي كل مرحلة بمخرَج محدد ومعايير قبول واضحة، ولا تبدأ المرحلة التالية إلا بعد اعتمادك له.',
   hc='مكالمة قصيرة لتحديد أهم 3 قرارات تستحق المعالجة أولًا والبوابة التي نبدأ بها.',
-  ctaT='اكتشف قيمة القرارات الأفضل في شركتك', ctaP='ابدأ بمكالمة مجانية مدتها 30 دقيقة، وسنخبرك بصراحة إن كان Decision OS مناسبًا لك.',
+  ctaT='اكتشف قيمة القرارات الأفضل في شركتك', ctaP='ابدأ بمكالمة مجانية مدتها 30 دقيقة، وسنخبرك بصراحة إن كان BridgeOne OS مناسبًا لك.',
   note='تعتمد النتائج على بياناتك ومدى الالتزام بتطبيق التوصيات. الأرقام في العرض التجريبي توضيحية.'),
 }
 def dos_page(L):
-    P = DOS[L]; f = 'decision-os.html'
+    P = DOS[L]; f = 'bridgeone-os.html'
     li = ''.join(f'<li>{esc(x)}</li>' for x in P['forL'])
     pt, pp, pa, pl = PORT[L]
     mods = ''.join(f'<article class="tile dos-m"><span class="dos-who">{esc(w)}</span><h3>{esc(t)}</h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in items) + '</ul></article>' for t, w, items in pl)
@@ -491,14 +491,14 @@ def dos_page(L):
     pkgs = [list(x) for x in g(L, 'dec.pkgs')]; pkgs[0][2] = P['hc']
     diff = ''.join(f'<div><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in P['diff'])
     pk = ''.join(f'<article class="tile dx-pk{" dx-feat" if i == 2 else ""}"><span class="dx-dur">{esc(x[1])}</span><h3>{esc(x[0])}</h3><p>{esc(x[2])}</p></article>' for i, x in enumerate(pkgs))
-    ld = json.dumps({"@context": "https://schema.org", "@type": "Service", "name": "BridgeOne Decision OS", "serviceType": "Decision support for multi-location businesses",
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Service", "name": "BridgeOne OS", "serviceType": "Decision support for multi-location businesses",
         "provider": {"@type": "ProfessionalService", "name": "BridgeOne Inc.", "url": SITE}, "areaServed": "Canada", "description": P['desc'], "url": SITE + LANGS[L][2] + f}, ensure_ascii=False)
     return head(L, P['title'], P['desc'], f, extra=f'<script type="application/ld+json">{ld}</script>\n') + inner_header(L, f, 'd') + f'''<main id="main">
 <section class="phero dos-hero"><div class="wrap">
 <p class="kicker">{esc(P["kick"])}</p>
 <h1>{esc(P["h1"])}</h1>
 <p>{esc(P["lead"])}</p>
-<div class="dos-cta"><a class="btn btn-gold btn-lg" href="/decision-os/demo.html">{esc(P["demo"])}</a><a class="btn btn-glass btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a></div>
+<div class="dos-cta"><a class="btn btn-gold btn-lg" href="/bridgeone-os/demo.html">{esc(P["demo"])}</a><a class="btn btn-glass btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a></div>
 <p class="dos-dn">{esc(P["demoNote"])}</p>
 </div></section>
 <section class="sec" style="padding-top:72px"><div class="wrap">
@@ -518,11 +518,21 @@ def dos_page(L):
 </div></section>
 <section class="sec fog" style="padding:80px 0"><div class="wrap subscribe">
 <div><h2>{esc(P["ctaT"])}</h2><p>{esc(P["ctaP"])}</p></div>
-<div class="dos-cta" style="margin:0"><a class="btn btn-gold btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a><a class="btn btn-glass btn-lg" href="/decision-os/demo.html">{esc(P["demo"])}</a></div>
+<div class="dos-cta" style="margin:0"><a class="btn btn-gold btn-lg" href="{BOOK}" target="_blank" rel="noopener">{esc(P["book"])}</a><a class="btn btn-glass btn-lg" href="/bridgeone-os/demo.html">{esc(P["demo"])}</a></div>
 </div></section>
 </main>
 ''' + inner_footer(L)
 
+
+
+# ---------- Redirects from the old Decision OS addresses (renamed Nov 22, 2026) ----------
+def redirect_stub(target):
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>BridgeOne OS</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="{SITE}{target.lstrip('/')}">
+<meta http-equiv="refresh" content="0; url={target}">
+<script>location.replace("{target}"+location.hash)</script></head>
+<body><p><a href="{target}">BridgeOne OS</a></p></body></html>
+'''
 
 # ---------- Write everything ----------
 for L in LANGS:
@@ -530,7 +540,8 @@ for L in LANGS:
     write(pre + 'index.html', home_page(L))
     write(pre + 'insights.html', insights_page(L))
     write(pre + 'privacy.html', privacy_page(L))
-    write(pre + 'decision-os.html', dos_page(L))
+    write(pre + 'bridgeone-os.html', dos_page(L))
+    write(pre + 'decision-os.html', redirect_stub('/' + pre + 'bridgeone-os.html'))
 for i, a in enumerate(ARTS):
     write(f'insights/{a["slug"]}.html', article_page(a, ARTS[i-1] if i else None, ARTS[i+1] if i + 1 < len(ARTS) else None))
 first = [a for a in ARTS if not a['source']]
@@ -539,8 +550,8 @@ if first:
     write('article.html', f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="{SITE[:-1]}{to}"><meta http-equiv="refresh" content="0; url={to}"></head><body><a href="{to}">This article has moved.</a></body></html>\n')
 urls = []
 for L in LANGS:
-    for f in ['', 'decision-os.html', 'insights.html', 'privacy.html']: urls.append(SITE + LANGS[L][2] + f)
-urls.append(SITE + 'decision-os/demo.html')
+    for f in ['', 'bridgeone-os.html', 'insights.html', 'privacy.html']: urls.append(SITE + LANGS[L][2] + f)
+urls.append(SITE + 'bridgeone-os/demo.html')
 urls += [SITE + f'insights/{a["slug"]}.html' for a in ARTS]
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n')
 s = open(R + '/404.html').read(); write('404.html', re.sub(r'styles\.css\?v=\d+', f'styles.css?v={V}', s))

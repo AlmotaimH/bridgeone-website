@@ -1062,7 +1062,7 @@ main:has(#contact)+.ftr .ftr-cta{display:none}
 .hdr .brand{flex-shrink:0}
 .hdr .nav{min-width:0}
 .hdr.compact .brand span{display:none}
-/* Decision OS product page */
+/* BridgeOne OS product page */
 .dos-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
 .dos-dn{margin-top:14px!important;font-size:14px!important;color:var(--mute)!important}
 .dos-for{padding:34px 38px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:30px;align-items:center}

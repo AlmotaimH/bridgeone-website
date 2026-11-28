@@ -8,7 +8,7 @@ It regenerates every page in English, French (/fr/) and Arabic (/ar/).
 import json, subprocess, re, html, os, glob
 
 B = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(B)
-V = '73'
+V = '74'
 SITE = 'https://bridge-one.ca/'
 CO = 'https://www.linkedin.com/company/110901315/'
 ME = 'https://www.linkedin.com/in/almotaimh/'
@@ -190,6 +190,10 @@ VIS = {
    [('e6-guide', 'Field guide: technical versus adaptive problems, a double-diamond diagnosis map, a team check-up and a 30-day playbook'),
     ('e6-coaching', 'Poster: The best leaders ask before they answer, with coaching effect sizes from Theeboom, Beersma and van Vianen (2014)'),
     ('e6-creative', 'Poster: First, think alone, then think together, with about 56 ideas from brainstorming groups versus 103 from people working alone first')]),
+ 'culture-is-a-team-sport': ('e7', 'Edition 7 cover: Culture Is a Team Sport, with four rings of moments, norms, climate and culture and the SCORE playbook',
+   [('e7-guide', 'Field guide: find the broken ring, safety is designed not declared, myth versus evidence, a team check-up and the SCORE 30-day playbook'),
+    ('e7-teamwork', 'Poster: Many teams change course halfway whether you plan it or not, with Gersick (1988) project timelines'),
+    ('e7-culture', 'Poster: It\'s not just the pay, culture is often the louder reason, with toxic culture 10.4 times as powerful as pay in predicting attrition')]),
 }
 def cover_of(a): return VIS.get(a['slug'])
 ARTS = load_articles()
